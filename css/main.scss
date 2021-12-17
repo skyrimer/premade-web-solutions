@@ -1,0 +1,433 @@
+// Colors
+$color-main: #080c25;
+$color-opposite: #f7f7f7;
+$color-secondary: #3071e7;
+$color-tertiary: #a6b2ec;
+$color-favorite: #00ffc2;
+
+// Breakpoints
+$breakpoint-burger: 49rem;
+
+// Font sizes
+$ff-xl: clamp(1.4rem, 7.5vw, 8rem);
+$ff-l: clamp(1.3rem, 4.3vw, 5rem);
+$ff-m: clamp(1.1rem, 3.2vw, 3rem);
+$ff-s: clamp(0.9rem, 3vw, 1.3rem);
+$ff-xs: clamp(0.875rem, 3vw, 1.2rem);
+// General
+body,
+:root {
+  font-size: 16px;
+}
+:root {
+  font-family: "IBM Plex Sans", sans-serif;
+}
+
+body {
+  color: $color-opposite;
+  background-image: repeating-linear-gradient(
+      135deg,
+      rgb(0, 0, 0) 0px,
+      rgb(0, 0, 0) 10px,
+      transparent 10px,
+      transparent 11px
+    ),
+    repeating-linear-gradient(
+      22.5deg,
+      rgb(0, 0, 0) 0px,
+      rgb(0, 0, 0) 10px,
+      transparent 10px,
+      transparent 11px
+    ),
+    linear-gradient(
+      90deg,
+      hsl(194, 74%, 56%),
+      hsl(266, 74%, 56%),
+      hsl(338, 74%, 56%),
+      hsl(50, 74%, 56%),
+      hsl(122, 74%, 56%)
+    );
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+h1,
+h2,
+h3 .font-secondary {
+  font-weight: 700;
+  font-family: "Archivo", sans-serif;
+}
+h1 {
+  font-size: $ff-xl;
+  text-align: center;
+  margin-top: auto;
+}
+h2 {
+  font-size: $ff-l;
+  color: $color-secondary;
+  text-align: center;
+  margin-bottom: 1em;
+}
+h3 {
+  font-size: $ff-m;
+  line-height: 1.3;
+  margin: 1em 0;
+  @media screen and (min-width: $breakpoint-burger) {
+    margin-top: 0;
+  }
+}
+p {
+  font-size: $ff-xs;
+  line-height: 1.5;
+  margin-bottom: 1em;
+}
+img {
+  width: 100%;
+}
+.inline {
+  display: inline;
+  width: 1.4em;
+}
+.btn-link {
+  display: inline-block;
+  padding: 0.75em 1.5em;
+  margin: 1em 0 0;
+
+  font-family: "Archivo", sans-serif;
+  font-size: $ff-s;
+
+  color: $color-secondary;
+  border: 1px solid currentColor;
+  border-radius: 0.5em;
+  outline: none;
+
+  transition: all 0.3s ease-in-out;
+
+  &:hover,
+  &:focus {
+    color: $color-main;
+    background: $color-secondary;
+    box-shadow: 0 0 2em rgba($color: $color-secondary, $alpha: 0.3),
+      0 0 4em rgba($color: $color-secondary, $alpha: 0.5);
+  }
+}
+.glassy {
+  background: rgba($color: $color-main, $alpha: 0.5);
+  backdrop-filter: blur(20px) saturate(200%);
+}
+.glassy-section {
+  background: rgba($color: $color-tertiary, $alpha: 0.1);
+  backdrop-filter: blur(2px);
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: Min(3em, 4vw);
+}
+// Main page
+
+.container {
+  width: Min(95%, 120rem);
+}
+#header {
+  $size: 5rem;
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  z-index: 3;
+  width: $size;
+  height: $size;
+  border-radius: 20%;
+  @media screen and (min-width: $breakpoint-burger) {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: auto;
+    width: auto;
+    height: auto;
+    border-radius: initial;
+  }
+  &::after {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: 0;
+    z-index: 2;
+
+    border-top-left-radius: 1rem;
+
+    width: $size;
+    height: $size;
+    background-color: $color-main;
+    transition: all 0.3s ease-in-out;
+  }
+  &.active {
+    &::after {
+      opacity: 1;
+      transform: scale3d(4, 8, 1);
+    }
+    ul {
+      z-index: 3;
+      bottom: 5rem;
+      right: 2rem;
+      position: fixed;
+      opacity: 1;
+      transition: all 0.3s ease-in-out;
+      transition-delay: 0.3s;
+    }
+  }
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $color-opposite;
+    padding: 1.5em 0;
+    @media screen and (min-width: $breakpoint-burger) {
+      justify-content: space-between;
+    }
+    .logo {
+      display: none;
+      @media screen and (min-width: $breakpoint-burger) {
+        display: block;
+        $size: 64px;
+        width: $size;
+
+      }
+    }
+    ul {
+      position: fixed;
+
+      list-style: none;
+      font-style: italic;
+      display: flex;
+      gap: 1.5rem;
+      font-size: 1.2rem;
+      flex-direction: column;
+      opacity: 0;
+      a {
+        $size: 0.1em;
+        color: $color-favorite;
+        transition: all 0.3s ease-in-out;
+        &:hover,
+        &:focus {
+          color: $color-secondary;
+        }
+      }
+      @media screen and (min-width: $breakpoint-burger) {
+        position: static;
+        opacity: 1;
+        flex-direction: row;
+        gap: Min(2.5rem, 3vw);
+        a {
+          $size: 0.1em;
+          color: $color-opposite;
+          background-image: linear-gradient(
+            to right,
+            currentColor,
+            currentColor
+          );
+          background-size: 0 $size;
+          background-position: bottom left;
+          background-repeat: no-repeat;
+          transition: all 0.3s ease-in-out;
+          &:hover {
+            color: $color-secondary;
+            background-size: 100% $size;
+          }
+        }
+      }
+    }
+  }
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5em;
+  width: 100%;
+  z-index: 1;
+  section {
+    .column-2 {
+      display: flex;
+      flex-direction: column;
+      @media screen and (min-width: $breakpoint-burger) {
+        gap: 2em;
+        justify-content: space-between;
+        & > div {
+          flex-basis: 100%;
+        }
+      }
+    }
+    &:nth-child(even) .column-2 {
+      @media screen and (min-width: $breakpoint-burger) {
+        flex-direction: row;
+      }
+    }
+    &:nth-child(odd) .column-2 {
+      @media screen and (min-width: $breakpoint-burger) {
+        flex-direction: row-reverse;
+      }
+    }
+  }
+}
+.center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.fullscreen {
+  width: 100%;
+  min-height: 100vh;
+}
+
+footer {
+  margin-top: 5em;
+}
+
+// Animations
+.scrolldown {
+  $size: 1.5rem;
+  position: relative;
+  transform: translate(0, -350%);
+  width: $size;
+  height: $size;
+  margin: auto 0 0;
+  .chevron {
+    position: absolute;
+    left: -25%;
+    width: $size * 1.5;
+    height: $size / 3;
+    opacity: 0;
+    transform: scale3d(0.5, 0.5, 0.5);
+    animation: move 3s ease-out infinite;
+  }
+
+  .chevron:first-child {
+    animation: move 3s ease-out 1s infinite;
+  }
+
+  .chevron:nth-child(2) {
+    animation: move 3s ease-out 2s infinite;
+  }
+
+  .chevron:before,
+  .chevron:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 50%;
+    background: $color-favorite;
+  }
+
+  .chevron:before {
+    left: 0;
+    transform: skew(0deg, 30deg);
+  }
+
+  .chevron:after {
+    right: 0;
+    transform: skew(0deg, -30deg);
+  }
+
+  @keyframes move {
+    25% {
+      opacity: 1;
+    }
+    33% {
+      opacity: 1;
+      transform: translateY($size * 2);
+    }
+    67% {
+      opacity: 1;
+      transform: translateY($size * 2.5);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY($size * 3) scale3d(0.5, 0.5, 0.5);
+    }
+  }
+  @keyframes pulse {
+    to {
+      opacity: 1;
+    }
+  }
+}
+
+// Burger
+svg.ham {
+  display: block;
+  width: 4rem;
+  cursor: pointer;
+  transition: transform 300ms;
+  user-select: none;
+  z-index: 3;
+  @media screen and (min-width: $breakpoint-burger) {
+    display: none;
+    opacity: 0;
+    z-index: -1;
+  }
+  path {
+    fill: none;
+    transition: stroke-dasharray 400ms, stroke-dashoffset 400ms;
+    stroke: $color-favorite;
+    stroke-width: 5.5;
+    stroke-linecap: round;
+  }
+  .top {
+    stroke-dasharray: 40 172;
+  }
+  .middle {
+    stroke-dasharray: 40 111;
+  }
+  .bottom {
+    stroke-dasharray: 40 172;
+  }
+  &.active {
+    .top {
+      stroke-dashoffset: -132px;
+    }
+    .middle {
+      stroke-dashoffset: -71px;
+    }
+    .bottom {
+      stroke-dashoffset: -132px;
+    }
+  }
+}
+
+.wavy-hand {
+  display: inline-block;
+  user-select: none;
+  animation: waving 2.5s ease-in-out infinite;
+  transform-origin: 70% 70%;
+  @keyframes waving {
+    0% {
+      transform: rotate(0deg);
+    }
+    10% {
+      transform: rotate(14deg);
+    }
+    20% {
+      transform: rotate(-8deg);
+    }
+    30% {
+      transform: rotate(14deg);
+    }
+    40% {
+      transform: rotate(-4deg);
+    }
+    50% {
+      transform: rotate(10deg);
+    }
+    60% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
+  }
+}
