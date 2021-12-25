@@ -6,7 +6,7 @@ $color-tertiary: #a6b2ec;
 $color-favorite: #00ffc2;
 
 // Breakpoints
-$breakpoint-burger: 49rem;
+$breakpoint-burger: 55rem;
 
 // Font sizes
 $ff-xl: clamp(1.4rem, 7.5vw, 8rem);
@@ -15,10 +15,7 @@ $ff-m: clamp(1.1rem, 3.2vw, 3rem);
 $ff-s: clamp(0.9rem, 3vw, 1.3rem);
 $ff-xs: clamp(0.875rem, 3vw, 1.2rem);
 // General
-body,
-:root {
-  font-size: 16px;
-}
+
 :root {
   font-family: "IBM Plex Sans", sans-serif;
 }
@@ -50,6 +47,18 @@ body {
   background-attachment: fixed;
   min-height: 100vh;
 }
+%underline {
+  $size: 0.1em;
+  background-image: linear-gradient(to right, currentColor, currentColor);
+  background-size: 0 $size;
+  background-position: bottom left;
+  background-repeat: no-repeat;
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    color: $color-secondary;
+    background-size: 100% $size;
+  }
+}
 h1,
 h2,
 h3 .font-secondary {
@@ -57,9 +66,11 @@ h3 .font-secondary {
   font-family: "Archivo", sans-serif;
 }
 h1 {
-  font-size: $ff-xl;
+  font-size: 11vw;
+  line-height: 1.4;
   text-align: center;
   @media screen and (min-width: $breakpoint-burger) {
+    font-size: $ff-xl;
     margin-top: auto;
   }
 }
@@ -89,20 +100,23 @@ img {
   display: inline;
   width: 1.4em;
 }
-.btn-link {
+%btn {
   display: inline-block;
   padding: 0.75em 1.5em;
-  margin: 1em 0 0;
 
   font-family: "Archivo", sans-serif;
+  background: transparent;
+  outline: none;
+  border-radius: 0.5em;
+  transition: all 0.3s ease-in-out;
+}
+.btn-link {
+  @extend %btn;
   font-size: $ff-s;
+  margin: 1em 0 0;
 
   color: $color-secondary;
   border: 1px solid currentColor;
-  border-radius: 0.5em;
-  outline: none;
-
-  transition: all 0.3s ease-in-out;
 
   &:hover,
   &:focus {
@@ -111,6 +125,23 @@ img {
     box-shadow: 0 0 2em rgba($color: $color-secondary, $alpha: 0.3),
       0 0 4em rgba($color: $color-secondary, $alpha: 0.5);
   }
+}
+.btn-toggler {
+  @extend %btn;
+  font-size: $ff-xs;
+  color: $color-favorite;
+  border: 1px solid currentColor;
+
+  &:hover {
+    color: $color-main;
+    background: $color-favorite;
+    box-shadow: 0 0 2em rgba($color: $color-favorite, $alpha: 0.3),
+      0 0 4em rgba($color: $color-favorite, $alpha: 0.5);
+  }
+}
+.inline-link {
+  @extend %underline;
+  color: $color-favorite;
 }
 .glassy {
   background: rgba($color: $color-main, $alpha: 0.5);
@@ -121,7 +152,7 @@ img {
   backdrop-filter: blur(2px);
   border-radius: 1rem;
   border: 1px solid rgba(255, 255, 255, 0.2);
-  padding: Min(3em, 4vw);
+  padding: Min(3em, 4vh) Min(3em, 4vw);
 }
 // Main page
 
@@ -203,9 +234,8 @@ img {
       flex-direction: column;
       opacity: 0;
       a {
-        $size: 0.1em;
+        @extend %underline;
         color: $color-favorite;
-        transition: all 0.3s ease-in-out;
         &:hover,
         &:focus {
           color: $color-secondary;
@@ -217,21 +247,7 @@ img {
         flex-direction: row;
         gap: Min(2.5rem, 3vw);
         a {
-          $size: 0.1em;
           color: $color-opposite;
-          background-image: linear-gradient(
-            to right,
-            currentColor,
-            currentColor
-          );
-          background-size: 0 $size;
-          background-position: bottom left;
-          background-repeat: no-repeat;
-          transition: all 0.3s ease-in-out;
-          &:hover {
-            color: $color-secondary;
-            background-size: 100% $size;
-          }
         }
       }
     }
@@ -247,13 +263,15 @@ main {
   width: 100%;
   z-index: 1;
   section {
+    width: 100%;
+    max-width: 100%;
     .column-2 {
       display: flex;
       flex-direction: column;
       @media screen and (min-width: $breakpoint-burger) {
         gap: 2em;
         justify-content: space-between;
-        & > div {
+        & > * {
           flex-basis: 100%;
         }
       }
@@ -286,11 +304,10 @@ main {
 .fullscreen {
   min-height: 100vh;
 }
-
-footer {
-  margin-top: 5em;
+.copyright {
+  text-align: center;
+  margin: 0;
 }
-
 // Animations
 .scrolldown {
   $size: 1.5rem;
@@ -437,4 +454,60 @@ svg.ham {
       transform: rotate(0deg);
     }
   }
+}
+
+// Cursor
+.btn-wrapper {
+  display: inline-flex;
+  gap: Min(1rem, 3vw);
+}
+#example-cursor {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin: 2rem 0;
+}
+#cursor,
+#aura {
+  border-radius: 50%;
+  user-select: none;
+  pointer-events: none;
+}
+#cursor {
+  $size: 0.5rem;
+  width: $size;
+  height: $size;
+  background: $color-favorite;
+  transition: opacity 0.1s ease-out;
+  &.active {
+    opacity: 0;
+  }
+}
+#aura {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 1rem;
+
+  $size: 4rem;
+  width: $size;
+  height: $size;
+
+  border: 1px solid $color-favorite;
+  background-color: rgba($color: $color-opposite, $alpha: 0.1);
+  transition: all 0.3s ease-out;
+  &.active {
+    transform: scale(1.2);
+    border-color: $color-secondary;
+  }
+}
+#cursor.hidden,
+#aura.hidden {
+  opacity: 0.05;
+  transform: scale(0.005);
+}
+
+// syntax highlighting
+pre {
+  margin: 2rem 0;
 }
