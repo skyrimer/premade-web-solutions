@@ -144,15 +144,21 @@ img {
   color: $color-favorite;
 }
 .glassy {
-  background: rgba($color: $color-main, $alpha: 0.5);
-  backdrop-filter: blur(20px) saturate(200%);
+  background: $color-main;
+  @supports (backdrop-filter: blur(20px) saturate(200%)) {
+    background: rgba($color: $color-main, $alpha: 0.5);
+    backdrop-filter: blur(20px) saturate(200%);
+  }
 }
 .glassy-section {
-  background: rgba($color: $color-tertiary, $alpha: 0.1);
-  backdrop-filter: blur(2px);
-  border-radius: 1rem;
+  background: rgba($color: $color-main, $alpha: 0.4);
   border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 1rem;
   padding: Min(3em, 4vh) Min(3em, 4vw);
+  @supports (backdrop-filter: blur(2px)) {
+    backdrop-filter: blur(2px);
+    background: rgba($color: $color-tertiary, $alpha: 0.1);
+  }
 }
 // Main page
 
@@ -194,16 +200,18 @@ img {
     transition: all 0.3s ease-in-out;
   }
   &.active {
-    &::after {
-      opacity: 1;
-      transform: scale3d(4, 8, 1);
-    }
-    ul {
-      z-index: 3;
-      bottom: 6rem;
-      right: 3rem;
-      opacity: 1;
-      transition: all 0.3s ease-in-out 0.3s;
+    @media screen and (max-width: $breakpoint-burger) {
+      &::after {
+        opacity: 1;
+        transform: scale3d(4, 8, 1);
+      }
+      ul {
+        z-index: 3;
+        bottom: 6rem;
+        right: 3rem;
+        opacity: 1;
+        transition: all 0.3s ease-in-out 0.3s;
+      }
     }
   }
   nav {
@@ -510,4 +518,14 @@ svg.ham {
 // syntax highlighting
 pre {
   margin: 2rem 0;
+}
+.c-scrollbar {
+  z-index: 11;
+}
+.c-scrollbar_thumb {
+  background-color: $color-opposite;
+  opacity: .9;
+}
+ul.text li{
+  margin-left: 1rem;
 }

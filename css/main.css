@@ -122,18 +122,30 @@ img {
 }
 
 .glassy {
-  background: rgba(8, 12, 37, 0.5);
-  -webkit-backdrop-filter: blur(20px) saturate(200%);
-          backdrop-filter: blur(20px) saturate(200%);
+  background: #080c25;
+}
+
+@supports ((-webkit-backdrop-filter: blur(20px) saturate(200%)) or (backdrop-filter: blur(20px) saturate(200%))) {
+  .glassy {
+    background: rgba(8, 12, 37, 0.5);
+    -webkit-backdrop-filter: blur(20px) saturate(200%);
+            backdrop-filter: blur(20px) saturate(200%);
+  }
 }
 
 .glassy-section {
-  background: rgba(166, 178, 236, 0.1);
-  -webkit-backdrop-filter: blur(2px);
-          backdrop-filter: blur(2px);
-  border-radius: 1rem;
+  background: rgba(8, 12, 37, 0.4);
   border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 1rem;
   padding: Min(3em, 4vh) Min(3em, 4vw);
+}
+
+@supports ((-webkit-backdrop-filter: blur(2px)) or (backdrop-filter: blur(2px))) {
+  .glassy-section {
+    -webkit-backdrop-filter: blur(2px);
+            backdrop-filter: blur(2px);
+    background: rgba(166, 178, 236, 0.1);
+  }
 }
 
 .container {
@@ -178,19 +190,20 @@ img {
   transition: all 0.3s ease-in-out;
 }
 
-#header.active::after {
-  opacity: 1;
-  -webkit-transform: scale3d(4, 8, 1);
-          transform: scale3d(4, 8, 1);
-}
-
-#header.active ul {
-  z-index: 3;
-  bottom: 6rem;
-  right: 3rem;
-  opacity: 1;
-  -webkit-transition: all 0.3s ease-in-out 0.3s;
-  transition: all 0.3s ease-in-out 0.3s;
+@media screen and (max-width: 55rem) {
+  #header.active::after {
+    opacity: 1;
+    -webkit-transform: scale3d(4, 8, 1);
+            transform: scale3d(4, 8, 1);
+  }
+  #header.active ul {
+    z-index: 3;
+    bottom: 6rem;
+    right: 3rem;
+    opacity: 1;
+    -webkit-transition: all 0.3s ease-in-out 0.3s;
+    transition: all 0.3s ease-in-out 0.3s;
+  }
 }
 
 #header nav {
@@ -695,5 +708,18 @@ svg.ham.active .bottom {
 
 pre {
   margin: 2rem 0;
+}
+
+.c-scrollbar {
+  z-index: 11;
+}
+
+.c-scrollbar_thumb {
+  background-color: #f7f7f7;
+  opacity: .9;
+}
+
+ul.text li {
+  margin-left: 1rem;
 }
 /*# sourceMappingURL=main.css.map */
