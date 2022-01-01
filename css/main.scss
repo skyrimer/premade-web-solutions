@@ -1,6 +1,7 @@
 // Colors
 $color-main: #080c25;
 $color-opposite: #f7f7f7;
+$color-darken: #5a6181;
 $color-secondary: #3071e7;
 $color-tertiary: #a6b2ec;
 $color-favorite: #00ffc2;
@@ -14,6 +15,8 @@ $ff-l: clamp(1.5rem, 4.3vw, 5rem);
 $ff-m: clamp(1.1rem, 3.2vw, 3rem);
 $ff-s: clamp(0.9rem, 3vw, 1.3rem);
 $ff-xs: clamp(0.875rem, 3vw, 1.2rem);
+$ff-xxs: clamp(0.7875rem, 2.7vw, 1.08rem);
+
 // General
 
 :root {
@@ -68,10 +71,30 @@ h3 .font-secondary {
 h1 {
   font-size: 11vw;
   line-height: 1.4;
+  letter-spacing: 0.05em;
   text-align: center;
+
+  opacity: 0;
+  transform: translateY(10vh);
+  color: transparent;
+  background-clip: text;
+  -webkit-text-stroke: 1px $color-opposite;
+  animation: onload 3s ease forwards;
   @media screen and (min-width: $breakpoint-burger) {
     font-size: $ff-xl;
     margin-top: auto;
+  }
+  @keyframes onload {
+    66% {
+      color: transparent;
+      opacity: 1;
+      transform: translateY(0);
+    }
+    100% {
+      color: $color-opposite;
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 }
 h2 {
@@ -267,10 +290,11 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 5em;
+  gap: Min(5em, 7vh);
   width: 100%;
   z-index: 1;
   section {
+    opacity: 1;
     width: 100%;
     max-width: 100%;
     .column-2 {
@@ -333,15 +357,15 @@ main {
     height: $size / 3;
     opacity: 0;
     transform: scale3d(0.5, 0.5, 0.5);
-    animation: move 3s ease-out infinite;
+    animation: move 3s ease-out 2s infinite;
   }
 
   .chevron:first-child {
-    animation: move 3s ease-out 1s infinite;
+    animation: move 3s ease-out 3s infinite;
   }
 
   .chevron:nth-child(2) {
-    animation: move 3s ease-out 2s infinite;
+    animation: move 3s ease-out 4s infinite;
   }
 
   .chevron:before,
@@ -467,7 +491,8 @@ svg.ham {
 // Cursor
 .btn-wrapper {
   display: inline-flex;
-  gap: Min(1rem, 3vw);
+  flex-wrap: wrap;
+  gap: Min(1rem, 5vw);
 }
 #example-cursor {
   display: flex;
@@ -514,18 +539,62 @@ svg.ham {
   opacity: 0.05;
   transform: scale(0.005);
 }
-
+ul.text li {
+  margin-left: 1rem;
+}
 // syntax highlighting
 pre {
   margin: 2rem 0;
 }
+// Custom scrollbar
 .c-scrollbar {
   z-index: 11;
 }
 .c-scrollbar_thumb {
   background-color: $color-opposite;
-  opacity: .9;
+  opacity: 0.9;
 }
-ul.text li{
-  margin-left: 1rem;
+
+// Intersection observer
+.fade-in-animate h2,
+.fade-in-animate .text > * {
+  opacity: 0;
+  transform: translateY(2vh);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  &.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Floating label
+.floating-label-wrapper {
+  position: relative;
+  margin: Max(1.5em, 4vh) 0;
+  input {
+    font-size: $ff-s;
+    width: Min(100%, 50rem);
+    padding: 2em 2rem 0.5em;
+    color: $color-opposite;
+    background-color: $color-main;
+    border-bottom: 1px solid $color-favorite;
+    border-radius: 0.5em;
+    &::placeholder {
+      color: transparent;
+    }
+    &:placeholder-shown + label {
+      transform: translateY(-50%);
+      font-size: $ff-xs;
+    }
+  }
+  label {
+    font-size: $ff-xxs;
+    transform: translate(0, calc(-50% - 1em));
+    user-select: none;
+    position: absolute;
+    top: 50%;
+    left: 2rem;
+    color: $color-favorite;
+    transition: all 0.3s ease-in-out;
+  }
 }

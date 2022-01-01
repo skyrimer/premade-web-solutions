@@ -21,13 +21,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@1,700&family=IBM+Plex+Sans&display=swap"
         rel="stylesheet">
     <!-- higlight js styling -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/an-old-hope.min.css"
-        integrity="sha512-t47CjkEB5hx4FojnE73dBLwgrgvLBpgsHvB40ycK3cYPkLwEp7qNHyRpRDA3/zVVAAOUPJwbMVJq3uJrBqpHVQ=="
-        media="print" crossorigin="anonymous" referrerpolicy="no-referrer" onload="this.media='all'" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/base16/solar-flare.min.css"
+        integrity="sha512-+qcmYgdPNX/uKWgS45T0StFAPNTOaHJlP/AB2IpikjqT8UwNY/HhwzbqnezTWhB3ib6rCAXPhPOiBAfGYGBK/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" media="print" onload="this.media='all'" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.3/dist/locomotive-scroll.min.css"
-        media="all" onload="this.media='all'">
+        media="print" onload="this.media='all'">
     <!-- Other styling -->
-    <link rel="stylesheet" href="css/default.css">
+    <link rel="stylesheet" href="/css/default.css">
     <link rel="stylesheet" href="/css/main.css">
     <noscript>
         <link rel="stylesheet" href="style.css">
@@ -57,7 +58,7 @@
     </header>
     <div class="center">
         <main class="container" data-scroll-container>
-            <section class="center fullscreen" data-scroll-section>
+            <section class="center fullscreen fade-in-animate" data-scroll-section>
                 <h1>Pre-made web solutions</h1>
                 <div class="scrolldown">
                     <div class="chevron"></div>
@@ -65,13 +66,13 @@
                     <div class="chevron"></div>
                 </div>
             </section>
-            <section class="glassy-section" data-scroll-section>
+            <section class="glassy-section fade-in-animate" data-scroll-section>
                 <h2>About this website</h2>
                 <div class="column-2">
                     <div class="image">
                         <picture>
                             <source srcset="/images/6.svg" media="(min-width: 47rem)">
-                            <img src="/images/7.svg" alt="">
+                            <img src="/images/7.svg" alt="" loading="lazy">
                         </picture>
                     </div>
                     <article class="text">
@@ -90,19 +91,21 @@
                             by providing crystal clear explanation in simple language of how most common components are
                             constructed.
                         </p>
-                        <a href="#" class="btn-link">
-                            All categories
-                        </a>
+                        <div class="btn-link-wrapper">
+                            <a href="#" class="btn-link">
+                                All categories
+                            </a>
+                        </div>
                     </article>
                 </div>
             </section>
-            <section class="glassy-section" data-scroll-section>
+            <section class="glassy-section fade-in-animate" data-scroll-section>
                 <h2>Why this website?</h2>
                 <div class="column-2">
                     <div class="image">
                         <picture>
                             <source srcset="/images/2.svg" media="(min-width: 47rem)">
-                            <img src="/images/9.svg" alt="">
+                            <img src="/images/9.svg" alt="" loading="lazy">
                         </picture>
                     </div>
                     <article class="text">
@@ -115,17 +118,21 @@
                             everything you need.</p>
                         <p>Finally, the website will provide you with explanations in digestible language. Ideally, you
                             can show this to your grandma👵, and even she will understand how to make a slider!</p>
-                        <a href="#" class="btn-link">Example of a slider</a>
+                        <div class="btn-link-wrapper">
+                            <a href="#" class="btn-link">
+                                Example of a slider
+                            </a>
+                        </div>
                     </article>
                 </div>
             </section>
-            <section class="glassy-section" data-scroll-section>
+            <section class="glassy-section fade-in-animate" data-scroll-section>
                 <h2>Extra information</h2>
                 <div class="column-2">
                     <div class="image">
                         <picture>
                             <source srcset="/images/4.svg" media="(min-width: 47rem)">
-                            <img src="/images/5.svg" alt="">
+                            <img src="/images/5.svg" alt="" loading="lazy">
                         </picture>
                     </div>
                     <article class="text">
@@ -135,91 +142,91 @@
                             is to use online resources.</p>
                         <p>They are easy to access, not complicated to use, but almost impossible to find. That's why I
                             want to share my finding with you!</p>
-                        <a href="#" class="btn-link">Useful websites</a>
+                        <div class="btn-link-wrapper">
+                            <a href="#" class="btn-link">Useful websites</a>
+                        </div>
                     </article>
                 </div>
             </section>
-            <section class="glassy-section" data-scroll-section>
+            <section class="glassy-section fade-in-animate" data-scroll-section>
                 <h2>How to set a custom cursor?</h2>
                 <article class="text">
-                    <div>
-                        <h3>Making custom cursor with image</h3>
-                        <p>If there is an image or an SVG prepared, it is simple to do it with a single CSS property.
-                        </p>
-                        <pre><code class="css">
+                    <h3>Making custom cursor with image</h3>
+                    <p>If there is an image or an SVG prepared, it is simple to do it with a single CSS property.
+                    </p>
+                    <pre><code class="css">
 body {
     cursor: url("path/to/your/image"), auto;
 }
                            </code></pre>
-                        <p>The first argument is the URL with a path to the image. The second argument is the fallback
-                            in case the image can not be
-                            displayed. "Auto" in this case is the default behaviour of the cursor (as if there is no
-                            property set), however, you can
-                            set any value you want.</p>
-                        <p>The list of all the values <a class="inline-link" target="_blank"
-                                href="https://codepen.io/chriscoyier/pen/uCwfB">here</a></p>
-                    </div>
-                    <div>
-                        <h3>Making custom with CSS</h3>
-                        <p>Another way to make a custom cursor on the website is to "draw" your own on the website.
-                        </p>
+                    <p>The first argument is the URL with a path to the image. The second argument is the fallback
+                        in case the image can not be
+                        displayed. "Auto" in this case is the default behaviour of the cursor (as if there is no
+                        property set), however, you can
+                        set any value you want.</p>
+                    <p>The list of all the values <a class="inline-link" target="_blank"
+                            href="https://codepen.io/chriscoyier/pen/uCwfB">here</a></p>
 
-                        <p>You have to remove default cursor using css</p>
-                        <pre><code class="css">
+                    <h3>Making custom with CSS</h3>
+                    <p>Another way to make a custom cursor on the website is to "draw" your own on the website.
+                    </p>
+
+                    <p>You have to remove default cursor using css</p>
+                    <pre><code class="css">
 * {
     cursor: none;
 }
                             </code></pre>
-                        <p>Then you add the HTML that you will customize as a cursor. It can be any element, but it
-                            would be more logical to use
-                            either <code class="html">div</code> or <code class="html">span</code> because they are used
-                            for styling and <code class="html">id</code> because there has to be only one cursor on the
-                            webpage.</p>
-                        <pre><code class="html">
+                    <p>Then you add the HTML that you will customize as a cursor. It can be any element, but it
+                        would be more logical to use
+                        either <code class="html">div</code> or <code class="html">span</code> because they are used
+                        for styling and <code class="html">id</code> because there has to be only one cursor on the
+                        webpage.</p>
+                    <pre><code class="html">
 &lt;div id="cursor"&gt;&lt;/div&gt;
 &lt;div id="aura"&gt;&lt;/div&gt;
                             </code></pre>
-                        <p>Here comes your time to shine and design! You can make almost whatever you want, but you have
-                            to always think of user
-                            experience because your custom cursor should be both pretty and useful. As an example, I
-                            will make a common doubled
-                            circle. The example is below:</p>
-                        <div class="example-wrapper" id="example-cursor">
-                            <div id="aura">
-                                <div id="cursor"></div>
-                            </div>
-                            <div class="btn-wrapper">
-                                <button class="btn-toggler" id="toggle-cursor-none">Normal</button>
-                                <button class="btn-toggler" id="toggle-cursor-active">Active</button>
-                                <button class="btn-toggler" id="toggle-cursor-hidden">Hidden</button>
-                            </div>
+                    <p>Here comes your time to shine and design! You can make almost whatever you want, but you have
+                        to always think of user
+                        experience because your custom cursor should be both pretty and useful. As an example, I
+                        will make a common doubled
+                        circle. The example is below:</p>
+                    <div class="example-wrapper" id="example-cursor">
+                        <div id="aura">
+                            <div id="cursor"></div>
                         </div>
-                        <p>Because you are removing the cursor, it will trigger all the events (clicks or hovers), but
-                            it will not change the state itself. The only way to solve it is to manually add all the
-                            cursor changes using CSS andJavaScript.</p>
-                        <p>Here in CSS, I am both defining default (when the user is just exploring the website), hidden
-                            (when the mouse is out of the website dimensions) and active (when the user is hovering
-                            curtain objects) states.</p>
-                        <p><code class="css">position: absolute</code> and <code class="css">z-index</code>is used to
-                            display this element over the others (<code class="css">z-index</code> should be higher than
-                            any other element has).
-                        </p>
-                        <p><code class="css">user-select: none</code> and <code
-                                class="class">pointer-events: none</code> are set to none to make all the mouse events
-                            trigger the area under the middle dot. Otherwise, the user would always select the dot and
-                            the following circle.</p>
-                        <p><code class="css">#cursor</code> is the small middle dot that instantly follows the cursor.
-                            There is a tiny lag between the mouse movement and
-                            the dot on the screen, but there is nothing to do with it because it is a browser
-                            restriction.</p>
-                        <p><code class="css">#aura</code> is the big circle following the dot with a larger delay
-                            to create the parallax effect. The same circle can be
-                            drowned as a pseudo-element, however, it would follow the dot without any delay, which has
-                            to be taken into account.</p>
-                        <p>Everything else is just styling that can be changed however you want. The example provided is
-                            just a sample that looks
-                            nice and can be taken to adapt to your own needs.</p>
-                        <pre><code class="css">
+                        <div class="btn-wrapper">
+                            <button class="btn-toggler" id="toggle-cursor-none">Normal</button>
+                            <button class="btn-toggler" id="toggle-cursor-active">Active</button>
+                            <button class="btn-toggler" id="toggle-cursor-hidden">Hidden</button>
+                        </div>
+                    </div>
+                    <p>Because you are removing the cursor, it will trigger all the events (clicks or hovers), but
+                        it will not change the state itself. The only way to solve it is to manually add all the
+                        cursor changes using CSS andJavaScript.</p>
+                    <p>Here in CSS, I am both defining default (when the user is just exploring the website), hidden
+                        (when the mouse is out of the website dimensions) and active (when the user is hovering
+                        curtain objects) states.</p>
+                    <p><code class="css">position: absolute</code> and <code class="css">z-index</code>is used to
+                        display this element over the others (<code class="css">z-index</code> should be higher than
+                        any other element has).
+                    </p>
+                    <p><code class="css">user-select: none</code> and <code class="class">pointer-events: none</code>
+                        are set to none to make all the mouse events
+                        trigger the area under the middle dot. Otherwise, the user would always select the dot and
+                        the following circle.</p>
+                    <p><code class="css">#cursor</code> is the small middle dot that instantly follows the cursor.
+                        There is a tiny lag between the mouse movement and
+                        the dot on the screen, but there is nothing to do with it because it is a browser
+                        restriction.</p>
+                    <p><code class="css">#aura</code> is the big circle following the dot with a larger delay
+                        to create the parallax effect. The same circle can be
+                        drowned as a pseudo-element, however, it would follow the dot without any delay, which has
+                        to be taken into account.</p>
+                    <p>Everything else is just styling that can be changed however you want. The example provided is
+                        just a sample that looks
+                        nice and can be taken to adapt to your own needs.</p>
+                    <pre><code class="css">
 /* Cursor styling */
 #cursor,
 #aura {
@@ -262,24 +269,24 @@ body {
   border-color: var(--color-active);
 }
                             </code></pre>
-                        <p>Using JavaScript, we are attempting to make a custom cursor 'alive'. This is why you have to
-                            manipulate all the states
-                            yourself.</p>
-                        <p>For each change of state of the cursor, there is a separated event listener (mouse of the
-                            page, hovers the link, does not hover the link...)</p>
-                        <p>To move the dot and circle, we are adding the event listener on the document, which will
-                            adjust the position when the
-                            mouse is moved.</p>
-                        <p>Interesting fact, there are 2 ways to move the circle: using <code
-                                class="css">transform: translate(e.pageX, e.pageY)</code> and <code
-                                class="css">top: pageY px; left: pageX px</code>. The first way is working faster and
-                            smoother on old machines, but might cause some problems with centering (the code uses <code
-                                class="css">transform: translate(-50%, -50%)</code> with <code
-                                class="css">position: absolute</code> to center
-                            everything). The second solution cause way less problems to the programmer, but might cause
-                            performance issues on old machines.</p>
-                        <p></p>
-                        <pre><code class="js">
+                    <p>Using JavaScript, we are attempting to make a custom cursor 'alive'. This is why you have to
+                        manipulate all the states
+                        yourself.</p>
+                    <p>For each change of state of the cursor, there is a separated event listener (mouse of the
+                        page, hovers the link, does not hover the link...)</p>
+                    <p>To move the dot and circle, we are adding the event listener on the document, which will
+                        adjust the position when the
+                        mouse is moved.</p>
+                    <p>Interesting fact, there are 2 ways to move the circle: using <code
+                            class="css">transform: translate(e.pageX, e.pageY)</code> and <code
+                            class="css">top: pageY px; left: pageX px</code>. The first way is working faster and
+                        smoother on old machines, but might cause some problems with centering (the code uses <code
+                            class="css">transform: translate(-50%, -50%)</code> with <code
+                            class="css">position: absolute</code> to center
+                        everything). The second solution cause way less problems to the programmer, but might cause
+                        performance issues on old machines.</p>
+                    <p></p>
+                    <pre><code class="js">
 // Declaring the constants
 const cursor = document.getElementById("cursor");
 const aura = document.getElementById("aura");
@@ -315,14 +322,16 @@ for (let i = 0; i < links.length; i++) {
   });
 }
                             </code></pre>
-                        <p>That's it! Despite taking some time and energy custom cursor makes your website a bit fancier
-                            than everyone else's. Great job👍</p>
-                        <a href="/examples/custom cursor/cursor.html" class="btn-link" download="cursor.html">Download
-                            example</a>
+                    <p>That's it! Despite taking some time and energy custom cursor makes your website a bit fancier
+                        than everyone else's. Great job👍</p>
+                    <div class="btn-link-wrapper">
+                        <a href="/examples/custom cursor/cursor.html" class="btn-link" download="cursor.html">
+                            Download example
+                        </a>
                     </div>
                 </article>
             </section>
-            <section class="glassy-section" data-scroll-section>
+            <section class="glassy-section fade-in-animate" data-scroll-section>
                 <h2>A way to make smooth scrolling</h2>
                 <article class="text">
                     <p>You might have spotted that on some websites scrolling feels weird. It seems to have some sort of
@@ -404,7 +413,95 @@ const scroll = new LocomotiveScroll({
                     <p>For more information, use the <a href="https://github.com/locomotivemtl/locomotive-scroll"
                             class="inline-link" target="_blank">official documentation</a>, which describes all the
                         powers of the library in detail.</p>
-                    <a href="/examples/locomotive scroll/locomotive scroll.html" class="btn-link" download="locomotive scrolling">Download example</a>
+                    <div class="btn-link-wrapper">
+                        <a href="/examples/locomotive scroll/locomotive scroll.html" class="btn-link"
+                            download="locomotive scrolling">
+                            Download example
+                        </a>
+                    </div>
+                </article>
+            </section>
+            <section class="glassy-section fade-in-animate" data-scroll-section>
+                <h2>Floating labels for inputs</h2>
+                <article class="text">
+                    <p>One of the best thing you can do while creating forms is to label every single <code
+                            class="css">input</code>
+                        with its <code class="css">label</code>. It make the website more
+                        intuitive and user-friendly. One of the ways to add some fancy micro-interactions for the
+                        website is to make the labels float.</p>
+                    <p>Floating label is a term that is used to demonstrate that the label moves as soon as
+                        user focuses the input. You can see it on the example below:</p>
+                    <div class="floating-label-wrapper">
+                        <input class="floating-input" type="text" id="floating" placeholder="Type something">
+                        <label for="floating">Floating label</label>
+                    </div>
+                    <p>In terms of HTML, structure maters a lot. You have to have a wrapper with an input followed by a
+                        label. It is important to have a label afterwards because we are using pure CSS. For this
+                        example, you will also need a placeholder for the input. There are other ways to do it using
+                        <code class="css">:focus</code> and <code class="css">:valid</code>, but we find this one a bit
+                        simpler.
+                    </p>
+                    <pre><code class="html">
+&lt;div class="input-wrapper"&gt;
+  &lt;input type="text" id="input" placeholder="Put any text here"&gt;
+  &lt;label for="input"&gt;Click&lt;/label&gt;
+&lt;/div&gt;
+                                                </code></pre>
+                    </p>
+                    <p>For CSS, you can style the <code class="html">input</code> and <code class="html">label</code>
+                        however you want, however, there are some things to think of. You have to set <code
+                            class="css">position: relative</code> to the wrapper, so you can position the <code
+                            class="css">label</code>. Another thing to be watched is padding: you have to make sure that
+                        there is enough space both for the input text and for the label text. Here, we are lowering the
+                        input text by setting greater <code class="css">padding-top</code> than <code
+                            class="css">padding-bottom</code> so there is enough space for label text.</p>
+                    <p>Finally, we are using the magic selector <code class="css">input:placeholder-shown + label</code>
+                        to change styling for the label. This selector will cover all the <code
+                            class="css">labels</code> after
+                        <code class="css">input</code> when the placeholder value is
+                        not visible. In particular, we are moving the <code class="css">label</code> higher using <code
+                            class="css">transform: translate()</code>, but you can also use <code
+                            class="css">top: </code> and <code class="css">left: </code>
+                    </p>
+                    <pre><code class="css">
+input {
+  font-size: 1.2rem;
+  width: min(100%, 50rem);
+  padding: 2em 2rem 0.5em;
+  color: var(--color-text);
+  background-color: var(--color-background);
+  border-bottom: 1px solid var(--color-background);
+  border-radius: 0.5em;
+}
+
+/* So the placeholder does not overlap with the label */
+input::placeholder {
+  color: transparent;
+}
+
+input:placeholder-shown+label {
+  transform: translateY(-50%);
+  font-size: 1rem;
+}
+
+label {
+  font-size: 0.9rem;
+  transform: translate(0, calc(-50% - 1em));
+  user-select: none;
+  position: absolute;
+  top: 50%;
+  left: 2rem;
+  color: var(--color-accent);
+  transition: all 0.3s ease-in-out;
+}
+                                            </code></pre>
+                    <p>And that's it👍! You can use the same structure for any <code class="css">input</code>, <code
+                            class="css">select</code> or <code class="css">textarea</code>. If you wish to have a look
+                        at it once again, here is a document for you.</p>
+                    <div class="btn-link-wrapper">
+                        <a href="/examples/floating labels/floating label.html" class="btn-link" download>Download
+                            example</a>
+                    </div>
                 </article>
             </section>
             <section class="glassy-section" data-scroll-section>
@@ -412,11 +509,11 @@ const scroll = new LocomotiveScroll({
             </section>
         </main>
     </div>
-    <script defer src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.3/dist/locomotive-scroll.min.js"></script>
     <!-- highlight js languages -->
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"
         integrity="sha512-Pbb8o120v5/hN/a6LjF4N4Lxou+xYZ0QcVF8J6TWhBbHmctQWd8O6xTDmHpE/91OjPzCk4JRoiJsexHYg4SotQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.3/dist/locomotive-scroll.min.js"></script>
     <script defer src="/js/main.js"></script>
 </body>
 
