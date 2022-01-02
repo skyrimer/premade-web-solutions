@@ -133,6 +133,11 @@ img {
   border-radius: 0.5em;
   transition: all 0.3s ease-in-out;
 }
+.btn-wrapper {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: Min(1rem, 5vw);
+}
 .btn-link {
   @extend %btn;
   font-size: $ff-s;
@@ -197,6 +202,13 @@ img {
   width: $size;
   height: $size;
   border-radius: 20%;
+  opacity: 0;
+  animation: header-animation 1s ease forwards 2s;
+  @keyframes header-animation {
+    to {
+      opacity: 1;
+    }
+  }
   @media screen and (min-width: $breakpoint-burger) {
     top: 0;
     left: 0;
@@ -256,7 +268,6 @@ img {
     }
     ul {
       position: fixed;
-
       list-style: none;
       font-style: italic;
       display: flex;
@@ -284,7 +295,6 @@ img {
     }
   }
 }
-
 main {
   display: flex;
   flex-direction: column;
@@ -489,11 +499,7 @@ svg.ham {
 }
 
 // Cursor
-.btn-wrapper {
-  display: inline-flex;
-  flex-wrap: wrap;
-  gap: Min(1rem, 5vw);
-}
+
 #example-cursor {
   display: flex;
   flex-direction: column;
