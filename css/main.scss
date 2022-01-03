@@ -1,10 +1,12 @@
 // Colors
 $color-main: #080c25;
 $color-opposite: #f7f7f7;
-$color-darken: #5a6181;
-$color-secondary: #3071e7;
+$color-secondary: #7db7ff;
+// $color-secondary: #FF8A4C;
+// $color-secondary: #3071e7;
 $color-tertiary: #a6b2ec;
 $color-favorite: #00ffc2;
+$color-danger: #E40C2B;
 
 // Breakpoints
 $breakpoint-burger: 55rem;
@@ -194,7 +196,7 @@ img {
   width: Min(95%, 120rem);
 }
 #header {
-  $size: 6rem;
+  $size: 7rem;
   position: fixed;
   bottom: 1rem;
   right: 1rem;
@@ -238,11 +240,12 @@ img {
     @media screen and (max-width: $breakpoint-burger) {
       &::after {
         opacity: 1;
-        transform: scale3d(4, 8, 1);
+        transform: scale(4, 8);
       }
       ul {
+        width: 10rem;
         z-index: 3;
-        bottom: 6rem;
+        bottom: $size;
         right: 3rem;
         opacity: 1;
         transition: all 0.3s ease-in-out 0.3s;
@@ -271,16 +274,17 @@ img {
       list-style: none;
       font-style: italic;
       display: flex;
-      gap: 2rem;
+      gap: 3rem;
       font-size: 1.4rem;
       flex-direction: column;
       opacity: 0;
       a {
         @extend %underline;
+        padding: 0 0 0.2em;
         color: $color-favorite;
         &:hover,
         &:focus {
-          color: $color-secondary;
+          color: $color-favorite;
         }
       }
       @media screen and (min-width: $breakpoint-burger) {
@@ -291,6 +295,51 @@ img {
         a {
           color: $color-opposite;
         }
+      }
+    }
+  }
+  // Burger
+  svg.ham {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    cursor: pointer;
+    transition: transform 300ms;
+    user-select: none;
+    z-index: 3;
+    @media screen and (min-width: $breakpoint-burger) {
+      display: none;
+      opacity: 0;
+      z-index: -1;
+    }
+    path {
+      fill: none;
+      transition: stroke-dasharray 400ms, stroke-dashoffset 400ms, stroke 400ms;
+      stroke: $color-favorite;
+      stroke-width: 5.5;
+      stroke-linecap: round;
+    }
+    .top {
+      stroke-dasharray: 40 172;
+    }
+    .middle {
+      stroke-dasharray: 40 111;
+    }
+    .bottom {
+      stroke-dasharray: 40 172;
+    }
+    &.active {
+      path {
+        stroke: $color-opposite;
+      }
+      .top {
+        stroke-dashoffset: -132px;
+      }
+      .middle {
+        stroke-dashoffset: -71px;
+      }
+      .bottom {
+        stroke-dashoffset: -132px;
       }
     }
   }
@@ -418,49 +467,6 @@ main {
   @keyframes pulse {
     to {
       opacity: 1;
-    }
-  }
-}
-
-// Burger
-svg.ham {
-  display: block;
-  width: 6rem;
-  padding: 1rem;
-  cursor: pointer;
-  transition: transform 300ms;
-  user-select: none;
-  z-index: 3;
-  @media screen and (min-width: $breakpoint-burger) {
-    display: none;
-    opacity: 0;
-    z-index: -1;
-  }
-  path {
-    fill: none;
-    transition: stroke-dasharray 400ms, stroke-dashoffset 400ms;
-    stroke: $color-favorite;
-    stroke-width: 5.5;
-    stroke-linecap: round;
-  }
-  .top {
-    stroke-dasharray: 40 172;
-  }
-  .middle {
-    stroke-dasharray: 40 111;
-  }
-  .bottom {
-    stroke-dasharray: 40 172;
-  }
-  &.active {
-    .top {
-      stroke-dashoffset: -132px;
-    }
-    .middle {
-      stroke-dashoffset: -71px;
-    }
-    .bottom {
-      stroke-dashoffset: -132px;
     }
   }
 }
