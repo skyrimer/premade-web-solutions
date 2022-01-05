@@ -37,196 +37,237 @@
 </head>
 
 <body>
-    <header class="glassy center" id="header">
-        <nav class="container">
-            <img src="/images/coding.png" alt="" class="logo">
-            <svg class="ham" viewBox="0 0 100 100">
-                <path class="top"
-                    d="m 30,33 h 40 c 13.100415,0 14.380204,31.80258 6.899646,33.421777 -24.612039,5.327373 9.016154,-52.337577 -12.75751,-30.563913 l -28.284272,28.284272" />
-                <path class="middle"
-                    d="m 70,50 c 0,0 -32.213436,0 -40,0 -7.786564,0 -6.428571,-4.640244 -6.428571,-8.571429 0,-5.895471 6.073743,-11.783399 12.286435,-5.570707 6.212692,6.212692 28.284272,28.284272 28.284272,28.284272" />
-                <path class="bottom"
-                    d="m 69.575405,67.073826 h -40 c -13.100415,0 -14.380204,-31.80258 -6.899646,-33.421777 24.612039,-5.327373 -9.016154,52.337577 12.75751,30.563913 l 28.284272,-28.284272" />
-            </svg>
-            <ul>
-                <li><a href="#">Web components</a></li>
-                <li><a href="#">Micro animations</a></li>
-                <li><a href="#">Other tutorials</a></li>
-                <li><a href="#">Helpful websites</a></li>
-            </ul>
+    <header id="header">
+        <nav>
+            <input type="checkbox" id="active">
+            <label for="active">
+                <svg class="ham" viewBox="0 0 100 100">
+                    <path class="top"
+                        d="m 30,33 h 40 c 13.100415,0 14.380204,31.80258 6.899646,33.421777 -24.612039,5.327373 9.016154,-52.337577 -12.75751,-30.563913 l -28.284272,28.284272" />
+                    <path class="middle"
+                        d="m 70,50 c 0,0 -32.213436,0 -40,0 -7.786564,0 -6.428571,-4.640244 -6.428571,-8.571429 0,-5.895471 6.073743,-11.783399 12.286435,-5.570707 6.212692,6.212692 28.284272,28.284272 28.284272,28.284272" />
+                    <path class="bottom"
+                        d="m 69.575405,67.073826 h -40 c -13.100415,0 -14.380204,-31.80258 -6.899646,-33.421777 24.612039,-5.327373 -9.016154,52.337577 12.75751,30.563913 l 28.284272,-28.284272" />
+                </svg>
+            </label>
+            <div class="wrapper">
+                <ul>
+                    <li>
+                        <svg class="logo" viewBox="0 0 123 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <mask id="path-1-outside-1_346_3" maskUnits="userSpaceOnUse" x="0.296875" y="0" width="122"
+                                height="30" fill="black">
+                                <rect fill="white" x="0.296875" width="122" height="30" />
+                                <path
+                                    d="M4.67188 17.9805V28H1.29688V2.40625H10.7363C13.5371 2.40625 15.7285 3.12109 17.3105 4.55078C18.9043 5.98047 19.7012 7.87305 19.7012 10.2285C19.7012 12.7129 18.9219 14.6289 17.3633 15.9766C15.8164 17.3125 13.5957 17.9805 10.7012 17.9805H4.67188ZM4.67188 15.2207H10.7363C12.541 15.2207 13.9238 14.7988 14.8848 13.9551C15.8457 13.0996 16.3262 11.8691 16.3262 10.2637C16.3262 8.74023 15.8457 7.52148 14.8848 6.60742C13.9238 5.69336 12.6055 5.21875 10.9297 5.18359H4.67188V15.2207Z" />
+                                <path
+                                    d="M32.6914 11.8984C32.1992 11.8164 31.666 11.7754 31.0918 11.7754C28.959 11.7754 27.5117 12.6836 26.75 14.5V28H23.498V8.98047H26.6621L26.7148 11.1777C27.7812 9.47852 29.293 8.62891 31.25 8.62891C31.8828 8.62891 32.3633 8.71094 32.6914 8.875V11.8984Z" />
+                                <path
+                                    d="M43.2383 28.3516C40.6602 28.3516 38.5625 27.5078 36.9453 25.8203C35.3281 24.1211 34.5195 21.8535 34.5195 19.0176V18.4199C34.5195 16.5332 34.877 14.8516 35.5918 13.375C36.3184 11.8867 37.3262 10.7266 38.6152 9.89453C39.916 9.05078 41.3223 8.62891 42.834 8.62891C45.3066 8.62891 47.2285 9.44336 48.5996 11.0723C49.9707 12.7012 50.6562 15.0332 50.6562 18.0684V19.4219H37.7715C37.8184 21.2969 38.3633 22.8145 39.4062 23.9746C40.4609 25.123 41.7969 25.6973 43.4141 25.6973C44.5625 25.6973 45.5352 25.4629 46.332 24.9941C47.1289 24.5254 47.8262 23.9043 48.4238 23.1309L50.4102 24.6777C48.8164 27.127 46.4258 28.3516 43.2383 28.3516ZM42.834 11.3008C41.5215 11.3008 40.4199 11.7812 39.5293 12.7422C38.6387 13.6914 38.0879 15.0273 37.877 16.75H47.4043V16.5039C47.3105 14.8516 46.8652 13.5742 46.0684 12.6719C45.2715 11.7578 44.1934 11.3008 42.834 11.3008Z" />
+                                <path
+                                    d="M60.4648 19.9316L60.957 23.3066L61.6777 20.2656L66.7402 2.40625H69.5879L74.5273 20.2656L75.2305 23.3594L75.7754 19.9141L79.748 2.40625H83.1406L76.9355 28H73.8594L68.5859 9.34961L68.1816 7.39844L67.7773 9.34961L62.3105 28H59.2344L53.0469 2.40625H56.4219L60.4648 19.9316Z" />
+                                <path
+                                    d="M93.7227 28.3516C91.1445 28.3516 89.0469 27.5078 87.4297 25.8203C85.8125 24.1211 85.0039 21.8535 85.0039 19.0176V18.4199C85.0039 16.5332 85.3613 14.8516 86.0762 13.375C86.8027 11.8867 87.8105 10.7266 89.0996 9.89453C90.4004 9.05078 91.8066 8.62891 93.3184 8.62891C95.791 8.62891 97.7129 9.44336 99.084 11.0723C100.455 12.7012 101.141 15.0332 101.141 18.0684V19.4219H88.2559C88.3027 21.2969 88.8477 22.8145 89.8906 23.9746C90.9453 25.123 92.2812 25.6973 93.8984 25.6973C95.0469 25.6973 96.0195 25.4629 96.8164 24.9941C97.6133 24.5254 98.3105 23.9043 98.9082 23.1309L100.895 24.6777C99.3008 27.127 96.9102 28.3516 93.7227 28.3516ZM93.3184 11.3008C92.0059 11.3008 90.9043 11.7812 90.0137 12.7422C89.123 13.6914 88.5723 15.0273 88.3613 16.75H97.8887V16.5039C97.7949 14.8516 97.3496 13.5742 96.5527 12.6719C95.7559 11.7578 94.6777 11.3008 93.3184 11.3008Z" />
+                                <path
+                                    d="M121.021 18.7012C121.021 21.6074 120.354 23.9453 119.018 25.7148C117.682 27.4727 115.889 28.3516 113.639 28.3516C111.236 28.3516 109.379 27.502 108.066 25.8027L107.908 28H104.92V1H108.172V11.0723C109.484 9.44336 111.295 8.62891 113.604 8.62891C115.912 8.62891 117.723 9.50195 119.035 11.248C120.359 12.9941 121.021 15.3848 121.021 18.4199V18.7012ZM117.77 18.332C117.77 16.1172 117.342 14.4062 116.486 13.1992C115.631 11.9922 114.4 11.3887 112.795 11.3887C110.65 11.3887 109.109 12.3848 108.172 14.377V22.6035C109.168 24.5957 110.721 25.5918 112.83 25.5918C114.389 25.5918 115.602 24.9883 116.469 23.7812C117.336 22.5742 117.77 20.7578 117.77 18.332Z" />
+                            </mask>
+                            <path
+                                d="M4.67188 17.9805V28H1.29688V2.40625H10.7363C13.5371 2.40625 15.7285 3.12109 17.3105 4.55078C18.9043 5.98047 19.7012 7.87305 19.7012 10.2285C19.7012 12.7129 18.9219 14.6289 17.3633 15.9766C15.8164 17.3125 13.5957 17.9805 10.7012 17.9805H4.67188ZM4.67188 15.2207H10.7363C12.541 15.2207 13.9238 14.7988 14.8848 13.9551C15.8457 13.0996 16.3262 11.8691 16.3262 10.2637C16.3262 8.74023 15.8457 7.52148 14.8848 6.60742C13.9238 5.69336 12.6055 5.21875 10.9297 5.18359H4.67188V15.2207Z"
+                                stroke="#00FFC2" stroke-width="2" mask="url(#path-1-outside-1_346_3)" />
+                            <path
+                                d="M32.6914 11.8984C32.1992 11.8164 31.666 11.7754 31.0918 11.7754C28.959 11.7754 27.5117 12.6836 26.75 14.5V28H23.498V8.98047H26.6621L26.7148 11.1777C27.7812 9.47852 29.293 8.62891 31.25 8.62891C31.8828 8.62891 32.3633 8.71094 32.6914 8.875V11.8984Z"
+                                stroke="#00FFC2" stroke-width="2" mask="url(#path-1-outside-1_346_3)" />
+                            <path
+                                d="M43.2383 28.3516C40.6602 28.3516 38.5625 27.5078 36.9453 25.8203C35.3281 24.1211 34.5195 21.8535 34.5195 19.0176V18.4199C34.5195 16.5332 34.877 14.8516 35.5918 13.375C36.3184 11.8867 37.3262 10.7266 38.6152 9.89453C39.916 9.05078 41.3223 8.62891 42.834 8.62891C45.3066 8.62891 47.2285 9.44336 48.5996 11.0723C49.9707 12.7012 50.6562 15.0332 50.6562 18.0684V19.4219H37.7715C37.8184 21.2969 38.3633 22.8145 39.4062 23.9746C40.4609 25.123 41.7969 25.6973 43.4141 25.6973C44.5625 25.6973 45.5352 25.4629 46.332 24.9941C47.1289 24.5254 47.8262 23.9043 48.4238 23.1309L50.4102 24.6777C48.8164 27.127 46.4258 28.3516 43.2383 28.3516ZM42.834 11.3008C41.5215 11.3008 40.4199 11.7812 39.5293 12.7422C38.6387 13.6914 38.0879 15.0273 37.877 16.75H47.4043V16.5039C47.3105 14.8516 46.8652 13.5742 46.0684 12.6719C45.2715 11.7578 44.1934 11.3008 42.834 11.3008Z"
+                                stroke="#00FFC2" stroke-width="2" mask="url(#path-1-outside-1_346_3)" />
+                            <path
+                                d="M60.4648 19.9316L60.957 23.3066L61.6777 20.2656L66.7402 2.40625H69.5879L74.5273 20.2656L75.2305 23.3594L75.7754 19.9141L79.748 2.40625H83.1406L76.9355 28H73.8594L68.5859 9.34961L68.1816 7.39844L67.7773 9.34961L62.3105 28H59.2344L53.0469 2.40625H56.4219L60.4648 19.9316Z"
+                                stroke="#00FFC2" stroke-width="2" mask="url(#path-1-outside-1_346_3)" />
+                            <path
+                                d="M93.7227 28.3516C91.1445 28.3516 89.0469 27.5078 87.4297 25.8203C85.8125 24.1211 85.0039 21.8535 85.0039 19.0176V18.4199C85.0039 16.5332 85.3613 14.8516 86.0762 13.375C86.8027 11.8867 87.8105 10.7266 89.0996 9.89453C90.4004 9.05078 91.8066 8.62891 93.3184 8.62891C95.791 8.62891 97.7129 9.44336 99.084 11.0723C100.455 12.7012 101.141 15.0332 101.141 18.0684V19.4219H88.2559C88.3027 21.2969 88.8477 22.8145 89.8906 23.9746C90.9453 25.123 92.2812 25.6973 93.8984 25.6973C95.0469 25.6973 96.0195 25.4629 96.8164 24.9941C97.6133 24.5254 98.3105 23.9043 98.9082 23.1309L100.895 24.6777C99.3008 27.127 96.9102 28.3516 93.7227 28.3516ZM93.3184 11.3008C92.0059 11.3008 90.9043 11.7812 90.0137 12.7422C89.123 13.6914 88.5723 15.0273 88.3613 16.75H97.8887V16.5039C97.7949 14.8516 97.3496 13.5742 96.5527 12.6719C95.7559 11.7578 94.6777 11.3008 93.3184 11.3008Z"
+                                stroke="#00FFC2" stroke-width="2" mask="url(#path-1-outside-1_346_3)" />
+                            <path
+                                d="M121.021 18.7012C121.021 21.6074 120.354 23.9453 119.018 25.7148C117.682 27.4727 115.889 28.3516 113.639 28.3516C111.236 28.3516 109.379 27.502 108.066 25.8027L107.908 28H104.92V1H108.172V11.0723C109.484 9.44336 111.295 8.62891 113.604 8.62891C115.912 8.62891 117.723 9.50195 119.035 11.248C120.359 12.9941 121.021 15.3848 121.021 18.4199V18.7012ZM117.77 18.332C117.77 16.1172 117.342 14.4062 116.486 13.1992C115.631 11.9922 114.4 11.3887 112.795 11.3887C110.65 11.3887 109.109 12.3848 108.172 14.377V22.6035C109.168 24.5957 110.721 25.5918 112.83 25.5918C114.389 25.5918 115.602 24.9883 116.469 23.7812C117.336 22.5742 117.77 20.7578 117.77 18.332Z"
+                                stroke="#00FFC2" stroke-width="2" mask="url(#path-1-outside-1_346_3)" />
+                        </svg>
+                    </li>
+                    <li><a href="#">Web components</a></li>
+                    <li><a href="#">Micro animations</a></li>
+                    <li><a href="#">Other tutorials</a></li>
+                    <li><a href="#">Helpful websites</a></li>
+                </ul>
+            </div>
         </nav>
     </header>
-    <div class="center">
-        <main class="container" data-scroll-container>
-            <section class="center fullscreen fade-in-animate" data-scroll-section>
-                <h1>Pre-made web solutions</h1>
-                <div class="scrolldown">
-                    <div class="chevron"></div>
-                    <div class="chevron"></div>
-                    <div class="chevron"></div>
+    <main class="container" data-scroll-container>
+        <section class="center fullscreen fade-in-animate" data-scroll-section>
+            <h1>Pre-made web solutions</h1>
+            <div class="scrolldown">
+                <div class="chevron"></div>
+                <div class="chevron"></div>
+                <div class="chevron"></div>
+            </div>
+        </section>
+        <section class="glassy-section fade-in-animate" data-scroll-section>
+            <h2>About this website</h2>
+            <div class="column-2">
+                <div class="image">
+                    <picture>
+                        <source srcset="/images/6.svg" media="(min-width: 47rem)">
+                        <img src="/images/7.svg" alt="" loading="lazy">
+                    </picture>
                 </div>
-            </section>
-            <section class="glassy-section fade-in-animate" data-scroll-section>
-                <h2>About this website</h2>
-                <div class="column-2">
-                    <div class="image">
-                        <picture>
-                            <source srcset="/images/6.svg" media="(min-width: 47rem)">
-                            <img src="/images/7.svg" alt="" loading="lazy">
-                        </picture>
-                    </div>
-                    <article class="text">
-                        <h3>Hello <span class="wavy-hand">👋</span></h3>
-                        <p>Want to start to make websites and flex in front of your classmates that you are a <span
-                                class="color-favourite">👨‍💻Tech Genius👨‍💻</span> ? This website is for you!</p>
-                        <p>I started to program without any support or guidelines. Looking back, I do understand that
-                            searching for valid
-                            information was not the issue. The main issues were to understand what does the code do and
-                            correctly use it in the
-                            projects. This problem leads to a lack of clarity, and confusion when an error raises.</p>
-                        <p>Using this website, I will try to help newbies creating websites with Html<img
-                                src="/images/my_icons/html.svg" alt="Html" class="inline">/Css<img
-                                src="/images/my_icons/css.svg" alt="Css" class="inline">/Javascript<img
-                                src="/images/my_icons/javascript.svg" alt="Html" class="inline">
-                            by providing crystal clear explanation in simple language of how most common components are
-                            constructed.
-                        </p>
-                        <div class="btn-link-wrapper">
-                            <a href="#" class="btn-link">
-                                All categories
-                            </a>
-                        </div>
-                    </article>
-                </div>
-            </section>
-            <section class="glassy-section fade-in-animate" data-scroll-section>
-                <h2>Why this website?</h2>
-                <div class="column-2">
-                    <div class="image">
-                        <picture>
-                            <source srcset="/images/2.svg" media="(min-width: 47rem)">
-                            <img src="/images/9.svg" alt="" loading="lazy">
-                        </picture>
-                    </div>
-                    <article class="text">
-                        <h3>It's easy to find all the information</h3>
-                        <p>Finding all the information all around the internet might be complicated to start with and
-                            takes quite a lot of time⌚. This website can provide you with the base knowledge to narrow
-                            down the query searches, which will dramatically shorten the time spend on googling⌛.</p>
-                        <p>Another thing is like the website is like a bouquet💐 that unite all the flowers. As soon as
-                            you get used to the navigation it would be easy to go back and remind yourself of almost
-                            everything you need.</p>
-                        <p>Finally, the website will provide you with explanations in digestible language. Ideally, you
-                            can show this to your grandma👵, and even she will understand how to make a slider!</p>
-                        <div class="btn-link-wrapper">
-                            <a href="#" class="btn-link">
-                                Example of a slider
-                            </a>
-                        </div>
-                    </article>
-                </div>
-            </section>
-            <section class="glassy-section fade-in-animate" data-scroll-section>
-                <h2>Extra information</h2>
-                <div class="column-2">
-                    <div class="image">
-                        <picture>
-                            <source srcset="/images/4.svg" media="(min-width: 47rem)">
-                            <img src="/images/5.svg" alt="" loading="lazy">
-                        </picture>
-                    </div>
-                    <article class="text">
-                        <h3>You don't have to start from scratch every time</h3>
-                        <p>Developers always baulk into time management issues. This is why saving minutes and nerves
-                            are important to take into account. The greatest way to approach the problem, in my opinion,
-                            is to use online resources.</p>
-                        <p>They are easy to access, not complicated to use, but almost impossible to find. That's why I
-                            want to share my finding with you!</p>
-                        <div class="btn-link-wrapper">
-                            <a href="#" class="btn-link">Useful websites</a>
-                        </div>
-                    </article>
-                </div>
-            </section>
-            <section class="glassy-section fade-in-animate" data-scroll-section>
-                <h2>How to set a custom cursor?</h2>
                 <article class="text">
-                    <h3>Making custom cursor with image</h3>
-                    <p>If there is an image or an SVG prepared, it is simple to do it with a single CSS property.
+                    <h3>Hello <span class="wavy-hand">👋</span></h3>
+                    <p>Want to start to make websites and flex in front of your classmates that you are a <span
+                            class="color-favourite">👨‍💻Tech Genius👨‍💻</span> ? This website is for you!</p>
+                    <p>I started to program without any support or guidelines. Looking back, I do understand that
+                        searching for valid
+                        information was not the issue. The main issues were to understand what does the code do and
+                        correctly use it in the
+                        projects. This problem leads to a lack of clarity, and confusion when an error raises.</p>
+                    <p>Using this website, I will try to help newbies creating websites with Html<img
+                            src="/images/my_icons/html.svg" alt="Html" class="inline">/Css<img
+                            src="/images/my_icons/css.svg" alt="Css" class="inline">/Javascript<img
+                            src="/images/my_icons/javascript.svg" alt="Html" class="inline">
+                        by providing crystal clear explanation in simple language of how most common components are
+                        constructed.
                     </p>
-                    <pre><code class="css">
+                    <div class="btn-link-wrapper">
+                        <a href="#" class="btn-link">
+                            All categories
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </section>
+        <section class="glassy-section fade-in-animate" data-scroll-section>
+            <h2>Why this website?</h2>
+            <div class="column-2">
+                <div class="image">
+                    <picture>
+                        <source srcset="/images/2.svg" media="(min-width: 47rem)">
+                        <img src="/images/9.svg" alt="" loading="lazy">
+                    </picture>
+                </div>
+                <article class="text">
+                    <h3>It's easy to find all the information</h3>
+                    <p>Finding all the information all around the internet might be complicated to start with and
+                        takes quite a lot of time⌚. This website can provide you with the base knowledge to narrow
+                        down the query searches, which will dramatically shorten the time spend on googling⌛.</p>
+                    <p>Another thing is like the website is like a bouquet💐 that unite all the flowers. As soon as
+                        you get used to the navigation it would be easy to go back and remind yourself of almost
+                        everything you need.</p>
+                    <p>Finally, the website will provide you with explanations in digestible language. Ideally, you
+                        can show this to your grandma👵, and even she will understand how to make a slider!</p>
+                    <div class="btn-link-wrapper">
+                        <a href="#" class="btn-link">
+                            Example of a slider
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </section>
+        <section class="glassy-section fade-in-animate" data-scroll-section>
+            <h2>Extra information</h2>
+            <div class="column-2">
+                <div class="image">
+                    <picture>
+                        <source srcset="/images/4.svg" media="(min-width: 47rem)">
+                        <img src="/images/5.svg" alt="" loading="lazy">
+                    </picture>
+                </div>
+                <article class="text">
+                    <h3>You don't have to start from scratch every time</h3>
+                    <p>Developers always baulk into time management issues. This is why saving minutes and nerves
+                        are important to take into account. The greatest way to approach the problem, in my opinion,
+                        is to use online resources.</p>
+                    <p>They are easy to access, not complicated to use, but almost impossible to find. That's why I
+                        want to share my finding with you!</p>
+                    <div class="btn-link-wrapper">
+                        <a href="#" class="btn-link">Useful websites</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+        <section class="glassy-section fade-in-animate" data-scroll-section>
+            <h2>How to set a custom cursor?</h2>
+            <article class="text">
+                <h3>Making custom cursor with image</h3>
+                <p>If there is an image or an SVG prepared, it is simple to do it with a single CSS property.
+                </p>
+                <pre><code class="css">
 body {
     cursor: url("path/to/your/image"), auto;
 }
-                           </code></pre>
-                    <p>The first argument is the URL with a path to the image. The second argument is the fallback
-                        in case the image can not be
-                        displayed. "Auto" in this case is the default behaviour of the cursor (as if there is no
-                        property set), however, you can
-                        set any value you want.</p>
-                    <p>The list of all the values <a class="inline-link" target="_blank"
-                            href="https://codepen.io/chriscoyier/pen/uCwfB">here</a></p>
+                                   </code></pre>
+                <p>The first argument is the URL with a path to the image. The second argument is the fallback
+                    in case the image can not be
+                    displayed. "Auto" in this case is the default behaviour of the cursor (as if there is no
+                    property set), however, you can
+                    set any value you want.</p>
+                <p>The list of all the values <a class="inline-link" target="_blank"
+                        href="https://codepen.io/chriscoyier/pen/uCwfB">here</a></p>
 
-                    <h3>Making custom with CSS</h3>
-                    <p>Another way to make a custom cursor on the website is to "draw" your own on the website.
-                    </p>
+                <h3>Making custom with CSS</h3>
+                <p>Another way to make a custom cursor on the website is to "draw" your own on the website.
+                </p>
 
-                    <p>You have to remove default cursor using css</p>
-                    <pre><code class="css">
+                <p>You have to remove default cursor using css</p>
+                <pre><code class="css">
 * {
     cursor: none;
 }
-                            </code></pre>
-                    <p>Then you add the HTML that you will customize as a cursor. It can be any element, but it
-                        would be more logical to use
-                        either <code class="html">div</code> or <code class="html">span</code> because they are used
-                        for styling and <code class="html">id</code> because there has to be only one cursor on the
-                        webpage.</p>
-                    <pre><code class="html">
+                                    </code></pre>
+                <p>Then you add the HTML that you will customize as a cursor. It can be any element, but it
+                    would be more logical to use
+                    either <code class="html">div</code> or <code class="html">span</code> because they are used
+                    for styling and <code class="html">id</code> because there has to be only one cursor on the
+                    webpage.</p>
+                <pre><code class="html">
 &lt;div id="cursor"&gt;&lt;/div&gt;
 &lt;div id="aura"&gt;&lt;/div&gt;
-                            </code></pre>
-                    <p>Here comes your time to shine and design! You can make almost whatever you want, but you have
-                        to always think of user
-                        experience because your custom cursor should be both pretty and useful. As an example, I
-                        will make a common doubled
-                        circle. The example is below:</p>
-                    <div class="example-wrapper" id="example-cursor">
-                        <div id="aura">
-                            <div id="cursor"></div>
-                        </div>
-                        <div class="btn-wrapper">
-                            <button class="btn-toggler" id="toggle-cursor-none">Normal</button>
-                            <button class="btn-toggler" id="toggle-cursor-active">Active</button>
-                            <button class="btn-toggler" id="toggle-cursor-hidden">Hidden</button>
-                        </div>
+                                    </code></pre>
+                <p>Here comes your time to shine and design! You can make almost whatever you want, but you have
+                    to always think of user
+                    experience because your custom cursor should be both pretty and useful. As an example, I
+                    will make a common doubled
+                    circle. The example is below:</p>
+                <div class="example-wrapper" id="example-cursor">
+                    <div id="aura">
+                        <div id="cursor"></div>
                     </div>
-                    <p>Because you are removing the cursor, it will trigger all the events (clicks or hovers), but
-                        it will not change the state itself. The only way to solve it is to manually add all the
-                        cursor changes using CSS andJavaScript.</p>
-                    <p>Here in CSS, I am both defining default (when the user is just exploring the website), hidden
-                        (when the mouse is out of the website dimensions) and active (when the user is hovering
-                        curtain objects) states.</p>
-                    <p><code class="css">position: absolute</code> and <code class="css">z-index</code>is used to
-                        display this element over the others (<code class="css">z-index</code> should be higher than
-                        any other element has).
-                    </p>
-                    <p><code class="css">user-select: none</code> and <code class="class">pointer-events: none</code>
-                        are set to none to make all the mouse events
-                        trigger the area under the middle dot. Otherwise, the user would always select the dot and
-                        the following circle.</p>
-                    <p><code class="css">#cursor</code> is the small middle dot that instantly follows the cursor.
-                        There is a tiny lag between the mouse movement and
-                        the dot on the screen, but there is nothing to do with it because it is a browser
-                        restriction.</p>
-                    <p><code class="css">#aura</code> is the big circle following the dot with a larger delay
-                        to create the parallax effect. The same circle can be
-                        drowned as a pseudo-element, however, it would follow the dot without any delay, which has
-                        to be taken into account.</p>
-                    <p>Everything else is just styling that can be changed however you want. The example provided is
-                        just a sample that looks
-                        nice and can be taken to adapt to your own needs.</p>
-                    <pre><code class="css">
+                    <div class="btn-wrapper">
+                        <button class="btn-toggler" id="toggle-cursor-none">Normal</button>
+                        <button class="btn-toggler" id="toggle-cursor-active">Active</button>
+                        <button class="btn-toggler" id="toggle-cursor-hidden">Hidden</button>
+                    </div>
+                </div>
+                <p>Because you are removing the cursor, it will trigger all the events (clicks or hovers), but
+                    it will not change the state itself. The only way to solve it is to manually add all the
+                    cursor changes using CSS andJavaScript.</p>
+                <p>Here in CSS, I am both defining default (when the user is just exploring the website), hidden
+                    (when the mouse is out of the website dimensions) and active (when the user is hovering
+                    curtain objects) states.</p>
+                <p><code class="css">position: absolute</code> and <code class="css">z-index</code>is used to
+                    display this element over the others (<code class="css">z-index</code> should be higher than
+                    any other element has).
+                </p>
+                <p><code class="css">user-select: none</code> and <code class="class">pointer-events: none</code>
+                    are set to none to make all the mouse events
+                    trigger the area under the middle dot. Otherwise, the user would always select the dot and
+                    the following circle.</p>
+                <p><code class="css">#cursor</code> is the small middle dot that instantly follows the cursor.
+                    There is a tiny lag between the mouse movement and
+                    the dot on the screen, but there is nothing to do with it because it is a browser
+                    restriction.</p>
+                <p><code class="css">#aura</code> is the big circle following the dot with a larger delay
+                    to create the parallax effect. The same circle can be
+                    drowned as a pseudo-element, however, it would follow the dot without any delay, which has
+                    to be taken into account.</p>
+                <p>Everything else is just styling that can be changed however you want. The example provided is
+                    just a sample that looks
+                    nice and can be taken to adapt to your own needs.</p>
+                <pre><code class="css">
 /* Cursor styling */
 #cursor,
 #aura {
@@ -268,25 +309,26 @@ body {
   height: calc(var(--size-aura) + 1rem);
   border-color: var(--color-active);
 }
-                            </code></pre>
-                    <p>Using JavaScript, we are attempting to make a custom cursor 'alive'. This is why you have to
-                        manipulate all the states
-                        yourself.</p>
-                    <p>For each change of state of the cursor, there is a separated event listener (mouse of the
-                        page, hovers the link, does not hover the link...)</p>
-                    <p>To move the dot and circle, we are adding the event listener on the document, which will
-                        adjust the position when the
-                        mouse is moved.</p>
-                    <p>Interesting fact, there are 2 ways to move the circle: using <code
-                            class="css">transform: translate(e.pageX, e.pageY)</code> and <code
-                            class="css">top: pageY px; left: pageX px</code>. The first way is working faster and
-                        smoother on old machines, but might cause some problems with centering (the code uses <code
-                            class="css">transform: translate(-50%, -50%)</code> with <code
-                            class="css">position: absolute</code> to center
-                        everything). The second solution cause way less problems to the programmer, but might cause
-                        performance issues on old machines.</p>
-                    <p></p>
-                    <pre><code class="js">
+                                    </code></pre>
+                <p>Using JavaScript, we are attempting to make a custom cursor 'alive'. This is why you have to
+                    manipulate all the states
+                    yourself.</p>
+                <p>For each change of state of the cursor, there is a separated event listener (mouse of the
+                    page, hovers the link, does not hover the link...)</p>
+                <p>To move the dot and circle, we are adding the event listener on the document, which will
+                    adjust the position when the
+                    mouse is moved.</p>
+                <p>Interesting fact, there are 2 ways to move the circle: using <code
+                        class="css">transform: translate(e.pageX, e.pageY)</code> and <code
+                        class="css">top: pageY px; left: pageX px</code>. The first way is working faster and
+                    smoother on old machines, but might cause some problems with centering (the code uses <code
+                        class="css">transform: translate(-50%, -50%)</code> with <code
+                        class="css">position: absolute</code>
+                    to center
+                    everything). The second solution cause way less problems to the programmer, but might cause
+                    performance issues on old machines.</p>
+                <p></p>
+                <pre><code class="js">
 // Declaring the constants
 const cursor = document.getElementById("cursor");
 const aura = document.getElementById("aura");
@@ -321,149 +363,158 @@ for (let i = 0; i < links.length; i++) {
     aura.classList.remove("active");
   });
 }
-                            </code></pre>
-                    <p>That's it! Despite taking some time and energy custom cursor makes your website a bit fancier
-                        than everyone else's. Great job👍</p>
-                    <div class="btn-link-wrapper">
-                        <a href="/examples/custom cursor/cursor.html" class="btn-link" download="cursor.html">
-                            Download example
-                        </a>
-                    </div>
-                </article>
-            </section>
-            <section class="glassy-section fade-in-animate" data-scroll-section>
-                <h2>A way to make smooth scrolling</h2>
-                <article class="text">
-                    <p>You might have spotted that on some websites scrolling feels weird. It seems to have some sort of
-                        inertia. For instance <a target="_blank" href="https://www.niarratravel.com"
-                            class="inline-link">this
-                            website</a></p>
-                    <p>This technique is called 🚂locomotive scrolling🚂 because it smoothly starts and smooth finishes
-                        to scroll as if you are on the Swiss train. It does not drastically affect the user experience
-                        but improves it. The simplest way to realise this effect is to use <a target="_blank"
-                            href="https://locomotivemtl.github.io/locomotive-scroll/"
-                            class="inline-link">Locomotive-Scroll</a> JavaScript Library. It is easy to set up, and it
-                        has a bunch of features to satisfy all your needs
-                        including parallax.</p>
-                    <p>To start with, you need to connect both JavaScript (for animations) and Css (for custom
-                        scrollbar). You can use both <a href="https://www.npmjs.com/package/locomotive-scroll"
-                            class="inline-link">npm</a> or <a
-                            href="https://www.jsdelivr.com/package/npm/locomotive-scroll" class="inline-link">cloud
-                            package</a></p>
-                    <pre><code class="html">
+                                    </code></pre>
+                <p>That's it! Despite taking some time and energy custom cursor makes your website a bit fancier
+                    than everyone else's. Great job👍</p>
+                <div class="btn-link-wrapper">
+                    <a href="/examples/custom cursor/cursor.html" class="btn-link" download="cursor.html">
+                        Download example
+                    </a>
+                </div>
+            </article>
+        </section>
+        <section class="glassy-section fade-in-animate" data-scroll-section>
+            <h2>A way to make smooth scrolling</h2>
+            <article class="text">
+                <p>You might have spotted that on some websites scrolling feels weird. It seems to have some sort of
+                    inertia. For instance <a target="_blank" href="https://www.niarratravel.com"
+                        class="inline-link">this
+                        website</a></p>
+                <p>This technique is called 🚂locomotive scrolling🚂 because it smoothly starts and smooth finishes
+                    to scroll as if you are on the Swiss train. It does not drastically affect the user experience
+                    but improves it. The simplest way to realise this effect is to use <a target="_blank"
+                        href="https://locomotivemtl.github.io/locomotive-scroll/"
+                        class="inline-link">Locomotive-Scroll</a>
+                    JavaScript Library. It is easy to set up, and it
+                    has a bunch of features to satisfy all your needs
+                    including parallax.</p>
+                <p>To start with, you need to connect both JavaScript (for animations) and Css (for custom
+                    scrollbar). You can use both <a href="https://www.npmjs.com/package/locomotive-scroll"
+                        class="inline-link">npm</a> or <a href="https://www.jsdelivr.com/package/npm/locomotive-scroll"
+                        class="inline-link">cloud
+                        package</a></p>
+                <pre><code class="html">
 npm install locomotive-scroll
 
 &lt;!-- or --&gt;
 
 &lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.3/dist/locomotive-scroll.min.css"&gt;
 &lt;script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.3/dist/locomotive-scroll.min.js"&gt;&lt;/script&gt;
-                            </code></pre>
-                    <p>After you have connected all necessary stuff, you have to activate locomotive scrolling using JS:
-                    </p>
-                    <pre><code class="js">
+                                    </code></pre>
+                <p>After you have connected all necessary stuff, you have to activate locomotive scrolling using JS:
+                </p>
+                <pre><code class="js">
 const scroll = new LocomotiveScroll({
   el: document.querySelector("[data-scroll-container]"),
   smooth: true,
 });
-                            </code></pre>
-                    <p>In your HTML you have to add at least 1 <code class="html">data-scroll-container</code> attribute
-                        to any element.</p>
-                    <pre><code class="html">
+                                    </code></pre>
+                <p>In your HTML you have to add at least 1 <code class="html">data-scroll-container</code> attribute
+                    to any element.</p>
+                <pre><code class="html">
 &lt;div class="continer" data-scroll-container&gt;&lt;/div&gt;
-                        </code></pre>
-                    <p>That's it👍! Refresh your document, and you will see the magic of a better scrolling experience.
-                        The values set by default work perfectly and look good for the majority of cases. However, if
-                        you want to customise something, You just need to pass some new parameters to the dictionary of
-                        arguments. There are many of them, but I will list the most useful in my opinion.</p>
-                    <ul class="text">
-                        <li>
-                            <p><code class="html">direction</code> - specifies the direction of the effect. Can be <code
-                                    class="html">vertical</code> and <code class="html">horizontal</code>. It is useful
-                                in case you want to make animated elements moving horizontally.</p>
-                        </li>
-                        <li>
-                            <p><code class="html">lerp</code> - smoothness of the scrolling. Take values from <code
-                                    class="html">0</code> to <code class="html">1</code>, where <code
-                                    class="html">1</code> is no effect and <code class="html">0</code> is no scrolling
-                                at all. Just a values to play around.</p>
-                        </li>
-                        <li>
-                            <p><code class="html">multiplier</code> - factor applied to the scrolling. The higher the
-                                value, the more page scrolls.</p>
-                        </li>
-                        <li>
-                            <p><code class="html">firefoxMultiplier</code> - factor applied to the scrolling for FireFox
-                                browser.</p>
-                        </li>
-                        <li>
-                            <p><code class="html">touchMultiplier</code> - factor applied to the scrolling on
-                                touchscreen devices. Generally, you want this to be higher than the default value,
-                                because on phones you have to scroll way more than on any big screen.</p>
-                        </li>
-                        <li>
-                            <p>Adding <code class="html">data-scroll-section</code> to the elements inside <code
-                                    class="html">data-scroll-container</code> might improve performance.</p>
-                        </li>
-                        <li>
-                            <p>General note. If you have some JavaScript code that changes the hight of the content (for
-                                instance: syntax highlighting that adds paddings), you need to run this piece of code
-                                first, and then initialise locomotive scroll.</p>
-                        </li>
-                    </ul>
-                    <p>For more information, use the <a href="https://github.com/locomotivemtl/locomotive-scroll"
-                            class="inline-link" target="_blank">official documentation</a>, which describes all the
-                        powers of the library in detail.</p>
-                    <div class="btn-link-wrapper">
-                        <a href="/examples/locomotive scroll/locomotive scroll.html" class="btn-link"
-                            download="locomotive scrolling">
-                            Download example
-                        </a>
-                    </div>
-                </article>
-            </section>
-            <section class="glassy-section fade-in-animate" data-scroll-section>
-                <h2>Floating labels for inputs</h2>
-                <article class="text">
-                    <p>One of the best thing you can do while creating forms is to label every single <code
-                            class="css">input</code>
-                        with its <code class="css">label</code>. It make the website more
-                        intuitive and user-friendly. One of the ways to add some fancy micro-interactions for the
-                        website is to make the labels float.</p>
-                    <p>Floating label is a term that is used to demonstrate that the label moves as soon as
-                        user focuses the input. You can see it on the example below:</p>
-                    <div class="floating-label-wrapper">
-                        <input class="floating-input" type="text" id="floating" placeholder="Type something">
-                        <label for="floating">Floating label</label>
-                    </div>
-                    <p>In terms of HTML, structure maters a lot. You have to have a wrapper with an input followed by a
-                        label. It is important to have a label afterwards because we are using pure CSS. For this
-                        example, you will also need a placeholder for the input. There are other ways to do it using
-                        <code class="css">:focus</code> and <code class="css">:valid</code>, but we find this one a bit
-                        simpler.
-                    </p>
-                    <pre><code class="html">
+                                </code></pre>
+                <p>That's it👍! Refresh your document, and you will see the magic of a better scrolling experience.
+                    The values set by default work perfectly and look good for the majority of cases. However, if
+                    you want to customise something, You just need to pass some new parameters to the dictionary of
+                    arguments. There are many of them, but I will list the most useful in my opinion.</p>
+                <ul class="text">
+                    <li>
+                        <p><code class="html">direction</code> - specifies the direction of the effect. Can be <code
+                                class="html">vertical</code> and <code class="html">horizontal</code>. It is useful
+                            in case you want to make animated elements moving horizontally.</p>
+                    </li>
+                    <li>
+                        <p><code class="html">lerp</code> - smoothness of the scrolling. Take values from <code
+                                class="html">0</code> to <code class="html">1</code>, where <code class="html">1</code>
+                            is
+                            no effect and <code class="html">0</code> is no scrolling
+                            at all. Just a values to play around.</p>
+                    </li>
+                    <li>
+                        <p><code class="html">multiplier</code> - factor applied to the scrolling. The higher the
+                            value, the more page scrolls.</p>
+                    </li>
+                    <li>
+                        <p><code class="html">firefoxMultiplier</code> - factor applied to the scrolling for FireFox
+                            browser.</p>
+                    </li>
+                    <li>
+                        <p><code class="html">touchMultiplier</code> - factor applied to the scrolling on
+                            touchscreen devices. Generally, you want this to be higher than the default value,
+                            because on phones you have to scroll way more than on any big screen.</p>
+                    </li>
+                    <li>
+                        <p>Adding <code class="html">data-scroll-section</code> to the elements inside <code
+                                class="html">data-scroll-container</code> might improve performance.</p>
+                    </li>
+                    <li>
+                        <p>General note. If you have some JavaScript code that changes the hight of the content (for
+                            instance: syntax highlighting that adds paddings), you need to run this piece of code
+                            first, and then initialise locomotive scroll.</p>
+                    </li>
+                    <li>
+                        <p>There is only 1 issue with implementing this feature: you can not scroll using middle button,
+                            and there is nothing to do with it😥. On one hand, it is actually good, because the users
+                            won't scroll through without even noticing the content. On the other hand, people who are
+                            used to the middle button will suffer a bit from it.</p>
+                    </li>
+                </ul>
+                <p>For more information, use the <a href="https://github.com/locomotivemtl/locomotive-scroll"
+                        class="inline-link" target="_blank">official documentation</a>, which describes all the
+                    powers of the library in detail.</p>
+                <div class="btn-link-wrapper">
+                    <a href="/examples/locomotive scroll/locomotive scroll.html" class="btn-link"
+                        download="locomotive scrolling">
+                        Download example
+                    </a>
+                </div>
+            </article>
+        </section>
+        <section class="glassy-section fade-in-animate" data-scroll-section>
+            <h2>Floating labels for inputs</h2>
+            <article class="text">
+                <p>One of the best thing you can do while creating forms is to label every single <code
+                        class="css">input</code>
+                    with its <code class="css">label</code>. It make the website more
+                    intuitive and user-friendly. One of the ways to add some fancy micro-interactions for the
+                    website is to make the labels float.</p>
+                <p>Floating label is a term that is used to demonstrate that the label moves as soon as
+                    user focuses the input. You can see it on the example below:</p>
+                <div class="floating-label-wrapper">
+                    <input class="floating-input" type="text" id="floating" placeholder="Type something">
+                    <label for="floating">Floating label</label>
+                </div>
+                <p>In terms of HTML, structure maters a lot. You have to have a wrapper with an input followed by a
+                    label. It is important to have a label afterwards because we are using pure CSS. For this
+                    example, you will also need a placeholder for the input. There are other ways to do it using
+                    <code class="css">:focus</code> and <code class="css">:valid</code>, but we find this one a bit
+                    simpler.
+                </p>
+                <pre><code class="html">
 &lt;div class="input-wrapper"&gt;
   &lt;input type="text" id="input" placeholder="Put any text here"&gt;
   &lt;label for="input"&gt;Click&lt;/label&gt;
 &lt;/div&gt;
-                                                </code></pre>
-                    </p>
-                    <p>For CSS, you can style the <code class="html">input</code> and <code class="html">label</code>
-                        however you want, however, there are some things to think of. You have to set <code
-                            class="css">position: relative</code> to the wrapper, so you can position the <code
-                            class="css">label</code>. Another thing to be watched is padding: you have to make sure that
-                        there is enough space both for the input text and for the label text. Here, we are lowering the
-                        input text by setting greater <code class="css">padding-top</code> than <code
-                            class="css">padding-bottom</code> so there is enough space for label text.</p>
-                    <p>Finally, we are using the magic selector <code class="css">input:placeholder-shown + label</code>
-                        to change styling for the label. This selector will cover all the <code
-                            class="css">labels</code> after
-                        <code class="css">input</code> when the placeholder value is
-                        not visible. In particular, we are moving the <code class="css">label</code> higher using <code
-                            class="css">transform: translate()</code>, but you can also use <code
-                            class="css">top: </code> and <code class="css">left: </code>
-                    </p>
-                    <pre><code class="css">
+                                                        </code></pre>
+                </p>
+                <p>For CSS, you can style the <code class="html">input</code> and <code class="html">label</code>
+                    however you want, however, there are some things to think of. You have to set <code
+                        class="css">position: relative</code> to the wrapper, so you can position the <code
+                        class="css">label</code>. Another thing to be watched is padding: you have to make sure that
+                    there is enough space both for the input text and for the label text. Here, we are lowering the
+                    input text by setting greater <code class="css">padding-top</code> than <code
+                        class="css">padding-bottom</code> so there is enough space for label text.</p>
+                <p>Finally, we are using the magic selector <code class="css">input:placeholder-shown + label</code>
+                    to change styling for the label. This selector will cover all the <code class="css">labels</code>
+                    after
+                    <code class="css">input</code> when the placeholder value is
+                    not visible. In particular, we are moving the <code class="css">label</code> higher using <code
+                        class="css">transform: translate()</code>, but you can also use <code class="css">top: </code>
+                    and
+                    <code class="css">left: </code>
+                </p>
+                <pre><code class="css">
 input {
   font-size: 1.2rem;
   width: min(100%, 50rem);
@@ -494,29 +545,29 @@ label {
   color: var(--color-accent);
   transition: all 0.3s ease-in-out;
 }
-                                            </code></pre>
-                    <p>And that's it👍! You can use the same structure for any <code class="css">input</code>, <code
-                            class="css">select</code> or <code class="css">textarea</code>. If you wish to have a look
-                        at it once again, here is a document for you.</p>
-                    <div class="btn-link-wrapper">
-                        <a href="/examples/floating labels/floating label.html" class="btn-link" download>Download
-                            example</a>
-                    </div>
-                </article>
-            </section>
-            <section class="glassy-section fade-in-animate" data-scroll-section>
-                <h2>Reveal navbar on scroll</h2>
-                <article class="text">
-                    <p>Another animation that does not change the content but slightly improves user experience is
-                        animated navbar. Fixing this element is a common trick to provide users with the persistent
-                        excess to the navigation. On the other hand, it takes up some space, and might be unnecessary
-                        element during website exploration.
-                    </p>
-                    <p>The effect that I am going to show will hide the navbar when the user is scrolling down, and
-                        reveal it when the user is scrolling up.</p>
-                    <p>Firstly, you will need a page with a lot of content, so this effect makes sense. Possible HTML
-                        might look like this:</p>
-                    <pre><code class="html">
+                                                    </code></pre>
+                <p>And that's it👍! You can use the same structure for any <code class="css">input</code>, <code
+                        class="css">select</code> or <code class="css">textarea</code>. If you wish to have a look
+                    at it once again, here is a document for you.</p>
+                <div class="btn-link-wrapper">
+                    <a href="/examples/floating labels/floating label.html" class="btn-link" download>Download
+                        example</a>
+                </div>
+            </article>
+        </section>
+        <section class="glassy-section fade-in-animate" data-scroll-section>
+            <h2>Reveal navbar on scroll</h2>
+            <article class="text">
+                <p>Another animation that does not change the content but slightly improves user experience is
+                    animated navbar. Fixing this element is a common trick to provide users with the persistent
+                    excess to the navigation. On the other hand, it takes up some space, and might be unnecessary
+                    element during website exploration.
+                </p>
+                <p>The effect that I am going to show will hide the navbar when the user is scrolling down, and
+                    reveal it when the user is scrolling up.</p>
+                <p>Firstly, you will need a page with a lot of content, so this effect makes sense. Possible HTML
+                    might look like this:</p>
+                <pre><code class="html">
 &lt;nav class="scroll-reveal"&gt;
   &lt;img src="/logo.svg" alt=""&gt;
   &lt;ul&gt;
@@ -542,19 +593,20 @@ label {
     &lt;h2&gt;Fifth section&lt;/h2&gt;
   &lt;/section&gt;
 &lt;/div&gt;
-                                </code></pre>
-                    <p>Then in css, you have to fix navigation and declare additional styling that will be manipulated
-                        using JavaScript.</p>
-                    <p>You can use both <code class="css">position: fixed</code> or <code
-                            class="css">position: sticky</code>, but
-                        the second variant might cause some problems with
-                        background (because it pushes all the content, when the navbar is hiding at the top of the page,
-                        it will reveal the background of the space behind it)</p>
-                    <p><code class="css">nav:focus-within</code> must be declared to show the navbar if the user selects
-                        the elements using the keyboard.</p>
-                    <p>And <code class="css">nav.is-scrolling</code> that is going to be used for hidden state of
-                        navigation. Your CSS should look like this:</p>
-                    <pre><code class="css">
+                                        </code></pre>
+                <p>Then in css, you have to fix navigation and declare additional styling that will be manipulated
+                    using JavaScript.</p>
+                <p>You can use both <code class="css">position: fixed</code> or <code
+                        class="css">position: sticky</code>,
+                    but
+                    the second variant might cause some problems with
+                    background (because it pushes all the content, when the navbar is hiding at the top of the page,
+                    it will reveal the background of the space behind it)</p>
+                <p><code class="css">nav:focus-within</code> must be declared to show the navbar if the user selects
+                    the elements using the keyboard.</p>
+                <p>And <code class="css">nav.is-scrolling</code> that is going to be used for hidden state of
+                    navigation. Your CSS should look like this:</p>
+                <pre><code class="css">
 nav {
   position: fixed;
   top: 0;
@@ -575,31 +627,31 @@ nav:focus-within {
 nav.is-scrolling {
   transform: translateY(-100%);
 }
-                                </code></pre>
-                    <p>JavaScript contain the most complicated part.</p>
-                    <p>You have to initialise all variables: navbar element, current position of the page, and throttle
-                        variable that is going to be used later. There are different ways to get, but if you don't want
-                        to support ancient versions of Internet Explorer, construction from the example will do its job.
-                    </p>
-                    <pre><code class="js">
+                                        </code></pre>
+                <p>JavaScript contain the most complicated part.</p>
+                <p>You have to initialise all variables: navbar element, current position of the page, and throttle
+                    variable that is going to be used later. There are different ways to get, but if you don't want
+                    to support ancient versions of Internet Explorer, construction from the example will do its job.
+                </p>
+                <pre><code class="js">
 const nav = document.querySelector("nav");
 let previousScrollPosition = window.scrollY || window.pageYOffset;
 let throttleTimer;
-                                </code></pre>
-                    <p>Then you have to declare 3 functions: for getting whether the user scrolls or not, scroll
-                        handler, and the interval function that is going to be passed as an event listener.</p>
-                    <p>Whether the user scrolls or not is easy to get. You have to have a previous position and compare
-                        it with current position. If current position is greater than previous position, the user has
-                        scrolled down. In the other case, the user either hasn't scroll or scrolled up.</p>
-                    <p>The second function just toggles the navbar state.</p>
-                    <p>The last function is quite interesting. You could have just passed the previous function to an
-                        event listener, however, it will be called, each time the user scrolls, which will cause
-                        performance issues. One of the ways to fix it is to call the function every curtain amount of
-                        time when the user scrolls. This is how throttle works. A better explanation you can see <a
-                            href="https://www.telerik.com/blogs/debouncing-and-throttling-in-javascript"
-                            class="inline-link" target="_blank">here</a>. The code will look like this:
-                    </p>
-                    <pre><code class="js">
+                                        </code></pre>
+                <p>Then you have to declare 3 functions: for getting whether the user scrolls or not, scroll
+                    handler, and the interval function that is going to be passed as an event listener.</p>
+                <p>Whether the user scrolls or not is easy to get. You have to have a previous position and compare
+                    it with current position. If current position is greater than previous position, the user has
+                    scrolled down. In the other case, the user either hasn't scroll or scrolled up.</p>
+                <p>The second function just toggles the navbar state.</p>
+                <p>The last function is quite interesting. You could have just passed the previous function to an
+                    event listener, however, it will be called, each time the user scrolls, which will cause
+                    performance issues. One of the ways to fix it is to call the function every curtain amount of
+                    time when the user scrolls. This is how throttle works. A better explanation you can see <a
+                        href="https://www.telerik.com/blogs/debouncing-and-throttling-in-javascript" class="inline-link"
+                        target="_blank">here</a>. The code will look like this:
+                </p>
+                <pre><code class="js">
 const isScrollingDown = () => {
   let scrolledPosition = window.scrollY || window.pageYOffset
   let isScrollDown = scrolledPosition > previousScrollPosition ? true : false
@@ -624,27 +676,26 @@ setTimeout(() => {
 callback(); throttleTimer = false
 }, time);
 };
-                    </code></pre>
-                    <p>Now, when all the preparation is done, you just need to add scroll event listener to the
-                        document. The second parameter in the throttle function is the interval in milliseconds.</p>
-                    <pre><code class="js">
+                            </code></pre>
+                <p>Now, when all the preparation is done, you just need to add scroll event listener to the
+                    document. The second parameter in the throttle function is the interval in milliseconds.</p>
+                <pre><code class="js">
 window.addEventListener("scroll", () => {
   throttle(handleNavScroll, 200);
 })
-                                </code></pre>
-                    <p>You are done👍! Congratulations on finishing this effect.</p>
-                    <div class="btn-wrapper">
-                        <a href="/examples/scroll revelaling navbar/scroll revealing navbar.html" class="btn-link"
-                            download>Download
-                            example</a>
-                    </div>
-                </article>
-            </section>
-            <section class="glassy-section" data-scroll-section>
-                <p class="copyright">© <span id="copyright"></span> Kirill Chekmenev All rights reserved.</p>
-            </section>
-        </main>
-    </div>
+                                        </code></pre>
+                <p>You are done👍! Congratulations on finishing this effect.</p>
+                <div class="btn-wrapper">
+                    <a href="/examples/scroll revelaling navbar/scroll revealing navbar.html" class="btn-link"
+                        download>Download
+                        example</a>
+                </div>
+            </article>
+        </section>
+        <section class="glassy-section" data-scroll-section>
+            <p class="copyright">© <span id="copyright"></span> Kirill Chekmenev All rights reserved.</p>
+        </section>
+    </main>
     <!-- highlight js languages -->
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"
         integrity="sha512-Pbb8o120v5/hN/a6LjF4N4Lxou+xYZ0QcVF8J6TWhBbHmctQWd8O6xTDmHpE/91OjPzCk4JRoiJsexHYg4SotQ=="

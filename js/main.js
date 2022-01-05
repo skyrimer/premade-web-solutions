@@ -1,11 +1,4 @@
 window.onload = () => {
-  // Navigation
-  const hamburger = document.getElementsByClassName("ham")[0];
-  const header = document.getElementById("header");
-  hamburger.addEventListener("click", () => {
-    hamburger.classList.toggle("active");
-    header.classList.toggle("active");
-  });
   // Locomotive-scrolling
   const scroll = new LocomotiveScroll({
     el: document.querySelector("[data-scroll-container]"),
@@ -60,5 +53,4 @@ window.onload = () => {
   // Copyright
   document.getElementById("copyright").textContent = new Date().getFullYear();
   scroll.update();
-
 };
