@@ -10,14 +10,24 @@ body {
   min-height: 100vh;
 }
 
+body.lock {
+  overflow-y: hidden;
+}
+
+@media screen and (min-width: 55rem) {
+  body.lock {
+    overflow-y: auto;
+  }
+}
+
 .inline-link, #header ul a {
   background-image: -webkit-gradient(linear, left top, right top, from(currentColor), to(currentColor));
   background-image: linear-gradient(to right, currentColor, currentColor);
   background-size: 0 0.1em;
   background-position: bottom left;
   background-repeat: no-repeat;
-  -webkit-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .inline-link:hover, #header ul a:hover {
@@ -125,8 +135,8 @@ img {
   background: transparent;
   outline: none;
   border-radius: 0.5em;
-  -webkit-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .btn-wrapper {
@@ -216,18 +226,6 @@ img {
           animation: header-onload 1s ease forwards 2s;
 }
 
-@-webkit-keyframes header-onload {
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes header-onload {
-  to {
-    opacity: 1;
-  }
-}
-
 @media screen and (min-width: 55rem) {
   #header .wrapper {
     top: 0;
@@ -239,7 +237,7 @@ img {
   }
 }
 
-#header label {
+#header .ham-wrapper {
   position: fixed;
   z-index: 10;
   right: 2rem;
@@ -255,21 +253,31 @@ img {
 }
 
 @media screen and (min-width: 55rem) {
-  #header label {
+  #header .ham-wrapper {
     display: none;
   }
 }
 
-#header label svg.ham {
+#header .ham-wrapper svg.ham {
   width: 100%;
   cursor: pointer;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+  opacity: 0;
+  -webkit-animation: header-onload 1s ease forwards 2s;
+          animation: header-onload 1s ease forwards 2s;
 }
 
-#header label svg.ham path {
+@media screen and (min-width: 55rem) {
+  #header .ham-wrapper svg.ham {
+    -webkit-animation: none;
+            animation: none;
+  }
+}
+
+#header .ham-wrapper svg.ham path {
   fill: none;
   stroke: #00ffc2;
   stroke-width: 5.5;
@@ -278,15 +286,15 @@ img {
   transition: all 0.3s ease;
 }
 
-#header label svg.ham .top {
+#header .ham-wrapper svg.ham .top {
   stroke-dasharray: 40 172;
 }
 
-#header label svg.ham .middle {
+#header .ham-wrapper svg.ham .middle {
   stroke-dasharray: 40 111;
 }
 
-#header label svg.ham .bottom {
+#header .ham-wrapper svg.ham .bottom {
   stroke-dasharray: 40 172;
 }
 
@@ -298,6 +306,7 @@ img {
           transform: translate(-50%, -50%);
   list-style: none;
   text-align: center;
+  width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -349,7 +358,7 @@ img {
 #header ul a {
   color: #f7f7f7;
   font-style: italic;
-  font-size: 5vw;
+  font-size: Max(6vw, 1.5rem);
   padding-bottom: 0.2em;
 }
 
@@ -359,29 +368,37 @@ img {
   }
 }
 
-#header #active {
-  display: none;
-}
-
-#header #active:checked ~ .wrapper {
+#header.active .wrapper {
   -webkit-clip-path: circle(75%);
           clip-path: circle(75%);
 }
 
-#header #active:checked ~ label svg.ham path {
+#header.active .ham-wrapper svg.ham path {
   stroke: #e40c2b;
 }
 
-#header #active:checked ~ label svg.ham .top {
+#header.active .ham-wrapper svg.ham .top {
   stroke-dashoffset: -132px;
 }
 
-#header #active:checked ~ label svg.ham .middle {
+#header.active .ham-wrapper svg.ham .middle {
   stroke-dashoffset: -71px;
 }
 
-#header #active:checked ~ label svg.ham .bottom {
+#header.active .ham-wrapper svg.ham .bottom {
   stroke-dashoffset: -132px;
+}
+
+@-webkit-keyframes header-onload {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes header-onload {
+  to {
+    opacity: 1;
+  }
 }
 
 svg.logo {
@@ -737,8 +754,8 @@ main section .column-2 {
   height: 4rem;
   border: 1px solid #00ffc2;
   background-color: rgba(247, 247, 247, 0.1);
-  -webkit-transition: all 0.3s ease-out;
-  transition: all 0.3s ease-out;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 #aura.active {
@@ -838,7 +855,7 @@ pre {
   top: 50%;
   left: 2rem;
   color: #00ffc2;
-  -webkit-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
 }
 /*# sourceMappingURL=main.css.map */

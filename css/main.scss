@@ -2,7 +2,6 @@
 $color-main: #080c25;
 $color-opposite: #f7f7f7;
 $color-secondary: #ff8a4c;
-// $color-secondary: #7db7ff;
 // $color-secondary: #3071e7;
 $color-tertiary: #a6b2ec;
 $color-favorite: #00ffc2;
@@ -54,6 +53,12 @@ body {
     );
   background-attachment: fixed;
   min-height: 100vh;
+  &.lock {
+    overflow-y: hidden;
+    @media screen and (min-width: $breakpoint-burger) {
+      overflow-y: auto;
+    }
+  }
 }
 %underline {
   $size: 0.1em;
@@ -61,7 +66,7 @@ body {
   background-size: 0 $size;
   background-position: bottom left;
   background-repeat: no-repeat;
-  transition: all 0.3s ease-in-out;
+  transition: $transition-main;
   &:hover {
     color: $color-secondary;
     background-size: 100% $size;
@@ -136,7 +141,7 @@ img {
   background: transparent;
   outline: none;
   border-radius: 0.5em;
-  transition: all 0.3s ease-in-out;
+  transition: $transition-main;
 }
 .btn-wrapper {
   display: inline-flex;
@@ -211,11 +216,6 @@ img {
     transition: $transition-main;
     opacity: 0;
     animation: header-onload 1s ease forwards 2s;
-    @keyframes header-onload {
-      to {
-        opacity: 1;
-      }
-    }
     @media screen and (min-width: $breakpoint-burger) {
       top: 0;
       right: 0;
@@ -224,7 +224,7 @@ img {
       clip-path: unset;
     }
   }
-  label {
+  .ham-wrapper {
     position: fixed;
     z-index: 10;
     right: 2rem;
@@ -243,6 +243,11 @@ img {
       width: 100%;
       cursor: pointer;
       user-select: none;
+      opacity: 0;
+      animation: header-onload 1s ease forwards 2s;
+      @media screen and (min-width: $breakpoint-burger) {
+        animation: none;
+      }
       path {
         fill: none;
         stroke: $color-favorite;
@@ -268,6 +273,7 @@ img {
     transform: translate(-50%, -50%);
     list-style: none;
     text-align: center;
+    width: 100%;
 
     display: flex;
     flex-direction: column;
@@ -299,21 +305,18 @@ img {
       @extend %underline;
       color: $color-opposite;
       font-style: italic;
-      font-size: 5vw;
+      font-size: Max(6vw, 1.5rem);
       padding-bottom: 0.2em;
       @media screen and (min-width: $breakpoint-burger) {
         font-size: $ff-s;
       }
     }
   }
-  #active {
-    display: none;
-  }
-  #active:checked {
-    & ~ .wrapper {
+  &.active {
+    .wrapper {
       clip-path: circle(75%);
     }
-    & ~ label svg.ham {
+    .ham-wrapper svg.ham {
       path {
         stroke: $color-danger;
       }
@@ -328,25 +331,16 @@ img {
       }
     }
   }
+  @keyframes header-onload {
+    to {
+      opacity: 1;
+    }
+  }
 }
 svg.logo {
   height: 100%;
-  // path {
-  //   @media screen and (min-width: $breakpoint-burger) {
-  //     stroke-dasharray: 90%;
-  //     animation: line-animation 4s ease-in-out infinite alternate 2s;
-  //   }
-  // }
-  // @keyframes line-animation {
-  //   0% {
-  //     stroke-dashoffset: 20%;
-  //   }
-
-  //   100% {
-  //     stroke-dashoffset: -20%;
-  //   }
-  // }
 }
+
 main {
   display: flex;
   flex-direction: column;
@@ -544,7 +538,7 @@ main {
 
   border: 1px solid $color-favorite;
   background-color: rgba($color: $color-opposite, $alpha: 0.1);
-  transition: all 0.3s ease-out;
+  transition: $transition-main;
   &.active {
     transform: scale(1.2);
     border-color: $color-secondary;
@@ -611,6 +605,6 @@ pre {
     top: 50%;
     left: 2rem;
     color: $color-favorite;
-    transition: all 0.3s ease-in-out;
+    transition: $transition-main;
   }
 }

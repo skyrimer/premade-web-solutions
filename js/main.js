@@ -1,4 +1,12 @@
+
+
 window.onload = () => {
+  // Navbar
+  const header = document.getElementById("header");
+  document.querySelector("svg.ham").addEventListener("click", () => {
+    header.classList.toggle("active");
+    document.body.classList.toggle("lock")
+  });
   // Locomotive-scrolling
   const scroll = new LocomotiveScroll({
     el: document.querySelector("[data-scroll-container]"),
@@ -10,6 +18,25 @@ window.onload = () => {
   for (let code = 0; code < to_highlight.length; code++) {
     hljs.highlightElement(to_highlight[code]);
   }
+  // Intersection Observer
+  const sections = [
+    ...document.querySelectorAll(".fade-in-animate  h2"),
+    ...document.querySelectorAll(".fade-in-animate .text > *"),
+  ];
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        entry.target.classList.toggle("show", entry.isIntersecting);
+        if (entry.isIntersecting) observer.unobserve(entry.target);
+      });
+    },
+    {
+      rootMargin: "-10%",
+    }
+  );
+  sections.forEach((section) => {
+    observer.observe(section);
+  });
   // Changing states
   const cursor = document.getElementById("cursor");
   const aura = document.getElementById("aura");
@@ -31,25 +58,7 @@ window.onload = () => {
       cursor.className = "hidden";
       aura.className = "hidden";
     });
-  // Intersection Observer
-  const sections = [
-    ...document.querySelectorAll(".fade-in-animate  h2"),
-    ...document.querySelectorAll(".fade-in-animate .text > *"),
-  ];
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        entry.target.classList.toggle("show", entry.isIntersecting);
-        if (entry.isIntersecting) observer.unobserve(entry.target);
-      });
-    },
-    {
-      rootMargin: "-10%",
-    }
-  );
-  sections.forEach((section) => {
-    observer.observe(section);
-  });
+
   // Copyright
   document.getElementById("copyright").textContent = new Date().getFullYear();
   scroll.update();

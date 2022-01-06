@@ -34,7 +34,6 @@ button,
 textarea {
   font-family: inherit;
 }
-
 input::-ms-clear {
   display: none;
 }
@@ -46,9 +45,7 @@ button::-moz-focus-inner {
   border: 0;
 }
 a,
-a:visited {
-  text-decoration: none;
-}
+a:visited,
 a:hover {
   text-decoration: none;
 }
