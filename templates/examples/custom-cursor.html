@@ -1,0 +1,186 @@
+{% extends "layout.html" %}
+{% block content %}
+<section class="glassy-section fade-in-animate example" data-scroll-section>
+    <h2>How to set a custom cursor?</h2>
+    <article class="text">
+        <h3>Making custom cursor with image</h3>
+        <p>If there is an image or an SVG prepared, it is simple to do it with a single CSS property.
+        </p>
+        <pre><code class="css">
+body {
+    cursor: url("path/to/your/image"), auto;
+}
+                                   </code></pre>
+        <p>The first argument is the URL with a path to the image. The second argument is the fallback
+            in case the image can not be
+            displayed. "Auto" in this case is the default behaviour of the cursor (as if there is no
+            property set), however, you can
+            set any value you want.</p>
+        <p>The list of all the values <a class="inline-link" target="_blank"
+                href="https://codepen.io/chriscoyier/pen/uCwfB">here</a></p>
+
+        <h3>Making custom with CSS</h3>
+        <p>Another way to make a custom cursor on the website is to "draw" your own on the website.
+        </p>
+
+        <p>You have to remove default cursor using css</p>
+        <pre><code class="css">
+* {
+    cursor: none;
+}
+                                    </code></pre>
+        <p>Then you add the HTML that you will customize as a cursor. It can be any element, but it
+            would be more logical to use
+            either <code class="html">div</code> or <code class="html">span</code> because they are used
+            for styling and <code class="html">id</code> because there has to be only one cursor on the
+            webpage.</p>
+        <pre><code class="html">
+&lt;div id="cursor"&gt;&lt;/div&gt;
+&lt;div id="aura"&gt;&lt;/div&gt;
+                                    </code></pre>
+        <p>Here comes your time to shine and design! You can make almost whatever you want, but you have
+            to always think of user
+            experience because your custom cursor should be both pretty and useful. As an example, I
+            will make a common doubled
+            circle. The example is below:</p>
+        <div class="example-wrapper" id="example-cursor">
+            <div id="aura">
+                <div id="cursor"></div>
+            </div>
+            <div class="btn-wrapper">
+                <button class="btn-toggler" id="toggle-cursor-none">Normal</button>
+                <button class="btn-toggler" id="toggle-cursor-active">Active</button>
+                <button class="btn-toggler" id="toggle-cursor-hidden">Hidden</button>
+            </div>
+        </div>
+        <p>Because you are removing the cursor, it will trigger all the events (clicks or hovers), but
+            it will not change the state itself. The only way to solve it is to manually add all the
+            cursor changes using CSS andJavaScript.</p>
+        <p>Here in CSS, I am both defining default (when the user is just exploring the website), hidden
+            (when the mouse is out of the website dimensions) and active (when the user is hovering
+            curtain objects) states.</p>
+        <p><code class="css">position: absolute</code> and <code class="css">z-index</code>is used to
+            display this element over the others (<code class="css">z-index</code> should be higher than
+            any other element has).
+        </p>
+        <p><code class="css">user-select: none</code> and <code class="class">pointer-events: none</code>
+            are set to none to make all the mouse events
+            trigger the area under the middle dot. Otherwise, the user would always select the dot and
+            the following circle.</p>
+        <p><code class="css">#cursor</code> is the small middle dot that instantly follows the cursor.
+            There is a tiny lag between the mouse movement and
+            the dot on the screen, but there is nothing to do with it because it is a browser
+            restriction.</p>
+        <p><code class="css">#aura</code> is the big circle following the dot with a larger delay
+            to create the parallax effect. The same circle can be
+            drowned as a pseudo-element, however, it would follow the dot without any delay, which has
+            to be taken into account.</p>
+        <p>Everything else is just styling that can be changed however you want. The example provided is
+            just a sample that looks
+            nice and can be taken to adapt to your own needs.</p>
+        <pre><code class="css">
+/* Cursor styling */
+#cursor,
+#aura {
+  position: absolute;
+  z-index: 10;
+  border-radius: 50%;
+  top: -5rem;
+  left: -50vw;
+  transform: translate(-50%, -50%);
+  user-select: none;
+  pointer-events: none;
+}
+#cursor {
+  width: var(--size-cursor);
+  height: var(--size-cursor);
+  background: var(--color-accent);
+  transition: opacity 0.1s ease-out,
+              transform 0.1s ease-out;
+}
+#aura {
+  width: var(--size-aura);
+  height: var(--size-aura);
+  border: 1px solid var(--color-accent);
+  background-color: rgba(248, 0, 174, 0.1);
+  transition: all 0.1s ease-out;
+}
+/* When cursor is out of the website */
+#cursor.hidden,
+#aura.hidden {
+  opacity: 0.05;
+  transform: scale(0.005);
+}
+/* When the cursor hovers the link */
+#cursor.active {
+  opacity: 0;
+}
+#aura.active {
+  width: calc(var(--size-aura) + 1rem);
+  height: calc(var(--size-aura) + 1rem);
+  border-color: var(--color-active);
+}
+                                    </code></pre>
+        <p>Using JavaScript, we are attempting to make a custom cursor 'alive'. This is why you have to
+            manipulate all the states
+            yourself.</p>
+        <p>For each change of state of the cursor, there is a separated event listener (mouse of the
+            page, hovers the link, does not hover the link...)</p>
+        <p>To move the dot and circle, we are adding the event listener on the document, which will
+            adjust the position when the
+            mouse is moved.</p>
+        <p>Interesting fact, there are 2 ways to move the circle: using <code
+                class="css">transform: translate(e.pageX, e.pageY)</code> and <code
+                class="css">top: pageY px; left: pageX px</code>. The first way is working faster and
+            smoother on old machines, but might cause some problems with centering (the code uses <code
+                class="css">transform: translate(-50%, -50%)</code> with <code class="css">position: absolute</code>
+            to center
+            everything). The second solution cause way less problems to the programmer, but might cause
+            performance issues on old machines.</p>
+        <p></p>
+        <pre><code class="js">
+// Declaring the constants
+const cursor = document.getElementById("cursor");
+const aura = document.getElementById("aura");
+const links = document.getElementsByTagName("a");
+// As soon as mouse moves the it will move the custom cursor to its new positions
+document.addEventListener("mousemove", (e) => {
+  const pageOffset = `top: ${e.pageY}px; left: ${e.pageX}px`
+  cursor.setAttribute("style", pageOffset)
+  aura.setAttribute("style", pageOffset)
+});
+// Adds new class when the cursor is out of the webpage
+document.addEventListener("mouseout", (e) => {
+  cursor.classList.add("hidden");
+  aura.classList.add("hidden");
+});
+// Removes the class when the cursor is on of the webpage
+document.addEventListener("mouseover", (e) => {
+  cursor.classList.remove("hidden");
+  aura.classList.remove("hidden");
+});
+
+for (let i = 0; i < links.length; i++) {
+  const link=links[i];
+  // Adds special class when user hovers over a link
+  link.addEventListener("mouseover", (e) => {
+    cursor.classList.add("active");
+    aura.classList.add("active");
+  });
+  // Removes special class when user does not hover over a link
+  link.addEventListener("mouseout", (e) => {
+    cursor.classList.remove("active");
+    aura.classList.remove("active");
+  });
+}
+                                    </code></pre>
+        <p>That's it! Despite taking some time and energy custom cursor makes your website a bit fancier
+            than everyone else's. Great job👍</p>
+        <div class="btn-link-wrapper">
+            <a href="/static/examples/custom cursor/cursor.html" class="btn-link" download="cursor.html">
+                Download example
+            </a>
+        </div>
+    </article>
+</section>
+{% endblock %}

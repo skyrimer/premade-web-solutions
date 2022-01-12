@@ -1,0 +1,99 @@
+{% extends "layout.html" %}
+{% block content %}
+<section class="glassy-section fade-in-animate example" data-scroll-section>
+    <h2>A way to make smooth scrolling</h2>
+    <article class="text">
+        <p>You might have spotted that on some websites scrolling feels weird. It seems to have some sort of
+            inertia. For instance <a target="_blank" href="https://www.niarratravel.com" class="inline-link">this
+                website</a></p>
+        <p>This technique is called 🚂locomotive scrolling🚂 because it smoothly starts and smooth finishes
+            to scroll as if you are on the Swiss train. It does not drastically affect the user experience
+            but improves it. The simplest way to realise this effect is to use <a target="_blank"
+                href="https://locomotivemtl.github.io/locomotive-scroll/" class="inline-link">Locomotive-Scroll</a>
+            JavaScript Library. It is easy to set up, and it
+            has a bunch of features to satisfy all your needs
+            including parallax.</p>
+        <p>To start with, you need to connect both JavaScript (for animations) and Css (for custom
+            scrollbar). You can use both <a href="https://www.npmjs.com/package/locomotive-scroll"
+                class="inline-link">npm</a> or <a href="https://www.jsdelivr.com/package/npm/locomotive-scroll"
+                class="inline-link">cloud
+                package</a></p>
+        <pre><code class="html">
+npm install locomotive-scroll
+
+&lt;!-- or --&gt;
+
+&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.3/dist/locomotive-scroll.min.css"&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.3/dist/locomotive-scroll.min.js"&gt;&lt;/script&gt;
+                                    </code></pre>
+        <p>After you have connected all necessary stuff, you have to activate locomotive scrolling using JS:
+        </p>
+        <pre><code class="js">
+const scroll = new LocomotiveScroll({
+  el: document.querySelector("[data-scroll-container]"),
+  smooth: true,
+});
+                                            </code></pre>
+        <p>In your HTML you have to add at least 1 <code class="html">data-scroll-container</code> attribute
+            to any element.</p>
+        <pre><code class="html">
+&lt;div class="continer" data-scroll-container&gt;&lt;/div&gt;
+                                </code></pre>
+        <p>That's it👍! Refresh your document, and you will see the magic of a better scrolling experience.
+            The values set by default work perfectly and look good for the majority of cases. However, if
+            you want to customise something, You just need to pass some new parameters to the dictionary of
+            arguments. There are many of them, but I will list the most useful in my opinion.</p>
+        <ul class="text">
+            <li>
+                <p><code class="html">direction</code> - specifies the direction of the effect. Can be <code
+                        class="html">vertical</code> and <code class="html">horizontal</code>. It is useful
+                    in case you want to make animated elements moving horizontally.</p>
+            </li>
+            <li>
+                <p><code class="html">lerp</code> - smoothness of the scrolling. Take values from <code
+                        class="html">0</code> to <code class="html">1</code>, where <code class="html">1</code>
+                    is
+                    no effect and <code class="html">0</code> is no scrolling
+                    at all. Just a values to play around.</p>
+            </li>
+            <li>
+                <p><code class="html">multiplier</code> - factor applied to the scrolling. The higher the
+                    value, the more page scrolls.</p>
+            </li>
+            <li>
+                <p><code class="html">firefoxMultiplier</code> - factor applied to the scrolling for FireFox
+                    browser.</p>
+            </li>
+            <li>
+                <p><code class="html">touchMultiplier</code> - factor applied to the scrolling on
+                    touchscreen devices. Generally, you want this to be higher than the default value,
+                    because on phones you have to scroll way more than on any big screen.</p>
+            </li>
+            <li>
+                <p>Adding <code class="html">data-scroll-section</code> to the elements inside <code
+                        class="html">data-scroll-container</code> might improve performance.</p>
+            </li>
+            <li>
+                <p>General note. If you have some JavaScript code that changes the hight of the content (for
+                    instance: syntax highlighting that adds paddings), you need to run this piece of code
+                    first, and then initialise locomotive scroll.</p>
+            </li>
+            <li>
+                <p>There is only 1 issue with implementing this feature: you can not scroll using middle button,
+                    and there is nothing to do with it😥. On one hand, it is actually good, because the users
+                    won't scroll through without even noticing the content. On the other hand, people who are
+                    used to the middle button will suffer a bit from it.</p>
+            </li>
+        </ul>
+        <p>For more information, use the <a href="https://github.com/locomotivemtl/locomotive-scroll"
+                class="inline-link" target="_blank">official documentation</a>, which describes all the
+            powers of the library in detail.</p>
+        <div class="btn-link-wrapper">
+            <a href="/static/examples/locomotive scroll/locomotive scroll.html" class="btn-link"
+                download="locomotive scrolling">
+                Download example
+            </a>
+        </div>
+    </article>
+</section>
+{% endblock %}

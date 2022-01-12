@@ -1,0 +1,65 @@
+// Colors
+$color-main: #080c25;
+$color-opposite: #f7f7f7;
+$color-secondary: #00ffc2;
+// $color-secondary: #ff8a4c;
+$color-tertiary: #a6b2ec;
+$color-favorite: #00ffc2;
+$color-orange: #ff8a4c;
+
+$color-danger: #e40c2b;
+
+// Breakpoints
+$breakpoint-burger: 47rem;
+
+// Font sizes
+$ff-xl: clamp(1.4rem, 7.5vw, 8rem);
+$ff-l: clamp(1.5rem, 4.3vw, 5rem);
+$ff-m: clamp(1.1rem, 3.2vw, 3rem);
+$ff-s: clamp(0.9rem, 3vw, 1.3rem);
+$ff-xs: clamp(0.875rem, 3vw, 1.2rem);
+$ff-xxs: clamp(0.7875rem, 2.7vw, 1.08rem);
+
+// Transitions
+$transition-main: all 0.3s ease;
+
+// Sizes
+$width-scollbar: 1rem;
+%underline {
+  $size: 0.1em;
+  background-image: linear-gradient(to right, currentColor, currentColor);
+  background-size: 0 $size;
+  background-position: bottom left;
+  background-repeat: no-repeat;
+  transition: $transition-main;
+  &:hover {
+    color: $color-secondary;
+    background-size: 100% $size;
+  }
+}
+%btn {
+  display: inline-block;
+  padding: 0.75em 1.5em;
+
+  font-family: "Archivo", sans-serif;
+  background: transparent;
+  outline: none;
+  border-radius: 0.5em;
+  transition: $transition-main;
+}
+%glassy {
+  background: $color-main;
+  @supports (backdrop-filter: blur(50px) saturate(200%)) {
+    background: rgba($color: $color-main, $alpha: 0.5);
+    backdrop-filter: blur(30px) saturate(50%);
+  }
+}
+%glassy-section {
+  background: rgba($color: $color-main, $alpha: 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 1rem;
+  @supports (backdrop-filter: blur(2px)) {
+    backdrop-filter: blur(2px);
+    background: rgba($color: $color-tertiary, $alpha: 0.1);
+  }
+}

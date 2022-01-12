@@ -1,32 +1,13 @@
-// Colors
-$color-main: #080c25;
-$color-opposite: #f7f7f7;
-$color-secondary: #ff8a4c;
-// $color-secondary: #3071e7;
-$color-tertiary: #a6b2ec;
-$color-favorite: #00ffc2;
-$color-danger: #e40c2b;
-
-// Breakpoints
-$breakpoint-burger: 55rem;
-
-// Font sizes
-$ff-xl: clamp(1.4rem, 7.5vw, 8rem);
-$ff-l: clamp(1.5rem, 4.3vw, 5rem);
-$ff-m: clamp(1.1rem, 3.2vw, 3rem);
-$ff-s: clamp(0.9rem, 3vw, 1.3rem);
-$ff-xs: clamp(0.875rem, 3vw, 1.2rem);
-$ff-xxs: clamp(0.7875rem, 2.7vw, 1.08rem);
-
-// Transitions
-$transition-main: all 0.3s ease;
+@import "variables";
 
 // General
 
 :root {
   font-family: "IBM Plex Sans", sans-serif;
 }
-
+::-webkit-scrollbar {
+  width: $width-scollbar;
+}
 body {
   color: $color-opposite;
   background-image: repeating-linear-gradient(
@@ -55,26 +36,17 @@ body {
   min-height: 100vh;
   &.lock {
     overflow-y: hidden;
+    // padding-right: $width-scollbar;
     @media screen and (min-width: $breakpoint-burger) {
       overflow-y: auto;
     }
   }
 }
-%underline {
-  $size: 0.1em;
-  background-image: linear-gradient(to right, currentColor, currentColor);
-  background-size: 0 $size;
-  background-position: bottom left;
-  background-repeat: no-repeat;
-  transition: $transition-main;
-  &:hover {
-    color: $color-secondary;
-    background-size: 100% $size;
-  }
-}
+
 h1,
 h2,
-h3 .font-secondary {
+h3,
+.font-secondary {
   font-weight: 700;
   font-family: "Archivo", sans-serif;
 }
@@ -111,7 +83,7 @@ h2 {
   font-size: $ff-l;
   color: $color-secondary;
   text-align: center;
-  margin-bottom: Max(1em, 2vh);
+  margin-bottom: Max(1em, 4vh);
 }
 h3 {
   font-size: $ff-m;
@@ -133,16 +105,7 @@ img {
   display: inline;
   width: 1.4em;
 }
-%btn {
-  display: inline-block;
-  padding: 0.75em 1.5em;
 
-  font-family: "Archivo", sans-serif;
-  background: transparent;
-  outline: none;
-  border-radius: 0.5em;
-  transition: $transition-main;
-}
 .btn-wrapper {
   display: inline-flex;
   flex-wrap: wrap;
@@ -154,7 +117,7 @@ img {
   margin: 1em 0 0;
 
   color: $color-secondary;
-  border: 1px solid currentColor;
+  border: 1px solid $color-secondary;
 
   &:hover,
   &:focus {
@@ -181,22 +144,9 @@ img {
   @extend %underline;
   color: $color-favorite;
 }
-%glassy {
-  background: $color-main;
-  @supports (backdrop-filter: blur(50px) saturate(200%)) {
-    background: rgba($color: $color-main, $alpha: 0.5);
-    backdrop-filter: blur(30px) saturate(50%);
-  }
-}
 .glassy-section {
-  background: rgba($color: $color-main, $alpha: 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 1rem;
+  @extend %glassy-section;
   padding: Min(3em, 4vh) Min(3em, 4vw);
-  @supports (backdrop-filter: blur(2px)) {
-    backdrop-filter: blur(2px);
-    background: rgba($color: $color-tertiary, $alpha: 0.1);
-  }
 }
 
 .container {
@@ -286,10 +236,9 @@ img {
 
       flex-direction: row;
       justify-content: space-between;
-      gap: Max(2vw, 1rem);
+      gap: clamp(1rem, 3vw, 3rem);
 
-      font-size: 2rem;
-      padding: 1.5em 0;
+      padding: 2.5rem 0;
       width: Min(95%, 120rem);
       margin: 0 auto;
     }
@@ -301,7 +250,7 @@ img {
         margin-right: auto;
       }
     }
-    a {
+    li:not(:first-child) a {
       @extend %underline;
       color: $color-opposite;
       font-style: italic;
@@ -344,10 +293,11 @@ svg.logo {
 main {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   gap: Min(5em, 7vh);
   width: 100%;
+  min-height: 100vh;
   z-index: 1;
   section {
     opacity: 1;
@@ -359,8 +309,13 @@ main {
       @media screen and (min-width: $breakpoint-burger) {
         gap: 2em;
         justify-content: space-between;
-        & > * {
+        > * {
           flex-basis: 100%;
+        }
+        .image {
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
       }
     }
@@ -504,6 +459,16 @@ main {
 
 // Cursor
 
+#tutorial-section {
+  img {
+    margin: 1rem auto 6rem;
+    width: 90%;
+    @media screen and (min-width: $breakpoint-burger) {
+      width: Min(50%, 60rem);
+    }
+  }
+}
+
 #example-cursor {
   display: flex;
   flex-direction: column;
@@ -607,4 +572,78 @@ pre {
     color: $color-favorite;
     transition: $transition-main;
   }
+}
+
+// Swup
+.transition-fade {
+  transition: 0.4s;
+  opacity: 1;
+}
+
+html.is-animating .transition-fade {
+  opacity: 0;
+}
+
+// Tutorials
+.cards-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: center;
+  gap: 3rem;
+  list-style-position: inside;
+  counter-reset: list;
+  .card {
+    flex-basis: Min(100%, 30rem);
+  }
+}
+.card {
+  @extend %glassy-section;
+  padding: Min(3rem, 3vh) Min(3rem, 3vw);
+  position: relative;
+  counter-increment: list;
+  transition: $transition-main;
+  &::before {
+    content: counter(list);
+    position: absolute;
+    top: Min(3rem, 3vh);
+    left: Min(3rem, 3vw);
+    font-size: $ff-l;
+    color: $color-opposite;
+    transition: $transition-main;
+  }
+  h3 {
+    display: block;
+    margin: 3em 0 0.5em;
+    font-size: $ff-m;
+    font-weight: 700;
+    font-style: italic;
+    color: $color-favorite;
+    transition: $transition-main;
+  }
+  &:hover {
+    background: darken($color: $color-main, $amount: 6%);
+    backdrop-filter: saturate(50%);
+    &::before {
+      color: transparent;
+    }
+    h3 {
+      color: $color-orange;
+      transform: scale(1.05);
+    }
+  }
+}
+
+// errors
+.error-section {
+  width: max-content;
+  margin-top: 10rem;
+  text-align: center;
+  img {
+    width: Min(50%, 50rem);
+  }
+}
+// All examples
+.example {
+  margin-top: 10rem;
 }

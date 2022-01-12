@@ -1,0 +1,139 @@
+{% extends "layout.html" %}
+{% block content %}
+<section class="glassy-section fade-in-animate example" data-scroll-section>
+  <h2>Reveal navbar on scroll</h2>
+  <article class="text">
+    <p>Another animation that does not change the content but slightly improves user experience is
+      animated navbar. Fixing this element is a common trick to provide users with the persistent
+      excess to the navigation. On the other hand, it takes up some space, and might be unnecessary
+      element during website exploration.
+    </p>
+    <p>The effect that I am going to show will hide the navbar when the user is scrolling down, and
+      reveal it when the user is scrolling up.</p>
+    <p>Firstly, you will need a page with a lot of content, so this effect makes sense. Possible HTML
+      might look like this:</p>
+    <pre><code class="html">
+&lt;nav class="scroll-reveal"&gt;
+  &lt;img src="/logo.svg" alt=""&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href="#"&gt;Thirst link&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#"&gt;Second link&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#"&gt;Third link&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;
+&lt;div class="content"&gt;
+  &lt;section&gt;
+    &lt;h2&gt;Thirst section&lt;/h2&gt;
+  &lt;/section&gt;
+  &lt;section&gt;
+    &lt;h2&gt;Second section&lt;/h2&gt;
+  &lt;/section&gt;
+  &lt;section&gt;
+    &lt;h2&gt;Third section&lt;/h2&gt;
+  &lt;/section&gt;
+  &lt;section&gt;
+    &lt;h2&gt;Fourth section&lt;/h2&gt;
+  &lt;/section&gt;
+  &lt;section&gt;
+    &lt;h2&gt;Fifth section&lt;/h2&gt;
+  &lt;/section&gt;
+&lt;/div&gt;
+                                        </code></pre>
+    <p>Then in css, you have to fix navigation and declare additional styling that will be manipulated
+      using JavaScript.</p>
+    <p>You can use both <code class="css">position: fixed</code> or <code class="css">position: sticky</code>,
+      but
+      the second variant might cause some problems with
+      background (because it pushes all the content, when the navbar is hiding at the top of the page,
+      it will reveal the background of the space behind it)</p>
+    <p><code class="css">nav:focus-within</code> must be declared to show the navbar if the user selects
+      the elements using the keyboard.</p>
+    <p>And <code class="css">nav.is-scrolling</code> that is going to be used for hidden state of
+      navigation. Your CSS should look like this:</p>
+    <pre><code class="css">
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 1.5rem 4rem;
+  background-color: #021520;
+  transition: transform 500ms ease-in-out;
+}
+
+nav:focus-within {
+  transform: translateY(0);
+}
+
+nav.is-scrolling {
+  transform: translateY(-100%);
+}
+                                        </code></pre>
+    <p>JavaScript contain the most complicated part.</p>
+    <p>You have to initialise all variables: navbar element, current position of the page, and throttle
+      variable that is going to be used later. There are different ways to get, but if you don't want
+      to support ancient versions of Internet Explorer, construction from the example will do its job.
+    </p>
+    <pre><code class="js">
+const nav = document.querySelector("nav");
+let previousScrollPosition = window.scrollY || window.pageYOffset;
+let throttleTimer;
+                                        </code></pre>
+    <p>Then you have to declare 3 functions: for getting whether the user scrolls or not, scroll
+      handler, and the interval function that is going to be passed as an event listener.</p>
+    <p>Whether the user scrolls or not is easy to get. You have to have a previous position and compare
+      it with current position. If current position is greater than previous position, the user has
+      scrolled down. In the other case, the user either hasn't scroll or scrolled up.</p>
+    <p>The second function just toggles the navbar state.</p>
+    <p>The last function is quite interesting. You could have just passed the previous function to an
+      event listener, however, it will be called, each time the user scrolls, which will cause
+      performance issues. One of the ways to fix it is to call the function every curtain amount of
+      time when the user scrolls. This is how throttle works. A better explanation you can see <a
+        href="https://www.telerik.com/blogs/debouncing-and-throttling-in-javascript" class="inline-link"
+        target="_blank">here</a>. The code will look like this:
+    </p>
+    <pre><code class="js">
+const isScrollingDown = () => {
+  let scrolledPosition = window.scrollY || window.pageYOffset
+  let isScrollDown = scrolledPosition > previousScrollPosition ? true : false
+  
+  previousScrollPosition = scrolledPosition;
+  return isScrollDown;
+};
+
+const handleNavScroll = () => {
+  if (isScrollingDown() && !nav.contains(document.activeElement)) {
+    nav.classList.add("is-scrolling")
+    return
+  } 
+  nav.classList.remove("is-scrolling")
+};
+
+const throttle = (callback, time) => {
+if (throttleTimer) return;
+
+throttleTimer = true;
+setTimeout(() => {
+callback(); throttleTimer = false
+}, time);
+};
+                            </code></pre>
+    <p>Now, when all the preparation is done, you just need to add scroll event listener to the
+      document. The second parameter in the throttle function is the interval in milliseconds.</p>
+    <pre><code class="js">
+window.addEventListener("scroll", () => {
+  throttle(handleNavScroll, 200);
+})
+                                        </code></pre>
+    <p>You are done👍! Congratulations on finishing this effect.</p>
+    <div class="btn-wrapper">
+      <a href="/static/examples/scroll revelaling navbar/scroll revealing navbar.html" class="btn-link"
+        download>Download
+        example</a>
+    </div>
+  </article>
+</section>
+{% endblock %}

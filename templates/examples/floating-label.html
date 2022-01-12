@@ -1,0 +1,85 @@
+{% extends "layout.html" %}
+{% block content %}
+<section class="glassy-section fade-in-animate example" data-scroll-section>
+    <h2>Floating labels for inputs</h2>
+    <article class="text">
+        <p>One of the best thing you can do while creating forms is to label every single <code class="css">input</code>
+            with its <code class="css">label</code>. It make the website more
+            intuitive and user-friendly. One of the ways to add some fancy micro-interactions for the
+            website is to make the labels float.</p>
+        <p>Floating label is a term that is used to demonstrate that the label moves as soon as
+            user focuses the input. You can see it on the example below:</p>
+        <div class="floating-label-wrapper">
+            <input class="floating-input" type="text" id="floating" placeholder="Type something">
+            <label for="floating">Floating label</label>
+        </div>
+        <p>In terms of HTML, structure maters a lot. You have to have a wrapper with an input followed by a
+            label. It is important to have a label afterwards because we are using pure CSS. For this
+            example, you will also need a placeholder for the input. There are other ways to do it using
+            <code class="css">:focus</code> and <code class="css">:valid</code>, but we find this one a bit
+            simpler.
+        </p>
+        <pre><code class="html">
+&lt;div class="input-wrapper"&gt;
+  &lt;input type="text" id="input" placeholder="Put any text here"&gt;
+  &lt;label for="input"&gt;Click&lt;/label&gt;
+&lt;/div&gt;
+                                                        </code></pre>
+        </p>
+        <p>For CSS, you can style the <code class="html">input</code> and <code class="html">label</code>
+            however you want, however, there are some things to think of. You have to set <code
+                class="css">position: relative</code> to the wrapper, so you can position the <code
+                class="css">label</code>. Another thing to be watched is padding: you have to make sure that
+            there is enough space both for the input text and for the label text. Here, we are lowering the
+            input text by setting greater <code class="css">padding-top</code> than <code
+                class="css">padding-bottom</code> so there is enough space for label text.</p>
+        <p>Finally, we are using the magic selector <code class="css">input:placeholder-shown + label</code>
+            to change styling for the label. This selector will cover all the <code class="css">labels</code>
+            after
+            <code class="css">input</code> when the placeholder value is
+            not visible. In particular, we are moving the <code class="css">label</code> higher using <code
+                class="css">transform: translate()</code>, but you can also use <code class="css">top: </code>
+            and <code class="css">left: </code>
+        </p>
+        <pre><code class="css">
+input {
+  font-size: 1.2rem;
+  width: min(100%, 50rem);
+  padding: 2em 2rem 0.5em;
+  color: var(--color-text);
+  background-color: var(--color-background);
+  border-bottom: 1px solid var(--color-background);
+  border-radius: 0.5em;
+}
+
+/* So the placeholder does not overlap with the label */
+input::placeholder {
+  color: transparent;
+}
+
+input:placeholder-shown+label {
+  transform: translateY(-50%);
+  font-size: 1rem;
+}
+
+label {
+  font-size: 0.9rem;
+  transform: translate(0, calc(-50% - 1em));
+  user-select: none;
+  position: absolute;
+  top: 50%;
+  left: 2rem;
+  color: var(--color-accent);
+  transition: all 0.3s ease-in-out;
+}
+                                                    </code></pre>
+        <p>And that's it👍! You can use the same structure for any <code class="css">input</code>, <code
+                class="css">select</code> or <code class="css">textarea</code>. If you wish to have a look
+            at it once again, here is a document for you.</p>
+        <div class="btn-link-wrapper">
+            <a href="/static/examples/floating labels/floating label.html" class="btn-link" download>Download
+                example</a>
+        </div>
+    </article>
+</section>
+{% endblock %}
