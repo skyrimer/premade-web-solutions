@@ -9,7 +9,7 @@
   width: $width-scollbar;
 }
 body {
-  color: $color-opposite;
+  color: $color-main;
   background-image: repeating-linear-gradient(
       135deg,
       rgb(0, 0, 0) 0px,
@@ -60,7 +60,7 @@ h1 {
   transform: translateY(10vh);
   color: transparent;
   background-clip: text;
-  -webkit-text-stroke: 1px $color-opposite;
+  -webkit-text-stroke: 1px $color-main;
   animation: onload 3s ease forwards;
   @media screen and (min-width: $breakpoint-burger) {
     font-size: $ff-xl;
@@ -73,7 +73,7 @@ h1 {
       transform: translateY(0);
     }
     100% {
-      color: $color-opposite;
+      color: $color-main;
       opacity: 1;
       transform: translateY(0);
     }
@@ -81,7 +81,7 @@ h1 {
 }
 h2 {
   font-size: $ff-l;
-  color: $color-secondary;
+  color: $color-primary;
   text-align: center;
   margin-bottom: Max(1em, 4vh);
 }
@@ -116,33 +116,33 @@ img {
   font-size: $ff-s;
   margin: 1em 0 0;
 
-  color: $color-secondary;
-  border: 1px solid $color-secondary;
+  color: $color-primary;
+  border: 1px solid $color-primary;
 
   &:hover,
   &:focus {
-    color: $color-main;
-    background: $color-secondary;
-    box-shadow: 0 0 2em rgba($color: $color-secondary, $alpha: 0.3),
-      0 0 4em rgba($color: $color-secondary, $alpha: 0.5);
+    color: $color-background;
+    background: $color-primary;
+    box-shadow: 0 0 2em rgba($color: $color-primary, $alpha: 0.3),
+      0 0 4em rgba($color: $color-primary, $alpha: 0.5);
   }
 }
 .btn-toggler {
   @extend %btn;
   font-size: $ff-xs;
-  color: $color-favorite;
+  color: $color-primary;
   border: 1px solid currentColor;
 
   &:hover {
-    color: $color-main;
-    background: $color-favorite;
-    box-shadow: 0 0 2em rgba($color: $color-favorite, $alpha: 0.3),
-      0 0 4em rgba($color: $color-favorite, $alpha: 0.5);
+    color: $color-background;
+    background: $color-primary;
+    box-shadow: 0 0 2em rgba($color: $color-primary, $alpha: 0.3),
+      0 0 4em rgba($color: $color-primary, $alpha: 0.5);
   }
 }
 .inline-link {
   @extend %underline;
-  color: $color-favorite;
+  color: $color-primary;
 }
 .glassy-section {
   @extend %glassy-section;
@@ -200,7 +200,7 @@ img {
       }
       path {
         fill: none;
-        stroke: $color-favorite;
+        stroke: $color-primary;
         stroke-width: 5.5;
         stroke-linecap: round;
         transition: $transition-main;
@@ -252,7 +252,7 @@ img {
     }
     li:not(:first-child) a {
       @extend %underline;
-      color: $color-opposite;
+      color: $color-main;
       font-style: italic;
       font-size: Max(6vw, 1.5rem);
       padding-bottom: 0.2em;
@@ -387,7 +387,7 @@ main {
     top: 0;
     height: 100%;
     width: 50%;
-    background: $color-favorite;
+    background: $color-primary;
   }
 
   .chevron:before {
@@ -485,7 +485,7 @@ main {
   $size: 0.5rem;
   width: $size;
   height: $size;
-  background: $color-favorite;
+  background: $color-primary;
   transition: opacity 0.1s ease-out;
   &.active {
     opacity: 0;
@@ -501,12 +501,12 @@ main {
   width: $size;
   height: $size;
 
-  border: 1px solid $color-favorite;
-  background-color: rgba($color: $color-opposite, $alpha: 0.1);
+  border: 1px solid $color-primary;
+  background-color: rgba($color: $color-main, $alpha: 0.1);
   transition: $transition-main;
   &.active {
     transform: scale(1.2);
-    border-color: $color-secondary;
+    border-color: $color-primary;
   }
 }
 #cursor.hidden,
@@ -526,7 +526,7 @@ pre {
   z-index: 11;
 }
 .c-scrollbar_thumb {
-  background-color: $color-opposite;
+  background-color: $color-main;
   opacity: 0.9;
 }
 
@@ -550,9 +550,9 @@ pre {
     font-size: $ff-s;
     width: Min(100%, 50rem);
     padding: 2em 2rem 0.5em;
-    color: $color-opposite;
-    background-color: $color-main;
-    border-bottom: 1px solid $color-favorite;
+    color: $color-main;
+    background-color: $color-background;
+    border-bottom: 1px solid $color-primary;
     border-radius: 0.5em;
     &::placeholder {
       color: transparent;
@@ -569,7 +569,7 @@ pre {
     position: absolute;
     top: 50%;
     left: 2rem;
-    color: $color-favorite;
+    color: $color-primary;
     transition: $transition-main;
   }
 }
@@ -609,7 +609,7 @@ html.is-animating .transition-fade {
     top: Min(3rem, 3vh);
     left: Min(3rem, 3vw);
     font-size: $ff-l;
-    color: $color-opposite;
+    color: $color-main;
     transition: $transition-main;
   }
   h3 {
@@ -618,17 +618,17 @@ html.is-animating .transition-fade {
     font-size: $ff-m;
     font-weight: 700;
     font-style: italic;
-    color: $color-favorite;
+    color: $color-primary;
     transition: $transition-main;
   }
   &:hover {
-    background: darken($color: $color-main, $amount: 6%);
+    background: darken($color: $color-background, $amount: 6%);
     backdrop-filter: saturate(50%);
     &::before {
       color: transparent;
     }
     h3 {
-      color: $color-orange;
+      color: $color-secondary;
       transform: scale(1.05);
     }
   }

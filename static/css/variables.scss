@@ -1,12 +1,9 @@
 // Colors
-$color-main: #080c25;
-$color-opposite: #f7f7f7;
-$color-secondary: #00ffc2;
-// $color-secondary: #ff8a4c;
+$color-background: #080c25;
+$color-main: #f7f7f7;
+$color-primary: #00ffc2;
+$color-secondary: #ff8a4c;
 $color-tertiary: #a6b2ec;
-$color-favorite: #00ffc2;
-$color-orange: #ff8a4c;
-
 $color-danger: #e40c2b;
 
 // Breakpoints
@@ -48,14 +45,14 @@ $width-scollbar: 1rem;
   transition: $transition-main;
 }
 %glassy {
-  background: $color-main;
+  background: $color-background;
   @supports (backdrop-filter: blur(50px) saturate(200%)) {
-    background: rgba($color: $color-main, $alpha: 0.5);
+    background: rgba($color: $color-background, $alpha: 0.5);
     backdrop-filter: blur(30px) saturate(50%);
   }
 }
 %glassy-section {
-  background: rgba($color: $color-main, $alpha: 0.4);
+  background: rgba($color: $color-background, $alpha: 0.4);
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 1rem;
   @supports (backdrop-filter: blur(2px)) {

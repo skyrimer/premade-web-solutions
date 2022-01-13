@@ -9,7 +9,7 @@
 }
 
 .inline-link:hover, #header ul li:not(:first-child) a:hover {
-  color: #00ffc2;
+  color: #ff8a4c;
   background-size: 100% 0.1em;
 }
 

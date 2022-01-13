@@ -5,14 +5,19 @@ window.onload = () => {
       el: document.querySelector("[data-scroll-container]"),
       smooth: true,
       reloadOnContextChange: true,
+      getSpeed: true,
+      getDirection: true,
+    });
+    //Fucking locomotive scroll
+    document.querySelectorAll("img").forEach((image) => {
+      image.onload = () => {
+        scroll.update();
+      };
     });
     // Highlight js
     document.querySelectorAll("code").forEach((code) => {
       hljs.highlightElement(code);
     });
-    // for (let code = 0; code < to_highlight.length; code++) {
-    //   hljs.highlightElement(to_highlight[code]);
-    // }
     // Intersection Observer
     const sections = [
       ...document.querySelectorAll(".fade-in-animate  h2"),
@@ -32,16 +37,11 @@ window.onload = () => {
     sections.forEach((section) => {
       observer.observe(section);
     });
-    scroll.update();
+    scroll.update()
   };
   const unload = () => {
     scroll.destroy();
   };
-  let scroll = new LocomotiveScroll({
-    el: document.querySelector("[data-scroll-container]"),
-    smooth: true,
-    reloadOnContextChange: true,
-  });
   // Navbar
   const header = document.getElementById("header");
   toggler_list = [
