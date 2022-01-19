@@ -1,3 +1,4 @@
+from tkinter.tix import Tree
 from flask import Flask, render_template
 
 app = Flask(__name__)
@@ -31,7 +32,7 @@ def helpful_websites():
 
 @app.route("/examples/<string:example>")
 def examples(example):
-    return render_template(f"examples/{example}.html", title=example)
+    return render_template(f"examples/{example}.html", title=example.capitalize())
 
 
 if __name__ == "__main__":

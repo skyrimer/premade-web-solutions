@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+{% block content %}
+<section class="glassy-section fade-in-animate example" data-scroll-section>
+    <h2>Page transition</h2>
+    <article class="text">
+        <p>One of my favourite effects on websites is page transition. It makes the process of going from one
+            webpage to another smooth🍃 by adding fancy animation. For instance, this website also contains fading page
+            transition!. If you click on any link, all the content will fade out, and the new one will fade in when it
+            is ready, while the navigation stays the same.</p>
+        <p>There are several ways to achieve this affect: with native JavaScript, <a href="https://barba.js.org"
+                class="inline-link">Barba Js</a>, <a href="https://highway.js.org" class="inline-link">Highway Js</a>,
+            but we are going to use <a href="https://swup.js.org" class="inline-link">Swup Library</a> because of its
+            simplicity</p>
+        <p>Firstly, you need to have the same markdown for all the pages that you want to add the animation. It should
+            have a container with an <code class="html">id="swup"</code> and <code
+                class="html">class=""transition-fade</code>. The id defines the content that is going to be
+            reloaded (the content inside will undergo the animation) and the class will be used in CSS to animate
+            everything.</p>
+        <pre><code class="html">
+&lt;main id="swup" class="transition-fade"&gt;
+  &lt;!-- Your contenet here that is going to be refreshed --&gt;
+&lt;/main&gt;
+&lt;script src="/path-to-file/swup.js"&gt;&lt;/script&gt;
+        </code></pre>
+        <p>In terms of JavaScript, everything you need to do, is to activate the library with just one line</p>
+        <pre><code class="js">
+const swup = new Swup();
+        </code></pre>
+        <p>Finaly, you have to add your styling for animation using css. <code class="css">.transition-fade</code> will
+            be added to your content, when the content will be reloaded. In our case, we need to add <code
+                class="css">opacity</code> for fading effect and <code class="css">transition</code> to make transition
+            smooth</p>
+        <pre><code class="css">
+.transition-fade {
+  transition: 0.4s;
+  opacity: 1;
+}
+
+html.is-animating .transition-fade {
+  opacity: 0;
+}
+        </code></pre>
+        <p>And that's it! You have introduced a fancy page transition😎.</p>
+        <p>However, I have to note that you will also need a few features. The main issue of library is that it does not
+            manually reload CSS and JavaScript, which means that you have to do it yourself. For this purpose, there are
+            2 custom event listeners: <code class="html">contentReplaced</code> that is going to be activated after the
+            content was replaced with new information, and <code class="html">willReplaceContent</code> that is called
+            right before the content is reloaded</p>
+        <p>In order not to repeat the information from the official documentation, I will leave the <a
+                href="https://swup.js.org/getting-started/reloading-javascript" target="_blank" class="inline-link">link
+                to it</a>. It clearly and fairly simple explains everything.</p>
+        <div class="btn-wrapper">
+            <a href="https://swup.github.io/swup-gia-demo/index.html" class="btn-link" target="_blank">See official
+                example</a>
+        </div>
+    </article>
+</section>
+{% endblock %}

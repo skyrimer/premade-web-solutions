@@ -5,9 +5,6 @@
 :root {
   font-family: "IBM Plex Sans", sans-serif;
 }
-::-webkit-scrollbar {
-  width: $width-scollbar;
-}
 body {
   color: $color-main;
   background-image: repeating-linear-gradient(
@@ -506,7 +503,7 @@ main {
   transition: $transition-main;
   &.active {
     transform: scale(1.2);
-    border-color: $color-primary;
+    border-color: $color-secondary;
   }
 }
 #cursor.hidden,
@@ -613,9 +610,7 @@ html.is-animating .transition-fade {
     transition: $transition-main;
   }
   h3 {
-    display: block;
     margin: 3em 0 0.5em;
-    font-size: $ff-m;
     font-weight: 700;
     font-style: italic;
     color: $color-primary;
@@ -645,5 +640,8 @@ html.is-animating .transition-fade {
 }
 // All examples
 .example {
-  margin-top: 10rem;
+  margin-top: 10vh;
+  @media screen and (min-width: $breakpoint-burger) {
+    margin-top: 10rem;
+  }
 }
