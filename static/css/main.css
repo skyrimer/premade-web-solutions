@@ -9,7 +9,7 @@
 }
 
 .inline-link:hover, #header ul li:not(:first-child) a:hover {
-  color: #ff8a4c;
+  color: #f9a826;
   background-size: 100% 0.1em;
 }
 
@@ -787,7 +787,7 @@ main section .column-2 {
 #aura.active {
   -webkit-transform: scale(1.2);
           transform: scale(1.2);
-  border-color: #ff8a4c;
+  border-color: #f9a826;
 }
 
 #cursor.hidden,
@@ -956,7 +956,7 @@ html.is-animating .transition-fade {
 }
 
 .card:hover h3 {
-  color: #ff8a4c;
+  color: #f9a826;
   -webkit-transform: scale(1.05);
           transform: scale(1.05);
 }

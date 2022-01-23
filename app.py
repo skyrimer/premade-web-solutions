@@ -1,37 +1,47 @@
-from flask import Flask, render_template
-
+from flask import Flask, render_template, abort
+from os import getcwd
+from os.path import isfile
+from os.path import join as join_path
 app = Flask(__name__)
 if app.debug == True:
     app.config["TEMPLATES_AUTO_RELOAD"] = True
     app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
 
+def get_tutorial_title(string: str) -> str:
+    return " ".join(string.split("-")).capitalize()
+
+
 @app.errorhandler(404)
-def code_404(e):
+def code_404(error):
     return render_template("404.html", title="Pre-made web solutions"), 404
 
 
 @app.route("/")
+@app.route("/home")
 def home():
-    text = 'Pre-made web solutions'
-    return render_template("index.html", title=text, heading=text)
+    title = 'Pre-made web solutions'
+    return render_template("index.html", title=title, heading=title)
 
 
 @app.route("/tutorials")
 def tutorials():
-    text = "All tutorials"
-    return render_template("tutorials.html", title=text, heading=text)
+    title = "All tutorials"
+    return render_template("tutorials.html", title=title, heading=title)
 
 
 @app.route("/helpful-websites")
 def helpful_websites():
-    text = "Helpful websites"
-    return render_template("helpful_websites.html", title=text, heading=text)
+    title = "Helpful websites"
+    return render_template("helpful_websites.html", title=title, heading=title)
 
 
 @app.route("/examples/<string:example>")
 def examples(example):
-    return render_template(f"examples/{example}.html", title=example.capitalize())
+    file_name = f"examples/{example}.html"
+    if not isfile(join_path(getcwd(), "/templates/", file_name)):
+        abort(404)
+    return render_template(file_name, title=get_tutorial_title(example))
 
 
 if __name__ == "__main__":
