@@ -1,12 +1,12 @@
 {% extends "layout.html" %}
 {% block content %}
-<section class="glassy-section fade-in-animate" data-scroll-section>
+<section class="glassy-section" data-scroll-section>
     <h2>About this website</h2>
     <div class="column-2">
         <div class="image">
-            <picture>
-                <source srcset="/static/images/website.svg" media="(min-width: 47rem)">
-                <img src="/static/images/website_mobile.svg" alt="Website" loading="lazy">
+            <picture class="center" data-loading="lazy">
+                <source data-srcset="/static/images/website.svg" media="(min-width: 47rem)">
+                <img data-src="/static/images/website_mobile.svg" alt="Website">
             </picture>
         </div>
         <article class="text">
@@ -33,13 +33,13 @@
         </article>
     </div>
 </section>
-<section class="glassy-section fade-in-animate" data-scroll-section>
-    <h2>Why do you need this website?</h2>
-    <div class="column-2">
+<section class="glassy-section" data-scroll-section>
+    <h2 >Why do you need this website?</h2>
+    <div class="column-2" >
         <div class="image">
-            <picture>
-                <source srcset="/static/images/why.svg" media="(min-width: 47rem)">
-                <img src="/static/images/why_mobile.svg" alt="Question" loading="lazy">
+            <picture class="center" data-loading="lazy">
+                <source data-srcset="/static/images/why.svg" media="(min-width: 47rem)">
+                <img data-src="/static/images/why_mobile.svg" alt="Question">
             </picture>
         </div>
         <article class="text">
@@ -60,13 +60,13 @@
         </article>
     </div>
 </section>
-<section class="glassy-section fade-in-animate" data-scroll-section>
-    <h2>Useful resources</h2>
-    <div class="column-2">
+<section class="glassy-section" data-scroll-section>
+    <h2 >Useful resources</h2>
+    <div class="column-2" >
         <div class="image">
-            <picture>
-                <source srcset="/static/images/resources.svg" media="(min-width: 47rem)">
-                <img src="/static/images/resources_mobile.svg" alt="Resources" loading="lazy">
+            <picture class="center" data-loading="lazy">
+                <source data-srcset="/static/images/resources.svg" media="(min-width: 47rem)">
+                <img data-src="/static/images/resources_mobile.svg" alt="Resources">
             </picture>
         </div>
         <article class="text">
@@ -82,9 +82,9 @@
         </article>
     </div>
 </section>
-<section class="glassy-section fade-in-animate center" id="tutorial-section" data-scroll-section>
+<section class="glassy-section center" data-scroll-section>
     <h2>See all tutorials here</h2>
-    <ol class="cards-wrapper">
+    <ol class="cards-wrapper" >
         <a class="card" href="/examples/custom-cursor">
             <h3>Custom Cursor</h3>
         </a>

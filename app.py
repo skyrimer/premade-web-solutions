@@ -38,10 +38,9 @@ def helpful_websites():
 
 @app.route("/examples/<string:example>")
 def examples(example):
-    file_name = f"examples/{example}.html"
-    if not isfile(join_path(getcwd(), "/templates/", file_name)):
+    if not isfile(join_path(getcwd(), "templates", "examples", f"{example}.html")):
         abort(404)
-    return render_template(file_name, title=get_tutorial_title(example))
+    return render_template(f"/examples/{example}.html", title=get_tutorial_title(example))
 
 
 if __name__ == "__main__":

@@ -161,6 +161,11 @@ img {
   width: 100%;
 }
 
+picture {
+  width: 100%;
+  height: 100%;
+}
+
 .inline {
   display: inline;
   width: 1.4em;
@@ -814,8 +819,8 @@ pre {
   opacity: 0.9;
 }
 
-.fade-in-animate h2,
-.fade-in-animate .text > * {
+[data-scroll-section] h2,
+[data-scroll-section] .text > * {
   opacity: 0;
   -webkit-transform: translateY(2vh);
           transform: translateY(2vh);
@@ -825,8 +830,8 @@ pre {
   transition: opacity 0.5s ease-out, transform 0.5s ease-out, -webkit-transform 0.5s ease-out;
 }
 
-.fade-in-animate h2.show,
-.fade-in-animate .text > *.show {
+[data-scroll-section] h2.show,
+[data-scroll-section] .text > *.show {
   opacity: 1;
   -webkit-transform: translateY(0);
           transform: translateY(0);
@@ -891,7 +896,8 @@ pre {
   opacity: 1;
 }
 
-html.is-animating .transition-fade {
+html.is-animating .transition-fade,
+html.is-animating .c-scrollbar {
   opacity: 0;
 }
 
@@ -979,7 +985,83 @@ html.is-animating .transition-fade {
 
 @media screen and (min-width: 47rem) {
   .example {
-    margin-top: 10rem;
+    margin-top: Max(10rem, 10vh);
   }
+}
+
+ul.contents-list {
+  list-style-position: inside;
+}
+
+ul.contents-list li {
+  margin: 2rem 0;
+}
+
+ul.contents-list li:hover::marker {
+  color: #f9a826;
+}
+
+ul.contents-list li::marker {
+  color: #00ffc2;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+ul.contents-list a {
+  font-size: clamp(0.9rem, 3vw, 1.3rem);
+}
+
+@media screen and (min-width: 47rem) {
+  .swiper {
+    width: Min(60rem, 60vw);
+  }
+}
+
+.swiper-slide {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: auto;
+  border: 2px solid #f9a826;
+  border-radius: 1rem;
+  background-color: #080c25;
+  overflow: hidden;
+}
+
+.swiper-slide a.inline-link {
+  font-size: clamp(1.2rem, 3.2vw, 3rem);
+  font-family: "Archivo", sans-serif;
+  color: #f9a826;
+  margin: 1em 0;
+}
+
+.swiper-slide a.inline-link:hover {
+  color: #00ffc2;
+}
+
+.swiper-slide img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: #00ffc2;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #f9a826;
 }
 /*# sourceMappingURL=main.css.map */

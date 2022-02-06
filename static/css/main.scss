@@ -1,9 +1,7 @@
 @import "variables";
-
 // General
-
 :root {
-  font-family: "IBM Plex Sans", sans-serif;
+  font-family: $ff-main;
 }
 body {
   color: $color-main;
@@ -33,7 +31,6 @@ body {
   min-height: 100vh;
   &.lock {
     overflow-y: hidden;
-    // padding-right: $width-scollbar;
     @media screen and (min-width: $breakpoint-burger) {
       overflow-y: auto;
     }
@@ -45,7 +42,7 @@ h2,
 h3,
 .font-secondary {
   font-weight: 700;
-  font-family: "Archivo", sans-serif;
+  font-family: $ff-secondary;
 }
 h1 {
   font-size: 11vw;
@@ -97,6 +94,10 @@ p {
 }
 img {
   width: 100%;
+}
+picture {
+  width: 100%;
+  height: 100%;
 }
 .inline {
   display: inline;
@@ -528,8 +529,8 @@ pre {
 }
 
 // Intersection observer
-.fade-in-animate h2,
-.fade-in-animate .text > * {
+[data-scroll-section] h2,
+[data-scroll-section] .text > * {
   opacity: 0;
   transform: translateY(2vh);
   transition: opacity 0.5s ease-out, transform 0.5s ease-out;
@@ -577,7 +578,8 @@ pre {
   opacity: 1;
 }
 
-html.is-animating .transition-fade {
+html.is-animating .transition-fade,
+html.is-animating .c-scrollbar {
   opacity: 0;
 }
 
@@ -642,6 +644,64 @@ html.is-animating .transition-fade {
 .example {
   margin-top: 10vh;
   @media screen and (min-width: $breakpoint-burger) {
-    margin-top: 10rem;
+    margin-top: Max(10rem, 10vh);
   }
+}
+
+// Helpfull websites
+ul.contents-list {
+  list-style-position: inside;
+  li {
+    margin: 2rem 0;
+    &:hover::marker {
+      color: $color-secondary;
+    }
+    &::marker {
+      color: $color-primary;
+      transition: $transition-main;
+    }
+  }
+  a {
+    font-size: $ff-s;
+  }
+}
+
+.swiper {
+  @media screen and (min-width: $breakpoint-burger) {
+    width: Min(60rem, 60vw);
+  }
+}
+.swiper-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  height: auto;
+
+  border: 2px solid $color-secondary;
+  border-radius: 1rem;
+  background-color: $color-background;
+  overflow: hidden;
+  a.inline-link {
+    font-size: $ff-m;
+    font-family: $ff-secondary;
+    color: $color-secondary;
+    margin: 1em 0;
+    &:hover {
+      color: $color-primary
+    }
+  }
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+.swiper-button-next,
+.swiper-button-prev {
+  color: $color-primary;
+}
+.swiper-pagination-bullet-active {
+  background-color: $color-secondary;
 }
