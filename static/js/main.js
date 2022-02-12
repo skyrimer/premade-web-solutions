@@ -1,4 +1,9 @@
 window.onload = () => {
+  // Deleting all event listeners
+  const clearAllEventListeners = async (element) => {
+    element.parentNode.replaceChild(element.cloneNode(true), element);
+  };
+
   // Navbar activision
   const activateNavbar = async () => {
     const isMobile = window.matchMedia("(min-width: 47rem)");
@@ -66,7 +71,7 @@ window.onload = () => {
 
   // Picture Lazy loading
   const activateImageLazyLoading = async () => {
-    const pictures = document.querySelectorAll("picture[data-loading='lazy']");
+    const pictures = document.querySelectorAll('picture[data-loading="lazy"]');
     if (!("IntersectionObserver" in window)) {
       const images = pictures.children;
       for (let index = 0; index < images.length - 1; index++) {
@@ -115,7 +120,7 @@ window.onload = () => {
 
   // Change the state of a cursor for custom cursor example
   const activateCustomCursorExample = async () => {
-    if (document.getElementById("togglers-wrapper")) {
+    if (document.querySelector("#togglers-wrapper")) {
       const cursor = document.getElementById("cursor");
       const aura = document.getElementById("aura");
       document.getElementById("toggle-cursor-none").addEventListener("click", () => {
@@ -135,7 +140,7 @@ window.onload = () => {
 
   // Making default behavior of links with id
   const activateIdLinks = async () => {
-    document.querySelectorAll("a[href^='#']").forEach((link) => {
+    document.querySelectorAll('a[href^="#"]').forEach((link) => {
       link.addEventListener("click", () => {
         scroll.scrollTo(link.hash, {
           offset: -120,
@@ -146,7 +151,7 @@ window.onload = () => {
 
   // Slider
   const activateSlider = async () => {
-    if (document.getElementsByClassName("swiper")) {
+    if (document.querySelector(".swiper")) {
       const slider = new Swiper(".swiper", {
         effect: "flip",
         loop: true,
@@ -156,7 +161,7 @@ window.onload = () => {
         },
         pagination: {
           el: ".swiper-pagination",
-          dynamicBullents: true,
+          dynamicBullets: true,
           clickable: true,
         },
         navigation: {
@@ -188,6 +193,12 @@ window.onload = () => {
     scroll.scrollTo("top", {
       duration: 0,
     });
+    const sliders = document.querySelectorAll(".swiper");
+    if (sliders) {
+      sliders.forEach((slider) => {
+        clearAllEventListeners(slider);
+      });
+    }
   };
 
   const scroll = new LocomotiveScroll({
@@ -205,7 +216,6 @@ window.onload = () => {
   });
   activateNavbar();
   initPage();
-
   // Swup
   const swup = new Swup();
   swup.on("contentReplaced", initPage);

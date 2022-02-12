@@ -689,7 +689,7 @@ ul.contents-list {
     color: $color-secondary;
     margin: 1em 0;
     &:hover {
-      color: $color-primary
+      color: $color-primary;
     }
   }
   img {
@@ -704,4 +704,9 @@ ul.contents-list {
 }
 .swiper-pagination-bullet-active {
   background-color: $color-secondary;
+}
+.swiper-pagination-bullet {
+  $size: 0.9rem;
+  width: $size;
+  height: $size;
 }

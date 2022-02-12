@@ -1064,4 +1064,9 @@ ul.contents-list a {
 .swiper-pagination-bullet-active {
   background-color: #f9a826;
 }
+
+.swiper-pagination-bullet {
+  width: 0.9rem;
+  height: 0.9rem;
+}
 /*# sourceMappingURL=main.css.map */
