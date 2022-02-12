@@ -12,8 +12,22 @@
             have to pay. You can read about it in detail on their pricing page <a
                 href="https://alvarotrigo.com/fullPage/pricing/" class="inline-link">here</a>.</p>
         <p>So, how to implement this feature? This will require specific HTML structure and a bit of Javascript.</p>
-        <p>In HTML, you need to have a container with <code class="html">sections</code> inside (I refer <code
-                class="html">sections</code> as classes, but semantically you will most likely use sections with class
+        <p>In HTML, first need to connect the external css and js needed. You can either download it from their main
+            website, connect using cdn or get using npm.
+        </p>
+        <pre><code class="html">
+&lt;!-- css --&gt;
+&lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.2/fullpage.min.css"
+integrity="sha512-4rPgyv5iG0PZw8E+oRdfN/Gq+yilzt9rQ8Yci2jJ15rAyBmF0HBE4wFjBkoB72cxBeg63uobaj1UcNt/scV93w=="
+crossorigin="anonymous" referrerpolicy="no-referrer" /&gt;
+&lt;!-- js --&gt;
+&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.2/fullpage.min.js"
+integrity="sha512-gSf3NCgs6wWEdztl1e6vUqtRP884ONnCNzCpomdoQ0xXsk06lrxJsR7jX5yM/qAGkPGsps+4bLV5IEjhOZX+gg=="
+crossorigin="anonymous" referrerpolicy="no-referrer"&gt;&lt;/script&gt;
+        </code></pre>
+        <p>Then, you need to have a container with <code class="html">sections</code> inside (I refer <code
+                class="html">sections</code>
+            as classes, but semantically you will most likely use sections with class
             of section). In the examples below, I have a main container with <code class="html">id="fullpage"</code>
             with <code class="html">sections</code> inside. The library also supports vertical scrolling: you just need
             to use <code class="html">slider</code> class inside the <code class="html">section</code>.</p>
