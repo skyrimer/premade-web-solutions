@@ -1,0 +1,542 @@
+{% extends "layout.html" %}
+{% block content %}
+<section class="glassy-section example" data-scroll-section>
+  <h2>Ultimate slider guide</h2>
+  <article class="text">
+    <p>Slider is a common way to show similar content-wise or purpose-wise information. It is widely spread among
+      the world, and every web developer should know how to use it. However, because every user got used to the
+      sliders, developers had to put more features into sliders to make them more accessible and better looking.
+    </p>
+    <p>That's why I use <a href="https://swiperjs.com" class="inline-link" target="_blank">Swiper</a> for my
+      sliders. Despite being quire heavy (34 kb), it can serve everything you need, want or even think of.</p>
+    <p>So, let's get started! Firstly, you have to connect external CSS styles and the Javascript file. There are a
+      lot of way to do it that you can find <a href="https://swiperjs.com/get-started" class="inline-link"
+        target="_blank">here</a>, but I will use the easiest: cdn</p>
+    <pre><code class="html">
+&lt;!-- CSS --&gt;
+&lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.0.3/swiper-bundle.min.css"
+integrity="sha512-5p+fc1WqmNBIYBIHhYYXF/x7hEZhIUccqtpI3N78m4BAHDM9kpoM7wIBzWruxwcJ7fiYTMPUvJv8bvCz/nSjIw=="
+crossorigin="anonymous" referrerpolicy="no-referrer" /&gt;
+
+&lt;!-- Javascript --&gt;
+&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.0.3/swiper-bundle.min.js"
+integrity="sha512-+1MtN0rwSlEnZo0agG99mCQChlBtfe8hyHItwWtgiD33mWvaNVZkZB9yX2S92z5HgDg1+EcitjutZejbHUcZAg=="
+crossorigin="anonymous" referrerpolicy="no-referrer"&gt;&lt;/script&gt;
+        </code></pre>
+    <p>Now, when all the preparation is done, you can write HTML. It will have to consist of main container with
+      class <code class="html">swiper</code>. Inside it, you will have a wrapper with class <code
+        class="html">swiper-wrapper</code>. Finally, you will have all the slides with class <code
+        class="html">swiper-slide</code> and all the content insight.</p>
+    <p>An example code will look like this:</p>
+    <pre><code class="html">
+&lt;div class="swiper"&gt;
+  &lt;!-- Additional required wrapper --&gt;
+  &lt;div class="swiper-wrapper"&gt;
+    &lt;!-- Slides --&gt;
+    &lt;div class="swiper-slide"&gt;
+      &lt;h2&gt;Slide 1&lt;/h2&gt;
+    &lt;/div&gt;
+    &lt;div class="swiper-slide"&gt;
+      &lt;h2&gt;Slide 2&lt;/h2&gt;
+    &lt;/div&gt;
+    &lt;div class="swiper-slide"&gt;
+      &lt;h2&gt;Slide 3&lt;/h2&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;!-- If we need pagination --&gt;
+  &lt;div class="swiper-pagination"&gt;&lt;/div&gt;
+  
+  &lt;!-- If we need navigation buttons --&gt;
+  &lt;div class="swiper-button-prev"&gt;&lt;/div&gt;
+  &lt;div class="swiper-button-next"&gt;&lt;/div&gt;
+  
+  &lt;!-- If we need scrollbar --&gt;
+  &lt;div class="swiper-scrollbar"&gt;&lt;/div&gt;
+&lt;/div&gt;
+        </code></pre>
+    <p>I am also showing where to put other html elements that you might need, because I am going to refer to them
+      later</p>
+    <p>At this moment we are done with HTML, and we just need to initialise our slider using Javascript. It is done
+      similarly to other js libraries. We create a new object with the selector (all sliders are wrapper in
+      container <code class="html">swiper</code> class so we are going to target it) as first parameter and the
+      dictionary of settings as the second parameter.</p>
+    <p>The activision of the simplest slider would look like this:</p>
+    <pre><code class="js">
+new Swiper(".swiper")
+        </code></pre>
+    <p>And it works fine, but here comes the fun part: customisation. There will be a lot of features and settings
+      to cover, so I will leave the table of content here.</p>
+    <ul class="contents-list">
+      <li><a href="#speed" class="inline-link">Slider speed</a></li>
+      <li><a href="#navigation" class="inline-link">Navigation</a></li>
+      <li><a href="#pagination" class="inline-link">Pagination</a></li>
+      <li><a href="#scrollbar" class="inline-link">Scrollbar</a></li>
+      <li><a href="#mouse-and-keyboard" class="inline-link">Mouse and keyboard control</a></li>
+      <li><a href="#autoheight" class="inline-link">Dynamic height</a></li>
+      <li><a href="#slidesperview" class="inline-link">Slides per view</a></li>
+      <li><a href="#spacing" class="inline-link">Slider spacing</a></li>
+      <li><a href="#loop" class="inline-link">Looped or infinite slides</a></li>
+      <li><a href="#autoplay" class="inline-link">Autoplay</a></li>
+      <li><a href="#fade" class="inline-link">Fade effect</a></li>
+      <li><a href="#flip" class="inline-link">Flip effect</a></li>
+      <li><a href="#cube" class="inline-link">Cube effect</a></li>
+      <li><a href="#coverflow" class="inline-link">Cover flow effect</a></li>
+      <li><a href="#adaptive" class="inline-link">Adaptive properties</a></li>
+      <li><a href="#lazy-loading" class="inline-link">Image lazy load</a></li>
+      <li><a href="#parallax" class="inline-link">Parallax effect</a></li>
+      <li><a href="/static/examples/ultimate slider/slider.html" class="inline-link" download>Download
+          example</a></li>
+    </ul>
+  </article>
+  <section class="tutorial-slider text" id="speed">
+    <h3>Slider speed</h3>
+    <p><code class="html">speed</code> will define the number of milliseconds that it takes to go from one slide to
+      another.</p>
+    <pre><code class="js">
+// Speed of the slider
+speed: 400,
+        </code></pre>
+  </section>
+  <section class="tutorial-slider text" id="navigation">
+    <h3>Navigation</h3>
+    <p>In Swiper settings you have to add dictionary <code class="html">navigation</code> with keys <code
+        class="html">nextEl</code> and <code class="html">prevEl</code>. For each key, you pass the selector
+      that will target your navigation arrows.</p>
+    <pre><code class="js">
+// Navigation
+navigation: {
+  prevEl: ".swiper-button-prev",
+  nextEl: ".swiper-button-next",
+},
+        </code></pre>
+    <p>Also, you will need to add this arrow elements in HTML. Like this:</p>
+    <pre><code class="html">
+&lt;div class="swiper-button-prev"&gt;&lt;/div&gt;
+&lt;div class="swiper-button-next"&gt;&lt;/div&gt;
+        </code></pre>
+  </section>
+  <section class="tutorial-slider text" id="pagination">
+    <h3>Pagination</h3>
+    <p>In Swiper settings you have to add a dictionary <code class="html">pagination</code> with several keys:</p>
+    <ul class="text">
+      <li>
+        <p><code class="html">el</code> to identify your pagination element</p>
+      </li>
+      <li>
+        <p><code class="html">clickable</code> to make the bullets clickable, so if the user clicks on it, the
+          corresponding slide will be shown</p>
+      </li>
+      <li>
+        <p><code class="html">dynamicBullets</code> to make the bullets dynamic. If it is set to true, the
+          further the bullets are from active bullet, the smaller they will be.</p>
+      </li>
+      <li>
+        <p><code class="html">renderBullet</code> to make your own custom bullets. It should be the function
+          that takes 2 parameters: index of the element and classname of the bullet. It must return the string
+          that is going to be injected as a node.</p>
+      </li>
+    </ul>
+    <p>Your Javascript might look like this:</p>
+    <pre><code class="js">
+// Pagination
+pagination: {
+  // Activates the pagination element
+  el: ".swiper-pagination",
+  // Makes the bullets clickable
+  clickable: true,
+  // Makes the bullets dynamic
+  dynamicBullets: true,
+  // Create custom bullet
+  renderBullet: (index, className) =&gt; {
+    return `&lt;span class="${className}"&gt;${index + 1}&lt;/span&gt;`
+  }
+},
+        </code></pre>
+    <p>In terms of HTML, you just need to add pagination element:</p>
+    <pre><code class="html">
+&lt;div class="swiper-pagination"&gt;&lt;/div&gt;
+        </code></pre>
+    <p>However, it is not the only type of pagination you can have. There are also <code class="html">fraction</code>
+      and <code class="html">progressbar</code>.</p>
+    <p><code class="html">fraction</code> shows the number of current slide relative to the total amount
+      of slides. The settings for it would look like this:</p>
+    <pre><code class="js">
+// Pagination
+pagination: {
+  // Activates the pagination element
+  el: ".swiper-pagination",
+  // Fraction
+  type: "fraction",
+  // Create custom fraction
+  renderFraction: (currentClass, totalClass) =&gt; {
+    return `Photo &lt;span class="${currentClass}"&gt;&lt;/span&gt; from &lt;span class="${totalClass}"&gt;&lt;/span&gt;`
+  }
+},
+        </code></pre>
+    <p><code class="html">progressbar</code> shows the current slide as the progression from the total amount of
+      slides. To activate it you just need to change the type:</p>
+    <pre><code class="js">
+// Pagination
+pagination: {
+// Activates the pagination element
+el: ".swiper-pagination",
+// Progressbar
+type: "progressbar"
+},
+        </code></pre>
+  </section>
+  <section class="tutorial-slider text" id="scrollbar">
+    <h3>Scrollbar</h3>
+    <p>It might seems like it would do exactly the same as <code class="html">progressbar</code>, but there is a
+      main difference. <code class="html">scrollbar</code> fills with accent color only current position, while
+      <code class="html">progressbar</code> also fills the space of previous slides. Besides, <code
+        class="html">scrollbar</code> can be used to navigate through slides, while <code
+        class="html">progressbar</code> can not do it.
+    </p>
+    <p>So, how to make a scrollbar? You have to add another dictionary where you specify the element using <code
+        class="html">el</code> key and <code class="html">draggable</code> if you want to make navigation
+      through the scrollbar available.</p>
+    <pre><code class="js">
+// Scrollbar
+scrollbar: {
+  el: ".swiper-scrollbar",
+  // Makes the scroll draggable
+  draggable: true,
+},
+        </code></pre>
+    <p>Also, you have to add an element with class <code class="html">swiper-scrollbar</code></p>
+    <pre class="html"><code>
+&lt;div class="swiper-scrollbar"&gt;&lt;/div&gt;
+        </code>
+        </pre>
+  </section>
+  <section class="tutorial-slider text" id="mouse-and-keyboard">
+    <h3>Mouse and keyboard control</h3>
+    <p>There are 2 different dictionaries for mouse and keyboard</p>
+    <p><code class="html">keyboard</code> has <code class="html">enabled</code> key that enables keyboard control
+      (😲how surprising😲), and <code class="html">pageUpDown</code> in order to control the slides with "PageUp"
+      and "PageDown" buttons.</p>
+    <p><code class="html">mousewheel</code> has <code class="html">sensitivity</code> that will determine how fast
+      you will be able to scroll with a mouse.</p>
+    <p>All together, it will look like this:</p>
+    <pre><code class="js">
+// Keyboard controls
+keyboard: {
+  // Enable keyboard control
+  enabled: true,
+  // Allows to navigate using PageUp and PageDown
+  pageUpDown: true,
+},
+// Mouse controls
+mousewheel: {
+  // Sets the sensitivity of the scrolling
+  sensitivity: 2,
+}
+        </code></pre>
+  </section>
+  <section class="tutorial-slider text" id="autoheight">
+    <h3>Dynamic height</h3>
+    <p>It might seem useless, but it is one of the most important things in the sliders. Commonly, we can have
+      different heights of the images or different amount of text inside the slides, which can create some weird
+      whitespace. In order to eliminate it, you just need to set <code class="html">autoHeight</code> to true.</p>
+    <pre><code class="js">
+autoHeight: true,
+        </code></pre>
+  </section>
+  <section class="tutorial-slider text" id="slidesperview">
+    <h3>Slides per view</h3>
+    <p><code class="html">slidesPerView</code> is property is in favour of the amount of slides displayed. It can be
+      set both as integer or even fraction. In case of fraction, it will cut the last slide, and show the
+      proportional part of it relative to the surd you have set.</p>
+    <pre><code class="js">
+// Amount of slides per view
+slidesPerView: 4,
+// slidesPerView: 4.5, - will show 4 and a half slides
+        </code></pre>
+  </section>
+  <section class="tutorial-slider text" id="spacing">
+    <h3>Slider spacing</h3>
+    <p><code class="html">spaceBetween</code> will be the spacing between the slides. It can take any positive
+      integer or surd, and use it as the amount of pixels between the slides.</p>
+    <pre><code class="js">
+// Spacing between slides
+// 40 = 40px
+spaceBetween: 40,
+        </code></pre>
+  </section>
+  <section class="tutorial-slider text" id="loop">
+    <h3>Looped or infinite slides</h3>
+    <p><code class="html">loop</code> will make the slides the effect of infinite amount of slides. In reality, he
+      as soon as the user will go to the next slide after the last slide, he will be redirected to the first
+      slide.</p>
+    <pre><code class="js">
+// Infinite slides
+loop: true,
+        </code></pre>
+  </section>
+  <section class="tutorial-slider text" id="autoplay">
+    <h3>Autoplay</h3>
+    <p>This setting will allow the slider to go to the next slide on its own. You will need only 3 properties:</p>
+    <p><code class="html">delay</code> is the amount of milliseconds before going to another slide.</p>
+    <p><code class="html">stopOnLastSlide</code> will set whether the slider will stop autoplaying on the last slide
+      or not.</p>
+    <p><code class="html">disableOnInteraction</code> will make the autoplaying stop when the user interacts with
+      the slider</p>
+    <pre><code class="js">
+// Autoplay
+autoplay: {
+  // Delay between autoplaying
+  delay: 4000,
+  // Stop on the last slide
+  stopOnLastSlide: true,
+  // Turn of as soon as the user interact with the slider
+  disableOnInteraction: true,
+},
+        </code></pre>
+  </section>
+  <section class="tutorial-slider text" id="fade">
+    <h3>Fade effect</h3>
+    <p>It is the simplest swiper effect. It makes the slides, overlap each other, but using <code
+        class="css">opacity</code>, the user will see the fading animation.</p>
+    <p>To activate this effect, you need to set the corresponding name to the <code class="html">effect</code> key
+      and define <code class="html">fadeEffect</code> dictionary with <code class="html">crossFade</code> set to
+      true. It will prevent the slides nesting, where the user can see several slides at the same time.</p>
+    <pre><code class="js">
+// Fade
+effect: "fade",
+fadeEffect: {
+  // Prevents content overlap
+  crossFade: true,
+},
+        </code></pre>
+  </section>
+  <section class="tutorial-slider text" id="flip">
+    <h3>Flip effect</h3>
+    <p>Similarly to fading, flip effect will make all the slider overlap, but this time the rotating effect will
+      appear</p>
+    <p>To activate it, you need to set the corresponding name to the <code class="html">effect</code> key and define
+      <code class="html">flipEffect</code> with <code class="html">limitRotation</code> set to true to prevent
+      overlapping content, and <code class="html">slideShadow</code> to make the realistic drop shadow.
+    </p>
+    <pre><code class="js">
+// Flip
+effect: "flip",
+flipEffect: {
+  // Creates shadow
+  slideShadow: true,
+  // Will show only active slide
+  limitRotation: true,
+},
+        </code></pre>
+  </section>
+  <section class="tutorial-slider text" id="cube">
+    <h3>Cube effect</h3>
+    <p>Similarly to flipping, the cube effect will make the slides rotate, but will make it look like you are
+      rotating a cube.</p>
+    <p>To activate it, you need to set the corresponding name to the <code class="html">effect</code> key and define
+      <code class="html">cubeEffect</code> with <code class="html">shadow</code> and <code
+        class="html">slideShadows</code> to make the cube look more realistic. Unless your design covers it, you
+      should always turn on the shadows with this effect, otherwise the cube would look unrealistically offseted.
+    </p>
+    <pre><code class="js">
+// Cube
+effect: "cube",
+cubeEffect: {
+  // Creates shadow
+  shadow: true,
+  slideShadows: true,
+},
+        </code></pre>
+  </section>
+  <section class="tutorial-slider text" id="coverflow">
+    <h3>Cover flow effect</h3>
+    <p>Honestly, I have no idea how to explain this effect. It's either my English is too bad or there are no
+      suitable words for this. So, the best what I can do is to give you <a
+        href="https://www.youtube.com/watch?v=E7mGqt7v3Uc" class="inline-link">the example with the best use of
+        such effect.</a></p>
+    <p>To implement it, you need to set the corresponding name to the <code class="html">effect</code> key and
+      define <code class="html">coverflowEffect</code> with <code class="html">rotate</code> that defines the
+      angle of slide rotation, <code class="html">stretch</code> that will define how many pixels of the adjusting
+      slides will overlap, and optional <code class="html">slideShadows</code> that will make your slides
+      realistic.</p>
+    <pre><code class="js">
+// Cover flow
+effect: "coverflow",
+coverflowEffect: {
+  // Angle of rotation
+  rotate: 20,
+  // Overlap
+  stretch: 50,
+  // Slide shadows
+  slideShadows: true,
+},
+        </code></pre>
+  </section>
+  <section class="tutorial-slider text" id="adaptive">
+    <h3>Adaptive properties</h3>
+    <p>Logically, there might be some issues with slider on different screen sizes. Therefore, the library has
+      implemented adaptiveness with <code class="html">breakpoints</code>. It is a dictionary that with takes the
+      integer (breakpoint width). For each breakpoint, you can chain the properties that you want to apply for
+      particular screen width. Note that the all the breakpoints are set using mobile first technique. For
+      instance, if you are setting <code class="js">slidesPerView: 2,</code> for small screens, and then not
+      define the same property on larger screen, it will take the property from the smaller screen.</p>
+    <pre><code class="js">
+// Adaptive properties
+breakpoints: {
+  320: {
+    slidesPerView: 1,
+  },
+  480: {
+    slidesPerView: 2,
+  },
+  992: {
+    slidesPerView: 3,
+  },
+}
+        </code></pre>
+  </section>
+  <section class="tutorial-slider text" id="lazy-loading">
+    <h3>Image lazy loading</h3>
+    <p>It is an important feature that you want to use for almost all the images in your slider.</p>
+    <p>In HTML, you will have to move the image source from <code class="html">src</code> to <code
+        class="html">data-src</code>. Besides, each image that needs to be lazy loaded must have a class <code
+        class="html">swiper-lazy</code>. You might also want to place an element with class<code
+        class="html">swiper-lazy-preloader</code> after each image that you are loading lazily. Here is the
+      example of possible HTML structure</p>
+    <pre><code class="html">
+&lt;div class="swiper"&gt;
+  &lt;div class="swiper-wrapper"&gt;
+    &lt;div class="swiper-slide"&gt;
+      &lt;img data-src="/images/image2.png" alt="Image" class="swiper-lazy"&gt;
+      &lt;div class="swiper-lazy-preloader"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="swiper-slide"&gt;
+      &lt;img data-src="/images/image2.png" alt="Image" class="swiper-lazy"&gt;
+      &lt;div class="swiper-lazy-preloader"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="swiper-slide"&gt;
+      &lt;img data-src="/images/image3.png" alt="Image" class="swiper-lazy"&gt;
+      &lt;div class="swiper-lazy-preloader"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="swiper-slide"&gt;
+      &lt;img data-src="/images/image4.png" alt="Image" class="swiper-lazy"&gt;
+      &lt;div class="swiper-lazy-preloader"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="swiper-slide"&gt;
+      &lt;img data-src="/images/image5.png" alt="Image" class="swiper-lazy"&gt;
+      &lt;div class="swiper-lazy-preloader"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+            </code></pre>
+    <p>In JavaScript, you will need to disable image preloading by setting <code class="html">preloadImages</code>
+      to false, and activate lazy loading with corresponding setting. To make lazy loading almost invisible you
+      want to set <code class="html">loadOnTransitionStart</code> and <code class="html">loadPrevNext</code> to
+      true. It will make the images to load on transition and also load previous slide's image and next slide's
+      images.</p>
+    <pre><code class="js">
+// Lazy
+preloadImages: false,
+lazy: {
+  loadOnTransitionStart: true,
+  loadPrevNext: true,
+},
+// If you have multiple slidesPerView set
+watchSlidesProgress: true,
+        </code></pre>
+    <p>And you are done! You have saved a tone of traffic for your users.</p>
+  </section>
+  <section class="tutorial-slider text" id="parallax">
+    <h3>Parallax effect</h3>
+    <p>Seems like I am finishing endless number of Swiper features. Anyway, parallax. In html, there aren't any elements
+      that you have to add. Everything you should do is to add some data attributes.</p>
+    <ul class="text">
+      <li>
+        <p><code class="html">data-swiper-parallax</code> will define by how much will the content be displaced. It can
+          be both integer (pixel displacement) and string with percent (proportion that is going to be displaced by).
+          Both
+          values can be positive (the content moves less) or negative (the content moves more).</p>
+      </li>
+      <li>
+        <p><code class="html">data-swiper-parallax-opacity</code> will define from which <code
+            class="css">opacity</code>
+          will content start the animation.</p>
+      </li>
+      <li>
+        <p><code class="html">data-swiper-parallax-scale</code> will define from which <code
+            class="css">transform: scale()</code>
+          will content start the animation.</p>
+      </li>
+      <li>
+        <p><code class="html">data-swiper-parallax-duration</code> will set the transition for the effects.</p>
+      </li>
+    </ul>
+    <p>Here is the example of HTML code:</p>
+    <pre><code class="html">
+&lt;div class="swiper" id="parallax"&gt;
+  &lt;div class="swiper-wrapper"&gt;
+    &lt;div class="swiper-slide"&gt;
+      &lt;img
+      src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1470&amp;q=80"
+      alt="" data-swiper-parallax-opacity="0" data-swiper-parallax-scale="0.7"&gt;
+      &lt;div class="center"&gt;
+        &lt;h3 data-swiper-parallax="-300"&gt;Slider 1&lt;/h3&gt;
+        &lt;p data-swiper-parallax="300"&gt;Some additional text&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="swiper-slide"&gt;
+      &lt;img
+      src="https://images.unsplash.com/photo-1515378960530-7c0da6231fb1?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1470&amp;q=80"
+      alt="" data-swiper-parallax-opacity="0" data-swiper-parallax-scale="0.7"&gt;
+      &lt;div class="center"&gt;
+        &lt;h3 data-swiper-parallax="-300"&gt;Slider 2&lt;/h3&gt;
+        &lt;p data-swiper-parallax="300"&gt;Some additional text&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="swiper-slide"&gt;
+      &lt;img
+      src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1470&amp;q=80"
+      alt="" data-swiper-parallax-opacity="0" data-swiper-parallax-scale="0.7"&gt;
+      &lt;div class="center"&gt;
+        &lt;h3 data-swiper-parallax="-300"&gt;Slider 3&lt;/h3&gt;
+        &lt;p data-swiper-parallax="300"&gt;Some additional text&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="swiper-slide"&gt;
+      &lt;img
+      src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1470&amp;q=80"
+      alt="" data-swiper-parallax-opacity="0" data-swiper-parallax-scale="0.7"&gt;
+      &lt;div class="center"&gt;
+        &lt;h3 data-swiper-parallax="-300"&gt;Slider 4&lt;/h3&gt;
+        &lt;p data-swiper-parallax="300"&gt;Some additional text&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="swiper-slide"&gt;
+      &lt;img
+      src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1472&amp;q=80"
+      alt="" data-swiper-parallax-opacity="0" data-swiper-parallax-scale="0.7"&gt;
+      &lt;div class="center"&gt;
+        &lt;h3 data-swiper-parallax="-300"&gt;Slider 5&lt;/h3&gt;
+        &lt;p data-swiper-parallax="300"&gt;Some additional text&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="swiper-button-prev"&gt;&lt;/div&gt;
+  &lt;div class="swiper-button-next"&gt;&lt;/div&gt;
+&lt;/div&gt;
+    </code></pre>
+    <p>Fortunately enough, you just need to set one property in slider settings: <code class="js">parallax: true</code>,
+      and magic will happen!</p>
+    <pre><code class="js">
+// Activate parallax effect
+parallax: true,
+    </code></pre>
+    <p>If you want to see any of the examples in action, you can download the test file.</p>
+    <div class="btn-wrapper">
+      <a href="/static/examples/ultimate slider/slider.html" class="btn-link"
+        download>Download
+        example</a>
+    </div>
+  </section>
+</section>
+{% endblock %}

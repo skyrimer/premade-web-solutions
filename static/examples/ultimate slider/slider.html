@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.0.3/swiper-bundle.min.css"
+        integrity="sha512-5p+fc1WqmNBIYBIHhYYXF/x7hEZhIUccqtpI3N78m4BAHDM9kpoM7wIBzWruxwcJ7fiYTMPUvJv8bvCz/nSjIw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20vh;
+        }
+
+        h1 {
+            font-size: 5rem;
+            margin-bottom: 2em;
+        }
+
+        h2 {
+            font-size: 4rem;
+            margin: 1em 0 0.5em;
+        }
+
+        h3 {
+            font-size: 3rem;
+        }
+
+        .swiper {
+            outline: 0.5rem solid rgb(2, 255, 36);
+            border-radius: 2rem;
+            width: 90vw;
+            height: 90vh;
+            margin-bottom: 2rem;
+        }
+
+        .swiper-slide {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Pagination */
+        .swiper-pagination-bullet {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            width: 2rem;
+            height: 2rem;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Parallax */
+        #parallax .swiper-slide {
+            position: relative;
+            background: #000;
+        }
+
+        #parallax .center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #fff;
+            text-align: center;
+        }
+
+        #parallax h3 {
+            margin-bottom: 0.5em;
+        }
+
+        #parallax img {
+            filter: brightness(30%);
+
+        }
+    </style>
+    <title>Slider</title>
+
+</head>
+
+<body>
+    <h1>Ultimate slider guide</h1>
+    <h2>Navigation</h2>
+    <div class="swiper" id="navigation">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <h3>Slide 1</h3>
+            </div>
+            <div class="swiper-slide">
+                <h3>Slide 2</h3>
+            </div>
+            <div class="swiper-slide">
+                <h3>Slide 3</h3>
+            </div>
+        </div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+
+    </div>
+    <h2>Pagination</h2>
+    <div class="swiper" id="pagination">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <h3>Slide 1</h3>
+            </div>
+            <div class="swiper-slide">
+                <h3>Slide 2</h3>
+            </div>
+            <div class="swiper-slide">
+                <h3>Slide 3</h3>
+            </div>
+        </div>
+        <div class="swiper-pagination"></div>
+
+    </div>
+    <h2>Scrollbar</h2>
+    <div class="swiper" id="scrollbar">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <h3>Slide 1</h3>
+            </div>
+            <div class="swiper-slide">
+                <h3>Slide 2</h3>
+            </div>
+            <div class="swiper-slide">
+                <h3>Slide 3</h3>
+            </div>
+        </div>
+        <div class="swiper-scrollbar"></div>
+    </div>
+    <h2>Keyboard and mouse control</h2>
+    <div class="swiper" id="keyboard-and-mouse">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <h3>Slide 1</h3>
+            </div>
+            <div class="swiper-slide">
+                <h3>Slide 2</h3>
+            </div>
+            <div class="swiper-slide">
+                <h3>Slide 3</h3>
+            </div>
+        </div>
+    </div>
+    <h2>Autoplay</h2>
+    <div class="swiper" id="autoplay">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <h3>Slide 1</h3>
+            </div>
+            <div class="swiper-slide">
+                <h3>Slide 2</h3>
+            </div>
+            <div class="swiper-slide">
+                <h3>Slide 3</h3>
+            </div>
+        </div>
+    </div>
+    <h2>Fade effect</h2>
+    <div class="swiper" id="fade">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <h3>Slide 1</h3>
+            </div>
+            <div class="swiper-slide">
+                <h3>Slide 2</h3>
+            </div>
+            <div class="swiper-slide">
+                <h3>Slide 3</h3>
+            </div>
+        </div>
+    </div>
+    <h2>Flip effect</h2>
+    <div class="swiper" id="flip">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <h3>Slide 1</h3>
+            </div>
+            <div class="swiper-slide">
+                <h3>Slide 2</h3>
+            </div>
+            <div class="swiper-slide">
+                <h3>Slide 3</h3>
+            </div>
+        </div>
+    </div>
+    <h2>Cube effect</h2>
+    <div class="swiper" id="cube">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <h3>Slide 1</h3>
+            </div>
+            <div class="swiper-slide">
+                <h3>Slide 2</h3>
+            </div>
+            <div class="swiper-slide">
+                <h3>Slide 3</h3>
+            </div>
+        </div>
+    </div>
+    <h2>Cove flow effect</h2>
+    <div class="swiper" id="coverflow">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <h3>Slide 1</h3>
+            </div>
+            <div class="swiper-slide">
+                <h3>Slide 2</h3>
+            </div>
+            <div class="swiper-slide">
+                <h3>Slide 3</h3>
+            </div>
+        </div>
+    </div>
+    <h2>Image lazy loading</h2>
+    <div class="swiper" id="lazy">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <img data-src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+                    alt="" class="swiper-lazy">
+                <div class="swiper-lazy-preloader"></div>
+            </div>
+            <div class="swiper-slide">
+                <img data-src="https://images.unsplash.com/photo-1515378960530-7c0da6231fb1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+                    alt="" class="swiper-lazy">
+                <div class="swiper-lazy-preloader"></div>
+            </div>
+            <div class="swiper-slide">
+                <img data-src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+                    alt="" class="swiper-lazy">
+                <div class="swiper-lazy-preloader"></div>
+            </div>
+            <div class="swiper-slide">
+                <img data-src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+                    alt="" class="swiper-lazy">
+                <div class="swiper-lazy-preloader"></div>
+            </div>
+            <div class="swiper-slide">
+                <img data-src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1472&q=80"
+                    alt="" class="swiper-lazy">
+                <div class="swiper-lazy-preloader"></div>
+            </div>
+        </div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+    </div>
+    <h2>Parallax</h2>
+    <div class="swiper" id="parallax">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+                    alt="" data-swiper-parallax-opacity="0" data-swiper-parallax-scale="0.7">
+                <div class="center">
+                    <h3 data-swiper-parallax="-300">Slider 1</h3>
+                    <p data-swiper-parallax="300">Some additional text</p>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <img src="https://images.unsplash.com/photo-1515378960530-7c0da6231fb1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+                    alt="" data-swiper-parallax-opacity="0" data-swiper-parallax-scale="0.7">
+                <div class="center">
+                    <h3 data-swiper-parallax="-300">Slider 2</h3>
+                    <p data-swiper-parallax="300">Some additional text</p>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <img src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+                    alt="" data-swiper-parallax-opacity="0" data-swiper-parallax-scale="0.7">
+                <div class="center">
+                    <h3 data-swiper-parallax="-300">Slider 3</h3>
+                    <p data-swiper-parallax="300">Some additional text</p>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+                    alt="" data-swiper-parallax-opacity="0" data-swiper-parallax-scale="0.7">
+                <div class="center">
+                    <h3 data-swiper-parallax="-300">Slider 4</h3>
+                    <p data-swiper-parallax="300">Some additional text</p>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1472&q=80"
+                    alt="" data-swiper-parallax-opacity="0" data-swiper-parallax-scale="0.7">
+                <div class="center">
+                    <h3 data-swiper-parallax="-300">Slider 5</h3>
+                    <p data-swiper-parallax="300">Some additional text</p>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.0.3/swiper-bundle.min.js"
+        integrity="sha512-+1MtN0rwSlEnZo0agG99mCQChlBtfe8hyHItwWtgiD33mWvaNVZkZB9yX2S92z5HgDg1+EcitjutZejbHUcZAg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        // Navigation
+        new Swiper("#navigation", {
+            navigation: {
+                prevEl: ".swiper-button-prev",
+                nextEl: ".swiper-button-next",
+            },
+        })
+
+        // Pagination
+        new Swiper("#pagination", {
+            pagination: {
+                // Activates the pagination element
+                el: ".swiper-pagination",
+
+                // Bullets 
+                // Makes the bullets clickable
+                clickable: true,
+                // Makes the bullets dynamic
+                dynamicBullets: true,
+                // Create custom bullet
+                renderBullet: (index, className) => {
+                    return `<span class="${className}">${index + 1}</span>`
+                },
+                // Fraction
+                // type: "fraction",
+                // Create custom fraction
+                // renderFraction: (currentClass, totalClass) => {
+                //     return `Photo <span class="${currentClass}"></span> from <span class="${totalClass}"></span>`
+                // }
+                // Progressbar
+                // type: "progressbar"
+            },
+        })
+
+        // Scrollbar
+        new Swiper("#scrollbar", {
+            scrollbar: {
+                el: ".swiper-scrollbar",
+                // Makes the scroll draggable
+                draggable: true,
+            },
+        })
+
+        // Keyboard and mouse control
+        new Swiper("#keyboard-and-mouse", {
+            // Keyboard controls
+            keyboard: {
+                // Enable keyboard control
+                enabled: true,
+                // Allows to navigate using PageUp and PageDown
+                pageUpDown: true,
+            },
+            // Mouse controls
+            mousewheel: {
+                // Sets the sensitivity of the scrolling
+                sensitivity: 2,
+            }
+
+        })
+
+        // Autoplay
+        new Swiper("#autoplay", {
+            // Autoplay
+            autoplay: {
+                // Delay between autoplaying
+                delay: 4000,
+                // Stop on the last slide
+                stopOnLastSlide: true,
+                // Turn of as soon as the user interact with the slider
+                disableOnInteraction: true,
+            },
+        })
+
+        // Fade
+        new Swiper("#fade", {
+            // Fade
+            effect: "fade",
+            fadeEffect: {
+                // Prevents content overlap
+                crossFade: true,
+            },
+        })
+
+        // Flip
+        new Swiper("#flip", {
+            // Flip
+            effect: "flip",
+            flipEffect: {
+                // Creates shadow
+                slideShadow: true,
+                // Will show only active slide
+                limitRotation: true,
+            },
+        })
+
+        // Cube
+        new Swiper("#cube", {
+            // Cube
+            effect: "cube",
+            cubeEffect: {
+                // Creates shadow
+                shadow: true,
+                slideShadows: true,
+            },
+        })
+
+        // Cover flow
+        new Swiper("#coverflow", {
+
+            // Cover flow
+            effect: "coverflow",
+            coverflowEffect: {
+                // Angle of rotation
+                rotate: 20,
+                // Overlap 
+                stretch: 50,
+                // Slide shadows
+                slideShadows: true,
+            },
+        })
+
+        // Lazy loading
+        new Swiper("#lazy", {
+            navigation: {
+                prevEl: ".swiper-button-prev",
+                nextEl: ".swiper-button-next",
+            },
+            // Lazy
+            preloadImages: false,
+            lazy: {
+                loadOnTransitionStart: true,
+                loadPrevNext: true,
+            },
+            // If you have multiple slidesPerView set
+            watchSlidesProgress: true,
+        })
+
+        // Parallax
+        new Swiper("#parallax", {
+            speed: 1000,
+            parallax: true,
+            navigation: {
+                prevEl: ".swiper-button-prev",
+                nextEl: ".swiper-button-next",
+            },
+        })
+    </script>
+</body>
+
+</html>
