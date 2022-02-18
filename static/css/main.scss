@@ -665,7 +665,7 @@ ul.contents-list {
     font-size: $ff-s;
   }
 }
-
+// Slider styling
 .swiper {
   @media screen and (min-width: $breakpoint-burger) {
     width: Min(60rem, 60vw);
@@ -709,4 +709,83 @@ ul.contents-list {
   $size: 0.9rem;
   width: $size;
   height: $size;
+}
+
+// Tabs tutorial
+/* Tab wrapper */
+.tabs-wrapper {
+  width: Min(700px, 100%);
+  margin-bottom: 5rem;
+}
+
+.tab-links-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  width: 100%;
+  button {
+    font-size: 1rem;
+    font-weight: 700;
+    flex: 0 0 Max(33.33333333%, 8em);
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 1em 0.2em;
+    transition: $tab-animation-duration;
+    &:hover {
+      background-color: lighten($color: $color-secondary, $amount: 30);
+    }
+    &.active {
+      background-color: lighten($color: $color-secondary, $amount: 5);
+    }
+  }
+}
+.tab-content {
+  display: none;
+  padding: 1em 2em;
+  border: 1px solid $color-secondary;
+  border-top: none;
+  h3 {
+    color: $color-secondary;
+    font-size: 2rem;
+    margin-bottom: 0.5em;
+  }
+  p {
+    line-height: 1.5;
+  }
+  &.active {
+    transform: translateY(-2em);
+    opacity: 1;
+    display: block;
+    animation: appear $tab-animation-duration ease forwards;
+  }
+  &.disappear {
+    opacity: 0;
+    display: block;
+    animation: disappear $tab-animation-duration ease forwards;
+  }
+}
+@keyframes appear {
+  from {
+    transform: translateY(-2em);
+    opacity: 0;
+  }
+
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+@keyframes disappear {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    display: none;
+  }
 }

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabs</title>
+    <style>
+        /* General styles */
+        :root {
+            --transition-duration: 300ms;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+            margin-top: 20vh;
+        }
+
+        /* Tab wrapper */
+        .tabs-wrapper {
+            width: Min(700px, 100%);
+            margin-bottom: 4em;
+        }
+
+        .tab-links-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+            width: 100%;
+        }
+
+        /* Default button */
+        .tab-links-wrapper button {
+            flex: 0 0 Max(33.33333%, 100px);
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 1em 0;
+            transition: var(--transition-duration);
+        }
+
+        /* Hovered button */
+        .tab-links-wrapper button:hover {
+            background-color: #ddd;
+        }
+
+        /* Activated button */
+        .tab-links-wrapper button.active {
+            background-color: #ccc;
+        }
+
+        /* Tab content */
+        .tab-content {
+            display: none;
+            padding: 1em 2em;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+
+        .tab-content h3 {
+            font-size: 2rem;
+            margin-bottom: 0.5em;
+        }
+
+        .tab-content p {
+            line-height: 1.5;
+        }
+
+        /* To achieve fading animation and switching between tabs */
+        .tab-content.active {
+            transform: translateY(-2em);
+            opacity: 1;
+            display: block;
+            animation: appear var(--transition-duration) ease forwards;
+        }
+
+        .tab-content.disappear {
+            opacity: 0;
+            display: block;
+            animation: disappear var(--transition-duration) ease forwards;
+        }
+
+        @keyframes appear {
+            from {
+                transform: translateY(-2em);
+                opacity: 0;
+            }
+
+            to {
+                transform: none;
+                opacity: 1;
+            }
+        }
+
+        @keyframes disappear {
+            from {
+                opacity: 1;
+            }
+
+            to {
+                opacity: 0;
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="tabs-wrapper">
+        <!-- Tab links -->
+        <div class="tab-links-wrapper">
+            <button class="tab-link active" data-tab-id="London">London</button>
+            <button class="tab-link" data-tab-id="Paris">Paris</button>
+            <button class="tab-link" data-tab-id="Tokyo">Tokyo</button>
+        </div>
+
+        <!-- Tab content -->
+        <div id="London" class="tab-content active">
+            <h3>London</h3>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi eligendi quidem rerum quaerat voluptates
+                facilis asperiores quam, ut debitis sequi incidunt eius animi quo doloremque assumenda? Quis
+                voluptatibus vitae officiis?</p>
+        </div>
+
+        <div id="Paris" class="tab-content">
+            <h3>Paris</h3>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi eligendi quidem rerum quaerat voluptates
+                facilis asperiores quam, ut debitis sequi incidunt eius animi quo doloremque assumenda? Quis
+                voluptatibus vitae officiis?</p>
+        </div>
+
+        <div id="Tokyo" class="tab-content">
+            <h3>Tokyo</h3>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi eligendi quidem rerum quaerat voluptates
+                facilis asperiores quam, ut debitis sequi incidunt eius animi quo doloremque assumenda? Quis
+                voluptatibus vitae officiis?</p>
+        </div>
+    </div>
+    <script>
+        const openTab = (event) => {
+            // Button that is clicked
+            const newButton = event.currentTarget
+            // New tab that is going to be active
+            const newTab = document.getElementById(newButton.dataset.tabId)
+            // Button that was active before
+            const activeButton = document.querySelector(".tab-link.active")
+            // Tab that was active before 
+            const activeTab = document.querySelector(".tab-content.active")
+            // Prevents the animation if the active tab is the same as the user clicks on
+            if (newButton !== activeButton) {
+                // Replaces class "active" with "disappear" to start the animation
+                activeTab.className = activeTab.className.replace(" active", " disappear")
+                // Removes class "active" from the previous button
+                activeButton.className = activeButton.className.replace(" active", "")
+                // Waits until the animation is done to start the appearing animation
+                setTimeout(() => {
+                    // Removes "disappear" class from old tab
+                    activeTab.className = activeTab.className.replace(" disappear", "")
+                    // Adds the "active" class to the tab
+                    newTab.className += " active"
+                    // Adds the "active" class to the button
+                    newButton.className += " active"
+
+                }, 300)
+            }
+        }
+        // Add event listener for tabs
+        document.querySelectorAll(".tab-link").forEach((link) => {
+            link.addEventListener('click', openTab)
+        })
+
+    </script>
+</body>
+
+</html>
+</div>
