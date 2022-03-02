@@ -213,19 +213,6 @@ window.onload = () => {
     scroll.update();
   };
 
-  // Scroll to top, when the page is reloading
-  const outAnimationDone = async () => {
-    scroll.scrollTo("top", {
-      duration: 0,
-    });
-    const sliders = document.querySelectorAll(".swiper");
-    if (sliders) {
-      sliders.forEach((slider) => {
-        clearAllEventListeners(slider);
-      });
-    }
-  };
-
   const scroll = new LocomotiveScroll({
     el: document.querySelector("[data-scroll-container]"),
     smooth: true,
@@ -242,7 +229,8 @@ window.onload = () => {
   activateNavbar();
   initPage();
   // Swup
-  const swup = new Swup();
+  const swup = new Swup({
+    animateHistoryBrowsing: true,
+  });
   swup.on("contentReplaced", initPage);
-  swup.on("animationOutDone", outAnimationDone);
 };

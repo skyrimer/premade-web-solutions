@@ -1,0 +1,155 @@
+{% extends "layout.html" %}
+{% block content %}
+<section class="glassy-section example" data-scroll-section>
+    <h2>Dropdowns</h2>
+    <article class="text">
+        <p>Dropdowns are common elements of the navbar design. It allows to group the navigation, and hide secondary
+            information that is relatively crucial for any navigation. There aren't much to say about it, so let's get
+            started!</p>
+        <p>In HTML, you will need to have a wrapper with 2 elements inside: first one is the content that is going to be
+            always displayed (like a word or 2), and the second element is the that is going to be shown when the first
+            one is hovered (like a list of links). Ideally, you would also want to have a dropdown indicator that will
+            show the user's on touch screens that it is a dropdown.</p>
+        <p>Here is the example of how it can be used for navigation:</p>
+        <pre><code class="html">
+&lt;nav class="navigation"&gt;
+  &lt;ul class="navigation-list"&gt;
+    &lt;li class="navigation-item"&gt;
+      &lt;a href="#" class="menu-link"&gt;Home&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li class="navigation-item"&gt;
+      &lt;a href="#" class="menu-link"&gt;About me&lt;/a&gt;
+      &lt;span class="dropdown-indicator"&gt;&lt;/span&gt;
+      &lt;ul class="dropdown"&gt;
+        &lt;li&gt;&lt;a href="#" class="dropdown-item"&gt;Web Development&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#" class="dropdown-item"&gt;Web Design&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#" class="dropdown-item"&gt;Illustration&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#" class="dropdown-item"&gt;Iconography&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/li&gt;
+    &lt;li class="navigation-item"&gt;
+      &lt;a href="#" class="menu-link"&gt;Features&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li class="navigation-item"&gt;
+      &lt;a href="#" class="menu-link"&gt;News&lt;/a&gt;
+      &lt;span class="dropdown-indicator"&gt;&lt;/span&gt;
+      &lt;ul class="dropdown"&gt;
+        &lt;li&gt;&lt;a href="#" class="dropdown-item"&gt;Web Development&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#" class="dropdown-item"&gt;Web Design&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#" class="dropdown-item"&gt;Illustration&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#" class="dropdown-item"&gt;Iconography&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;
+        </code></pre>
+        <p>This is everything for HTML, so we go on and style our beautiful navbar. In this part, there are few tricks,
+            so I will split the css into small parts.</p>
+        <p>FIrstly, we have general styling. It does not matter much, how do you make it, but thinking of adaptiveness
+            in advance, it would be a good idea to make both <code class="html">navigation-list</code> and <code
+                class="html">navigation-item</code> flex containers,
+            because we are going to turn it things around, and it is easier to do with flex. Also, we have to set <code
+                class="css">position: relative</code> for <code class="html">navigation-item</code>, because we are
+            going to make an absolutely positioned dropdown for larger screens. Also, I will use <code
+                class="css">flex-wrap: wrap</code> to make the label and dropdown indicator on one line, and the
+            dropdown itself on the other line.</p>
+        <p>Here is how it should look like:</p>
+        <pre><code class="css">
+.navigation-list {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.navigation-item {
+  position: relative;
+  display: flex;
+  gap: 0.5em;
+  align-items: center;
+  flex-wrap: wrap;
+}
+        </code></pre>
+        <p>Then, we need to style the dropdown. It must have <code class="css">display: none</code> by default, because
+            it should be hidden from the start. Also, it is important to have certain values either for <code
+                class="css">width</code> or <code class="css">min-width</code> to make the dropdown look better. I am
+            using <code class="css">width: max-content</code> and large padding to make sure that the width depends on
+            the content size, but not a fixed value, and that there is always enough whitespace that will adapt to the
+            screen sizes. Also, to make the content go under it's label on small screens I am using <code
+                class="css">flex-basis: 100%</code>.</p>
+        <p>For the indicator, I just make a triangle using <code class="css">border</code> property. I am not using any
+            padding there, because I don't need it for the demo purposes, but in real life censorious you might want to
+            either add larger gap by setting <code class="css">padding</code> on the dropdown indicator, or to make the
+            indicator itself a bit bigger, because on touch screens it is relatively hard to click on such a small icon,
+            when there is a link right next to it. Later on, it will be animated using on click.</p>
+        <p>Here is how it looks like:</p>
+        <pre><code class="css">
+.dropdown {
+  display: none;
+  flex-direction: column;
+  padding: 1em 4em 1em 1em;
+  gap: 1rem;
+  width: max-content;
+  z-index: 10;
+  background-color: rgb(255, 255, 255);
+  flex-basis: 100%;
+}
+
+
+.dropdown-indicator {
+  --size: 0.5rem;
+  width: 0;
+  height: 0;
+  border-top: var(--size) solid #fff;
+  border-right: var(--size) solid transparent;
+  border-left: var(--size) solid transparent;
+}
+        </code></pre>
+        <p>Now, we need to make our dropdown appear when the user both hovers the large screens and taps on it on touch
+            screens. There are several ways to realise it, but I prefer the simplest CSS way: using <code
+                class="css">:hover</code> and <code class="css">:focus</code> pseudo classes. Despite being simple, it
+            works fine on almost all devices. It even make the dropdown hide, when the user clicks of, which would be
+            relatively hard to with JavaScript (simple == good😎).</p>
+        <p>So, everything you need to do is to add the parent element with pseudo classes to change the <code
+                class="css">display</code> property of the dropdown. Also, you can animate the dropdown indicator to
+            rotate, when the dropdown is shown. Like this:</p>
+        <pre><code class="css">
+.navigation-item:hover .dropdown,
+.navigation-item:focus .dropdown {
+  display: flex;
+}
+.navigation-item:hover .dropdown-indicator,
+.navigation-item:hover .dropdown-indicator {
+  transform: rotate(180deg);
+}
+        </code></pre>
+        <p>The last thing is too make sure that our dropdown is displayed on any screen properly. In my case, I just
+            need to make the dropdown <code class="css">position: absolute</code> and rotate the navigation list.
+            However, even here there is a trick: it it important to make sure that the distance between absolutely
+            positioned dropdown is less or equals to the size of the container. Otherwise, the user won't be able to
+            select anything inside the dropdown. The easiest way to solve this is to set <code
+                class="css">top: 100%</code> to the dropdown. It will adapt the position of the content relative to the
+            border of the dropdown container, which means that it will adapt to any content or any size, and if you need
+            more whitespace between the link and dropdown, you can just add <code class="css">padding</code></p>
+        <p>Here is how the final piece of CSS looks like:</p>
+        <pre><code class="css">
+@media screen and (min-width: 850px) {
+  .navigation-list {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+  }
+}
+        </code></pre>
+        <p>That's it! You know how to do one more thing. Doesn't it feel cool when you learn something new☺️? Anyway,
+            here is the code from this tutorial:</p>
+        <div class="btn-wrapper"><a href="/static/examples/dropdown/dropdown.html" download="dropdown"
+                class="btn-link">Dowload example</a></div>
+    </article>
+</section>
+{% endblock %}
