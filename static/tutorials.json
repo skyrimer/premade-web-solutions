@@ -1,0 +1,39 @@
+
+[
+        {
+            "name": "Custom cursor",
+            "url": "custom-cursor"
+        },
+        {
+            "name": "Locomotive scroll",
+            "url": "locomotive-scroll"
+        },
+        {
+            "name": "Scroll-revealing navbar",
+            "url": "scroll-revealing-navbar"
+        },
+        {
+            "name": "Floating label",
+            "url": "floating-label"
+        },
+        {
+            "name": "Page transition",
+            "url": "page-transition"
+        },
+        {
+            "name": "Fullpage scrolling",
+            "url": "fullpage-scrolling"
+        },
+        {
+            "name": "Ultimate Slider",
+            "url": "ultimate-slider"
+        },
+        {
+            "name": "Smart tabs",
+            "url": "smart-tabs"
+        },
+        {
+            "name": "Fancy Dropdowns",
+            "url": "dropdown"
+        }
+    ]

@@ -197,6 +197,28 @@ window.onload = () => {
       });
     }
   };
+
+  // Adds tutorials
+  const addTutorialsCards = async () => {
+    const tutorialList = document.querySelector("[data-tutorial-list]");
+    const cardTemplate = document.querySelector("#tutorial-card-template");
+    if (tutorialList) {
+      fetch("/static/tutorials.json")
+        .then((response) => response.json())
+        .then((data) => {
+          data.forEach((tutorial) => {
+            const card = cardTemplate.content.cloneNode(true).children[0];
+            card.href = "/examples/" + tutorial.url;
+            const name = card.querySelector("[data-name]");
+            name.textContent = tutorial.name;
+            tutorialList.appendChild(card);
+          });
+          cardTemplate.remove();
+          scroll.update();
+        });
+    }
+  };
+
   // Initializing all JavaScript for a page
   const initPage = async () => {
     activateOnscrollAnimations();
@@ -210,7 +232,15 @@ window.onload = () => {
     activateCustomCursorExample();
     activateSlider();
     activateTabs();
+    addTutorialsCards();
     scroll.update();
+  };
+
+  // Scroll to top, when the page is reloading
+  const outAnimationDone = async () => {
+    scroll.scrollTo("top", {
+      duration: 0,
+    });
   };
 
   const scroll = new LocomotiveScroll({
@@ -233,4 +263,5 @@ window.onload = () => {
     animateHistoryBrowsing: true,
   });
   swup.on("contentReplaced", initPage);
+  swup.on("animationOutDone", outAnimationDone);
 };
