@@ -1,0 +1,81 @@
+@use "sass:math";
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  width: Min(100rem, 95%);
+  margin: 10vh auto;
+}
+h1 {
+  font-size: 3rem;
+  margin: 0 0 2em;
+}
+p {
+  font-size: 1.5rem;
+  line-height: 1.7;
+  margin: 2em 0;
+}
+.popup-link {
+  color: rgb(217, 255, 0);
+  &:hover {
+    color: blue;
+  }
+}
+/* Popup */
+$popup-body-width: Min(95%, 60rem);
+$popup-background: rgba(0, 0, 0, 0.9);
+$transition: all 0.5s ease-in-out;
+$cross-size: 2rem;
+body.lock {
+  overflow: hidden;
+}
+
+.popup {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  overflow: hidden auto;
+  opacity: 0;
+  visibility: hidden;
+  transition: $transition;
+  background-color: $popup-background;
+}
+.popup-body {
+  opacity: 0;
+  transform: perspective(1000px) translate(0, -100%) rotateX(45deg);
+  transition: $transition;
+
+  margin: 10vh 0;
+  padding: 2rem;
+  width: $popup-body-width;
+  background: #fff;
+}
+.popup-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.popup-close {
+    width: $cross-size;
+    opacity: 0.8;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+        opacity: 1;
+        transform: rotate(360deg);
+    }
+}
+.popup.open {
+  opacity: 1;
+  visibility: visible;
+  .popup-body {
+    /* Animation */
+    transform: perspective(1000px);
+    opacity: 1;
+  }
+}

@@ -1,0 +1,219 @@
+@import "variables";
+// Custom cursor
+#example-cursor {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin: 2rem 0;
+}
+#cursor,
+#aura {
+  border-radius: 50%;
+  user-select: none;
+  pointer-events: none;
+}
+#cursor {
+  $size: 0.5rem;
+  width: $size;
+  height: $size;
+  background: $color-primary;
+  transition: opacity 0.1s ease-out;
+  &.active {
+    opacity: 0;
+  }
+}
+#aura {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 1rem;
+
+  $size: 4rem;
+  width: $size;
+  height: $size;
+
+  border: 1px solid $color-primary;
+  background-color: rgba($color: $color-main, $alpha: 0.1);
+  transition: $transition-main;
+  &.active {
+    transform: scale(1.2);
+    border-color: $color-secondary;
+  }
+}
+#cursor.hidden,
+#aura.hidden {
+  opacity: 0.05;
+  transform: scale(0.005);
+}
+
+// Floating label
+.floating-label-wrapper {
+  position: relative;
+  margin: Max(1.5em, 4vh) 0;
+  input {
+    font-size: $ff-s;
+    width: Min(100%, 50rem);
+    padding: 2em 2rem 0.5em;
+    color: $color-main;
+    background-color: $color-background;
+    border-bottom: 1px solid $color-primary;
+    border-radius: 0.5em;
+    &::placeholder {
+      color: transparent;
+    }
+    &:placeholder-shown + label {
+      transform: translateY(-50%);
+      font-size: $ff-xs;
+    }
+  }
+  label {
+    font-size: $ff-xxs;
+    transform: translate(0, calc(-50% - 1em));
+    user-select: none;
+    position: absolute;
+    top: 50%;
+    left: 2rem;
+    color: $color-primary;
+    transition: $transition-main;
+  }
+}
+
+// Tabs tutorial
+.tabs-wrapper {
+  width: Min(700px, 100%);
+  margin-bottom: 5rem;
+}
+
+.tab-links-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  width: 100%;
+  button {
+    font-size: 1rem;
+    font-weight: 700;
+    flex: 0 0 Max(33.33333333%, 8em);
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 1em 0.2em;
+    transition: $tab-animation-duration;
+    &:hover {
+      background-color: lighten($color: $color-secondary, $amount: 30);
+    }
+    &.active {
+      background-color: lighten($color: $color-secondary, $amount: 5);
+    }
+  }
+}
+.tab-content {
+  display: none;
+  padding: 1em 2em;
+  border: 1px solid $color-secondary;
+  border-top: none;
+  h3 {
+    color: $color-secondary;
+    font-size: 2rem;
+    margin-bottom: 0.5em;
+  }
+  p {
+    line-height: 1.5;
+  }
+  &.active {
+    transform: translateY(-2em);
+    opacity: 1;
+    display: block;
+    animation: appear $tab-animation-duration ease forwards;
+  }
+  &.disappear {
+    opacity: 0;
+    display: block;
+    animation: disappear $tab-animation-duration ease forwards;
+  }
+}
+@keyframes appear {
+  from {
+    transform: translateY(-2em);
+    opacity: 0;
+  }
+
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+@keyframes disappear {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    display: none;
+  }
+}
+
+
+body.lock {
+  overflow: hidden;
+}
+
+.popup {
+  position: fixed;
+  inset: 0;
+  z-index: 99;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  overflow: hidden auto;
+  opacity: 0;
+  visibility: hidden;
+  transition: $transition-modal-window;
+  background-color: $popup-background;
+  backdrop-filter: blur(3px);
+}
+.popup-body {
+  opacity: 0;
+  transform: perspective(1000px) translate(0, -100%) rotateX(45deg);
+  transition: $transition-modal-window;
+
+  margin: 10vh 0;
+  padding: 2rem;
+  width: $popup-body-width;
+  background: #fff;
+  color: #000;
+  p {
+      color: currentColor;
+  }
+  h3 {
+      color: currentColor;
+      margin: 0;
+  }
+}
+.popup-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+.popup-close {
+    width: $cross-size;
+    opacity: 0.8;
+    transition: $transition-main;
+    &:hover {
+        opacity: 1;
+        transform: rotate(360deg);
+    }
+}
+.popup.open {
+  opacity: 1;
+  visibility: visible;
+  .popup-body {
+    /* Animation */
+    transform: perspective(1000px);
+    opacity: 1;
+  }
+}

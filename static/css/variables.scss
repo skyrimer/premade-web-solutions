@@ -10,7 +10,7 @@ $color-danger: #e40c2b;
 $breakpoint-burger: 47rem;
 
 // Fonts
-$ff-main: "IBM Plex Sans", sans-serif;;
+$ff-main: "IBM Plex Sans", sans-serif;
 $ff-secondary: "Archivo", sans-serif;
 
 // Font sizes
@@ -23,7 +23,15 @@ $ff-xxs: clamp(0.7875rem, 2.7vw, 1.08rem);
 
 // Transitions
 $transition-main: all 0.3s ease;
-$tab-animation-duration: 300ms;
+$transition-page-transition: 0.5s;
+$tab-animation-duration: 0.3s;
+
+// Popups
+// Popup
+$popup-body-width: Min(95%, 60rem);
+$popup-background: rgba(0, 0, 0, 0.9);
+$transition-modal-window: all 0.5s ease-in-out;
+$cross-size: 2em;
 
 // Sizes
 $width-scollbar: 1rem;

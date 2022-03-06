@@ -1,0 +1,255 @@
+{% extends "layout.html" %}
+{% block content %}
+<section class="glassy-section example" data-scroll-section>
+    <h2>Modal windows</h2>
+    <article class="text">
+        <p>Modal windows are also known as popups. They are used for almost everything: from confirmation of
+            transactions to submitting forms. Here you can see an example, on the button bellow.</p>
+        <div class="btn-wrapper" style="margin-bottom: 2em;">
+            <a href="#popup" class="btn-link popup-link">Show popup</a>
+        </div>
+        <p>In terms of HTML, there is nothing extremely complicated. You need to have a popup that will have a container
+            with an <code class="html">id</code> and class <code class="html">popup</code>. Inside this container, you
+            will need to have a body with any content that you want. The reason why we need to have an wrapper with id,
+            but not the body itself, I will explain in Javascript part. Also, we will need links that are going to
+            anchor to the popup and have a special class. I will use <code class="html">popup-link</code></p>
+        <p>I also use the <code class="html">svg</code> that looks like a cross to add another way to close the popup.
+        </p>
+        <p>So, you need to have similar structure:</p>
+        <pre><code class="html">
+&lt;a href="#popup" class="popup-link"&gt;Link to the popup&lt;/a&gt;
+&lt;!-- Some other content here --&gt;
+&lt;!-- Because the popup is not displayed inside any element --&gt;
+&lt;!-- I would recommend at the end of the document before JS scripts --&gt;
+&lt;div class="popup" id="popup"&gt;
+  &lt;div class="popup-body"&gt;
+    &lt;div class="popup-title"&gt;
+      &lt;h3&gt;Modal window&lt;/h3&gt;
+      &lt;svg class="popup-close" viewBox="0 0 20 20" fill="currentColor"&gt;
+      &lt;path fill-rule="evenodd"
+      d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10
+      11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+      clip-rule="evenodd"&gt;&lt;/path&gt;
+      &lt;/svg&gt;
+    &lt;/div&gt;
+    &lt;div class="popup-text"&gt;
+      &lt;p&gt;Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit ullam harum laborum rerum, quaerat consectetur
+      voluptates dignissimos dolorem adipisci? Sit rem adipisci nulla placeat, assumenda quaerat hic similique mollitia
+      quisquam?&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+        </code></pre>
+        <p>Because we use wil add special classes using Javascript, there are 2 states that we will need to style:
+            disabled (when there is no popup) and opened (when the popup appears). Also, using <code
+                class="css">transition</code> we will make the modal window to slowly fade in, and rotate.</p>
+        <p>So, for <code class="css">.popup</code> you must fix it on top of every element, stretch it on full screen
+            size, and make it invisible. This part of css is easy and doesn't require any explanation. However, it is
+            also important to use <code class="css">overflow: hidden auto;</code> to make the content scrollable when
+            there is more content than the screen size, and also prevent flickering when the popup is opening.</p>
+        <p>Javascript file will add <code class="css">open</code> class, so when it is added on popup, you need to make
+            the popup visible through <code class="css">visibility: visible; opacity: 1;</code>. Also, for every
+            animation that you apply, you need to add <code class="css">transition</code> to every element that is
+            animating. Everything else is just general styling that will change from project to project.</p>
+        <p>Here is how my typical SCSS looks like:</p>
+        <pre><code class="scss">
+/* Popup */
+$popup-body-width: Min(95%, 60rem);
+$popup-background: rgba(0, 0, 0, 0.9);
+$transition: all 0.5s ease-in-out;
+$cross-size: 2rem;
+body.lock {
+  overflow: hidden;
+}
+
+.popup {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  overflow: hidden auto;
+  opacity: 0;
+  visibility: hidden;
+  transition: $transition;
+  background-color: $popup-background;
+}
+.popup-body {
+  opacity: 0;
+  transform: perspective(1000px) translate(0, -100%) rotateX(45deg);
+  transition: $transition;
+  margin: 10vh 0;
+  padding: 2rem;
+  width: $popup-body-width;
+  background: #fff;
+}
+.popup-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.popup-close {
+  width: $cross-size;
+  opacity: 0.8;
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    opacity: 1;
+    transform: rotate(360deg);
+}
+}
+.popup.open {
+  opacity: 1;
+  visibility: visible;
+  .popup-body {
+    /* Animation */
+    transform: perspective(1000px);
+    opacity: 1;
+  }
+}
+        </code></pre>
+        <p>Note that in front of everything there is <code class="css">body.lock</code> with <code
+                class="css">overflow: hidden;</code>. It is necessary for locking scrolling, when popup is opened. Also,
+            <code class="css">transform</code> is the one, that make ths flipping animation. It is the easiest yet
+            powerful way to animate the popup, so you can play around with this property.
+        </p>
+        <p>Finally, we come to the Javascript. There are a lot to talk about, so I will split the code in small parts.
+        </p>
+        <p>In Javascript, I always declare necessary variables. For popups, you will need the link that open the popups,
+            body element for locking the scroll, popup closers (elements that will close the popup, when the user clicks
+            on them), elements that will be locked on screen (usually it is just body element, but you have fixed
+            elements, you also need to add them), transition time of the popup (time it takes to appear on the screen)
+            and the lock state of the popup.</p>
+        <pre><code class="js">
+const popupLinks = document.querySelectorAll(".popup-link");
+const body = document.querySelector("body");
+const popupClosers = document.querySelectorAll(".popup-close");
+const paddingLock = [body, ...document.querySelectorAll(".lock-padding")];
+const timeOut = 500;
+let unlock = true;
+        </code></pre>
+        <p>Then, you need to define 4 functions: open/close popup, lock/unlock scroll.</p>
+        <p>To open popup, you firstly need to check, whether there an active popup. If yes, you close it, if not you
+            lock the body, add the special class. If you want to close popup, when the user click outside the popup
+            body, then you also add the event listener.</p>
+        <pre><code class="js">
+const popupOpen = (popup) => {
+  if (popup && unlock) {
+    const popupActive = document.querySelector(".popup.open");
+    if (popupActive) {
+      popupClose(popupActive, false);
+    } else {
+      bodyLock(body);
+    }
+  }
+  popup.classList.add("open");
+  popup.addEventListener("click", (event) => {
+    // Will select everything except the popup-body
+    if (!event.target.closest(".popup-body")) {
+      popupClose(event.target.closest(".popup"));
+    }
+  });
+};
+        </code></pre>
+        <p>For closing popup, you just need to remove the <code class="html">open</code> class from the popup. Because
+            there might be several popup, then you also need to have an optional parameter that will lock the body, if
+            the new popup is not opening from the previous popup.</p>
+        <pre><code class="js">
+const popupClose = (popup, scrollLock = true) => {
+  popup.classList.remove("open");
+  scrollLock ? bodyUnlock(body) : NaN;
+};
+        </code></pre>
+        <p>Then, you need a function that will lock the body and other elements. Because we add <code
+                class="css">overflow: hidden</code> through css, it makes the scroll suddenly disappear, and all the
+            content shifts. To prevent this, you need to get the width of the scrollbar (it can also be moved to
+            declaring variables, but in some rare cases the width of scrollbar can change, so I prefer to recalculate it
+            every time), and then add the <code class="css">margin-right</code> or <code
+                class="css">padding-right</code> to every fixed element and body. There is no difference between padding
+            and margin in this case, but you can decide which one you want to use depending on the styling (for
+            instance, some elements might be aliened using margin).</p>
+        <pre><code class="js">
+const bodyLock = (body) => {
+  paddingLock.forEach((element) => {
+    element.style.marginRight = scrollbarWidth;
+  });
+  body.classList.add("lock");
+  unlock = false;
+  setTimeout(() => {
+    unlock = true;
+  }, timeOut);
+};
+        </code></pre>
+        <p>Now, you need to declare the function that will unlock the body. Basically, this function is the logical
+            opposite of the previous function. So, it need to let the animation play, then remove the margins from fixed
+            elements, then remove the <code class="css">lock</code> class from the body, and then change the state.
+            Also, the reason why the state is introduced is to prevent any interactions, while the animation is played.
+        </p>
+        <pre><code class="js">
+const bodyUnlock = (body) => {
+  setTimeout(() => {
+    paddingLock.forEach((element) => {
+      element.style.marginRight = 0;
+    });
+    body.classList.remove("lock");
+  }, timeOut);
+
+  unlock = false;
+  setTimeout(() => {
+    unlock = true;
+  }, timeOut);
+};
+        </code></pre>
+        <p>At the very last, you need to add the event listeners on link to open popups and on closers that will close
+            popups. However, for the links, you firstly need to get the name of the popup without hash sign, and then
+            prevent default link behavior, so it does not change the url.</p>
+        <pre><code class="js">
+popupLinks.forEach((popupLink) => {
+  popupLink.addEventListener("click", (event) => {
+    const popupName = popupLink.hash.replace("#", "");
+    popupOpen(document.getElementById(popupName));
+    event.preventDefault();
+  });
+});
+
+popupClosers.forEach((popupCloser) => {
+  popupCloser.addEventListener("click", (event) => {
+    popupClose(popupCloser.closest(".popup"));
+    event.preventDefault();
+  });
+});
+        </code></pre>
+        <p>Another important feature that you might want to use is closing the popup, when the user presses "Esc"
+            button. The code for it looks like this</p>
+        <pre><code class="js">
+document.addEventListener("keydown", (event) => {
+  const openedPopup = document.querySelector(".popup.open");
+  if (event.key == "Escape" && openedPopup) {
+    popupClose(openedPopup);
+  }
+});
+        </code></pre>
+        <p>And that's it👍! It might seem slightly overwhelming to set everything up, but it is definitely worth it.</p>
+        <div class="btn-wrapper">
+            <a href="/static/examples/modal windows/modal windows.html" download="popup" class="btn-link">Download
+                example</a>
+        </div>
+    </article>
+</section>
+<div class="popup" id="popup">
+    <div class="popup-body">
+        <div class="popup-title">
+            <h3>Modal window</h3>
+            <svg class="popup-close" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd"
+                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                    clip-rule="evenodd"></path>
+            </svg>
+        </div>
+        <div class="popup-text">
+            <p>This is popup! Don't know how to do it? Then close it by pressing Esc, clicking outside this box or
+                clicking on the cross to close it.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
