@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+
+<url>
+  <loc>https://pre-made-web-solutions.herokuapp.com/</loc>
+  <lastmod>2022-03-06T21:08:58+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://pre-made-web-solutions.herokuapp.com/tutorials</loc>
+  <lastmod>2022-03-06T21:08:58+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://pre-made-web-solutions.herokuapp.com/helpful-websites</loc>
+  <lastmod>2022-03-06T21:08:58+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://pre-made-web-solutions.herokuapp.com/examples/scroll-revealing-navbar</loc>
+  <lastmod>2022-03-06T21:08:58+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://pre-made-web-solutions.herokuapp.com/static/examples/scroll%20revelaling%20navbar/scroll%20revealing%20navbar.html</loc>
+  <lastmod>2022-03-06T15:26:30+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+
+
+</urlset>
