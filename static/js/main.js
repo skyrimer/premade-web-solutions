@@ -218,7 +218,15 @@ window.onload = () => {
         });
     }
   };
+  const initGoogleAnalytics = async () => {
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
 
+    gtag("config", "G-WE4P5R65J0");
+  };
   // Initializing all JavaScript for a page
   const initPage = async () => {
     activateOnscrollAnimations();
@@ -344,10 +352,15 @@ window.onload = () => {
   });
   activateNavbar();
   initPage();
+  initGoogleAnalytics();
   // Swup
   const swup = new Swup({
     animateHistoryBrowsing: true,
   });
   swup.on("contentReplaced", initPage);
+  swup.on("willReplaceContent", async () => {
+    ga("set", "page", window.location.pathname);
+    ga("send", "pageview");
+  });
   swup.on("animationOutDone", outAnimationDone);
 };
