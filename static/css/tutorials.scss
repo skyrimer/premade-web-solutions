@@ -1,4 +1,12 @@
 @import "variables";
+// syntax highlighting
+pre {
+  margin: 2rem 0;
+}
+code {
+  line-height: 1.2;
+  font-size: $ff-xs;
+}
 // Custom cursor
 #example-cursor {
   display: flex;
@@ -156,7 +164,6 @@
   }
 }
 
-
 body.lock {
   overflow: hidden;
 }
@@ -186,11 +193,11 @@ body.lock {
   background: #fff;
   color: #000;
   p {
-      color: currentColor;
+    color: currentColor;
   }
   h3 {
-      color: currentColor;
-      margin: 0;
+    color: currentColor;
+    margin: 0;
   }
 }
 .popup-title {
@@ -200,13 +207,13 @@ body.lock {
   margin-bottom: 2rem;
 }
 .popup-close {
-    width: $cross-size;
-    opacity: 0.8;
-    transition: $transition-main;
-    &:hover {
-        opacity: 1;
-        transform: rotate(360deg);
-    }
+  width: $cross-size;
+  opacity: 0.8;
+  transition: $transition-main;
+  &:hover {
+    opacity: 1;
+    transform: rotate(360deg);
+  }
 }
 .popup.open {
   opacity: 1;
@@ -215,5 +222,83 @@ body.lock {
     /* Animation */
     transform: perspective(1000px);
     opacity: 1;
+  }
+}
+
+// Accordions
+.accordion-spoiler-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  justify-content: center;
+  @media screen and (min-width: $breakpoint-accordion-wrapper) {
+    flex-direction: row;
+  }
+}
+.accordion,
+.spoiler {
+  position: relative;
+  margin: 0 0 2rem;
+}
+.accordion-checkbox,
+.spoiler-checkbox {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  visibility: 0;
+}
+
+.accordion h3,
+.spoiler h3 {
+  color: #000;
+  margin: 0;
+  font-size: Min(2rem, 6vw);
+  background: $color-tertiary;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0.5em;
+  transition: $transition-main;
+  &:hover {
+    background-color: $color-secondary;
+  }
+  &::before,
+  &::after {
+    content: "";
+    width: Min(1em, 1.5rem);
+    height: 2px;
+    position: absolute;
+    right: 1em;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: $transition-main;
+    background-color: #000;
+  }
+  &::after {
+    transform: translateY(-50%) rotate(-90deg);
+  }
+}
+.accordion-content-wrapper,
+.spoiler-content-wrapper {
+  max-height: 0;
+  overflow: hidden;
+  transition: $transition-main;
+  box-shadow: 0 0 5px 0 rgba(255, 255, 255, 0.4);
+  .accordion-content,
+  .spoiler-content {
+    opacity: 0;
+    padding: 2em;
+    transition: $transition-main;
+  }
+}
+.accordion.open,
+.spoiler.open {
+  .accordion-content,
+  .spoiler-content {
+    opacity: 1;
+  }
+  h3::after {
+    transform: translateY(-50%) rotate(0);
   }
 }

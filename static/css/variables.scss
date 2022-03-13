@@ -8,6 +8,7 @@ $color-danger: #e40c2b;
 
 // Breakpoints
 $breakpoint-burger: 47rem;
+$breakpoint-accordion-wrapper: 60rem;
 
 // Fonts
 $ff-main: "IBM Plex Sans", sans-serif;
@@ -27,12 +28,13 @@ $transition-page-transition: 0.5s;
 $tab-animation-duration: 0.3s;
 
 // Popups
-// Popup
 $popup-body-width: Min(95%, 60rem);
 $popup-background: rgba(0, 0, 0, 0.9);
 $transition-modal-window: all 0.5s ease-in-out;
 $cross-size: 2em;
 
+// Spoilers and accordions
+$accordion-width: Min(95%, 40rem);
 // Sizes
 $width-scollbar: 1rem;
 %underline {

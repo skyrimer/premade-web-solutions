@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <title>Spoiler and Accordion</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <section>
+            <h1>Spoiler</h1>
+            <details open>
+                <summary>First spoiler</summary>
+                <div class="spoiler-content">
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolores eius quod obcaecati fugiat sed
+                        quidem qui delectus repellendus tenetur mollitia. Nulla, omnis nemo voluptate deleniti accusamus
+                        vero maxime nostrum consequatur.</p>
+                </div>
+            </details>
+            <details>
+                <summary>Second spoiler</summary>
+                <div class="spoiler-content">
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolores eius quod obcaecati fugiat sed
+                        quidem qui delectus repellendus tenetur mollitia. Nulla, omnis nemo voluptate deleniti accusamus
+                        vero maxime nostrum consequatur.</p>
+                </div>
+            </details>
+            <details>
+                <summary>Third spoiler</summary>
+                <div class="spoiler-content">
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolores eius quod obcaecati fugiat sed
+                        quidem qui delectus repellendus tenetur mollitia. Nulla, omnis nemo voluptate deleniti accusamus
+                        vero maxime nostrum consequatur.</p>
+                </div>
+            </details>
+        </section>
+        <section>
+            <h1>Spoiler (pure css)</h2>
+                <div class="accordion-wrapper">
+                    <div class="accordion">
+                        <input checked class="accordion-checkbox" type="checkbox" name="accordion-1" id="accordion-1">
+                        <label for="accordion-1">This is the first accordion</label>
+                        <div class="accordion-content-wrapper">
+                            <div class="accordion-content">
+                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cupiditate nesciunt
+                                    possimus
+                                    dolorum
+                                    cumque ut, vel sequi explicabo culpa. Beatae dolorum enim consequatur at ipsa atque
+                                    neque
+                                    cumque, asperiores modi quis.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion">
+                        <input class="accordion-checkbox" type="checkbox" name="accordion-1" id="accordion-2">
+                        <label for="accordion-2">This is the second accordion</label>
+                        <div class="accordion-content-wrapper">
+                            <div class="accordion-content">
+                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Necessitatibus magnam nulla
+                                    adipisci impedit eveniet minima! Tempora quo ex error fugiat odit? Dolores eligendi
+                                    veritatis alias atque iure a provident necessitatibus?</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion">
+                        <input class="accordion-checkbox" type="checkbox" name="accordion-1" id="accordion-3">
+                        <label for="accordion-3">This is the third accordion</label>
+                        <div class="accordion-content-wrapper">
+                            <div class="accordion-content">
+                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quaerat tenetur minima
+                                    earum
+                                    alias,
+                                    excepturi molestias nam velit eius corrupti ab, ad voluptatem omnis debitis sed
+                                    temporibus,
+                                    consequuntur amet perferendis reiciendis?</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </section>
+        <section>
+            <h1>Accordion (pure css)</h2>
+                <div class="accordion-wrapper">
+                    <div class="accordion">
+                        <input checked class="accordion-checkbox" type="radio" name="accordion-1" id="accordion-1">
+                        <label for="accordion-1">This is the first accordion</label>
+                        <div class="accordion-content-wrapper">
+                            <div class="accordion-content">
+                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cupiditate nesciunt
+                                    possimus
+                                    dolorum
+                                    cumque ut, vel sequi explicabo culpa. Beatae dolorum enim consequatur at ipsa atque
+                                    neque
+                                    cumque, asperiores modi quis.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion">
+                        <input class="accordion-checkbox" type="radio" name="accordion-1" id="accordion-2">
+                        <label for="accordion-2">This is the second accordion</label>
+                        <div class="accordion-content-wrapper">
+                            <div class="accordion-content">
+                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Necessitatibus magnam nulla
+                                    adipisci impedit eveniet minima! Tempora quo ex error fugiat odit? Dolores eligendi
+                                    veritatis alias atque iure a provident necessitatibus?</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion">
+                        <input class="accordion-checkbox" type="radio" name="accordion-1" id="accordion-3">
+                        <label for="accordion-3">This is the third accordion</label>
+                        <div class="accordion-content-wrapper">
+                            <div class="accordion-content">
+                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quaerat tenetur minima
+                                    earum
+                                    alias,
+                                    excepturi molestias nam velit eius corrupti ab, ad voluptatem omnis debitis sed
+                                    temporibus,
+                                    consequuntur amet perferendis reiciendis?</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </section>
+        <section>
+            <h1>Accordion (with JS and adaptive heights)</h1>
+            <div class="accordion-wrapper">
+                <div class="accordion open">
+                    <div class="accordion-toggler">
+                        <h2>This is the first accordion</h2>
+                    </div>
+                    <div class="accordion-content-wrapper">
+                        <div class="accordion-content">
+                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cupiditate nesciunt possimus
+                                dolorum
+                                cumque ut, vel sequi explicabo culpa. Beatae dolorum enim consequatur at ipsa atque
+                                neque
+                                cumque, asperiores modi quis.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion">
+                    <div class="accordion-toggler">
+                        <h2>This is the second accordion</h2>
+                    </div>
+                    <div class="accordion-content-wrapper">
+                        <div class="accordion-content">
+                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Necessitatibus magnam nulla
+                                adipisci impedit eveniet minima! Tempora quo ex error fugiat odit? Dolores eligendi
+                                veritatis alias atque iure a provident necessitatibus?</p>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam qui nobis cumque quo
+                                harum!
+                                Debitis dicta voluptate accusamus voluptatum! Quasi dignissimos amet alias minus
+                                reiciendis
+                                nisi fugit quidem ea illo.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion">
+                    <div class="accordion-toggler">
+                        <h2>The third accordion</h2>
+                    </div>
+                    <div class="accordion-content-wrapper">
+                        <div class="accordion-content">
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quaerat tenetur minima earum
+                                alias,
+                                excepturi molestias nam velit eius corrupti ab, ad voluptatem omnis debitis sed
+                                temporibus,
+                                consequuntur amet perferendis reiciendis?</p>
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quaerat tenetur minima earum
+                                alias,
+                                excepturi molestias nam
+                                velit eius corrupti ab, ad voluptatem omnis debitis sed temporibus, consequuntur amet
+                                perferendis reiciendis?</p>
+
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quaerat tenetur minima earum
+                                alias,
+                                excepturi molestias nam
+                                velit eius corrupti ab, ad voluptatem omnis debitis sed temporibus, consequuntur amet
+                                perferendis reiciendis?</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script src="main.js"></script>
+</body>
+
+</html>

@@ -38,5 +38,9 @@
         {
             "name": "Modal windows",
             "url": "modal-window"
+        },
+        {
+            "name": "Spoilers and Accordions",
+            "url": "spoilers-and-accordions"
         }
     ]

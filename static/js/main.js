@@ -1,8 +1,8 @@
 window.onload = () => {
   // Deleting all event listeners
-  const clearAllEventListeners = async (element) => {
-    element.parentNode.replaceChild(element.cloneNode(true), element);
-  };
+  // const clearAllEventListeners = async (element) => {
+  //   element.parentNode.replaceChild(element.cloneNode(true), element);
+  // };
 
   // Navbar activision
   const activateNavbar = async () => {
@@ -198,59 +198,91 @@ window.onload = () => {
     }
   };
 
-  // Adds tutorials
-  const addTutorialsCards = async () => {
-    const tutorialList = document.querySelector("[data-tutorial-list]");
-    const cardTemplate = document.querySelector("#tutorial-card-template");
-    if (tutorialList) {
-      fetch("/static/tutorials.json")
-        .then((response) => response.json())
-        .then((data) => {
-          data.forEach((tutorial) => {
-            const card = cardTemplate.content.cloneNode(true).children[0];
-            card.href = "/examples/" + tutorial.url;
-            const name = card.querySelector("[data-name]");
-            name.textContent = tutorial.name;
-            tutorialList.appendChild(card);
-          });
-          cardTemplate.remove();
+  const activateAccordions = async () => {
+    const spoilersContent = document.querySelectorAll(".accordion-content");
+    const openedAccordion = document.querySelector(".accordion.open");
+    const activeClass = "open";
+    const animationDuration = 300;
+
+    const closeAccordion = (accordion) => {
+      if (accordion) {
+        accordion.querySelector(".accordion-content-wrapper").style.maxHeight = 0;
+        accordion.classList.remove(activeClass);
+      }
+    };
+
+    const openAccordion = (accordion) => {
+      accordion.classList.add(activeClass);
+      const accordionContent = accordion.querySelector(".accordion-content-wrapper");
+      accordionContent.style.maxHeight = accordionContent.dataset.contentWidth;
+    };
+
+    spoilersContent.forEach((content) => {
+      content.parentElement.dataset.contentWidth = content.offsetHeight + "px";
+    });
+
+    if (openedAccordion) openAccordion(openedAccordion);
+
+    const accordionTogglers = document.querySelectorAll(".accordion-toggler");
+    accordionTogglers.forEach((toggler) => {
+      toggler.addEventListener("click", (event) => {
+        const togglerParent = toggler.parentElement;
+        const openedAccordion =
+          togglerParent.parentElement.querySelector(".accordion.open");
+        if (openedAccordion == togglerParent) {
+          closeAccordion(togglerParent);
+        } else {
+          // If you want to make just a spoiler, then remove the next line
+          closeAccordion(openedAccordion);
+          openAccordion(togglerParent);
+        }
+        setTimeout(() => {
           scroll.update();
-        });
-    }
-  };
-  const initGoogleAnalytics = async () => {
-    window.dataLayer = window.dataLayer || [];
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag("js", new Date());
-
-    gtag("config", "G-WE4P5R65J0");
-  };
-  // Initializing all JavaScript for a page
-  const initPage = async () => {
-    activateOnscrollAnimations();
-    activateImageLazyLoading();
-    highlightAllCode();
-    activateIdLinks();
-    pasteCurrentYear();
-
-    updateImagesOnload();
-
-    activateCustomCursorExample();
-    activateSlider();
-    activateTabs();
-    addTutorialsCards();
-    activatePopup();
-    scroll.update();
-  };
-
-  // Scroll to top, when the page is reloading
-  const outAnimationDone = async () => {
-    scroll.scrollTo("top", {
-      duration: 0,
+        }, animationDuration);
+      });
     });
   };
+  const activateSpoilers = async () => {
+    const spoilersContent = document.querySelectorAll(".spoiler-content");
+    const openedSpoiler = document.querySelector(".spoiler.open");
+    const spoilerTogglers = document.querySelectorAll(".spoiler-toggler");
+    const activeClass = "open";
+    const animationDuration = 300;
+
+    const closeSpoiler = (spoiler) => {
+      if (spoiler) {
+        spoiler.querySelector(".spoiler-content-wrapper").style.maxHeight = 0;
+        spoiler.classList.remove(activeClass);
+      }
+    };
+
+    const openSpoiler = (spoiler) => {
+      spoiler.classList.add(activeClass);
+      const spoilerContent = spoiler.querySelector(".spoiler-content-wrapper");
+      spoilerContent.style.maxHeight = spoilerContent.dataset.contentWidth;
+    };
+
+    spoilersContent.forEach((content) => {
+      content.parentElement.dataset.contentWidth = content.offsetHeight + "px";
+    });
+
+    if (openedSpoiler) openSpoiler(openedSpoiler);
+
+    spoilerTogglers.forEach((toggler) => {
+      toggler.addEventListener("click", (event) => {
+        const togglerParent = toggler.parentElement;
+        if (togglerParent.classList.contains(activeClass)) {
+          closeSpoiler(togglerParent);
+        } else {
+          openSpoiler(togglerParent);
+        }
+        setTimeout(() => {
+          scroll.update();
+        }, animationDuration);
+      });
+    });
+  };
+
   const activatePopup = async () => {
     const containsPopup = document.querySelector(".popup");
     if (!containsPopup) {
@@ -337,6 +369,55 @@ window.onload = () => {
       }
     });
   };
+
+  // Adds tutorials
+  const addTutorialsCards = async () => {
+    const tutorialList = document.querySelector("[data-tutorial-list]");
+    const cardTemplate = document.querySelector("#tutorial-card-template");
+    if (tutorialList) {
+      fetch("/static/tutorials.json")
+        .then((response) => response.json())
+        .then((data) => {
+          data.forEach((tutorial) => {
+            const card = cardTemplate.content.cloneNode(true).children[0];
+            card.href = "/examples/" + tutorial.url;
+            const name = card.querySelector("[data-name]");
+            name.textContent = tutorial.name;
+            tutorialList.appendChild(card);
+          });
+          cardTemplate.remove();
+          scroll.update();
+        });
+    }
+  };
+
+  // Initializing all JavaScript for a page
+  const initPage = async () => {
+    activateOnscrollAnimations();
+    activateImageLazyLoading();
+    highlightAllCode();
+    activateIdLinks();
+    pasteCurrentYear();
+
+    updateImagesOnload();
+
+    activateCustomCursorExample();
+    activateSlider();
+    activateTabs();
+    addTutorialsCards();
+    activatePopup();
+    if (document.querySelector(".accordion")) activateAccordions();
+    if (document.querySelector(".spoiler")) activateSpoilers();
+    scroll.update();
+  };
+
+  // Scroll to top, when the page is reloading
+  const outAnimationDone = async () => {
+    scroll.scrollTo("top", {
+      duration: 0,
+    });
+  };
+
   const scroll = new LocomotiveScroll({
     el: document.querySelector("[data-scroll-container]"),
     smooth: true,
@@ -352,15 +433,10 @@ window.onload = () => {
   });
   activateNavbar();
   initPage();
-  initGoogleAnalytics();
   // Swup
   const swup = new Swup({
     animateHistoryBrowsing: true,
   });
   swup.on("contentReplaced", initPage);
-  swup.on("willReplaceContent", async () => {
-    ga("set", "page", window.location.pathname);
-    ga("send", "pageview");
-  });
   swup.on("animationOutDone", outAnimationDone);
 };

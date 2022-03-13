@@ -92,6 +92,7 @@ p {
   line-height: 1.5;
   margin-bottom: 1em;
 }
+
 img {
   width: 100%;
 }
@@ -458,10 +459,7 @@ main {
 ul.text li {
   margin-left: 1rem;
 }
-// syntax highlighting
-pre {
-  margin: 2rem 0;
-}
+
 // Custom scrollbar
 .c-scrollbar {
   z-index: 11;
@@ -563,6 +561,7 @@ html.is-animating .c-scrollbar {
 ul.contents-list {
   list-style-position: inside;
   li {
+    width: max-content;
     margin: 2rem 0;
     &:hover::marker {
       color: $color-secondary;

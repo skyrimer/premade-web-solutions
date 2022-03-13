@@ -84,11 +84,10 @@ new Swiper(".swiper")
       <li><a href="#adaptive" class="inline-link">Adaptive properties</a></li>
       <li><a href="#lazy-loading" class="inline-link">Image lazy load</a></li>
       <li><a href="#parallax" class="inline-link">Parallax effect</a></li>
-      <li><a href="/static/examples/ultimate slider/slider.html" class="inline-link" download>Download
-          example</a></li>
+      <li><a href="/static/examples/ultimate slider/slider.html" class="inline-link">See example</a></li>
     </ul>
   </article>
-  <section class="tutorial-slider text" id="speed">
+  <section class="text" id="speed">
     <h3>Slider speed</h3>
     <p><code class="html">speed</code> will define the number of milliseconds that it takes to go from one slide to
       another.</p>
@@ -97,7 +96,7 @@ new Swiper(".swiper")
 speed: 400,
         </code></pre>
   </section>
-  <section class="tutorial-slider text" id="navigation">
+  <section class="text" id="navigation">
     <h3>Navigation</h3>
     <p>In Swiper settings you have to add dictionary <code class="html">navigation</code> with keys <code
         class="html">nextEl</code> and <code class="html">prevEl</code>. For each key, you pass the selector
@@ -115,7 +114,7 @@ navigation: {
 &lt;div class="swiper-button-next"&gt;&lt;/div&gt;
         </code></pre>
   </section>
-  <section class="tutorial-slider text" id="pagination">
+  <section class="text" id="pagination">
     <h3>Pagination</h3>
     <p>In Swiper settings you have to add a dictionary <code class="html">pagination</code> with several keys:</p>
     <ul class="text">
@@ -185,7 +184,7 @@ type: "progressbar"
 },
         </code></pre>
   </section>
-  <section class="tutorial-slider text" id="scrollbar">
+  <section class="text" id="scrollbar">
     <h3>Scrollbar</h3>
     <p>It might seems like it would do exactly the same as <code class="html">progressbar</code>, but there is a
       main difference. <code class="html">scrollbar</code> fills with accent color only current position, while
@@ -210,7 +209,7 @@ scrollbar: {
         </code>
         </pre>
   </section>
-  <section class="tutorial-slider text" id="mouse-and-keyboard">
+  <section class="text" id="mouse-and-keyboard">
     <h3>Mouse and keyboard control</h3>
     <p>There are 2 different dictionaries for mouse and keyboard</p>
     <p><code class="html">keyboard</code> has <code class="html">enabled</code> key that enables keyboard control
@@ -234,7 +233,7 @@ mousewheel: {
 }
         </code></pre>
   </section>
-  <section class="tutorial-slider text" id="autoheight">
+  <section class="text" id="autoheight">
     <h3>Dynamic height</h3>
     <p>It might seem useless, but it is one of the most important things in the sliders. Commonly, we can have
       different heights of the images or different amount of text inside the slides, which can create some weird
@@ -243,7 +242,7 @@ mousewheel: {
 autoHeight: true,
         </code></pre>
   </section>
-  <section class="tutorial-slider text" id="slidesperview">
+  <section class="text" id="slidesperview">
     <h3>Slides per view</h3>
     <p><code class="html">slidesPerView</code> is property is in favour of the amount of slides displayed. It can be
       set both as integer or even fraction. In case of fraction, it will cut the last slide, and show the
@@ -254,7 +253,7 @@ slidesPerView: 4,
 // slidesPerView: 4.5, - will show 4 and a half slides
         </code></pre>
   </section>
-  <section class="tutorial-slider text" id="spacing">
+  <section class="text" id="spacing">
     <h3>Slider spacing</h3>
     <p><code class="html">spaceBetween</code> will be the spacing between the slides. It can take any positive
       integer or surd, and use it as the amount of pixels between the slides.</p>
@@ -264,7 +263,7 @@ slidesPerView: 4,
 spaceBetween: 40,
         </code></pre>
   </section>
-  <section class="tutorial-slider text" id="loop">
+  <section class="text" id="loop">
     <h3>Looped or infinite slides</h3>
     <p><code class="html">loop</code> will make the slides the effect of infinite amount of slides. In reality, he
       as soon as the user will go to the next slide after the last slide, he will be redirected to the first
@@ -274,7 +273,7 @@ spaceBetween: 40,
 loop: true,
         </code></pre>
   </section>
-  <section class="tutorial-slider text" id="autoplay">
+  <section class="text" id="autoplay">
     <h3>Autoplay</h3>
     <p>This setting will allow the slider to go to the next slide on its own. You will need only 3 properties:</p>
     <p><code class="html">delay</code> is the amount of milliseconds before going to another slide.</p>
@@ -294,7 +293,7 @@ autoplay: {
 },
         </code></pre>
   </section>
-  <section class="tutorial-slider text" id="fade">
+  <section class="text" id="fade">
     <h3>Fade effect</h3>
     <p>It is the simplest swiper effect. It makes the slides, overlap each other, but using <code
         class="css">opacity</code>, the user will see the fading animation.</p>
@@ -310,7 +309,7 @@ fadeEffect: {
 },
         </code></pre>
   </section>
-  <section class="tutorial-slider text" id="flip">
+  <section class="text" id="flip">
     <h3>Flip effect</h3>
     <p>Similarly to fading, flip effect will make all the slider overlap, but this time the rotating effect will
       appear</p>
@@ -329,7 +328,7 @@ flipEffect: {
 },
         </code></pre>
   </section>
-  <section class="tutorial-slider text" id="cube">
+  <section class="text" id="cube">
     <h3>Cube effect</h3>
     <p>Similarly to flipping, the cube effect will make the slides rotate, but will make it look like you are
       rotating a cube.</p>
@@ -348,7 +347,7 @@ cubeEffect: {
 },
         </code></pre>
   </section>
-  <section class="tutorial-slider text" id="coverflow">
+  <section class="text" id="coverflow">
     <h3>Cover flow effect</h3>
     <p>Honestly, I have no idea how to explain this effect. It's either my English is too bad or there are no
       suitable words for this. So, the best what I can do is to give you <a
@@ -372,7 +371,7 @@ coverflowEffect: {
 },
         </code></pre>
   </section>
-  <section class="tutorial-slider text" id="adaptive">
+  <section class="text" id="adaptive">
     <h3>Adaptive properties</h3>
     <p>Logically, there might be some issues with slider on different screen sizes. Therefore, the library has
       implemented adaptiveness with <code class="html">breakpoints</code>. It is a dictionary that with takes the
@@ -395,7 +394,7 @@ breakpoints: {
 }
         </code></pre>
   </section>
-  <section class="tutorial-slider text" id="lazy-loading">
+  <section class="text" id="lazy-loading">
     <h3>Image lazy loading</h3>
     <p>It is an important feature that you want to use for almost all the images in your slider.</p>
     <p>In HTML, you will have to move the image source from <code class="html">src</code> to <code
@@ -446,7 +445,7 @@ watchSlidesProgress: true,
         </code></pre>
     <p>And you are done! You have saved a tone of traffic for your users.</p>
   </section>
-  <section class="tutorial-slider text" id="parallax">
+  <section class="text" id="parallax">
     <h3>Parallax effect</h3>
     <p>Seems like I am finishing endless number of Swiper features. Anyway, parallax. In html, there aren't any elements
       that you have to add. Everything you should do is to add some data attributes.</p>
@@ -533,8 +532,7 @@ parallax: true,
     </code></pre>
     <p>If you want to see any of the examples in action, you can download the test file.</p>
     <div class="btn-wrapper">
-      <a href="/static/examples/ultimate slider/slider.html" class="btn-link"
-        download>Download
+      <a href="/static/examples/ultimate slider/slider.html" class="btn-link" download>Download
         example</a>
     </div>
   </section>
