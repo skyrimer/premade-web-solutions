@@ -421,6 +421,7 @@ window.onload = () => {
   const scroll = new LocomotiveScroll({
     el: document.querySelector("[data-scroll-container]"),
     smooth: true,
+    lerp: 0.07,
     reloadOnContextChange: true,
     getSpeed: true,
     getDirection: true,
