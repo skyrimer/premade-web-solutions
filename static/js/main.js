@@ -153,7 +153,25 @@ window.onload = () => {
   const activateSlider = async () => {
     if (document.querySelector(".swiper")) {
       const slider = new Swiper(".swiper", {
-        effect: "flip",
+        effect: "coverflow",
+        speed: 500,
+        slidesPerView: 1,
+        breakpoints: {
+          450: {
+            slidesPerView: 1.2
+          },
+          600: {
+            slidesPerView: 1.4,
+          },
+          700: {
+            slidesPerView: 1.7,
+          }
+        },
+        coverflowEffect: {
+          rotate: 40,
+          stretch: 50,
+        },
+        centeredSlides: true,
         loop: true,
         preloadImages: false,
         lazy: {
