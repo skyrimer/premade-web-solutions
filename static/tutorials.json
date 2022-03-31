@@ -42,5 +42,9 @@
         {
             "name": "Spoilers and Accordions",
             "url": "spoilers-and-accordions"
+        },
+        {
+            "name": "On scroll animations",
+            "url": "on-scroll-animations"
         }
     ]

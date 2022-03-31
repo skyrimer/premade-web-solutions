@@ -158,24 +158,27 @@ window.onload = () => {
         slidesPerView: 1,
         breakpoints: {
           450: {
-            slidesPerView: 1.2
+            slidesPerView: 1.2,
           },
           600: {
             slidesPerView: 1.4,
           },
           700: {
             slidesPerView: 1.7,
-          }
+          },
         },
         coverflowEffect: {
           rotate: 40,
           stretch: 50,
         },
+        watchSlidesProgress: true,
         centeredSlides: true,
         loop: true,
         preloadImages: false,
         lazy: {
           loadPrevNext: true,
+          loadOnTransitionStart: true,
+          loadPrevNextAmount: 2,
         },
         pagination: {
           el: ".swiper-pagination",

@@ -1,0 +1,74 @@
+{% extends "layout.html" %}
+{% block content %}
+<section class="glassy-section example" data-scroll-section>
+    <h2>On scroll animations</h2>
+    <article class="text">
+        <p>On scroll events have to be used carefully. If the event is triggered each time the user scrolls, it might
+            cause a lot of performance issues. This rule is especially crucial for long pages and on scroll animations,
+            because it might overload processor, and make the website unusable. Fortunately, there is a feature called
+            <code class="js">IntersectionObserver</code> that makes everyone's life easier.
+        </p>
+        <p>It allows to trigger the function every time the object is actually intersecting the screen, but not every
+            time the user scrolls. Hence, it improves performance dramatically. Unfortunately, this feature is supported
+            by 93.71% of the browsers by <time datetime="2022-03-31">31.03.2022</time>. This means that it won't work in
+            all versions of Internet Explorer and in old browsers. However, it is still a powerful utility that everyone
+            must now how to use.</p>
+        <p>So, let's start with JavaScript and the corresponding theory. <code class="js">IntersectionObserver</code> is
+            an object that takes 2 parameters: a handler and config dictionary.
+        </p>
+        <p>
+            Handler is the intersecting logic that animates the element. It can take 2 parameters: entries (a list of
+            objects that is observed) and observer (the observer itself that can
+            be used for unobserving elements). To do something, when the one of the entries is intersecting, you need to
+            loop over all of them, and check if the entry is intersecting using <code
+                class="js">entry.isIntersecting</code>. Then
+            you can run your JavaScript that will animate the entry using <code class="js">entry.target</code>
+            (adding custom class for CSS animations or animate it using <a target="_blank"
+                href="https://greensock.com/gsap/" class="inline-link">GSAP</a> ). Your function might look like this:
+        </p>
+        <pre><code class="js">
+const observerHandler = (entries, observer) => {
+  entries.forEach((entry) => {
+    entry.target.classList.toggle("show", entry.isIntersecting);
+    // if you want to unobserve after it intersects
+    // if (entry.isIntersecting) observer.unobserve(entry.target);
+  });
+};
+        </code></pre>
+        <p>The config is a dictionary that determines when <code class="js">entry.isIntersecting</code> is true. There
+            are 2 values that you might need: threshold or rootMargin. Threshold will trigger intersection depending on
+            the ratio of the element itself. It takes values from 0 to 1. rootMargin will trigger intersection depending
+            on the screen dimensions. It can take both negative (offset inside the screen) or positive (offset outside
+            the screen) values of pixels or percents.</p>
+        <pre><code class="js">
+let observerConfig = {
+  // Ration of the element after which the entry.isIntersecting will become true
+  // if the array is set like [0, 0.5, 1]
+  // the event will be triggered several times according to the ratio
+  // Can be any float from 0 to 1
+  // threshold: "0.1",
+  // Distance from the screen on which the entry.isIntersecting will become true
+  // Can be in pixels or in percent (percent of the screen)
+  // Can be positive (value before the object appears on the screen)
+  // and negative (value after the object hits the screen)
+  rootMargin: "-15%",
+};
+        </code></pre>
+        <p>Finally, you need to create an new <code class="js">IntersectionObserver</code> and make it observe elements
+            that you want using <code class="js">observer.observe</code> function.</p>
+        <pre><code class="js">
+const boxes = document.querySelectorAll(".box");
+
+let boxObserver = new IntersectionObserver(observerHandler, observerConfig);
+
+boxes.forEach((box) => {
+  boxObserver.observe(box);
+});
+        </code></pre>
+        <p>And that's it! It is that straightforward and simple. Also, I have made an example that you can use to play
+            around with config values.</p>
+        <div class="btn-wrapper"><a href="/static/examples/on scroll animations/on scroll.html" class="btn-link">See
+                example</a></div>
+    </article>
+</section>
+{% endblock %}
