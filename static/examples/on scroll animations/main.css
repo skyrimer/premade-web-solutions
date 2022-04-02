@@ -4,7 +4,6 @@
   padding: 0;
   margin: 0;
   border: 0;
-  -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 
@@ -72,25 +71,14 @@ h6 {
 }
 
 main {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   overflow: hidden;
 }
 
 .box {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   margin: 2em 0;
   padding: 2em;
@@ -98,26 +86,19 @@ main {
   border-radius: 0.5em;
   background-image: linear-gradient(-45deg, #00ff58, #2637ff);
   color: #fff;
-  -webkit-transition: all 0.4s ease-in-out;
   transition: all 0.4s ease-in-out;
   opacity: 0;
   visibility: hidden;
 }
-
 .box:nth-child(odd) {
-  -webkit-transform: translateX(-100%);
-          transform: translateX(-100%);
+  transform: translateX(-100%);
 }
-
 .box:nth-child(even) {
-  -webkit-transform: translateX(100%);
-          transform: translateX(100%);
+  transform: translateX(100%);
 }
-
 .box.show {
   visibility: visible;
-  -webkit-transform: none;
-          transform: none;
+  transform: none;
   opacity: 1;
 }
 
@@ -126,20 +107,16 @@ main {
   top: 2em;
   left: 2em;
 }
-
 .settings-menu .setting {
   font-size: 1.5rem;
   margin: 1.5em 0;
 }
-
 .settings-menu .setting label {
   display: block;
   margin-bottom: 0.5em;
 }
-
 .settings-menu .setting input, .settings-menu .setting select {
   font-size: inherit;
   outline: 1px solid black;
   width: 100%;
-}
-/*# sourceMappingURL=main.css.map */
+}/*# sourceMappingURL=main.css.map */

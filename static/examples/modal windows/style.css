@@ -1,13 +1,11 @@
-@use "sass:math";
 * {
   margin: 0;
   padding: 0;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .container {
-  width: Min(100rem, 95%);
+  width: min(100rem, 95%);
   margin: 10vh auto;
 }
 
@@ -23,9 +21,8 @@ p {
 }
 
 .popup-link {
-  color: #d9ff00;
+  color: rgb(217, 255, 0);
 }
-
 .popup-link:hover {
   color: blue;
 }
@@ -39,69 +36,48 @@ body.lock {
   position: fixed;
   inset: 0;
   z-index: 10;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: baseline;
-      -ms-flex-align: baseline;
-          align-items: baseline;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  align-items: baseline;
+  justify-content: center;
   overflow: hidden auto;
   opacity: 0;
   visibility: hidden;
-  -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
   background-color: rgba(0, 0, 0, 0.9);
 }
 
 .popup-body {
   opacity: 0;
-  -webkit-transform: perspective(1000px) translate(0, -100%) rotateX(45deg);
-          transform: perspective(1000px) translate(0, -100%) rotateX(45deg);
-  -webkit-transition: all 0.5s ease-in-out;
+  transform: perspective(1000px) translate(0, -100%) rotateX(45deg);
   transition: all 0.5s ease-in-out;
   margin: 10vh 0;
   padding: 2rem;
-  width: Min(95%, 60rem);
+  width: min(95%, 60rem);
   background: #fff;
 }
 
 .popup-title {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .popup-close {
   width: 2rem;
   opacity: 0.8;
-  -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
 }
-
 .popup-close:hover {
   opacity: 1;
-  -webkit-transform: rotate(360deg);
-          transform: rotate(360deg);
+  transform: rotate(360deg);
 }
 
 .popup.open {
   opacity: 1;
   visibility: visible;
 }
-
 .popup.open .popup-body {
   /* Animation */
-  -webkit-transform: perspective(1000px);
-          transform: perspective(1000px);
+  transform: perspective(1000px);
   opacity: 1;
-}
-/*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=style.css.map */

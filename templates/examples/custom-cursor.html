@@ -11,19 +11,14 @@ body {
     cursor: url("path/to/your/image"), auto;
 }
                                    </code></pre>
-        <p>The first argument is the URL with a path to the image. The second argument is the fallback
-            in case the image can not be
-            displayed. "Auto" in this case is the default behaviour of the cursor (as if there is no
-            property set), however, you can
-            set any value you want.</p>
-        <p>The list of all the values <a class="inline-link" target="_blank"
+        <p>The first argument is the URL with a path to the image. The second argument is the fallback in case the image can not be
+        displayed. "Auto" is the default behaviour of the cursor (as if there is no property set). However, you can specify an
+        image for every state (pointer, progress, wait, cell, etc).</p>
+        <p>The list of all the values is <a class="inline-link" target="_blank"
                 href="https://codepen.io/chriscoyier/pen/uCwfB">here</a></p>
-
         <h3>Making custom with CSS</h3>
-        <p>Another way to make a custom cursor on the website is to "draw" your own on the website.
-        </p>
-
-        <p>You have to remove default cursor using css</p>
+        <p>Another way to make a custom cursor on the website is to "draw" your own on the website.</p>
+        <p>You have to remove the default cursor using CSS:</p>
         <pre><code class="css">
 * {
     cursor: none;
