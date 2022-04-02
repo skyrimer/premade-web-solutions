@@ -8,6 +8,7 @@ $color-danger: #e40c2b;
 
 // Breakpoints
 $breakpoint-burger: 47rem;
+$breakpoint-home-columns: 60rem;
 $breakpoint-accordion-wrapper: 60rem;
 
 // Fonts
@@ -26,6 +27,7 @@ $ff-xxs: clamp(0.7875rem, 2.7vw, 1.08rem);
 $transition-main: all 0.3s ease;
 $transition-page-transition: 0.5s;
 $tab-animation-duration: 0.3s;
+$transition-animate-in: 0.5s;
 
 // Popups
 $popup-body-width: Min(95%, 60rem);
@@ -36,7 +38,9 @@ $cross-size: 2em;
 // Spoilers and accordions
 $accordion-width: Min(95%, 40rem);
 // Sizes
-$width-scollbar: 1rem;
+$scrollbar-width: 0.5rem;
+$header-size: 7rem;
+
 %underline {
   $size: 0.1em;
   background-image: linear-gradient(to right, currentColor, currentColor);

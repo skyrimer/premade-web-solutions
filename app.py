@@ -20,20 +20,21 @@ def code_404(error):
 @app.route("/")
 @app.route("/home")
 def home():
-    title = 'Pre-made web solutions'
-    return render_template("index.html", title=title, heading=title)
+    return render_template("index.html", title="Pre-made web solutions")
 
+
+@app.route('/about')
+def about():
+    return render_template("about.html", title="About us")
 
 @app.route("/tutorials")
 def tutorials():
-    title = "All tutorials"
-    return render_template("tutorials.html", title=title, heading=title)
+    return render_template("tutorials.html", title="All tutorials")
 
 
 @app.route("/helpful-websites")
 def helpful_websites():
-    title = "Helpful websites"
-    return render_template("helpful_websites.html", title=title, heading=title)
+    return render_template("helpful_websites.html", title="Helpful websites")
 
 
 @app.route("/examples/<string:example>")
@@ -50,4 +51,4 @@ def static_from_root():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False)

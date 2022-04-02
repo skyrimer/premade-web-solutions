@@ -1,0 +1,95 @@
+{% extends "layout.html" %}
+{% block content %}
+<section class="glassy-section" data-scroll-section>
+    <h2>About this website</h2>
+    <div class="column-2">
+        <div class="image">
+            <picture class="center" data-loading="lazy">
+                <source data-srcset="/static/images/website.svg" media="(min-width: 60rem)">
+                <img data-src="/static/images/website_mobile.svg" alt="Website">
+            </picture>
+        </div>
+        <article class="text">
+            <h3>Hello <span class="wavy-hand">👋</span></h3>
+            <p>Want to start to make websites and flex in front of your classmates that you are a <span
+                    class="color-favourite">👨‍💻Tech Genius👨‍💻</span> ? This website is for you!</p>
+            <p>I started to program without any support or guidelines. Looking back, I do understand that
+                searching for valid
+                information was not the issue. The main issues were to understand what does the code do and
+                correctly use it in the
+                projects. This problem leads to a lack of clarity, and confusion when an error raises.</p>
+            <p>Using this website, I will try to help newbies creating websites with Html<img
+                    src="/static/images/my_icons/html.svg" alt="Html" class="inline" loading="lazy">/Css<img
+                    src="/static/images/my_icons/css.svg" alt="Css" class="inline" loading="lazy">/Javascript<img
+                    src="/static/images/my_icons/javascript.svg" alt="Html" class="inline" loading="lazy">
+                by providing crystal clear explanation in simple language of how most common components are
+                constructed.
+            </p>
+            <div class="btn-link-wrapper">
+                <a href="/tutorials" class="btn-link">
+                    All tutorials
+                </a>
+            </div>
+        </article>
+    </div>
+</section>
+<section class="glassy-section" data-scroll-section>
+    <h2>Why do you need this website?</h2>
+    <div class="column-2">
+        <div class="image">
+            <picture class="center" data-loading="lazy">
+                <source data-srcset="/static/images/why.svg" media="(min-width: 60rem)">
+                <img data-src="/static/images/why_mobile.svg" alt="Question">
+            </picture>
+        </div>
+        <article class="text">
+            <h3>It's easy to find all the information</h3>
+            <p>Finding all the information all around the internet might be complicated to start with and
+                takes quite a lot of time⌚. This website can provide you with the base knowledge to narrow
+                down the query searches, which will dramatically shorten the time spend on googling⌛.</p>
+            <p>Another thing is like the website is like a bouquet💐 that unite all the flowers. As soon as
+                you get used to the navigation it would be easy to go back and remind yourself of almost
+                everything you need.</p>
+            <p>Finally, the website will provide you with explanations in digestible language. Ideally, you
+                can show this to your grandma👵, and even she will understand how to make a slider!</p>
+            <div class="btn-link-wrapper">
+                <a href="/examples/scroll-revealing-navbar" class="btn-link">
+                    Example of a smart navbar
+                </a>
+            </div>
+        </article>
+    </div>
+</section>
+<section class="glassy-section" data-scroll-section>
+    <h2>Useful resources</h2>
+    <div class="column-2">
+        <div class="image">
+            <picture class="center" data-loading="lazy">
+                <source data-srcset="/static/images/resources.svg" media="(min-width: 60rem)">
+                <img data-src="/static/images/resources_mobile.svg" alt="Resources">
+            </picture>
+        </div>
+        <article class="text">
+            <h3>You don't have to start from scratch every time</h3>
+            <p>Developers always baulk into time management issues. This is why saving minutes and nerves
+                are important to take into account. The greatest way to approach the problem, in my opinion,
+                is to use online resources.</p>
+            <p>They are easy to access, not complicated to use, but almost impossible to find. That's why I
+                want to share my finding with you!</p>
+            <div class="btn-link-wrapper">
+                <a href="\helpful-websites" class="btn-link">Useful websites</a>
+            </div>
+        </article>
+    </div>
+</section>
+<section class="glassy-section center" data-scroll-section>
+    <h2>See all tutorials here</h2>
+    <ol class="cards-wrapper" data-tutorial-list>
+        <template id="tutorial-card-template">
+            <a class="card" href="" data-link>
+                <h3 data-name></h3>
+            </a>
+        </template>
+    </ol>
+</section>
+{% endblock %}

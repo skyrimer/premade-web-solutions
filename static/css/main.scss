@@ -44,33 +44,17 @@ h3,
   font-weight: 700;
   font-family: $ff-secondary;
 }
+.color-secondary {
+  color: $color-secondary;
+}
 h1 {
   font-size: 11vw;
-  line-height: 1.4;
-  letter-spacing: 0.05em;
-  text-align: center;
-
+  margin: 0 0 0.5em;
   opacity: 0;
   transform: translateY(10vh);
-  color: transparent;
-  background-clip: text;
-  -webkit-text-stroke: 1px $color-main;
-  animation: onload 3s ease forwards;
+  color: $color-main;
   @media screen and (min-width: $breakpoint-burger) {
-    font-size: $ff-xl;
-    margin-top: auto;
-  }
-  @keyframes onload {
-    66% {
-      color: transparent;
-      opacity: 1;
-      transform: translateY(0);
-    }
-    100% {
-      color: $color-main;
-      opacity: 1;
-      transform: translateY(0);
-    }
+    font-size: $ff-l;
   }
 }
 h2 {
@@ -83,7 +67,7 @@ h3 {
   font-size: $ff-m;
   line-height: 1.3;
   margin: 1em 0;
-  @media screen and (min-width: $breakpoint-burger) {
+  @media screen and (min-width: $breakpoint-home-columns) {
     margin-top: 0;
   }
 }
@@ -92,7 +76,8 @@ p {
   line-height: 1.5;
   margin-bottom: 1em;
 }
-img, picture {
+img,
+picture {
   width: 100%;
   height: 100%;
 }
@@ -117,9 +102,23 @@ img, picture {
   &:hover,
   &:focus {
     color: $color-background;
-    background: $color-primary;
+    background-color: $color-primary;
     box-shadow: 0 0 2em rgba($color: $color-primary, $alpha: 0.3),
       0 0 4em rgba($color: $color-primary, $alpha: 0.5);
+  }
+  &.secondary {
+    color: $color-secondary;
+    border: 1px solid $color-secondary;
+
+    &:hover,
+    &:focus {
+      box-shadow: 0 0 2em rgba($color: $color-secondary, $alpha: 0.3),
+        0 0 4em rgba($color: $color-secondary, $alpha: 0.5);
+    }
+    &.filled {
+      background-color: $color-secondary;
+      color: $color-background;
+    }
   }
 }
 .btn-toggler {
@@ -146,6 +145,8 @@ img, picture {
 
 .container {
   width: Min(95%, 120rem);
+  margin-left: auto;
+  margin-right: auto;
   margin: 0 auto;
 }
 #header {
@@ -160,7 +161,7 @@ img, picture {
     clip-path: circle($size / 2 at calc(100% - 4.5rem) calc(100% - 4.5rem));
     transition: $transition-main;
     opacity: 0;
-    animation: header-onload 1s ease forwards 2s;
+    animation: header-onload $transition-animate-in ease forwards;
     @media screen and (min-width: $breakpoint-burger) {
       top: 0;
       right: 0;
@@ -181,6 +182,9 @@ img, picture {
     cursor: pointer;
     background: transparent;
     transition: $transition-main;
+    opacity: 0;
+    animation: header-onload $transition-animate-in ease forwards;
+
     @media screen and (min-width: $breakpoint-burger) {
       display: none;
     }
@@ -188,11 +192,6 @@ img, picture {
       width: 100%;
       cursor: pointer;
       user-select: none;
-      opacity: 0;
-      animation: header-onload 1s ease forwards 2s;
-      @media screen and (min-width: $breakpoint-burger) {
-        animation: none;
-      }
       path {
         fill: none;
         stroke: $color-primary;
@@ -298,13 +297,39 @@ svg.logo {
   }
 }
 
-main {
+.splash {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column-reverse;
+  min-height: calc(100vh - 7rem);
+  gap: 2rem;
+  @media screen and (min-width: $breakpoint-home-columns) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  & > .image-wrapper {
+    flex-basis: Min(50%, 60rem);
+    img {
+      max-width: 40rem;
+      @media screen and (min-width: $breakpoint-home-columns) {
+        max-width: unset;
+      }
+    }
+  }
+  & > .splash-text {
+    flex-basis: Min(50%, 40rem);
+    p {
+      font-size: $ff-s;
+    }
+  }
+}
+main#swup {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   gap: Min(5em, 7vh);
-  width: 100%;
   min-height: 100vh;
   z-index: 1;
   section {
@@ -314,7 +339,7 @@ main {
     .column-2 {
       display: flex;
       flex-direction: column;
-      @media screen and (min-width: $breakpoint-burger) {
+      @media screen and (min-width: $breakpoint-home-columns) {
         gap: 2em;
         justify-content: space-between;
         > * {
@@ -327,13 +352,22 @@ main {
         }
       }
     }
-    &:nth-child(even) .column-2 {
-      @media screen and (min-width: $breakpoint-burger) {
-        flex-direction: row;
+    &:first-child {
+      margin-top: 10vh;
+      margin-top: 7rem;
+      &:not(.splash) {
+        @media screen and (min-width: $breakpoint-burger) {
+          margin-top: 9rem;
+        }
       }
     }
     &:nth-child(odd) .column-2 {
-      @media screen and (min-width: $breakpoint-burger) {
+      @media screen and (min-width: $breakpoint-home-columns) {
+        flex-direction: row;
+      }
+    }
+    &:nth-child(even) .column-2 {
+      @media screen and (min-width: $breakpoint-home-columns) {
         flex-direction: row-reverse;
       }
     }
@@ -352,84 +386,9 @@ main {
     }
   }
 }
-.fullscreen {
-  min-height: 100vh;
-}
 .copyright {
   text-align: center;
   margin: 0;
-}
-// Animations
-.scrolldown {
-  $size: 1.5rem;
-  position: relative;
-  z-index: 3;
-  width: $size;
-  height: $size;
-  @media screen and (min-width: $breakpoint-burger) {
-    margin: auto 0 0;
-    transform: translate(0, -450%);
-  }
-  .chevron {
-    position: absolute;
-    left: -25%;
-    width: $size * 1.5;
-    height: $size / 3;
-    opacity: 0;
-    transform: scale3d(0.5, 0.5, 0.5);
-    animation: move 3s ease-out 2s infinite;
-  }
-
-  .chevron:first-child {
-    animation: move 3s ease-out 3s infinite;
-  }
-
-  .chevron:nth-child(2) {
-    animation: move 3s ease-out 4s infinite;
-  }
-
-  .chevron:before,
-  .chevron:after {
-    content: "";
-    position: absolute;
-    top: 0;
-    height: 100%;
-    width: 50%;
-    background: $color-primary;
-  }
-
-  .chevron:before {
-    left: 0;
-    transform: skew(0deg, 30deg);
-  }
-
-  .chevron:after {
-    right: 0;
-    transform: skew(0deg, -30deg);
-  }
-
-  @keyframes move {
-    25% {
-      opacity: 1;
-    }
-    33% {
-      opacity: 1;
-      transform: translateY($size * 2);
-    }
-    67% {
-      opacity: 1;
-      transform: translateY($size * 2.5);
-    }
-    100% {
-      opacity: 0;
-      transform: translateY($size * 3) scale3d(0.5, 0.5, 0.5);
-    }
-  }
-  @keyframes pulse {
-    to {
-      opacity: 1;
-    }
-  }
 }
 
 .wavy-hand {
@@ -471,11 +430,13 @@ ul.text li {
 
 // Custom scrollbar
 .c-scrollbar {
+  width: $scrollbar-width;
   z-index: 11;
 }
 .c-scrollbar_thumb {
   background-color: $color-main;
   opacity: 0.9;
+  width: $scrollbar-width;
 }
 
 // Intersection observer
@@ -483,7 +444,8 @@ ul.text li {
 [data-scroll-section] .text > * {
   opacity: 0;
   transform: translateY(2vh);
-  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  transition: opacity $transition-animate-in ease-out,
+    transform $transition-animate-in ease-out;
   &.show {
     opacity: 1;
     transform: translateY(0);
@@ -556,13 +518,6 @@ html.is-animating .c-scrollbar {
   text-align: center;
   img {
     width: Min(50%, 50rem);
-  }
-}
-// All examples
-.example {
-  margin-top: 10vh;
-  @media screen and (min-width: $breakpoint-burger) {
-    margin-top: Max(10rem, 10vh);
   }
 }
 
