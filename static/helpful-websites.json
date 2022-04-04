@@ -1,0 +1,163 @@
+{
+    "Buttons": [
+        {
+            "name": "CSS Scan",
+            "url": "https://getcssscan.com/css-buttons-examples"
+        },
+        {
+            "name": "CSSbuttons",
+            "url": "https://cssbuttons.io"
+        },
+                {
+            "name": "More Toggles",
+            "url": "https://jnkkkk.github.io/MoreToggles.css/"
+        }
+    ],
+    "Design mockups": [
+        {
+            "name": "Creatoom",
+            "url": "https://creatoom.com"
+        },
+        {
+            "name": "Mockup Daddy",
+            "url": "https://www.mockupdaddy.com"
+        },
+        {
+            "name": "Mockup Zone",
+            "url": "https://mockup.zone"
+        },
+        {
+            "name": "Original Mockups",
+            "url": "https://originalmockups.com"
+        },
+        {
+            "name": "Mockup Cloud",
+            "url": "https://www.mockupcloud.co"
+        }
+    ],
+    "Design tools": [
+        {
+            "name": "My color space",
+            "url": "https://mycolor.space",
+            "description": "Creates a colour palette from a single colour"
+        },
+        {
+            "name": "Neumorphism.io",
+            "url": "https://neumorphism.io",
+            "description": "Creates neumorphismic styling"
+        },
+        {
+            "name": "Color Contrast Checker",
+            "url": "https://coolors.co/contrast-checker/112a46-acc8e5",
+            "description": "Helps to check the accessability of the colours"
+        },
+        {
+            "name": "Loading.io",
+            "url": "https://loading.io",
+            "description": "A loading animation generator"
+        },
+        {
+            "name": "TinyPng",
+            "url": "https://tinypng.com",
+            "description": "A photo minifier with almost 0 quality loss"
+        },
+        {
+            "name": "Let's enhance",
+            "url": "https://letsenhance.io",
+            "description": "Increases the resolution of an image and enhances it"
+        },
+        {
+            "name": "Responsively",
+            "url": "https://responsively.app",
+            "description": "Allows to easily test your website on different screen sizes"
+        }
+    ],
+    "Vector images": [
+        {
+            "name": "Undraw",
+            "url": "https://undraw.co/illustrations"
+        },
+        {
+            "name": "StorySet",
+            "url": "https://storyset.com/search"
+        },
+        {
+            "name": "GetAvataaars",
+            "url": "https://getavataaars.com"
+        },
+        {
+            "name": "Fresh Folk",
+            "url": "https://fresh-folk.com"
+        }
+    ],
+    "Photos and Videos": [
+        {
+            "name": "Videvo",
+            "url": "https://www.videvo.net"
+        },
+        {
+            "name": "Pexels",
+            "url": "https://www.pexels.com"
+        },
+        {
+            "name": "Pixabay",
+            "url": "https://pixabay.com/ru/photos/"
+        },
+        {
+            "name": "FreePik",
+            "url": "https://ru.freepik.com"
+        },
+        {
+            "name": "Unsplash",
+            "url": "https://unsplash.com"
+        }
+    ],
+    "Icons": [
+        {
+            "name": "Flaticon",
+            "url": "https://www.flaticon.com"
+        },
+        {
+            "name": "Icons8",
+            "url": "https://icons8.com"
+        },
+        {
+            "name": "Hero icons",
+            "url": "https://heroicons.com"
+        },
+        {
+            "name": "FontAwesome",
+            "url": "https://fontawesome.com"
+        },
+        {
+            "name": "SvgRepo",
+            "url": "https://www.svgrepo.com"
+        },
+        {
+            "name": "Feather Icons",
+            "url": "https://feathericons.com"
+        },
+        {
+            "name": "IonIcons",
+            "url": "https://ionic.io/ionicons"
+        }
+    ],
+    "Backgrounds": [
+        {
+            "name": "BG Jar",
+            "url": "https://bgjar.com"
+        },
+        {
+            "name": "Gradient Magic",
+            "url": "https://www.gradientmagic.com/browse"
+        },
+        {
+            "name": "Gradient Backgrounds",
+            "url": "https://cssgradient.io/gradient-backgrounds/"
+        },
+        {
+            "name": "Web Gradients",
+            "url": "https://webgradients.com"
+        }
+    ]
+}

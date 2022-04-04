@@ -145,8 +145,6 @@ picture {
 
 .container {
   width: Min(95%, 120rem);
-  margin-left: auto;
-  margin-right: auto;
   margin: 0 auto;
 }
 #header {
@@ -300,13 +298,13 @@ svg.logo {
 .splash {
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: flex-end;
   flex-direction: column-reverse;
-  min-height: calc(100vh - 7rem);
   gap: 2rem;
   @media screen and (min-width: $breakpoint-home-columns) {
     flex-direction: row;
     justify-content: space-between;
+    min-height: calc(100vh - $header-size);
   }
   & > .image-wrapper {
     flex-basis: Min(50%, 60rem);
@@ -319,9 +317,6 @@ svg.logo {
   }
   & > .splash-text {
     flex-basis: Min(50%, 40rem);
-    p {
-      font-size: $ff-s;
-    }
   }
 }
 main#swup {
@@ -353,11 +348,13 @@ main#swup {
       }
     }
     &:first-child {
-      margin-top: 10vh;
-      margin-top: 7rem;
-      &:not(.splash) {
-        @media screen and (min-width: $breakpoint-burger) {
-          margin-top: 9rem;
+      margin-top: 2rem;
+      @media screen and (min-width: $breakpoint-burger) {
+        margin-top: $header-size + 2rem;
+      }
+      &.splash {
+        @media screen and (min-width: $breakpoint-home-columns) {
+          margin-top: $header-size;
         }
       }
     }
