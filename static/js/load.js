@@ -5,38 +5,38 @@ export const loadHelpfulWebsites = async () => {
   const strToPath = (string) => {
     return string.toLowerCase().split(" ").join("-");
   };
-  const main = document.querySelector("main#swup");
-  const footer = main.querySelector("section:last-child");
-  const tableOfContents = document.querySelector("[data-content-list]");
-  const templateLink = tableOfContents.querySelector("#template-link");
-  const templateSlider = document.querySelector("#template-slider");
-  const templateSlide = document.querySelector("#template-slide");
+  const main = qs("main#swup");
+  const footer = qs("section:last-child", main);
+  const tableOfContents = qs("[data-content-list]");
+  const templateLink = qs("#template-link", tableOfContents);
+  const templateSlider = qs("#template-slider");
+  const templateSlide = qs("#template-slide");
   const response = await fetch("/static/helpful-websites.json");
   const data = await response.json();
   for (let section in data) {
     const sectionHref = strToPath(section);
     // Table of Contents
     const sectionLink = copyElement(templateLink);
-    const link = sectionLink.querySelector("a");
+    const link = qs("a", sectionLink);
     link.textContent = section;
-    link.href = sectionHref;
+    link.href = `#${sectionHref}`;
     tableOfContents.appendChild(sectionLink);
     // Sliders
     const slider = copyElement(templateSlider);
     slider.id = sectionHref;
     data[section].forEach((slideData) => {
       const slide = copyElement(templateSlide);
-      const slideLink = slide.querySelector("[data-link");
+      const slideLink = qs("[data-link", slide);
       slideLink.href = slideData.url;
       slideLink.textContent = slideData.name;
-      const slideImage = slide.querySelector("[data-image]");
+      const slideImage = qs("[data-image]", slide);
       slideImage.alt = slideData.name;
       slideImage.dataset.src = `/static/images/helpful_websites/${strToPath(
         slideData.name
       )}.png`;
-      slider.querySelector(".swiper-wrapper").appendChild(slide);
+      qs(".swiper-wrapper", slider).appendChild(slide);
     });
-    slider.querySelector("[data-header]").textContent = section;
+    qs("[data-header]", slider).textContent = section;
     main.insertBefore(slider, footer);
   }
   templateLink.remove();
@@ -44,15 +44,15 @@ export const loadHelpfulWebsites = async () => {
   templateSlide.remove();
 };
 export const loadTutorialCards = async (scroll) => {
-  const tutorialList = document.querySelector("[data-tutorial-list]");
-  const cardTemplate = document.querySelector("#tutorial-card-template");
+  const tutorialList = qs("[data-tutorial-list]");
+  const cardTemplate = qs("#tutorial-card-template");
   fetch("/static/tutorials.json")
     .then((response) => response.json())
     .then((data) => {
       data.forEach((tutorial) => {
         const card = cardTemplate.content.cloneNode(true).children[0];
         card.href = "/examples/" + tutorial.url;
-        const name = card.querySelector("[data-name]");
+        const name = qs("[data-name]", card);
         name.textContent = tutorial.name;
         tutorialList.appendChild(card);
       });

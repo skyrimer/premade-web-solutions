@@ -1,6 +1,5 @@
 export const highlightAllCode = async () => {
-  loadScriptIfDoesnt("")
-  document.querySelectorAll("code").forEach((code) => {
+  qsa("code").forEach((code) => {
     hljs.highlightElement(code);
   });
 };
@@ -60,12 +59,12 @@ export const activateSlider = async () => {
   });
 };
 export const activateTabs = async () => {
-  document.querySelectorAll(".tab-link").forEach((link) => {
+  qsa(".tab-link").forEach((link) => {
     link.addEventListener("click", (event) => {
       const newButton = event.currentTarget;
       const newTab = document.getElementById(newButton.dataset.tabId);
-      const activeButton = document.querySelector(".tab-link.active");
-      const activeTab = document.querySelector(".tab-content.active");
+      const activeButton = qs(".tab-link.active");
+      const activeTab = qs(".tab-content.active");
       if (newButton !== activeButton) {
         activeTab.className = activeTab.className.replace(" active", " disappear");
         activeButton.className = activeButton.className.replace(" active", "");
@@ -79,21 +78,21 @@ export const activateTabs = async () => {
   });
 };
 export const activateAccordions = async (scroll) => {
-  const spoilersContent = document.querySelectorAll(".accordion-content");
-  const openedAccordion = document.querySelector(".accordion.open");
+  const spoilersContent = qsa(".accordion-content");
+  const openedAccordion = qs(".accordion.open");
   const activeClass = "open";
   const animationDuration = 300;
 
   const closeAccordion = (accordion) => {
     if (accordion) {
-      accordion.querySelector(".accordion-content-wrapper").style.maxHeight = 0;
+      qs(".accordion-content-wrapper", accordion).style.maxHeight = 0;
       accordion.classList.remove(activeClass);
     }
   };
 
   const openAccordion = (accordion) => {
     accordion.classList.add(activeClass);
-    const accordionContent = accordion.querySelector(".accordion-content-wrapper");
+    const accordionContent = qs(".accordion-content-wrapper", accordion);
     accordionContent.style.maxHeight = accordionContent.dataset.contentWidth;
   };
 
@@ -103,16 +102,14 @@ export const activateAccordions = async (scroll) => {
 
   if (openedAccordion) openAccordion(openedAccordion);
 
-  const accordionTogglers = document.querySelectorAll(".accordion-toggler");
+  const accordionTogglers = qsa(".accordion-toggler");
   accordionTogglers.forEach((toggler) => {
     toggler.addEventListener("click", (event) => {
       const togglerParent = toggler.parentElement;
-      const openedAccordion =
-        togglerParent.parentElement.querySelector(".accordion.open");
+      const openedAccordion = qs(".accordion.open", togglerParent.parentElement);
       if (openedAccordion == togglerParent) {
         closeAccordion(togglerParent);
       } else {
-        // If you want to make just a spoiler, then remove the next line
         closeAccordion(openedAccordion);
         openAccordion(togglerParent);
       }
@@ -123,22 +120,22 @@ export const activateAccordions = async (scroll) => {
   });
 };
 export const activateSpoilers = async (scroll) => {
-  const spoilersContent = document.querySelectorAll(".spoiler-content");
-  const openedSpoiler = document.querySelector(".spoiler.open");
-  const spoilerTogglers = document.querySelectorAll(".spoiler-toggler");
+  const spoilersContent = qsa(".spoiler-content");
+  const openedSpoiler = qs(".spoiler.open");
+  const spoilerTogglers = qsa(".spoiler-toggler");
   const activeClass = "open";
   const animationDuration = 300;
 
   const closeSpoiler = (spoiler) => {
     if (spoiler) {
-      spoiler.querySelector(".spoiler-content-wrapper").style.maxHeight = 0;
+      qs(".spoiler-content-wrapper", spoiler).style.maxHeight = 0;
       spoiler.classList.remove(activeClass);
     }
   };
 
   const openSpoiler = (spoiler) => {
     spoiler.classList.add(activeClass);
-    const spoilerContent = spoiler.querySelector(".spoiler-content-wrapper");
+    const spoilerContent = qs(".spoiler-content-wrapper", spoiler);
     spoilerContent.style.maxHeight = spoilerContent.dataset.contentWidth;
   };
 
@@ -163,20 +160,20 @@ export const activateSpoilers = async (scroll) => {
   });
 };
 export const activatePopup = async () => {
-  const containsPopup = document.querySelector(".popup");
+  const containsPopup = qs(".popup");
   if (!containsPopup) {
     return NaN;
   }
-  const popupLinks = document.querySelectorAll(".popup-link");
-  const body = document.querySelector("body");
-  const popupClosers = document.querySelectorAll(".popup-close");
-  const paddingLock = [body, ...document.querySelectorAll(".lock-padding")];
+  const popupLinks = qsa(".popup-link");
+  const body = qs("body");
+  const popupClosers = qsa(".popup-close");
+  const paddingLock = [body, ...qsa(".lock-padding")];
   const timeOut = 500;
   let unlock = true;
 
   const popupOpen = (popup) => {
     if (popup && unlock) {
-      const popupActive = document.querySelector(".popup.open");
+      const popupActive = qs(".popup.open");
       if (popupActive) {
         popupClose(popupActive, false);
       } else {
@@ -241,7 +238,7 @@ export const activatePopup = async () => {
   });
 
   document.addEventListener("keydown", (event) => {
-    const openedPopup = document.querySelector(".popup.open");
+    const openedPopup = qs(".popup.open");
     if (event.key == "Escape" && openedPopup) {
       console.log("Closing popup");
       popupClose(openedPopup);

@@ -23,18 +23,17 @@ window.onload = () => {
     activateOnscrollAnimations();
     activateLazyLoading(scroll);
     activateIdLinks(scroll);
-    if (document.querySelector("code")) highlightAllCode();
-    if (document.querySelector("[data-tutorial-list]")) loadTutorialCards(scroll);
-    if (document.querySelector("#togglers-wrapper")) activateCustomCursorExample();
-    if (document.querySelector(".swiper")) activateSlider();
-    if (document.querySelector(".tab-link")) activateTabs();
-    if (document.querySelector(".popup")) activatePopup();
-    if (document.querySelector(".accordion")) activateAccordions(scroll);
-    if (document.querySelector(".spoiler")) activateSpoilers(scroll);
-    scroll.update();
+    if (qs("code")) highlightAllCode();
+    if (qs("[data-tutorial-list]")) loadTutorialCards(scroll);
+    if (qs("#togglers-wrapper")) activateCustomCursorExample();
+    if (qs(".swiper")) activateSlider();
+    if (qs(".tab-link")) activateTabs();
+    if (qs(".popup")) activatePopup();
+    if (qs(".accordion")) activateAccordions(scroll);
+    if (qs(".spoiler")) activateSpoilers(scroll);
   };
   const scroll = new LocomotiveScroll({
-    el: document.querySelector("[data-scroll-container]"),
+    el: qs("[data-scroll-container]"),
     smooth: true,
     reloadOnContextChange: true,
     resetNativeScroll: false,
@@ -47,13 +46,13 @@ window.onload = () => {
   });
   activateNavbar();
   pasteCurrentYear();
-  initPage(scroll);
+  initPage(scroll).then(scroll.update());
   // Swup
   const swup = new Swup({
     animateHistoryBrowsing: true,
   });
   swup.on("contentReplaced", () => {
-    initPage(scroll);
+    initPage(scroll).then(scroll.update());
   });
   swup.on("animationOutDone", () => {
     if (!window.location.hash) {
