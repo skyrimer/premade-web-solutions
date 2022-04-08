@@ -1,11 +1,10 @@
 APScheduler==3.9.1
+autopep8==1.6.0
 click==8.1.2
-colorama==0.4.4
-colorhash==1.0.4
 configparser==5.2.0
 Flask==2.1.1
-Flask-MonitoringDashboard==3.1.1
 Flask-SQLAlchemy==2.5.1
+flask-view-counter==0.1.2
 greenlet==1.1.2
 gunicorn==20.1.0
 importlib-metadata==4.11.3
@@ -14,10 +13,13 @@ Jinja2==3.1.1
 MarkupSafe==2.1.1
 numpy==1.22.3
 psutil==5.9.0
+pycodestyle==2.8.0
 pytz==2022.1
 scipy==1.8.0
 six==1.16.0
 SQLAlchemy==1.4.35
+toml==0.10.2
 tzlocal==2.0.0
 Werkzeug==2.1.1
+WTForms==3.0.1
 zipp==3.8.0

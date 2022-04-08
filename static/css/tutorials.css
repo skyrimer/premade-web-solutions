@@ -402,4 +402,30 @@ body.lock {
 .accordion.open h3::after,
 .spoiler.open h3::after {
   transform: translateY(-50%) rotate(0);
+}
+
+.table .row {
+  display: flex;
+}
+.table .row:nth-child(odd) .cell {
+  background-color: rgba(166, 178, 236, 0.1);
+}
+.table .row:nth-child(even) .cell {
+  background-color: rgba(247, 247, 247, 0.1);
+}
+.table .row.headers > .cell {
+  background-color: #f9a826;
+  border: 1px solid #f9a826;
+}
+.table .row .cell {
+  flex-basis: 100%;
+  border: 1px solid #f7f7f7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1em;
+  transition: all 0.3s ease;
+}
+.table .row .cell p {
+  margin: 0;
 }/*# sourceMappingURL=tutorials.css.map */

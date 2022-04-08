@@ -352,3 +352,30 @@ body.lock {
     transform: translateY(-50%) rotate(0);
   }
 }
+
+// Admin
+.table .row {
+  display: flex;
+  &:nth-child(odd) .cell {
+    background-color: rgba($color: $color-tertiary, $alpha: 0.1);
+  }
+  &:nth-child(even) .cell {
+    background-color: rgba($color: $color-main, $alpha: 0.1);
+  }
+  &.headers > .cell {
+    background-color: $color-secondary;
+    border: 1px solid $color-secondary;
+  }
+  .cell {
+    flex-basis: 100%;
+    border: 1px solid $color-main;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1em;
+    transition: $transition-main;
+    p {
+      margin: 0;
+    }
+  }
+}

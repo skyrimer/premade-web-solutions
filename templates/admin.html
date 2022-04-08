@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+{% block content %}
+<section class="glassy-section" data-scroll-section>
+    <h2>Views statistics</h2>
+    <h3>Total views: {{ total_views }}</h3>
+    <h3>Number of views per page</h3>
+    <div class="table">
+        <div class="row headers">
+            <div class="cell">
+                <p>Page</p>
+            </div>
+            <div class="cell">
+                <p>Number of views</p>
+            </div>
+        </div>
+        {% for key, value in views_per_page.items() %}
+        <div class="row">
+            <div class="cell">
+                <p>{{ key }}</p>
+            </div>
+            <div class="cell">
+                <p>{{ value }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <h3>All data</h3>
+    <div class="table">
+        <div class="row headers">
+            <div class="cell">
+                <p>Time</p>
+            </div>
+            <div class="cell">
+                <p>Ip</p>
+            </div>
+            <div class="cell">
+                <p>User agent</p>
+            </div>
+            <div class="cell">
+                <p>Path</p>
+            </div>
+            <div class="cell">
+                <p>Status</p>
+            </div>
+        </div>
+        {% for view in all_views %}
+        <div class="row">
+            <div class="cell">
+                <p>{{ view.hour}}:{{view.minute}} - {{ view.day }}.{{ view.month }}.{{ view.year }}</p>
+            </div>
+            <div class="cell">
+                <p>{{ view.ip }}</p>
+
+            </div>
+            <div class="cell">
+                <p>{{ view.user_agent }}</p>
+
+            </div>
+            <div class="cell">
+                <p>{{ view.path }}</p>
+
+            </div>
+            <div class="cell">
+                <p>{{ view.status }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
