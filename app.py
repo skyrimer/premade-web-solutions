@@ -1,8 +1,17 @@
 from flask import Flask, render_template, abort, send_from_directory, request
 from os import getcwd
+from os import environ
 from os.path import isfile
+from flask_sqlalchemy import SQLAlchemy
+import flask_monitoringdashboard as dashboard
 from os.path import join as join_path
 app = Flask(__name__)
+app.config["SECRET_KEY"] = environ.get("SECRET_KEY")
+app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///database.sqlite3'
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+db = SQLAlchemy(app)
+dashboard.config.init_from(file='config.cfg')
+dashboard.bind(app)
 if app.debug == True:
     app.config["TEMPLATES_AUTO_RELOAD"] = True
     app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
@@ -26,6 +35,7 @@ def home():
 @app.route('/about')
 def about():
     return render_template("about.html", title="About us")
+
 
 @app.route("/tutorials")
 def tutorials():
