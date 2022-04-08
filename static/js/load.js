@@ -46,17 +46,27 @@ export const loadHelpfulWebsites = async () => {
 export const loadTutorialCards = async (scroll) => {
   const tutorialList = qs("[data-tutorial-list]");
   const cardTemplate = qs("#tutorial-card-template");
+  const tutorialSearch = qs("#cards-search");
+  let tutorials = [];
   fetch("/static/tutorials.json")
     .then((response) => response.json())
     .then((data) => {
-      data.forEach((tutorial) => {
+      tutorials = data.map((tutorial) => {
         const card = cardTemplate.content.cloneNode(true).children[0];
         card.href = "/examples/" + tutorial.url;
         const name = qs("[data-name]", card);
         name.textContent = tutorial.name;
         tutorialList.appendChild(card);
+        return { name: tutorial.name.toLowerCase(), element: card };
       });
-      cardTemplate.remove();
-      scroll.update();
     });
+  tutorialSearch.addEventListener("input", ({ target }) => {
+    tutorials.forEach((tutorial) => {
+      const isVisible = tutorial.name.includes(target.value.toLowerCase());
+      tutorial.element.classList.toggle("hide", !isVisible);
+    });
+    scroll.update();
+  });
+  cardTemplate.remove();
+  scroll.update();
 };

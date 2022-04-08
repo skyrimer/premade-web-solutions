@@ -107,14 +107,15 @@ code {
 .floating-label-wrapper {
   position: relative;
   margin: max(1.5em, 4vh) 0;
+  width: min(100%, 50rem);
 }
 .floating-label-wrapper input {
+  width: 100%;
   font-size: clamp(0.9rem, 3vw, 1.3rem);
-  width: min(100%, 50rem);
   padding: 2em 2rem 0.5em;
   color: #f7f7f7;
-  background-color: #080c25;
-  border-bottom: 1px solid #00ffc2;
+  background-color: rgba(166, 178, 236, 0.1);
+  border-bottom: 1px solid #f9a826;
   border-radius: 0.5em;
 }
 .floating-label-wrapper input::-moz-placeholder {
@@ -126,15 +127,15 @@ code {
 .floating-label-wrapper input::placeholder {
   color: transparent;
 }
-.floating-label-wrapper input:-moz-placeholder-shown + label {
+.floating-label-wrapper input:-moz-placeholder-shown:not(:focus) + label {
   transform: translateY(-50%);
   font-size: clamp(0.875rem, 3vw, 1.2rem);
 }
-.floating-label-wrapper input:-ms-input-placeholder + label {
+.floating-label-wrapper input:-ms-input-placeholder:not(:focus) + label {
   transform: translateY(-50%);
   font-size: clamp(0.875rem, 3vw, 1.2rem);
 }
-.floating-label-wrapper input:placeholder-shown + label {
+.floating-label-wrapper input:placeholder-shown:not(:focus) + label {
   transform: translateY(-50%);
   font-size: clamp(0.875rem, 3vw, 1.2rem);
 }
@@ -148,8 +149,9 @@ code {
   position: absolute;
   top: 50%;
   left: 2rem;
-  color: #00ffc2;
+  color: #f9a826;
   transition: all 0.3s ease;
+  cursor: text;
 }
 
 .tabs-wrapper {

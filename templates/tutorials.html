@@ -2,6 +2,12 @@
 {% block content %}
 <section class="glassy-section" data-scroll-section>
     <h2>All tutorials</h2>
+    <div class="center">
+        <div class="floating-label-wrapper">
+            <input type="text" class="floating-input" id="cards-search" placeholder="Search for tutorial">
+            <label for="cards-search">Search for tutorial</label>
+        </div>
+    </div>
     <ol class="cards-wrapper" data-tutorial-list>
         <template id="tutorial-card-template">
             <a class="card" href="" data-link>

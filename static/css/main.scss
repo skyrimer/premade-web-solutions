@@ -452,7 +452,6 @@ ul.text li {
 // Swup
 .transition-fade {
   transition: $transition-page-transition;
-  transform: none;
   opacity: 1;
 }
 
@@ -460,17 +459,19 @@ html.is-animating .transition-fade,
 html.is-animating .c-scrollbar {
   opacity: 0;
 }
-html.is-leaving .transition-fade {
-  transform: translateX(-50vw);
-}
-html.is-rendering .transition-fade {
-  animation: fadeback $transition-page-transition;
-  @keyframes fadeback {
-    from {
-      transform: translateX(50vw);
-    }
-    to {
-      transform: translateX(0);
+@media screen and (min-width: $breakpoint-mobile-width) {
+  html.is-leaving .transition-fade {
+    transform: translateX(-50vw);
+  }
+  html.is-rendering .transition-fade {
+    animation: fadeback $transition-page-transition;
+    @keyframes fadeback {
+      from {
+        transform: translateX(50vw);
+      }
+      to {
+        transform: none;
+      }
     }
   }
 }
@@ -493,6 +494,9 @@ html.is-rendering .transition-fade {
   position: relative;
   counter-increment: list;
   transition: $transition-main;
+  &.hide {
+    display: none;
+  }
   &::before {
     content: counter(list);
     position: absolute;

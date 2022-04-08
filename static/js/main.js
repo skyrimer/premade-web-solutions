@@ -56,7 +56,7 @@ window.onload = () => {
   });
   swup.on("animationOutDone", () => {
     if (!window.location.hash) {
-      scroll.scrollTo("top", { duration: 0 });
+      scroll.scrollTo("top", { duration: 0, disableLerp: true });
     }
   });
 };
