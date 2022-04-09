@@ -67,6 +67,5 @@ export const loadTutorialCards = async (scroll) => {
     });
     scroll.update();
   });
-  cardTemplate.remove();
   scroll.update();
 };

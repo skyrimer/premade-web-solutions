@@ -31,6 +31,7 @@ window.onload = () => {
     if (qs(".popup")) activatePopup();
     if (qs(".accordion")) activateAccordions(scroll);
     if (qs(".spoiler")) activateSpoilers(scroll);
+    scroll.update();
   };
   const scroll = new LocomotiveScroll({
     el: qs("[data-scroll-container]"),

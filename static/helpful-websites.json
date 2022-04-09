@@ -67,6 +67,11 @@
             "description": "Increases the resolution of an image and enhances it"
         },
         {
+            "name": "Cheeky Palettes",
+            "url": "https://www.cheekypalettes.com",
+            "description": "Allows to check your colour palette on a sample website"
+        },
+        {
             "name": "Responsively",
             "url": "https://responsively.app",
             "description": "Allows to easily test your website on different screen sizes"
@@ -86,6 +91,14 @@
             "url": "https://getavataaars.com"
         },
         {
+            "name": "Open Peeps",
+            "url": "https://www.openpeeps.com"
+        },
+        {
+            "name": "Ira Design",
+            "url": "https://iradesign.io"
+        },
+        {
             "name": "Fresh Folk",
             "url": "https://fresh-folk.com"
         }
@@ -101,11 +114,19 @@
         },
         {
             "name": "Pixabay",
-            "url": "https://pixabay.com/ru/photos/"
+            "url": "https://pixabay.com"
         },
         {
             "name": "FreePik",
             "url": "https://ru.freepik.com"
+        },
+        {
+            "name": "PngTree",
+            "url": "https://pngtree.com"
+        },
+        {
+            "name": "FavPng",
+            "url": "https://favpng.com"
         },
         {
             "name": "Unsplash",
@@ -138,8 +159,36 @@
             "url": "https://feathericons.com"
         },
         {
-            "name": "IonIcons",
-            "url": "https://ionic.io/ionicons"
+            "name": "Icon Scout",
+            "url": "https://iconscout.com"
+        },
+        {
+            "name": "The Noun Project",
+            "url": "https://thenounproject.com"
+        },
+        {
+            "name": "Boxicons",
+            "url": "https://boxicons.com"
+        },
+        {
+            "name": "Css.gg",
+            "url": "https://css.gg/app"
+        },
+        {
+            "name": "Polaris Icons",
+            "url": "https://polaris-icons.shopify.com"
+        },
+        {
+            "name": "Material Icons",
+            "url": "https://fonts.google.com/icons"
+        },
+        {
+            "name": "Orion Icon library",
+            "url": "https://fonts.google.com/icons"
+        },
+        {
+            "name": "Iconic",
+            "url": "https://iconic.app"
         }
     ],
     "Backgrounds": [
@@ -158,6 +207,34 @@
         {
             "name": "Web Gradients",
             "url": "https://webgradients.com"
+        },
+        {
+            "name": "Haikei",
+            "url": "https://haikei.app"
+        },
+        {
+            "name": "Uihut",
+            "url": "https://uihut.com/home"
+        },
+        {
+            "name": "Ffflux",
+            "url": "https://fffuel.co/ffflux/"
+        },
+        {
+            "name": "Paaatterns",
+            "url": "https://products.ls.graphics/paaatterns/index.html"
+        },
+        {
+            "name": "Hero Patterns",
+            "url": "https://heropatterns.com"
+        },
+        {
+            "name": "The Pattern Library",
+            "url": "http://thepatternlibrary.com"
+        },
+        {
+            "name": "Getwaves",
+            "url": "https://getwaves.io"
         }
     ]
 }

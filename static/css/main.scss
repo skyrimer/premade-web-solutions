@@ -428,6 +428,7 @@ ul.text li {
 // Custom scrollbar
 .c-scrollbar {
   width: $scrollbar-width;
+  opacity: 1;
   z-index: 11;
 }
 .c-scrollbar_thumb {
