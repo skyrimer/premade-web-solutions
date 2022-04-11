@@ -8,7 +8,6 @@ import {
 import {
   highlightAllCode,
   activateCustomCursorExample,
-  activateSlider,
   activateTabs,
   activateAccordions,
   activateSpoilers,
@@ -26,7 +25,6 @@ window.onload = () => {
     if (qs("code")) highlightAllCode();
     if (qs("[data-tutorial-list]")) loadTutorialCards(scroll);
     if (qs("#togglers-wrapper")) activateCustomCursorExample();
-    if (qs(".swiper")) activateSlider();
     if (qs(".tab-link")) activateTabs();
     if (qs(".popup")) activatePopup();
     if (qs(".accordion")) activateAccordions(scroll);
