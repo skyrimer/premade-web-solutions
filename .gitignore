@@ -136,3 +136,4 @@ cython_debug/
 
 .vscode/
 Desktop.ini
+database.sqlite3
