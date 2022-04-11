@@ -59,7 +59,7 @@ export const activateOnscrollAnimations = async () => {
   });
 };
 export const activateLazyLoading = async (scroll) => {
-  const images = document.querySelectorAll("img:not(.swiper-lazy)[data-src]");
+  const images = document.querySelectorAll("img[data-src]");
   const sources = document.querySelectorAll("picture>source[data-srcset]");
   const replaceDataValue = (target, dataValue, value) => {
     target.setAttribute(value, target.getAttribute(dataValue));

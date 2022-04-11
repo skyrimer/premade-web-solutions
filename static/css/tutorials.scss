@@ -132,23 +132,85 @@ code {
   width: Min(700px, 100%);
   margin-bottom: 5rem;
 }
+.tabs-wrapper.full-width {
+  width: Min(1124px, 100%);
+  img {
+    transition: $transition-main;
+  }
+  .effect-box {
+    color: $color-primary;
+    position: absolute;
+    z-index: 10;
+    display: inline-block;
+    padding: 1em 2em;
+    opacity: 0;
+    font-size: $ff-m;
+    transition: $transition-main;
 
+    &:before,
+    &:after {
+      content: "";
+      position: absolute;
+      transition: $transition-main;
+      inset: 0;
+      border-style: solid;
+      border-color: $color-primary;
+      transition-delay: $transition-duration / 3;
+    }
+    &:before {
+      border-width: 2px 0 2px 0;
+      transform: scaleX(0);
+    }
+    &:after {
+      border-width: 0 2px 0 2px;
+      transform: scaleY(0);
+    }
+    &:hover {
+      background: $color-primary;
+      box-shadow: 0 0 1em $color-primary;
+      color: #000;
+    }
+  }
+  .tab-content.active,
+  .tab-content.disappear {
+    display: grid;
+    place-items: center;
+    position: relative;
+    padding: 0;
+    &:hover {
+      img {
+        filter: brightness(20%);
+      }
+      .effect-box {
+        opacity: 1;
+      }
+      .effect-box::after,
+      .effect-box::before {
+        opacity: 1;
+      }
+      .effect-box:before,
+      .effect-box:after {
+        transform: scale(1, 1);
+      }
+    }
+  }
+}
 .tab-links-wrapper {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  background-color: #ffffff;
-  width: 100%;
+  background-color: $color-main;
   button {
-    font-size: 1rem;
+    font-size: $ff-s;
     font-weight: 700;
-    flex: 0 0 Max(33.33333333%, 8em);
+    flex: 0 0 auto;
     border: none;
     outline: none;
     cursor: pointer;
-    padding: 1em 0.2em;
+    padding: 1em 1.5em;
     transition: $tab-animation-duration;
+    background-color: $color-main;
     &:hover {
       background-color: lighten($color: $color-secondary, $amount: 30);
     }
@@ -166,9 +228,6 @@ code {
     color: $color-secondary;
     font-size: 2rem;
     margin-bottom: 0.5em;
-  }
-  p {
-    line-height: 1.5;
   }
   &.active {
     transform: translateY(-2em);
@@ -193,7 +252,6 @@ code {
     opacity: 1;
   }
 }
-
 @keyframes disappear {
   from {
     opacity: 1;
@@ -222,6 +280,15 @@ body.lock {
   transition: $transition-modal-window;
   background-color: $popup-background;
   backdrop-filter: blur(3px);
+  .open {
+    opacity: 1;
+    visibility: visible;
+    .popup-body {
+      /* Animation */
+      transform: perspective(1000px);
+      opacity: 1;
+    }
+  }
 }
 .popup-body {
   opacity: 0;
@@ -254,15 +321,6 @@ body.lock {
   &:hover {
     opacity: 1;
     transform: rotate(360deg);
-  }
-}
-.popup.open {
-  opacity: 1;
-  visibility: visible;
-  .popup-body {
-    /* Animation */
-    transform: perspective(1000px);
-    opacity: 1;
   }
 }
 

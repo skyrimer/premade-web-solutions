@@ -19,22 +19,25 @@
         </article>
     </div>
 </section>
-<template id="template-slider">
+<template id="template-section">
     <section class="glassy-section" data-scroll-section>
         <h2 data-header></h2>
-        <div class="swiper">
-            <div class="swiper-wrapper" data-swiper-wrapper></div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-pagination"></div>
-        </div>
     </section>
 </template>
-<template id="template-slide">
-    <div class="swiper-slide">
-        <a class="inline-link" target="_blank" data-link data-name></a>
-        <img class="swiper-lazy" data-image>
-        <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+<template id="template-tab">
+    <div class="center">
+        <div class="tabs-wrapper full-width">
+            <div class="tab-links-wrapper" data-tab-content></div>
+        </div>
     </div>
+</template>
+<template data-button>
+    <button class="tab-link"></button>
+</template>
+<template data-tab>
+    <a class="tab-content" target="_blank">
+        <h3 class="effect-box"></h3>
+        <img>
+    </a>
 </template>
 {% endblock %}

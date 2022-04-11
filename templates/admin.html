@@ -24,47 +24,5 @@
         </div>
         {% endfor %}
     </div>
-    <h3>All data</h3>
-    <div class="table">
-        <div class="row headers">
-            <div class="cell">
-                <p>Time</p>
-            </div>
-            <div class="cell">
-                <p>Ip</p>
-            </div>
-            <div class="cell">
-                <p>User agent</p>
-            </div>
-            <div class="cell">
-                <p>Path</p>
-            </div>
-            <div class="cell">
-                <p>Status</p>
-            </div>
-        </div>
-        {% for view in all_views %}
-        <div class="row">
-            <div class="cell">
-                <p>{{ view.hour}}:{{view.minute}} - {{ view.day }}.{{ view.month }}.{{ view.year }}</p>
-            </div>
-            <div class="cell">
-                <p>{{ view.ip }}</p>
-
-            </div>
-            <div class="cell">
-                <p>{{ view.user_agent }}</p>
-
-            </div>
-            <div class="cell">
-                <p>{{ view.path }}</p>
-
-            </div>
-            <div class="cell">
-                <p>{{ view.status }}</p>
-            </div>
-        </div>
-        {% endfor %}
-    </div>
 </section>
 {% endblock %}

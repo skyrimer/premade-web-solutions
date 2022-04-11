@@ -18,7 +18,7 @@ import { loadHelpfulWebsites, loadTutorialCards } from "./load.js";
 window.onload = () => {
   const initPage = async (scroll) => {
     if (window.location.href.includes("helpful-websites")) {
-      await loadHelpfulWebsites();
+      await loadHelpfulWebsites(scroll);
     }
     activateOnscrollAnimations();
     activateLazyLoading(scroll);
@@ -31,7 +31,6 @@ window.onload = () => {
     if (qs(".popup")) activatePopup();
     if (qs(".accordion")) activateAccordions(scroll);
     if (qs(".spoiler")) activateSpoilers(scroll);
-    scroll.update();
   };
   const scroll = new LocomotiveScroll({
     el: qs("[data-scroll-container]"),

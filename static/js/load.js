@@ -1,47 +1,61 @@
-export const loadHelpfulWebsites = async () => {
-  const copyElement = (element) => {
-    return element.content.cloneNode(true).children[0];
-  };
-  const strToPath = (string) => {
-    return string.toLowerCase().split(" ").join("-");
-  };
+const copyElement = (element) => {
+  return element.content.cloneNode(true).children[0];
+};
+const strToPath = (string) => {
+  return string.toLowerCase().split(" ").join("-");
+};
+const loadCards = (data) => {
   const main = qs("main#swup");
   const footer = qs("section:last-child", main);
   const tableOfContents = qs("[data-content-list]");
-  const templateLink = qs("#template-link", tableOfContents);
-  const templateSlider = qs("#template-slider");
-  const templateSlide = qs("#template-slide");
-  const response = await fetch("/static/helpful-websites.json");
-  const data = await response.json();
-  for (let section in data) {
-    const sectionHref = strToPath(section);
-    // Table of Contents
-    const sectionLink = copyElement(templateLink);
-    const link = qs("a", sectionLink);
-    link.textContent = section;
-    link.href = `#${sectionHref}`;
-    tableOfContents.appendChild(sectionLink);
-    // Sliders
-    const slider = copyElement(templateSlider);
-    slider.id = sectionHref;
-    data[section].forEach((slideData) => {
-      const slide = copyElement(templateSlide);
-      const slideLink = qs("[data-link", slide);
-      slideLink.href = slideData.url;
-      slideLink.textContent = slideData.name;
-      const slideImage = qs("[data-image]", slide);
-      slideImage.alt = slideData.name;
-      slideImage.dataset.src = `/static/images/helpful_websites/${strToPath(
-        slideData.name
+  const tableOfContentsLink = qs("#template-link", tableOfContents);
+  const templateSection = qs("#template-section");
+  const templateTabs = qs("#template-tab");
+  const templateTabWebsite = qs("[data-tab]");
+  const templateTabLink = qs("[data-button]");
+  for (let category in data) {
+    const categoryHref = strToPath(category);
+    const categoryLink = copyElement(tableOfContentsLink);
+    const link = qs("a", categoryLink);
+    link.textContent = category;
+    link.href = `#${categoryHref}`;
+    tableOfContents.appendChild(categoryLink);
+    const section = copyElement(templateSection);
+    qs("[data-header]", section).textContent = category;
+    section.id = categoryHref;
+    const tabs = copyElement(templateTabs);
+    const tabsLinksWrapper = qs(".tab-links-wrapper", tabs);
+    data[category].forEach((website) => {
+      const tabLink = copyElement(templateTabLink);
+      tabLink.textContent = website.name;
+      tabLink.dataset.tabId = website.name;
+      tabsLinksWrapper.appendChild(tabLink);
+
+      const tabWebsite = copyElement(templateTabWebsite);
+      tabWebsite.href = website.url;
+      tabWebsite.id = website.name;
+      qs("h3", tabWebsite).textContent = website.name;
+      const tabImage = qs("img", tabWebsite);
+      tabImage.alt = website.name;
+      tabImage.dataset.src = `/static/images/helpful_websites/${strToPath(
+        website.name
       )}.png`;
-      qs(".swiper-wrapper", slider).appendChild(slide);
+      qs(".tabs-wrapper", tabs).appendChild(tabWebsite);
     });
-    qs("[data-header]", slider).textContent = section;
-    main.insertBefore(slider, footer);
+    qs(".tab-link", tabs).classList.toggle("active");
+    qs(".tab-content", tabs).classList.toggle("active");
+    section.appendChild(tabs);
+    main.insertBefore(section, footer);
   }
-  templateLink.remove();
-  templateSlider.remove();
-  templateSlide.remove();
+  templateSection.remove();
+  tableOfContentsLink.remove();
+  templateTabs.remove();
+};
+export const loadHelpfulWebsites = async (scroll) => {
+  await fetch("/static/helpful-websites.json")
+    .then((response) => response.json())
+    .then(loadCards);
+  scroll.update();
 };
 export const loadTutorialCards = async (scroll) => {
   const tutorialList = qs("[data-tutorial-list]");

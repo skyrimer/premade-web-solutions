@@ -1,8 +1,6 @@
-from copy import copy, deepcopy
 from typing import Counter
 from flask import Flask, render_template, abort, send_from_directory, request
-from os import getcwd
-from os import environ
+from os import getcwd, environ
 from os.path import isfile
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import select
@@ -13,7 +11,6 @@ app.config["SECRET_KEY"] = environ.get("SECRET_KEY")
 app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///database.sqlite3'
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
-db.create_all()
 view_counter = ViewCounter(app, db)
 if app.debug == True:
     app.config["TEMPLATES_AUTO_RELOAD"] = True
@@ -75,9 +72,8 @@ def static_from_root():
 @app.route('/admin')
 def admin():
     total_views = len({view.user_agent for view in get_views_table()})
-    views_per_page = dict(
-        Counter(view.path for view in get_views_table()).items())
-    return render_template("admin.html", all_views=get_views_table(), total_views=total_views,
+    views_per_page = Counter(view.path for view in get_views_table())
+    return render_template("admin.html", total_views=total_views,
                            views_per_page=views_per_page)
 
 

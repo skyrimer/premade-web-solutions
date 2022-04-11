@@ -24,7 +24,8 @@ $ff-xs: clamp(0.875rem, 3vw, 1.2rem);
 $ff-xxs: clamp(0.7875rem, 2.7vw, 1.08rem);
 
 // Transitions
-$transition-main: all 0.3s ease;
+$transition-duration: 0.3s;
+$transition-main: all $transition-duration ease;
 $transition-page-transition: 0.5s;
 $tab-animation-duration: 0.3s;
 $transition-animate-in: 0.5s;

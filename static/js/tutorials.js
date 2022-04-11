@@ -15,56 +15,13 @@ export const activateCustomCursorExample = async () => {
   onClickClassChange(document.getElementById("toggle-cursor-active"), "active");
   onClickClassChange(document.getElementById("toggle-cursor-hidden"), "hidden");
 };
-export const activateSlider = async () => {
-  const slider = new Swiper(".swiper", {
-    effect: "coverflow",
-    speed: 500,
-    slidesPerView: 1,
-    breakpoints: {
-      450: {
-        slidesPerView: 1.2,
-      },
-      600: {
-        slidesPerView: 1.4,
-      },
-      700: {
-        slidesPerView: 1.7,
-      },
-    },
-    coverflowEffect: {
-      rotate: 40,
-      stretch: 50,
-    },
-    watchSlidesProgress: true,
-    centeredSlides: true,
-    loop: true,
-    preloadImages: false,
-    lazy: {
-      loadPrevNext: true,
-      loadOnTransitionStart: true,
-      loadPrevNextAmount: 2,
-    },
-    pagination: {
-      el: ".swiper-pagination",
-      dynamicBullets: true,
-      clickable: true,
-    },
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-    },
-    keyboard: {
-      enabled: true,
-    },
-  });
-};
 export const activateTabs = async () => {
   qsa(".tab-link").forEach((link) => {
-    link.addEventListener("click", (event) => {
-      const newButton = event.currentTarget;
+    link.addEventListener("click", ({ currentTarget, target }) => {
+      const newButton = currentTarget;
       const newTab = document.getElementById(newButton.dataset.tabId);
-      const activeButton = qs(".tab-link.active");
-      const activeTab = qs(".tab-content.active");
+      const activeButton = qs(".tab-link.active", target.parentElement.parentElement);
+      const activeTab = qs(".tab-content.active", target.parentElement.parentElement);
       if (newButton !== activeButton) {
         activeTab.className = activeTab.className.replace(" active", " disappear");
         activeButton.className = activeButton.className.replace(" active", "");
