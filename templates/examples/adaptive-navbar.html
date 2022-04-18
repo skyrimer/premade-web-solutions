@@ -1,0 +1,294 @@
+{% extends "layout.html" %}
+{% block content %}
+<section class="glassy-section" data-scroll-section>
+    <h2>Proper and adaptive navbar</h2>
+    <article class="text">
+        <p>Making a navbar is the hardest thing that I have ever faced in web development. I have struggled enough when
+            I was switching from <a href="https://getbootstrap.com" class="inline-link" target="_blank">Bootstrap</a>,
+            and it was a challenge to make it on my own every time. There aren't a tone of things that need to be
+            considered, but all together with the media queries and different states made me suffer a lot. Hopefully, I
+            have figured out the simplest and the best way to make a navbar. Today, I am going to share it with you.
+        </p>
+        <p>Before we get started I would like to determine a list of things that the navbar must be capable of:</p>
+        <ul class="text">
+            <li>
+                <p>Be adaptive for all screen widths and heights</p>
+            </li>
+            <li>
+                <p>Be able to have a container to fit the layout of the page</p>
+            </li>
+            <li>
+                <p>Be fixed to the top, and not have an overlapping content</p>
+            </li>
+            <li>
+                <p>Be able to have freedom for any animations both for links and collapsing content</p>
+            </li>
+            <li>
+                <p>Be done using mobile first technique to reduce the CSS on mobiles and tablets</p>
+            </li>
+        </ul>
+        <p>Finally, we can get started. In terms of HTML, it is fairly simple and doesn't have any tricky parts. You
+            need to have a navbar and a wrapper inside. This wrapper is a container that will determine the width of
+            navbar's content. Inside the wrapper, the navbar's content is split into 3 parts: content left to the
+            toggler (usually, it's just a logo), toggler that will appear on small screens, and the content right to
+            toggler that will be displayed on large screens and collapsed into a fullscreen on small screens.</p>
+        <p>Here is how it might look:</p>
+        <pre><code class="html">
+&lt;nav class="navbar"&gt;
+  &lt;div class="container"&gt;
+    &lt;a href="#" class="logo"&gt;PreWeb&lt;/a&gt;
+    &lt;svg class="navbar-toggler" viewBox="0 0 100 100"&gt;
+      &lt;path class="line line1"
+      d="M 20,29.000046 H 80.000231 C 80.000231,29.000046 94.498839,28.817352 94.532987,66.711331 94.543142,77.980673
+      90.966081,81.670246 85.259173,81.668997 79.552261,81.667751 75.000211,74.999942 75.000211,74.999942 L
+      25.000021,25.000058" /&gt;
+      &lt;path class="line line2" d="M 20,50 H 80" /&gt;
+      &lt;path class="line line3"
+      d="M 20,70.999954 H 80.000231 C 80.000231,70.999954 94.498839,71.182648 94.532987,33.288669 94.543142,22.019327
+      90.966081,18.329754 85.259173,18.331003 79.552261,18.332249 75.000211,25.000058 75.000211,25.000058 L
+      25.000021,74.999942" /&gt;
+    &lt;/svg&gt;
+    &lt;ul class="navbar-menu"&gt;
+      &lt;li&gt;&lt;a class="navbar-link active" href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a class="navbar-link" href="#"&gt;About&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a class="navbar-link" href="#"&gt;Products&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a class="navbar-link" href="#"&gt;Designs&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a class="navbar-link" href="#"&gt;Contact&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+&lt;/nav&gt;
+        </code></pre>
+        <p>After that, comes the "fun" part - CSS. There are a lot of things going on, so I will explain everything step
+            by step.</p>
+        <p>Firstly, you need to define some variables: width after which the content will collapse, height after which
+            the content will have the <code class="css">overflow-y: auto</code> applied to make the content reachable
+            even on small heights, animation duration, and the size of the navbar that consists of vertical padding and
+            the content height.
+        </p>
+        <p>In my case, it looks like this:</p>
+        <pre><code class="scss">
+$breakpoint-burger: 53.5rem;
+$navbar-vertical-padding: 2rem;
+$navbar-content-size: 2.5rem;
+$breakpoint-burger-height: 37.5rem;
+$height-burger: $navbar-vertical-padding * 2 + $navbar-content-size;
+$transition-duration: 0.4s;
+        </code></pre>
+        <p>After that, comes some necessary styling. <code class="css">body.lock</code> will be used to lock scrolling
+            when the content is collapsed on mobile. Also, <code class="css">.container</code> is a general container
+            for all content on the page. Hint: <code class="css">margin-inline</code> and <code
+                class="css">margin-block</code> are relatively badly supported around the browsers, so you might
+            consider using usual <code class="css">margin</code> property. <code class="css">main</code> is the element
+            that wraps all the content on the
+            page except the navbar. Because our navbar is fixed to top, we need to add its size to <code
+                class="css">margin-top</code>.</p>
+        <pre><code class="scss">
+body.lock {
+overflow-y: hidden;
+}
+.container {
+width: Min(90%, 80rem);
+margin-inline: auto;
+}
+main {
+margin-top: 4rem + $height-burger;
+}
+        </code></pre>
+        <p>Then, we finally go to the navbar itself. We need to fix it to the top using <code
+                class="css">position: fixed; top: 0;</code>, and define the dimensions using <code
+                class="css">width</code> and <code class="css">height</code>. Also, to raise the navbar on top of any
+            other element, you should set the <code class="css">z-index</code> and also add it to any element except the
+            collapsing menu. Except that, you can add some styling to
+            make everything look a bit more beautiful. Just make sure, you are not using any units grater than the
+            height of the navbar.</p>
+        <pre><code class="scss">
+nav {
+  position: fixed;
+  top: 0;
+  background-color: #041c32;
+  width: 100%;
+  height: $height-burger;
+  padding-block: $navbar-vertical-padding;
+  z-index: 10;
+  :not(.navbar-menu) {
+    z-index: 2;
+  }
+  a {
+    text-decoration: none;
+    color: #fff;
+  }
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo {
+    font-size: $navbar-content-size;
+    font-weight: bold;
+  }
+}
+        </code></pre>
+        <p>Then, you need to customise your navbar-toggler or hamburger. There are a tone of ways to do it, but I prefer
+            to use <code class="html">svg</code>, because it allows to make fancy animations. Also, don't forget to put
+            <code class="css">display: none</code> on the toggler for larger screens.
+        </p>
+        <pre><code class="scss">
+.navbar-toggler {
+  width: $navbar-content-size;
+  height: $navbar-content-size;
+  cursor: pointer;
+  display: block;
+  @media screen and (min-width: $breakpoint-burger) {
+    display: none;
+  }
+  .line {
+    fill: none;
+    stroke: #ecb365;
+    stroke-width: 7;
+    transition: stroke-dasharray $transition-duration cubic-bezier(0.4, 0, 0.2, 1),
+      stroke-dashoffset $transition-duration cubic-bezier(0.4, 0, 0.2, 1),
+      stroke $transition-duration ease-in-out;
+  }
+  .line1 {
+    stroke-dasharray: 60 207;
+  }
+  .line2 {
+    stroke-dasharray: 60 60;
+  }
+  .line3 {
+    stroke-dasharray: 60 207;
+  }
+}
+        </code></pre>
+        <p>Here comes the most annoying part. The navbar menu that contains all the links must have 3 states: desktop,
+            mobile hidden and mobile reveled. Because we are making everything mobile first, by default we are setting
+            the mobile hidden state, which is reveled using <code class="css">active</code> class. Desktop state is
+            activated after the breakpoint.</p>
+        <p>There are different ways to make a mobile state, but the most flexible way, which doesn't restrict in ability
+            to animate is making the menu fixed, and displaying it on full screen for usability purposes. To do it, you
+            need to fix the content, and to set the screen dimensions, but shorten the height by the height of the
+            navbar. Note, that the content is hidden using <code class="css">transform: translateX(-100%)</code>, which
+            makes it easy to animate the content. Also, it is important to use <code class="css">overflow-y: auto</code>
+            to make the content scrollable if there is not enough space. In addition, if you are stretching spacing
+            using <code class="css">justify-content: space-around</code>, then you need to set a height breakpoint.
+            Everything else is just styling to make it look beautiful.</p>
+        <pre><code class="scss">
+.navbar-menu {
+  position: fixed;
+  top: $height-burger;
+  left: 0;
+  width: 100%;
+  height: calc(100vh - $height-burger);
+  transform: translateX(-100%);
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  background-color: #04293a;
+  text-align: center;
+  transition: transform $transition-duration;
+  overflow-y: auto;
+  @media screen and (min-height: $breakpoint-burger-height) {
+    justify-content: space-around;
+  }
+  @media screen and (min-width: $breakpoint-burger) {
+    position: unset;
+    width: auto;
+    height: max-content;
+    justify-content: flex-start;
+    flex-direction: row;
+    background-color: transparent;
+    transform: none;
+  }
+  .navbar-link {
+    display: inline-block;
+    font-size: 2rem;
+    padding: 0.5em 1em;
+    border-radius: 3px;
+    transition: $transition-duration;
+    @media screen and (min-width: $breakpoint-burger) {
+      font-size: 1.2rem;
+    }
+    &:hover,
+    &:focus,
+    &.active {
+      background-color: #ecb365;
+    }
+  }
+}
+        </code></pre>
+        <p>Lastly, you need to make the active state of navbar slide the menu and animate the hamburger. It is easily
+            done with a special class.</p>
+        <pre><code class="scss">
+nav.active {
+  .navbar-menu {
+    transform: none;
+  }
+  .navbar-toggler {
+    .line {
+      stroke: #b20600;
+    }
+    .line1 {
+      stroke-dasharray: 90 207;
+      stroke-dashoffset: -134;
+    }
+    .line2 {
+      stroke-dasharray: 1 60;
+      stroke-dashoffset: -30;
+    }
+    .line3 {
+      stroke-dasharray: 90 207;
+      stroke-dashoffset: -134;
+    }
+  }
+}
+        </code></pre>
+        <p>But how are we going to add the class to the navbar? JavaScript - of course. But even here, there are some
+            twists. Because we are going to lock the scroll using <code class="css">overflow-y: auto</code> the
+            scrollbar is going to disappear, which the content flick for a moment. It might be a bit annoying. That's
+            why except the normal toggling of "lock" for body and "active" for navbar, you need to set <code
+                class="css">padding-right</code> for the body and all elements that have <code
+                class="css">position: fixed</code>. Note: the reason for using <code class="css">padding</code> instead
+            of <code class="css">margin</code>, is to maintain the background of the element to fill the gap created by
+            the removed scrollbar. Besides, everything is wrapped in the media query handler. It will avoid scroll lock,
+            when the user toggled the navbar and then expanded the window. Overall, it looks like this.</p>
+        <pre><code class="js">
+const body = document.body;
+const navbarMediaQuery = window.matchMedia("(min-width: 53.5rem)");
+const scrollbarWidth = window.innerWidth - body.offsetWidth + "px";
+const navbar = document.querySelector("nav");
+const toggler = navbar.querySelector(".navbar-toggler");
+const paddingLockList = [navbar, body];
+const setPaddingRight = (elements, paddingLeft = "0px") => {
+  elements.forEach((element) => {
+    element.style.paddingRight = paddingLeft;
+  });
+};
+const handleMobileChange = (event) => {
+  if (!event.matches) {
+    toggler.onclick = () => {
+      navbar.classList.toggle("active");
+      body.classList.toggle("lock");
+      if (navbar.classList.contains("active")) {
+        setPaddingRight(paddingLockList, scrollbarWidth);
+      } else {
+        setPaddingRight(paddingLockList);
+      }
+    };
+  } else {
+    toggler.onclick = () => {};
+    body.classList.remove("lock");
+    navbar.classList.remove("active");
+    setPaddingRight(paddingLockList);
+  }
+};
+navbarMediaQuery.addListener(handleMobileChange);
+handleMobileChange(navbarMediaQuery);
+
+        </code></pre>
+        <p>And that's finally it! You're a navbar guru, but even gurus might want to see an example. So, here it is.</p>
+        <div class="btn-wrapper">
+            <a href="/static/examples/navbar/navbar.html" class="btn-link">See an example</a>
+        </div>
+    </article>
+</section>
+{% endblock %}

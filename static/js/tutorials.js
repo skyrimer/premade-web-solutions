@@ -117,10 +117,6 @@ export const activateSpoilers = async (scroll) => {
   });
 };
 export const activatePopup = async () => {
-  const containsPopup = qs(".popup");
-  if (!containsPopup) {
-    return NaN;
-  }
   const popupLinks = qsa(".popup-link");
   const body = qs("body");
   const popupClosers = qsa(".popup-close");

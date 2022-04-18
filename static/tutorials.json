@@ -46,5 +46,9 @@
         {
             "name": "On scroll animations",
             "url": "on-scroll-animations"
+        },
+        {
+            "name": "Adaptive navbar",
+            "url": "adaptive-navbar"
         }
     ]

@@ -1,0 +1,158 @@
+// General
+
+:root {
+  font-size: 16px;
+}
+* {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  box-sizing: border-box;
+}
+
+p {
+  font-size: 1.3rem;
+  line-height: 160%;
+  margin-bottom: 2rem;
+  text-align: justify;
+}
+
+h1 {
+  font-size: 3rem;
+  margin-bottom: 1em;
+  color: #041c32;
+}
+// Some styling necessary for styling
+$breakpoint-burger: 53.5rem;
+$navbar-vertical-padding: 2rem;
+$navbar-content-size: 2.5rem;
+$breakpoint-burger-height: 37.5rem;
+$height-burger: $navbar-vertical-padding * 2 + $navbar-content-size;
+$transition-duration: 0.4s;
+body.lock {
+  overflow-y: hidden;
+}
+.container {
+  width: Min(90%, 80rem);
+  margin-inline: auto;
+}
+main {
+  margin-top: 4rem + $height-burger;
+}
+
+// Navbar
+nav {
+  position: fixed;
+  top: 0;
+  background-color: #041c32;
+  width: 100%;
+  height: $height-burger;
+  padding-block: $navbar-vertical-padding;
+  z-index: 10;
+  &.active {
+    .navbar-menu {
+      transform: none;
+    }
+    .navbar-toggler {
+      .line {
+        stroke: #b20600;
+      }
+      .line1 {
+        stroke-dasharray: 90 207;
+        stroke-dashoffset: -134;
+      }
+      .line2 {
+        stroke-dasharray: 1 60;
+        stroke-dashoffset: -30;
+      }
+      .line3 {
+        stroke-dasharray: 90 207;
+        stroke-dashoffset: -134;
+      }
+    }
+  }
+  :not(.navbar-menu) {
+    z-index: 2;
+  }
+  a {
+    text-decoration: none;
+    color: #fff;
+  }
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo {
+    font-size: $navbar-content-size;
+    font-weight: bold;
+  }
+  .navbar-toggler {
+    width: $navbar-content-size;
+    height: $navbar-content-size;
+    cursor: pointer;
+    display: block;
+    @media screen and (min-width: $breakpoint-burger) {
+      display: none;
+    }
+    .line {
+      fill: none;
+      stroke: #ecb365;
+      stroke-width: 7;
+      transition: stroke-dasharray $transition-duration cubic-bezier(0.4, 0, 0.2, 1),
+        stroke-dashoffset $transition-duration cubic-bezier(0.4, 0, 0.2, 1),
+        stroke $transition-duration ease-in-out;
+    }
+    .line1 {
+      stroke-dasharray: 60 207;
+    }
+    .line2 {
+      stroke-dasharray: 60 60;
+    }
+    .line3 {
+      stroke-dasharray: 60 207;
+    }
+  }
+  .navbar-menu {
+    position: fixed;
+    top: $height-burger;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - $height-burger);
+    transform: translateX(-100%);
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+    background-color: #04293a;
+    text-align: center;
+    transition: transform $transition-duration;
+    overflow-y: auto;
+    @media screen and (min-height: $breakpoint-burger-height) {
+      justify-content: space-around;
+    }
+    @media screen and (min-width: $breakpoint-burger) {
+      position: unset;
+      width: auto;
+      height: max-content;
+      justify-content: flex-start;
+      flex-direction: row;
+      background-color: transparent;
+      transform: none;
+    }
+    .navbar-link {
+      display: inline-block;
+      font-size: 2rem;
+      padding: 0.5em 1em;
+      border-radius: 3px;
+      transition: $transition-duration;
+      @media screen and (min-width: $breakpoint-burger) {
+        font-size: 1.2rem;
+      }
+      &:hover,
+      &:focus,
+      &.active {
+        background-color: #ecb365;
+      }
+    }
+  }
+}

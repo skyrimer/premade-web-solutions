@@ -79,7 +79,5 @@ export const loadTutorialCards = async (scroll) => {
       const isVisible = tutorial.name.includes(target.value.toLowerCase());
       tutorial.element.classList.toggle("hide", !isVisible);
     });
-    scroll.update();
   });
-  scroll.update();
 };

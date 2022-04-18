@@ -77,7 +77,7 @@
             "description": "Allows to easily test your website on different screen sizes"
         }
     ],
-    "Vector images": [
+    "Illustrations": [
         {
             "name": "Undraw",
             "url": "https://undraw.co/illustrations"
@@ -127,6 +127,14 @@
         {
             "name": "FavPng",
             "url": "https://favpng.com"
+        },
+        {
+            "name": "Burst",
+            "url": "https://burst.shopify.com/"
+        },
+        {
+            "name": "Istock",
+            "url": "https://www.istockphoto.com/en"
         },
         {
             "name": "Unsplash",
