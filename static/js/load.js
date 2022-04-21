@@ -57,8 +57,7 @@ export const loadHelpfulWebsites = async (scroll) => {
     .then(loadCards);
   scroll.update();
 };
-export const loadTutorialCards = async (scroll) => {
-  const tutorialList = qs("[data-tutorial-list]");
+export const loadTutorialCards = async (tutorialList) => {
   const cardTemplate = qs("#tutorial-card-template");
   const tutorialSearch = qs("#cards-search");
   let tutorials = [];

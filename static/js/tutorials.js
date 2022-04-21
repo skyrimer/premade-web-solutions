@@ -3,20 +3,18 @@ export const highlightAllCode = async () => {
     hljs.highlightElement(code);
   });
 };
-export const activateCustomCursorExample = async () => {
-  const cursor = document.getElementById("cursor");
-  const aura = document.getElementById("aura");
+export const activateCustomCursorExample = async (cursor, aura) => {
   const onClickClassChange = (target, className) =>
     target.addEventListener("click", () => {
       cursor.className = className;
       aura.className = className;
     });
-  onClickClassChange(document.getElementById("toggle-cursor-none"), "");
-  onClickClassChange(document.getElementById("toggle-cursor-active"), "active");
-  onClickClassChange(document.getElementById("toggle-cursor-hidden"), "hidden");
+  onClickClassChange(qs("#toggle-cursor-none"), "");
+  onClickClassChange(qs("#toggle-cursor-active"), "active");
+  onClickClassChange(qs("#toggle-cursor-hidden"), "hidden");
 };
-export const activateTabs = async () => {
-  qsa(".tab-link").forEach((link) => {
+export const activateTabs = async (tabLinks) => {
+  tabLinks.forEach((link) => {
     link.addEventListener("click", ({ currentTarget, target }) => {
       const newButton = currentTarget;
       const newTab = document.getElementById(newButton.dataset.tabId);
@@ -103,7 +101,7 @@ export const activateSpoilers = async (scroll) => {
   if (openedSpoiler) openSpoiler(openedSpoiler);
 
   spoilerTogglers.forEach((toggler) => {
-    toggler.addEventListener("click", (event) => {
+    toggler.addEventListener("click", () => {
       const togglerParent = toggler.parentElement;
       if (togglerParent.classList.contains(activeClass)) {
         closeSpoiler(togglerParent);
@@ -116,21 +114,11 @@ export const activateSpoilers = async (scroll) => {
     });
   });
 };
-export const activatePopup = async () => {
-  const popupLinks = qsa(".popup-link");
-  const body = qs("body");
-  const popupClosers = qsa(".popup-close");
-  const paddingLock = [body, ...qsa(".lock-padding")];
-  const timeOut = 500;
-  let unlock = true;
+export const activatePopup = async (scroll) => {
   const popupOpen = (popup) => {
-    if (popup && unlock) {
+    if (popup) {
       const popupActive = qs(".popup.open");
-      if (popupActive) {
-        popupClose(popupActive, false);
-      } else {
-        bodyLock(body);
-      }
+      popupActive ? popupClose(popupActive, false) : scroll.stop();
     }
     popup.classList.add("open");
     popup.addEventListener("click", (event) => {
@@ -141,70 +129,43 @@ export const activatePopup = async () => {
   };
 
   const popupClose = (popup, scrollLock = true) => {
-    if (unlock) {
-      popup.classList.remove("open");
-      scrollLock ? bodyUnlock(body) : NaN;
+    popup.classList.remove("open");
+    if (scrollLock) {
+      scroll.start();
+      window.location.hash = "";
     }
   };
 
-  const bodyLock = (body) => {
-    const scrollbarWidth = window.innerWidth - body.offsetWidth + "px";
-    paddingLock.forEach((element) => {
-      element.style.marginRight = scrollbarWidth;
-    });
-    body.classList.add("lock");
-    unlock = false;
-    setTimeout(() => {
-      unlock = true;
-    }, timeOut);
-  };
-
-  const bodyUnlock = (body) => {
-    setTimeout(() => {
-      paddingLock.forEach((element) => {
-        element.style.marginRight = 0;
-      });
-      body.classList.remove("lock");
-    }, timeOut);
-
-    unlock = false;
-    setTimeout(() => {
-      unlock = true;
-    }, timeOut);
-  };
-
-  popupLinks.forEach((popupLink) => {
+  qsa(".popup-link").forEach((popupLink) => {
     popupLink.addEventListener("click", (event) => {
-      const popup = document.getElementById(popupLink.hash.replace("#", ""));
-      popupOpen(popup);
+      popupOpen(qs(popupLink.hash));
       event.preventDefault();
     });
   });
 
-  popupClosers.forEach((popupCloser) => {
+  qsa(".popup-close").forEach((popupCloser) => {
     popupCloser.addEventListener("click", (event) => {
       popupClose(popupCloser.closest(".popup"));
       event.preventDefault();
     });
   });
 
-  document.addEventListener("keydown", (event) => {
+  document.addEventListener("keydown", ({ key }) => {
     const openedPopup = qs(".popup.open");
-    if (event.key == "Escape" && openedPopup) {
+    if (key == "Escape" && openedPopup) {
       popupClose(openedPopup);
     }
   });
 };
-export const textareaUpdate = async (scroll) => {
+export const textareaUpdate = async (textareas, scroll) => {
   const resizeObserver = new ResizeObserver(() => {
     scroll.update();
   });
 
-  qsa("textarea").forEach((textarea) => {
+  textareas.forEach((textarea) => {
     resizeObserver.observe(textarea);
   });
 };
-
 export const sendFeedback = async (form) => {
   form.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -216,7 +177,7 @@ export const sendFeedback = async (form) => {
     );
     request.onload = () => {
       if (request.status) {
-        qs("#popup").classList.toggle("open")
+        qs("#popup").classList.toggle("open");
       }
     };
     request.send(

@@ -1,16 +1,13 @@
-export const activateNavbar = async () => {
+export const activateNavbar = async (scroll) => {
   const isMobile = window.matchMedia("(min-width: 47rem)");
   const activateMobile = (event) => {
     if (!event.matches) {
-      // Navbar effects
-      let headerTogglerList = [
-        document.querySelector("svg.ham"),
-        ...document.querySelectorAll("#header li > a"),
-      ];
+      const header = qs("#header");
+      let headerTogglerList = [qs("svg.ham"), qs("li > a", header)];
       headerTogglerList.forEach((toggler) => {
         toggler.addEventListener("click", () => {
-          document.getElementById("header").classList.toggle("active");
-          document.body.classList.toggle("lock");
+          header.classList.toggle("active");
+          header.classList.contains("active") ? scroll.stop() : scroll.start();
         });
       });
     }
@@ -19,7 +16,7 @@ export const activateNavbar = async () => {
   activateMobile(isMobile);
 };
 export const pasteCurrentYear = async () => {
-  document.getElementById("copyright").textContent = new Date().getFullYear();
+  qs("#copyright").textContent = new Date().getFullYear();
 };
 export const activateIdLinks = async (scroll) => {
   document.querySelectorAll('a[href^="#"]:not(.popup-link)').forEach((link) => {
@@ -97,14 +94,10 @@ export const activateLazyLoading = async (scroll) => {
     sourceObserver.observe(source);
   });
 };
-
 export const labelCurrentPageLinks = async () => {
   qsa("a").forEach((link) => {
-    if (link.getAttribute("href") == window.location.pathname) {
-      link.setAttribute("aria-current", "page");
-      console.log(link);
-    } else {
-      link.removeAttribute("aria-current");
-    }
+    link.getAttribute("href") == window.location.pathname
+      ? link.setAttribute("aria-current", "page")
+      : link.removeAttribute("aria-current");
   });
 };

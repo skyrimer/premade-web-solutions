@@ -26,14 +26,18 @@ window.onload = () => {
     activateLazyLoading(scroll);
     activateIdLinks(scroll);
     labelCurrentPageLinks();
-    if (qs("code")) highlightAllCode();
-    if (qs("[data-tutorial-list]")) loadTutorialCards(scroll);
-    if (qs("#togglers-wrapper")) activateCustomCursorExample();
-    if (qs(".tab-link")) activateTabs();
-    if (qs(".popup")) activatePopup();
+    highlightAllCode();
+    const tutorialList = qs("[data-tutorial-list]");
+    if (tutorialList) loadTutorialCards(tutorialList);
+    const customCursor = qs("#cursor");
+    if (customCursor) activateCustomCursorExample(customCursor, qs("#aura"));
+    const tabLinks = qsa(".tab-link");
+    if (tabLinks) activateTabs(tabLinks);
+    if (qs(".popup")) activatePopup(scroll);
     if (qs(".accordion")) activateAccordions(scroll);
     if (qs(".spoiler")) activateSpoilers(scroll);
-    if (qs("textarea")) textareaUpdate(scroll);
+    const textareas = qsa("textarea");
+    if (textareas) textareaUpdate(textareas, scroll);
     let form = qs("[data-contact-form]");
     if (form) sendFeedback(form);
   };
@@ -49,7 +53,7 @@ window.onload = () => {
       breakpoint: 0,
     },
   });
-  activateNavbar();
+  activateNavbar(scroll);
   pasteCurrentYear();
   initPage(scroll).then(scroll.update());
   // Swup
