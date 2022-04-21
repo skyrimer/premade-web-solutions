@@ -24,5 +24,32 @@
         </div>
         {% endfor %}
     </div>
+    <h3>All feedback</h3>
+    <div class="table">
+        <div class="row headers">
+            <div class="cell">
+                <p>Name</p>
+            </div>
+            <div class="cell">
+                <p>Email</p>
+            </div>
+            <div class="cell">
+                <p>Feedback</p>
+            </div>
+        </div>
+        {% for content in feedback %}
+        <div class="row">
+            <div class="cell">
+                <p>{{ content.name }}</p>
+            </div>
+            <div class="cell">
+                <p>{{ content.email }}</p>
+            </div>
+            <div class="cell">
+                <p>{{ content.feedback }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 </section>
 {% endblock %}

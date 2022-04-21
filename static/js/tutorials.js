@@ -123,7 +123,6 @@ export const activatePopup = async () => {
   const paddingLock = [body, ...qsa(".lock-padding")];
   const timeOut = 500;
   let unlock = true;
-
   const popupOpen = (popup) => {
     if (popup && unlock) {
       const popupActive = qs(".popup.open");
@@ -176,8 +175,7 @@ export const activatePopup = async () => {
 
   popupLinks.forEach((popupLink) => {
     popupLink.addEventListener("click", (event) => {
-      const popupName = popupLink.hash.replace("#", "");
-      const popup = document.getElementById(popupName);
+      const popup = document.getElementById(popupLink.hash.replace("#", ""));
       popupOpen(popup);
       event.preventDefault();
     });
@@ -193,8 +191,40 @@ export const activatePopup = async () => {
   document.addEventListener("keydown", (event) => {
     const openedPopup = qs(".popup.open");
     if (event.key == "Escape" && openedPopup) {
-      console.log("Closing popup");
       popupClose(openedPopup);
     }
+  });
+};
+export const textareaUpdate = async (scroll) => {
+  const resizeObserver = new ResizeObserver(() => {
+    scroll.update();
+  });
+
+  qsa("textarea").forEach((textarea) => {
+    resizeObserver.observe(textarea);
+  });
+};
+
+export const sendFeedback = async (form) => {
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    var request = new XMLHttpRequest();
+    request.open("POST", "/contact", true);
+    request.setRequestHeader(
+      "Content-Type",
+      "application/x-www-form-urlencoded; charset=UTF-8"
+    );
+    request.onload = () => {
+      if (request.status) {
+        qs("#popup").classList.toggle("open")
+      }
+    };
+    request.send(
+      JSON.stringify({
+        name: qs("#name", form).value,
+        email: qs("#email", form).value,
+        feedback: qs("#feedback", form).value,
+      })
+    );
   });
 };

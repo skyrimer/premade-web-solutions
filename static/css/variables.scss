@@ -39,6 +39,7 @@ $cross-size: 2em;
 // Spoilers and accordions
 $accordion-width: Min(95%, 40rem);
 // Sizes
+$container-width: Min(92%, 120rem);
 $scrollbar-width: 0.5rem;
 $header-size: 7rem;
 
@@ -65,18 +66,18 @@ $header-size: 7rem;
   transition: $transition-main;
 }
 %glassy {
-  background: $color-background;
+  background-color: $color-background;
   @supports (backdrop-filter: blur(50px) saturate(200%)) {
-    background: rgba($color: $color-background, $alpha: 0.5);
+    background-color: rgba($color: $color-background, $alpha: 0.5);
     backdrop-filter: blur(30px) saturate(50%);
   }
 }
 %glassy-section {
-  background: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.8);
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 1rem;
   @supports (backdrop-filter: blur(2px)) {
     backdrop-filter: blur(2px);
-    background: rgba($color: $color-tertiary, $alpha: 0.1);
+    background-color: rgba($color: $color-tertiary, $alpha: 0.1);
   }
 }

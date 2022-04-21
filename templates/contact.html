@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+{% block content %}
+<section class="glassy-section feedback-section" data-scroll-section>
+    <h2>Send your feedback</h2>
+    <p>Your feedback is very important, because it is the only way to improve the quality of the content! I'll be happy
+        to see any criticism of my work, and free to fix or adjust anything. This website is something more than just a
+        random projects, and it is important to me to create something worth people's attention. So, do you mind writing
+        down your comment?😏</p>
+    <div class="column-2">
+        <form action="" method="post" data-contact-form>
+            <div class="floating-label-wrapper">
+                <input type="text" class="floating-input" id="name" name="name" placeholder="Your name" required>
+                <label for="name">Your name</label>
+            </div>
+            <div class="floating-label-wrapper">
+                <input type="email" class="floating-input" id="email" name="email" placeholder="Your email" required>
+                <label for="email">Your email</label>
+            </div>
+            <div class="floating-label-wrapper">
+                <textarea name="feedback" id="feedback" placeholder="Your recommendations" required></textarea>
+                <label for="feedback">Your recommendations</label>
+            </div>
+            <input type="submit" value="Send your feedback" class="btn-link">
+        </form>
+        <div class="image">
+            <img data-loading="lazy" data-src="/static/images/feedback.svg" alt="Send feedback">
+        </div>
+    </div>
+</section>
+<div class="popup contact" id="popup">
+    <div class="popup-body">
+        <div class="popup-title">
+            <h3>Thank you for the feedback!</h3>
+        </div>
+        <div class="popup-text center">
+            <img src="/static/images/celebrating.svg" alt="">
+            <p>😊You are amazing🎉! By submitting the feedback you have made this world a bit better😊.</p>
+            <div class="btn-wrapper">
+                <a href="/tutorials" class="btn-link">See more tutorials</a>
+                <a href="/helpful-websites" class="btn-link">Check out helpful websites</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

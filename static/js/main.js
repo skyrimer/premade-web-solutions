@@ -4,6 +4,7 @@ import {
   activateIdLinks,
   activateOnscrollAnimations,
   activateLazyLoading,
+  labelCurrentPageLinks,
 } from "./base.js";
 import {
   highlightAllCode,
@@ -12,16 +13,19 @@ import {
   activateAccordions,
   activateSpoilers,
   activatePopup,
+  textareaUpdate,
+  sendFeedback,
 } from "./tutorials.js";
 import { loadHelpfulWebsites, loadTutorialCards } from "./load.js";
 window.onload = () => {
   const initPage = async (scroll) => {
-    if (window.location.href.includes("helpful-websites")) {
+    if (window.location.pathname.includes("helpful-websites")) {
       await loadHelpfulWebsites(scroll);
     }
     activateOnscrollAnimations();
     activateLazyLoading(scroll);
     activateIdLinks(scroll);
+    labelCurrentPageLinks();
     if (qs("code")) highlightAllCode();
     if (qs("[data-tutorial-list]")) loadTutorialCards(scroll);
     if (qs("#togglers-wrapper")) activateCustomCursorExample();
@@ -29,6 +33,9 @@ window.onload = () => {
     if (qs(".popup")) activatePopup();
     if (qs(".accordion")) activateAccordions(scroll);
     if (qs(".spoiler")) activateSpoilers(scroll);
+    if (qs("textarea")) textareaUpdate(scroll);
+    let form = qs("[data-contact-form]");
+    if (form) sendFeedback(form);
   };
   const scroll = new LocomotiveScroll({
     el: qs("[data-scroll-container]"),

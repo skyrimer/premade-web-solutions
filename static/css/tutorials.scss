@@ -98,7 +98,8 @@ code {
   position: relative;
   margin: Max(1.5em, 4vh) 0;
   width: Min(100%, 50rem);
-  input {
+  input,
+  textarea {
     width: 100%;
     font-size: $ff-s;
     padding: 2em 2rem 0.5em;
@@ -116,7 +117,7 @@ code {
   }
   label {
     font-size: $ff-xxs;
-    transform: translate(0, calc(-50% - 1em));
+    transform: translateY(calc(-50% - 1em));
     user-select: none;
     position: absolute;
     top: 50%;
@@ -124,6 +125,24 @@ code {
     color: $color-secondary;
     transition: $transition-main;
     cursor: text;
+    img {
+      width: auto;
+      height: 1.5em;
+      margin-right: 0.3em;
+    }
+  }
+  textarea {
+    resize: vertical;
+    min-height: 5em;
+    height: 10em;
+    max-height: 30rem;
+    & ~ label {
+      top: 1em;
+      transform: none;
+    }
+    &:placeholder-shown:not(:focus) + label {
+      transform: translateY(1em);
+    }
   }
 }
 
@@ -262,11 +281,6 @@ code {
     display: none;
   }
 }
-
-body.lock {
-  overflow: hidden;
-}
-
 .popup {
   position: fixed;
   inset: 0;
@@ -280,7 +294,11 @@ body.lock {
   transition: $transition-modal-window;
   background-color: $popup-background;
   backdrop-filter: blur(3px);
-  .open {
+  &.contact h3 {
+    width: 100%;
+    text-align: center;
+  }
+  &.open {
     opacity: 1;
     visibility: visible;
     .popup-body {
@@ -295,17 +313,19 @@ body.lock {
   transform: perspective(1000px) translate(0, -100%) rotateX(45deg);
   transition: $transition-modal-window;
 
+  @extend %glassy-section;
   margin: 10vh 0;
   padding: 2rem;
   width: $popup-body-width;
-  background: #fff;
-  color: #000;
   p {
     color: currentColor;
   }
   h3 {
-    color: currentColor;
+    color: $color-primary;
     margin: 0;
+  }
+  img {
+    max-width: 30rem;
   }
 }
 .popup-title {
@@ -320,7 +340,7 @@ body.lock {
   transition: $transition-main;
   &:hover {
     opacity: 1;
-    transform: rotate(360deg);
+    transform: rotate(180deg);
   }
 }
 
@@ -425,6 +445,22 @@ body.lock {
     transition: $transition-main;
     p {
       margin: 0;
+      word-break: break-all;
+    }
+  }
+}
+.feedback-section {
+  .column-2 {
+    margin-top: 3em;
+  }
+  .floating-label-wrapper {
+    margin-top: 0;
+  }
+  img {
+    display: none;
+    @media screen and (min-width: $breakpoint-home-columns) {
+      display: block;
+      width: auto;
     }
   }
 }

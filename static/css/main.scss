@@ -29,12 +29,9 @@ html {
     );
   background-attachment: fixed;
   min-height: 100vh;
-  &.lock {
-    overflow-y: hidden;
-    @media screen and (min-width: $breakpoint-burger) {
-      overflow-y: auto;
-    }
-  }
+}
+body.lock {
+  overflow-y: hidden;
 }
 h1,
 h2,
@@ -88,7 +85,7 @@ picture {
 .btn-wrapper {
   display: inline-flex;
   flex-wrap: wrap;
-  gap: Min(1rem, 5vw);
+  column-gap: Min(1rem, 5vw);
 }
 .btn-link {
   @extend %btn;
@@ -143,7 +140,7 @@ picture {
 }
 
 .container {
-  width: Min(95%, 120rem);
+  width: $container-width;
   margin: 0 auto;
 }
 #header {
@@ -227,11 +224,14 @@ picture {
       gap: clamp(1rem, 3vw, 3rem);
 
       padding: 2.5rem 0;
-      width: Min(95%, 120rem);
+      width: $container-width;
       margin: 0 auto;
     }
     li:first-child {
       display: none;
+      a[aria-current="page"] svg.logo {
+        stroke: $color-secondary;
+      }
       @media screen and (min-width: $breakpoint-burger) {
         display: block;
         height: 2rem;
@@ -244,6 +244,9 @@ picture {
       font-style: italic;
       font-size: Max(6vw, 1.5rem);
       padding-bottom: 0.2em;
+      &[aria-current="page"] {
+        color: $color-secondary;
+      }
       @media screen and (min-width: $breakpoint-burger) {
         font-size: $ff-s;
       }
@@ -280,6 +283,7 @@ svg.logo {
   stroke: $color-primary;
   stroke-dasharray: 9% 1%;
   animation: logo-animation 20s linear infinite alternate;
+  transition: $transition-main;
   &:hover,
   &:focus {
     filter: drop-shadow(0.1em 0.2em 0.5em $color-primary);
@@ -363,7 +367,8 @@ main#swup {
         flex-direction: row;
       }
     }
-    &:nth-child(even) .column-2 {
+    &:nth-child(even) .column-2,
+    &:nth-child(odd).reverse .column-2 {
       @media screen and (min-width: $breakpoint-home-columns) {
         flex-direction: row-reverse;
       }

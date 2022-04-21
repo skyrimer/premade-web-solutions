@@ -97,3 +97,14 @@ export const activateLazyLoading = async (scroll) => {
     sourceObserver.observe(source);
   });
 };
+
+export const labelCurrentPageLinks = async () => {
+  qsa("a").forEach((link) => {
+    if (link.getAttribute("href") == window.location.pathname) {
+      link.setAttribute("aria-current", "page");
+      console.log(link);
+    } else {
+      link.removeAttribute("aria-current");
+    }
+  });
+};
