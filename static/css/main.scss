@@ -67,9 +67,12 @@ h3 {
     margin-top: 0;
   }
 }
-p {
+p,
+ol.text li {
   font-size: $ff-xs;
   line-height: 1.5;
+}
+p {
   margin-bottom: 1em;
 }
 img,
@@ -81,7 +84,6 @@ picture {
   display: inline;
   width: 1.4em;
 }
-
 .btn-wrapper {
   display: inline-flex;
   flex-wrap: wrap;
@@ -138,7 +140,6 @@ picture {
   @extend %glassy-section;
   padding: Min(3em, 4vh) Min(3em, 4vw);
 }
-
 .container {
   width: $container-width;
   margin: 0 auto;
@@ -231,6 +232,10 @@ picture {
       display: none;
       a[aria-current="page"] svg.logo {
         stroke: $color-secondary;
+        &:hover,
+        &:focus {
+          filter: drop-shadow(0.1em 0.2em 0.5em $color-secondary);
+        }
       }
       @media screen and (min-width: $breakpoint-burger) {
         display: block;
@@ -288,17 +293,12 @@ svg.logo {
   &:focus {
     filter: drop-shadow(0.1em 0.2em 0.5em $color-primary);
   }
-  // @media screen and (prefers-reduced-motion) {
-  //   stroke-dasharray: unset;
-  //   animation: none;
-  // }
 }
 @keyframes logo-animation {
   to {
     stroke-dashoffset: 100%;
   }
 }
-
 .splash {
   display: flex;
   align-items: center;
@@ -392,7 +392,6 @@ main#swup {
   text-align: center;
   margin: 0;
 }
-
 .wavy-hand {
   display: inline-block;
   user-select: none;
@@ -425,11 +424,30 @@ main#swup {
     }
   }
 }
-
-ul.text li {
-  margin-left: 1rem;
+ol.text {
+  list-style: none;
+  counter-reset: list-counter;
+  li {
+    display: flex;
+    gap: 0.5em;
+    counter-increment: list-counter;
+    &::before {
+      content: counter(list-counter) ".";
+      display: inline-block;
+      font-size: 1em;
+      height: 1em;
+      color: $color-primary;
+    }
+  }
 }
-
+ul.text {
+  li {
+    margin-left: 1em;
+    &::marker {
+      color: $color-primary;
+    }
+  }
+}
 // Custom scrollbar
 .c-scrollbar {
   width: $scrollbar-width;
@@ -441,7 +459,6 @@ ul.text li {
   opacity: 0.9;
   width: $scrollbar-width;
 }
-
 // Intersection observer
 [data-scroll-section] h2,
 [data-scroll-section] .text > * {
@@ -454,13 +471,11 @@ ul.text li {
     transform: translateY(0);
   }
 }
-
 // Swup
 .transition-fade {
   transition: $transition-page-transition;
   opacity: 1;
 }
-
 html.is-animating .transition-fade,
 html.is-animating .c-scrollbar {
   opacity: 0;
@@ -531,7 +546,6 @@ html.is-animating .c-scrollbar {
     }
   }
 }
-
 // errors
 .error-section {
   width: max-content;
@@ -541,7 +555,6 @@ html.is-animating .c-scrollbar {
     width: Min(50%, 50rem);
   }
 }
-
 // Helpfull websites
 ul.contents-list {
   list-style-position: inside;

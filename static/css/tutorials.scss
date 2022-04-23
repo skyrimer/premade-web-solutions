@@ -7,45 +7,6 @@ code {
   line-height: 1.2;
   font-size: $ff-xs;
 }
-// Slider styling
-.swiper-slide {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  background-position: center;
-  background-size: cover;
-
-  height: auto;
-
-  border: 2px solid $color-secondary;
-  border-radius: 1rem;
-  background-color: $color-background;
-  overflow: hidden;
-  a.inline-link {
-    display: block;
-    font-size: $ff-m;
-    font-family: $ff-secondary;
-    color: $color-secondary;
-    margin: 1em 0;
-    &:hover {
-      color: $color-primary;
-    }
-  }
-}
-.swiper-button-next,
-.swiper-button-prev {
-  color: $color-primary;
-}
-.swiper-pagination-bullet-active {
-  background-color: $color-secondary;
-}
-.swiper-pagination-bullet {
-  $size: 0.9rem;
-  width: $size;
-  height: $size;
-}
-
 // Custom cursor
 #example-cursor {
   display: flex;
@@ -95,6 +56,7 @@ code {
 
 // Floating label
 .floating-label-wrapper {
+  $paddingLeft: Min(2rem, 5vw);
   position: relative;
   margin: Max(1.5em, 4vh) 0;
   width: Min(100%, 50rem);
@@ -102,7 +64,7 @@ code {
   textarea {
     width: 100%;
     font-size: $ff-s;
-    padding: 2em 2rem 0.5em;
+    padding: 2em $paddingLeft 0.5em;
     color: $color-main;
     background-color: rgba($color: $color-tertiary, $alpha: 0.1);
     border-bottom: 1px solid $color-secondary;
@@ -121,7 +83,7 @@ code {
     user-select: none;
     position: absolute;
     top: 50%;
-    left: 2rem;
+    left: $paddingLeft;
     color: $color-secondary;
     transition: $transition-main;
     cursor: text;
@@ -153,6 +115,7 @@ code {
 }
 .tabs-wrapper.full-width {
   width: Min(1124px, 100%);
+  margin-bottom: 0;
   img {
     transition: $transition-main;
   }
@@ -423,29 +386,32 @@ code {
 }
 
 // Admin
-.table .row {
-  display: flex;
-  &:nth-child(odd) .cell {
-    background-color: rgba($color: $color-tertiary, $alpha: 0.1);
-  }
-  &:nth-child(even) .cell {
-    background-color: rgba($color: $color-main, $alpha: 0.1);
-  }
-  &.headers > .cell {
-    background-color: $color-secondary;
-    border: 1px solid $color-secondary;
-  }
-  .cell {
-    flex-basis: 100%;
-    border: 1px solid $color-main;
+.table {
+  margin-bottom: 5rem;
+  .row {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1em;
-    transition: $transition-main;
-    p {
-      margin: 0;
-      word-break: break-all;
+    &:nth-child(odd) .cell {
+      background-color: rgba($color: $color-tertiary, $alpha: 0.1);
+    }
+    &:nth-child(even) .cell {
+      background-color: rgba($color: $color-main, $alpha: 0.1);
+    }
+    &.headers > .cell {
+      background-color: $color-secondary;
+      border: 1px solid $color-secondary;
+    }
+    .cell {
+      flex-basis: 100%;
+      border: 1px solid $color-main;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1em;
+      transition: $transition-main;
+      p {
+        margin: 0;
+        word-break: break-all;
+      }
     }
   }
 }

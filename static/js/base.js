@@ -3,7 +3,8 @@ export const activateNavbar = async (scroll) => {
   const activateMobile = (event) => {
     if (!event.matches) {
       const header = qs("#header");
-      let headerTogglerList = [qs("svg.ham"), qs("li > a", header)];
+      let headerTogglerList = [qs("svg.ham"), ...qsa("li > a", header)];
+      console.log(headerTogglerList);
       headerTogglerList.forEach((toggler) => {
         toggler.addEventListener("click", () => {
           header.classList.toggle("active");
@@ -19,7 +20,7 @@ export const pasteCurrentYear = async () => {
   qs("#copyright").textContent = new Date().getFullYear();
 };
 export const activateIdLinks = async (scroll) => {
-  document.querySelectorAll('a[href^="#"]:not(.popup-link)').forEach((link) => {
+  qsa('a[href^="#"]:not(.popup-link)').forEach((link) => {
     link.addEventListener("click", () => {
       scroll.scrollTo(link.hash, {
         offset: -120,
@@ -29,8 +30,8 @@ export const activateIdLinks = async (scroll) => {
 };
 export const activateOnscrollAnimations = async () => {
   const sections = [
-    ...document.querySelectorAll("[data-scroll-section]  h2"),
-    ...document.querySelectorAll("[data-scroll-section] .text > *"),
+    ...qsa("[data-scroll-section]  h2"),
+    ...qsa("[data-scroll-section] .text > *"),
   ];
   if (!("IntersectionObserver" in window)) {
     sections.forEach((section) => {
@@ -56,8 +57,8 @@ export const activateOnscrollAnimations = async () => {
   });
 };
 export const activateLazyLoading = async (scroll) => {
-  const images = document.querySelectorAll("img[data-src]");
-  const sources = document.querySelectorAll("picture>source[data-srcset]");
+  const images = qsa("img[data-src]");
+  const sources = qsa("picture>source[data-srcset]");
   const replaceDataValue = (target, dataValue, value) => {
     target.setAttribute(value, target.getAttribute(dataValue));
     target.removeAttribute(dataValue);
@@ -77,7 +78,6 @@ export const activateLazyLoading = async (scroll) => {
         entries.forEach((image) => {
           if (image.isIntersecting) {
             replaceDataValue(image.target, dataValue, value);
-            scroll.update();
             observer.unobserve(image.target);
           }
         });
@@ -89,6 +89,9 @@ export const activateLazyLoading = async (scroll) => {
   const sourceObserver = createImageObserver("data-srcset", "srcset");
   images.forEach((image) => {
     imageObserver.observe(image);
+    image.onload = () => {
+      scroll.update();
+    };
   });
   sources.forEach((source) => {
     sourceObserver.observe(source);

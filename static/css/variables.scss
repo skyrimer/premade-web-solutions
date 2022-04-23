@@ -1,6 +1,7 @@
 // Colors
 $color-background: #080c25;
 $color-main: #f7f7f7;
+// $color-primary: #00FFFF;
 $color-primary: #00ffc2;
 $color-secondary: #f9a826;
 $color-tertiary: #a6b2ec;
@@ -42,7 +43,6 @@ $accordion-width: Min(95%, 40rem);
 $container-width: Min(92%, 120rem);
 $scrollbar-width: 0.5rem;
 $header-size: 7rem;
-
 %underline {
   $size: 0.1em;
   background-image: linear-gradient(to right, currentColor, currentColor);

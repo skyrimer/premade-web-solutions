@@ -43,7 +43,14 @@ const loadCards = (data) => {
       qs(".tabs-wrapper", tabs).appendChild(tabWebsite);
     });
     qs(".tab-link", tabs).classList.toggle("active");
-    qs(".tab-content", tabs).classList.toggle("active");
+    const firstTabContent = qs(".tab-content", tabs);
+    firstTabContent.classList.toggle("active");
+    const firstTabContentImage = qs("img", firstTabContent);
+    firstTabContentImage.setAttribute(
+      "src",
+      firstTabContentImage.getAttribute("data-src")
+    );
+    firstTabContentImage.removeAttribute("data-src");
     section.appendChild(tabs);
     main.insertBefore(section, footer);
   }
@@ -65,10 +72,9 @@ export const loadTutorialCards = async (tutorialList) => {
     .then((response) => response.json())
     .then((data) => {
       tutorials = data.map((tutorial) => {
-        const card = cardTemplate.content.cloneNode(true).children[0];
+        const card = copyElement(cardTemplate);
         card.href = "/examples/" + tutorial.url;
-        const name = qs("[data-name]", card);
-        name.textContent = tutorial.name;
+        qs("[data-name]", card).textContent = tutorial.name;
         tutorialList.appendChild(card);
         return { name: tutorial.name.toLowerCase(), element: card };
       });

@@ -14,9 +14,8 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
 view_counter = ViewCounter(app, db)
 
-if app.debug == True:
-    app.config["TEMPLATES_AUTO_RELOAD"] = True
-    app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
+app.config["TEMPLATES_AUTO_RELOAD"] = True
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
 
 class FeedbackModel(db.Model):
@@ -103,7 +102,7 @@ def static_from_root():
 
 @app.route('/admin')
 def admin():
-    total_views = len({view.user_agent for view in get_views_table()})
+    total_views = len({view.ip for view in get_views_table()})
     views_per_page = Counter(view.path for view in get_views_table())
     feedback = FeedbackModel.query.all()
     return render_template("admin.html", total_views=total_views,
@@ -112,4 +111,4 @@ def admin():
 
 if __name__ == "__main__":
     # clearDatabase(app, db)
-    app.run(debug=False)
+    app.run(debug=True)

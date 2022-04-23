@@ -28,7 +28,7 @@ window.onload = () => {
     labelCurrentPageLinks();
     highlightAllCode();
     const tutorialList = qs("[data-tutorial-list]");
-    if (tutorialList) loadTutorialCards(tutorialList);
+    if (tutorialList) await loadTutorialCards(tutorialList).then(scroll.update());
     const customCursor = qs("#cursor");
     if (customCursor) activateCustomCursorExample(customCursor, qs("#aura"));
     const tabLinks = qsa(".tab-link");
