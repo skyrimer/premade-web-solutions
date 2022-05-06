@@ -44,46 +44,46 @@ def get_tutorial_title(string: str) -> str:
 
 @app.errorhandler(404)
 def code_404(error):
-    return render_template("404.html", title="Pre-made web solutions"), 404
+    return render_template("404.html", title="PreWeb - Not Found"), 404
 
 
 @app.route("/")
 @app.route("/home")
 @view_counter.count
 def home():
-    return render_template("index.html", title="Pre-made web solutions")
+    return render_template("index.html", title="Pre-made web")
 
 
 @app.route('/about')
 @view_counter.count
 def about():
-    return render_template("about.html", title="About us")
+    return render_template("about.html", title="PreWeb - About")
 
 
 @app.route("/tutorials")
 @view_counter.count
 def tutorials():
-    return render_template("tutorials.html", title="All tutorials")
+    return render_template("tutorials.html", title="PreWeb - Tutorials")
 
 
 @app.route("/helpful-websites")
 @view_counter.count
 def helpful_websites():
-    return render_template("helpful_websites.html", title="Helpful websites")
+    return render_template("helpful_websites.html", title="PreWeb - Helpful websites")
 
 
 @app.route("/contact", methods=["GET", "POST"])
 @view_counter.count
 def contact():
+    title = "PreWeb - Feedback page"
     if request.method == "GET":
-        return render_template("contact.html", title="Contact me")
+        return render_template("contact.html", title=title)
     data = request.get_json(force=True)
-    feedback = FeedbackModel(name=data["name"],
-                             email=data["email"],
-                             feedback=data["feedback"])
-    db.session.add(feedback)
+    db.session.add(FeedbackModel(name=data["name"],
+                                 email=data["email"],
+                                 feedback=data["feedback"]))
     db.session.commit()
-    return render_template("contact.html", title="Contact me")
+    return render_template("contact.html", title=title)
 
 
 @app.route("/examples/<string:example>")
@@ -91,7 +91,8 @@ def contact():
 def examples(example):
     if not isfile(join_path(getcwd(), "templates", "examples", f"{example}.html")):
         abort(404)
-    return render_template(f"/examples/{example}.html", title=get_tutorial_title(example))
+    return render_template(f"/examples/{example}.html",
+                           title=f"PreWeb - {get_tutorial_title(example)}")
 
 
 @app.route('/robots.txt')
@@ -106,7 +107,7 @@ def admin():
     views_per_page = Counter(view.path for view in get_views_table())
     feedback = FeedbackModel.query.all()
     return render_template("admin.html", total_views=total_views,
-                           views_per_page=views_per_page, feedback=feedback)
+                           views_per_page=views_per_page, feedback=feedback, title="PreWeb - Admin Panel")
 
 
 if __name__ == "__main__":

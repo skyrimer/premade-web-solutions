@@ -50,5 +50,9 @@
         {
             "name": "Adaptive navbar",
             "url": "adaptive-navbar"
+        },
+        {
+            "name": "Tilt effect",
+            "url": "tilt-effect"
         }
     ]

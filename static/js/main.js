@@ -15,6 +15,7 @@ import {
   activatePopup,
   textareaUpdate,
   sendFeedback,
+  activateTilt,
 } from "./tutorials.js";
 import { loadHelpfulWebsites, loadTutorialCards } from "./load.js";
 window.onload = () => {
@@ -40,6 +41,7 @@ window.onload = () => {
     if (textareas) textareaUpdate(textareas, scroll);
     let form = qs("[data-contact-form]");
     if (form) sendFeedback(form);
+    if (qs("[data-tilt]")) activateTilt();
   };
   const scroll = new LocomotiveScroll({
     el: qs("[data-scroll-container]"),

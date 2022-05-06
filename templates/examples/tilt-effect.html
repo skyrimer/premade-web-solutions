@@ -1,0 +1,206 @@
+{% extends "layout.html" %}
+{% block content %}
+<section class="glassy-section" data-scroll-section>
+    <h2>Tilt effect</h2>
+    <article class="text">
+        <p>In certain cases, just displaying the image for information is not enough. One of the ways to add some
+            style and interactivity is to add the tilt effect that user can play around with. There is no real UX
+            reason for that, but it might be used for some UI reasons. Here is the example.</p>
+        <p>There are 2 ways to achieve similar effect:</p>
+    </article>
+    <div class="tilt-cards-wrapper">
+        <a href="#tilt-css" class="tilt-card" data-tilt>
+            <h3>Pure CSS reverse tilt</h3>
+        </a>
+        <a href="#tilt-js" class="tilt-card" data-tilt>
+            <h3>Using Vanilla Tilt library</h3>
+        </a>
+    </div>
+
+</section>
+<section class="glassy-section" data-scroll-section id="tilt-css">
+    <h3>Pure CSS reverse tilt</h3>
+    <p>Before we start, I need to explain the process. The way tilting animation is realised in pure CSS is that we
+        have an element with content. On top of this content (and before in terms of HTML), we put an invisible grid of
+        cells or tiles. This grid has
+        an equal number of rows and columns: 1x1, 5x5, 20x20 and so on (there is a way to make a different number of
+        rows and columns, but it would make CSS files even bigger). When the user hovers on the cells, the content is
+        tilted. So, here comes the first problem: you need to create and maintain the number of cells throughout the
+        projects.</p>
+    <p>Example of the HTML structure can look like this:</p>
+    <pre><code class="html">
+&lt;div class="tilt-container small"&gt;
+  &lt;span class="tilt-rotation-cell"&gt;&lt;/span&gt;&lt;span class="tilt-rotation-cell"&gt;&lt;/span&gt;&lt;span
+  class="tilt-rotation-cell"&gt;&lt;/span&gt;&lt;span class="tilt-rotation-cell"&gt;&lt;/span&gt;&lt;span
+  class="tilt-rotation-cell"&gt;&lt;/span&gt;&lt;span class="tilt-rotation-cell"&gt;&lt;/span&gt;&lt;span
+  class="tilt-rotation-cell"&gt;&lt;/span&gt;&lt;span class="tilt-rotation-cell"&gt;&lt;/span&gt;&lt;span
+  class="tilt-rotation-cell"&gt;&lt;/span&gt;&lt;span class="tilt-rotation-cell"&gt;&lt;/span&gt;&lt;span
+  class="tilt-rotation-cell"&gt;&lt;/span&gt;&lt;span class="tilt-rotation-cell"&gt;&lt;/span&gt;&lt;span
+  class="tilt-rotation-cell"&gt;&lt;/span&gt;&lt;span class="tilt-rotation-cell"&gt;&lt;/span&gt;&lt;span
+  class="tilt-rotation-cell"&gt;&lt;/span&gt;&lt;span class="tilt-rotation-cell"&gt;&lt;/span&gt;
+  &lt;div class="tilt-content"&gt;
+    &lt;h1&gt;Pure CSS 4x4 cells&lt;/h1&gt;
+    &lt;img src="https://source.unsplash.com/700x700/?tiger" alt="tiger"&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+    </code></pre>
+    <p>Hint: you can easily create the exact amount of cells using <a href="https://emmet.io" class="inline-link"
+            target="_blank">Emmet</a> extension. For instance, if I want to create a 20x20 grid, then I can do it like
+        this: <code class="html">span.tilt-rotation-cell*400</code></p>
+    <p>And here comes the most illogical and fun part (no😔). In CSS, there are a few things that you need to track
+        outside regular styling. Your preserve container that wraps both grid and content needs to have <code
+            class="css">perspective: relative</code> and
+        <code class="css">transform-style: preserve-3d</code>. It means that the same container must also have <code
+            class="css">overflow: visible</code>, <code class="css">filter: none</code>, and <code
+            class="css">backdrop-filter: none</code>. Otherwise, the tilt effect is not going to work as it is supposed
+        to be. It should look like this.
+    <pre><code class="scss">
+.tilt-container {
+  $speed: 100ms;
+  $easing: ease;
+  $perspective: 1000px;
+  position: relative;
+  transform-style: preserve-3d;
+  perspective: $perspective;
+  .tilt-content {
+    transition: transform $speed $easing;
+    img {
+      max-width: 100%;
+      max-height: 100%;
+      border-radius: 30px;
+    }
+  }
+}
+        </code></pre>
+    <p>Finally, here comes the 🔮magic🔮. Depending on the grid size, tiles need to have different positions,
+        dimensions, X-rotation indexes and Y-rotation indexes. It can be calculated by hand, but it will take time and
+        cause difficulties for upscaling. I have solved it by creating a Sass mixin that does it automatically. I will
+        not explain the maths behind the mixin, because my English skills are not that proficient. It can take five
+        parameters: cells number (number of cells in a row), rotation angle (absolute value of maximum rotation angle),
+        axis lock ("x" will lock the x-axis; "y" will lock the y-axis; any other value will not lock anything), cell
+        class name and content class name. It will help with upscaling and calculating.</p>
+    <p>Here is the mixin, and application example:</p>
+    <pre><code class="scss">
+@mixin tiltAnimation(
+  $cells-number: 10,
+  $rotation-angle: 20,
+  $lockAxis: "none",
+  $cell-class-name: "tilt-rotation-cell",
+  $content-class-name: "tilt-content"
+) {
+  $percentageOfHundred: calc(100% / $cells-number);
+  $rotation-gradient: (2 * $rotation-angle) / ($cells-number - 1);
+  $rotation-intersect: $rotation-angle + $rotation-gradient;
+  
+  .#{$cell-class-name} {
+    position: absolute;
+    z-index: 5;
+    width: $percentageOfHundred;
+    height: $percentageOfHundred;
+  }
+  @for $row from 1 to $cells-number + 1 {
+    @for $column from 1 to $cells-number + 1 {
+      .#{$cell-class-name}:nth-child(#{( ($row * $cells-number) + $column - $cells-number)}) {
+        top: ($row * $percentageOfHundred) - $percentageOfHundred;
+        left: ($column * $percentageOfHundred) - $percentageOfHundred;
+      }
+      .#{$cell-class-name}:nth-child(#{(($row *$cells-number) + $column - $cells-number)}):hover
+      ~ .#{$content-class-name} {
+        @if $lockAxis == "y" {
+          transform: rotateY(
+            (($column * $rotation-gradient) - $rotation-intersect) * 1deg
+        );
+        } @else if $lockAxis == "x" {
+          transform: rotateX(((-$row * $rotation-gradient) + $rotation-intersect) * 1deg);
+        } @else {
+          transform: rotateX(((-$row * $rotation-gradient) + $rotation-intersect) * 1deg)
+            rotateY((($column * $rotation-gradient) - $rotation-intersect) * 1deg);
+        }
+      }
+    }
+  }
+}
+.tilt-container {
+  &.big {
+    @include tiltAnimation(20, 15, false, "tilt-rotation-cell", "tilt-content");
+  }
+  &.small {
+    @include tiltAnimation(4, 20, false, "tilt-rotation-cell", "tilt-content");
+  }
+}
+        </code></pre>
+    <p>And it finally works! This solution is perfect for small personal projects or tiny objects on the webpage, but I
+        would not recommend using it for other cases because:</p>
+    <ul class="text">
+        <li>
+            <p>Adds a lot of HTML because cells take some space</p>
+        </li>
+        <li>
+            <p>Low Html to text ratio will lower SEO score</p>
+        </li>
+        <li>
+            <p>Adds a lot of CSS because each cell has its rotation index</p>
+        </li>
+        <li>
+            <p>No reverse effect (when the image tends toward the cursor instead of distancing from it)</p>
+        </li>
+        <li>
+            <p>The animation might look chunky if there are too few cells</p>
+        </li>
+        <li>
+            <p>Hard to customise the effect (glare effect, event listeners, keep the tilt after the mouse leaves
+                the element, etc)</p>
+        </li>
+        <li>
+            <p>Doesn't work on mobile devices</p>
+        </li>
+    </ul>
+    </p>
+</section>
+<section class="glassy-section" data-scroll-section id="tilt-js">
+    <h3>Using Vanilla Tilt library</h3>
+    <p>As it is stated in the heading, this solution will require the Vanilla Tilt library, but it also allows to create
+        any tilt effect within seconds! Everything you need to do is to connect to the library. Afterwards, there are
+        two ways to activate tilt effect: data attributes and JavaScript.</p>
+    <p>If you are connecting with JavaScript, you just need to run init method of VanillaTilt object. The first
+        parameter is the list of elements, that need to be animated. The second parameter is a dictionary with values
+        that allows to customise tilt effect. Below, you can see an example of activision with a dictionary of all value
+        with their defaults.</p>
+    <pre><code class="js">
+VanillaTilt.init(document.querySelectorAll("[data-my-tilt]"), {
+  reverse: false, // reverse the tilt direction
+  max: 35, // max tilt rotation (degrees)
+  startX: 0, // the starting tilt on the X axis, in degrees.
+  startY: 0, // the starting tilt on the Y axis, in degrees.
+  perspective: 1000, // Transform perspective, the lower the more extreme the tilt gets.
+  scale: 1, // 2 = 200%, 1.5 = 150%, etc..
+  speed: 300, // Speed of the enter/exit transition
+  transition: true, // Set a transition on enter/exit.
+  axis: null, // What axis should be disabled. Can be X or Y.
+  reset: true, // If the tilt effect has to be reset on exit.
+  easing: "cubic-bezier(.03,.98,.52,.99)", // Easing on enter/exit.
+  glare: false, // if it should have a "glare" effect
+  "max-glare": 1, // the maximum "glare" opacity (1 = 100%, 0.5 = 50%)
+  "glare-prerender": false, // false = VanillaTilt creates the glare elements for you, otherwise
+    // you need to add .js-tilt-glare>.js-tilt-glare-inner by yourself
+  "mouse-event-element": null, // css-selector or link to HTML-element what will be listen mouse events
+  gyroscope: true, // Boolean to enable/disable device orientation detection,
+  gyroscopeMinAngleX: -45, // This is the bottom limit of the device angle on X axis, meaning that a device rotated at
+    // this angle would tilt the element as if the mouse was on the left border of the element;
+  gyroscopeMaxAngleX: 45, // This is the top limit of the device angle on X axis, meaning that a device rotated at this
+    // angle would tilt the element as if the mouse was on the right border of the element;
+  gyroscopeMinAngleY: -45, // This is the bottom limit of the device angle on Y axis, meaning that a device rotated at
+    // this angle would tilt the element as if the mouse was on the top border of the element;
+  gyroscopeMaxAngleY: 45, // This is the top limit of the device angle on Y axis, meaning that a device rotated at this
+    // angle would tilt the element as if the mouse was on the bottom border of the element;
+});
+    </code></pre>
+    <p>But you can get the exact same result without writing a single line of JavaScript. Just set <code
+            class="html">data-tilt</code> to an element, and it will also work. To change its parameter, just add the
+        corresponding data attribute like <code class="html">data-tilt-full-page-listening</code>.</p>
+    <p>That's it! Now you are the tilting master. Check out the example.</p>
+    <div class="btn-wrapper">
+        <a href="/static/examples/tilt animation/main.html" class="btn-link">See example</a>
+    </div>
+</section>
+{% endblock %}

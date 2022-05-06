@@ -189,3 +189,17 @@ export const sendFeedback = async (form) => {
     );
   });
 };
+export const activateTilt = async () => {
+  const tiltJs = document.createElement("script");
+  tiltJs.setAttribute(
+    "src",
+    "https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"
+  );
+  tiltJs.setAttribute(
+    "integrity",
+    "sha512-K9tDZvc8nQXR1DMuT97sct9f40dilGp97vx7EXjswJA+/mKqJZ8vcZLifZDP+9t08osMLuiIjd4jZ0SM011Q+w=="
+  );
+  tiltJs.setAttribute("crossorigin", "anonymous");
+  tiltJs.setAttribute("referrerpolicy", "no-referrer");
+  document.body.appendChild(tiltJs);
+};
