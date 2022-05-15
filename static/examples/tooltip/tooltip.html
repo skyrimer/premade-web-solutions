@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <title>Tooltip</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="background">
+            <img src="https://source.unsplash.com/500x500/?mountain" alt="Mountain">
+        </div>
+        <div class="tooltip-inner" tabindex="1">
+            <h2>This is a full-width tooltip!</h2>
+            <p>It can contain any content inside. Like a small <span class="tool-hover" tabindex="1"
+                    data-tip="Yes, I am a small tooltip! And there is a lot of content here. I wonder what will happen?">tooltip</span>
+                with data attribute</p>
+            <p>Or it can contain another
+                <span class="tooltip-wrapper" tabindex="1">
+                    <span class="tool-hover">
+                        tooltip
+                    </span>
+                    <span class="tooltip">
+                        Let me charge! <br>
+                        <svg fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="1.5"
+                                d="M8.25 6.75H6.75C5.64543 6.75 4.75 7.64543 4.75 8.75V15.25C4.75 16.3546 5.64543 17.25 6.75 17.25H7.25M14.75 6.75H15.25C16.3546 6.75 17.25 7.64543 17.25 8.75V15.25C17.25 16.3546 16.3546 17.25 15.25 17.25H13.75">
+                            </path>
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="1.5"
+                                d="M17.75 10.75H18C18.6904 10.75 19.25 11.3096 19.25 12V12C19.25 12.6904 18.6904 13.25 18 13.25H17.75">
+                            </path>
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="1.5" d="M11.75 6.75L8.75 12H13.25L10.25 17.25"></path>
+                        </svg>
+                        <svg fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="1.5" d="M13.75 6.75L19.25 12L13.75 17.25"></path>
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="1.5" d="M19 12H4.75">
+                            </path>
+                        </svg>
+                        <svg fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="1.5"
+                                d="M4.75 8.75C4.75 7.64543 5.64543 6.75 6.75 6.75H15.25C16.3546 6.75 17.25 7.64543 17.25 8.75V15.25C17.25 16.3546 16.3546 17.25 15.25 17.25H6.75C5.64543 17.25 4.75 16.3546 4.75 15.25V8.75Z">
+                            </path>
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="1.5" d="M7.75 9.75V14.25">
+                            </path>
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="1.5"
+                                d="M17.75 10.75H18C18.6904 10.75 19.25 11.3096 19.25 12V12C19.25 12.6904 18.6904 13.25 18 13.25H17.75">
+                            </path>
+                        </svg>
+                        <svg fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="1.5" d="M13.75 6.75L19.25 12L13.75 17.25"></path>
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="1.5" d="M19 12H4.75">
+                            </path>
+                        </svg>
+                        <svg fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="1.5"
+                                d="M4.75 8.75C4.75 7.64543 5.64543 6.75 6.75 6.75H15.25C16.3546 6.75 17.25 7.64543 17.25 8.75V15.25C17.25 16.3546 16.3546 17.25 15.25 17.25H6.75C5.64543 17.25 4.75 16.3546 4.75 15.25V8.75Z">
+                            </path>
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="1.5" d="M7.75 9.75V14.25">
+                            </path>
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="1.5" d="M11.25 9.75V14.25">
+                            </path>
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="1.5"
+                                d="M17.75 10.75H18C18.6904 10.75 19.25 11.3096 19.25 12V12C19.25 12.6904 18.6904 13.25 18 13.25H17.75">
+                            </path>
+                        </svg>
+                        <svg fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="1.5" d="M13.75 6.75L19.25 12L13.75 17.25"></path>
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="1.5" d="M19 12H4.75">
+                            </path>
+                        </svg>
+                        <svg fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="1.5"
+                                d="M4.75 8.75C4.75 7.64543 5.64543 6.75 6.75 6.75H15.25C16.3546 6.75 17.25 7.64543 17.25 8.75V15.25C17.25 16.3546 16.3546 17.25 15.25 17.25H6.75C5.64543 17.25 4.75 16.3546 4.75 15.25V8.75Z">
+                            </path>
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="1.5" d="M7.75 9.75V14.25">
+                            </path>
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="1.5" d="M11 9.75V14.25">
+                            </path>
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="1.5" d="M14.25 9.75V14.25">
+                            </path>
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="1.5"
+                                d="M17.75 10.75H18C18.6904 10.75 19.25 11.3096 19.25 12V12C19.25 12.6904 18.6904 13.25 18 13.25H17.75">
+                            </path>
+                        </svg>
+                    </span>
+                </span>
+                that has HTML inside.
+            </p>
+        </div>
+    </div>
+</body>
+
+</html>

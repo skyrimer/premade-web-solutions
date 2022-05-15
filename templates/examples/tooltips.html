@@ -1,0 +1,303 @@
+{% extends "layout.html" %}
+{% block content %}
+<section class="glassy-section" data-scroll-section>
+    <h2>Tooltips</h2>
+    <article class="text">
+        <p>Tooltips are small popovers that appear when the user hovers over an element. They usually provide some
+            additional info or explain information that is not clear. There are a dozen variations of them, but in this
+            tutorial, I will show only 3 of them: overlaying the element, a small tooltip from a data attribute, and a
+            small tooltip from an HTML element.</p>
+        <p>I will make an image with a full overlay that contains other tooltips. Therefore, you need to have two layers
+            stacked on top of each other: one is setting the dimensions, and another is following these dimensions.
+            Which one is which is up to you. Then, the overlaying element has some text with other tooltips. For the
+            data tooltip, you need to have the <code class="html">data-tool</code> attribute. For a more complex tooltip
+            that can contain HTML, you need to separate it into another distinct element that has hidden content and the
+            part hovering which this content will be revealed. Note that you might want to add a <code
+                class="html">tabindex</code> for each tooltip to make the hidden content accessible through keyboard
+            navigation.</p>
+        <p>Your HTML might look like this:</p>
+        <pre><code class="html">
+&lt;div class="container"&gt;
+  &lt;div class="background"&gt;
+      &lt;img src="https://source.unsplash.com/500x500/?mountain" alt="Mountain"&gt;
+  &lt;/div&gt;
+  &lt;div class="tooltip-inner" tabindex="1"&gt;
+    &lt;h2&gt;This is a full-width tooltip!&lt;/h2&gt;
+    &lt;p&gt;It can contain any content inside. Like a small &lt;span class="tool-hover" tabindex="1"
+            data-tip="Yes, I am a small tooltip! And there is a lot of content here. I wonder what will happen?"&gt;tooltip&lt;/span&gt;
+        with data attribute&lt;/p&gt;
+    &lt;p&gt;Or it can contain another
+      &lt;span class="tooltip-wrapper" tabindex="1"&gt;
+        &lt;span class="tool-hover"&gt;
+            tooltip
+        &lt;/span&gt;
+        &lt;span class="tooltip"&gt;
+          Let me charge! &lt;br&gt;
+          &lt;svg fill="none" viewBox="0 0 24 24"&gt;
+            &lt;path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="1.5"
+                d="M8.25 6.75H6.75C5.64543 6.75 4.75 7.64543 4.75 8.75V15.25C4.75 16.3546 5.64543 17.25 6.75 17.25H7.25M14.75 6.75H15.25C16.3546 6.75 17.25 7.64543 17.25 8.75V15.25C17.25 16.3546 16.3546 17.25 15.25 17.25H13.75"&gt;
+            &lt;/path&gt;
+            &lt;path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="1.5"
+                d="M17.75 10.75H18C18.6904 10.75 19.25 11.3096 19.25 12V12C19.25 12.6904 18.6904 13.25 18 13.25H17.75"&gt;
+            &lt;/path&gt;
+            &lt;path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="1.5" d="M11.75 6.75L8.75 12H13.25L10.25 17.25"&gt;&lt;/path&gt;
+          &lt;/svg&gt;
+          &lt;svg fill="none" viewBox="0 0 24 24"&gt;
+            &lt;path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="1.5" d="M13.75 6.75L19.25 12L13.75 17.25"&gt;&lt;/path&gt;
+            &lt;path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="1.5" d="M19 12H4.75"&gt;
+            &lt;/path&gt;
+          &lt;/svg&gt;
+          &lt;svg fill="none" viewBox="0 0 24 24"&gt;
+            &lt;path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="1.5"
+                d="M4.75 8.75C4.75 7.64543 5.64543 6.75 6.75 6.75H15.25C16.3546 6.75 17.25 7.64543 17.25 8.75V15.25C17.25 16.3546 16.3546 17.25 15.25 17.25H6.75C5.64543 17.25 4.75 16.3546 4.75 15.25V8.75Z"&gt;
+            &lt;/path&gt;
+            &lt;path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="1.5" d="M7.75 9.75V14.25"&gt;
+            &lt;/path&gt;
+            &lt;path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="1.5"
+                d="M17.75 10.75H18C18.6904 10.75 19.25 11.3096 19.25 12V12C19.25 12.6904 18.6904 13.25 18 13.25H17.75"&gt;
+            &lt;/path&gt;
+          &lt;/svg&gt;
+          &lt;svg fill="none" viewBox="0 0 24 24"&gt;
+            &lt;path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="1.5" d="M13.75 6.75L19.25 12L13.75 17.25"&gt;&lt;/path&gt;
+            &lt;path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="1.5" d="M19 12H4.75"&gt;
+            &lt;/path&gt;
+          &lt;/svg&gt;
+          &lt;svg fill="none" viewBox="0 0 24 24"&gt;
+            &lt;path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="1.5"
+                d="M4.75 8.75C4.75 7.64543 5.64543 6.75 6.75 6.75H15.25C16.3546 6.75 17.25 7.64543 17.25 8.75V15.25C17.25 16.3546 16.3546 17.25 15.25 17.25H6.75C5.64543 17.25 4.75 16.3546 4.75 15.25V8.75Z"&gt;
+            &lt;/path&gt;
+            &lt;path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="1.5" d="M7.75 9.75V14.25"&gt;
+            &lt;/path&gt;
+            &lt;path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="1.5" d="M11.25 9.75V14.25"&gt;
+            &lt;/path&gt;
+            &lt;path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="1.5"
+                d="M17.75 10.75H18C18.6904 10.75 19.25 11.3096 19.25 12V12C19.25 12.6904 18.6904 13.25 18 13.25H17.75"&gt;
+            &lt;/path&gt;
+          &lt;/svg&gt;
+          &lt;svg fill="none" viewBox="0 0 24 24"&gt;
+            &lt;path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="1.5" d="M13.75 6.75L19.25 12L13.75 17.25"&gt;&lt;/path&gt;
+            &lt;path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="1.5" d="M19 12H4.75"&gt;
+            &lt;/path&gt;
+          &lt;/svg&gt;
+          &lt;svg fill="none" viewBox="0 0 24 24"&gt;
+            &lt;path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="1.5"
+                d="M4.75 8.75C4.75 7.64543 5.64543 6.75 6.75 6.75H15.25C16.3546 6.75 17.25 7.64543 17.25 8.75V15.25C17.25 16.3546 16.3546 17.25 15.25 17.25H6.75C5.64543 17.25 4.75 16.3546 4.75 15.25V8.75Z"&gt;
+            &lt;/path&gt;
+            &lt;path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="1.5" d="M7.75 9.75V14.25"&gt;
+            &lt;/path&gt;
+            &lt;path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="1.5" d="M11 9.75V14.25"&gt;
+            &lt;/path&gt;
+            &lt;path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="1.5" d="M14.25 9.75V14.25"&gt;
+            &lt;/path&gt;
+            &lt;path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="1.5"
+                d="M17.75 10.75H18C18.6904 10.75 19.25 11.3096 19.25 12V12C19.25 12.6904 18.6904 13.25 18 13.25H17.75"&gt;
+            &lt;/path&gt;
+          &lt;/svg&gt;
+        &lt;/span&gt;
+      &lt;/span&gt;
+      that has HTML inside.
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+        </code></pre>
+        <p>Now, let's go to CSS and make some magic. For overlay, you need to set <code
+                class="css">position: relative</code> for the container
+            and stack the layers. The overlay content must be on top to make pointer-events work. Afterwards, using
+            <code class="css">clip-path: circle()</code> hide it and make it reveal when this circle is hovered.
+            Everything else is some styling that is not necessary, but I would recommend setting content in this circle
+            so that users can clearly understand that there is hidden content. It should look like this:
+        </p>
+        <pre><code class="scss">
+.tooltip-inner {
+  position: relative;
+  min-height: 500px;
+  padding: 4em;
+  clip-path: circle(
+    var(--circle-size) at calc(100% - var(--circle-size)) var(--circle-size)
+  );
+  background-color: #00c9ff;
+  border-radius: var(--circle-size);
+  transition: all var(--transition-duration-inner) ease-in-out;
+
+  &:hover,
+  &:focus-within {
+    clip-path: circle(100%);
+    background-color: #1affba;
+    &::before {
+      color: transparent;
+    }
+  }
+
+  h2 {
+    font-size: 2rem;
+    color: black;
+    margin-bottom: 1em;
+  }
+
+  p {
+    color: black;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 1em;
+  }
+  &::before {
+    content: "?";
+    position: absolute;
+    top: var(--circle-size);
+    right: var(--circle-size);
+    transform: translate(50%, -50%);
+    font-size: 1.5rem;
+    font-weight: 900;
+    transition: color var(--transition-duration-inner);
+  }
+}
+        </code></pre>
+        <p>For small tooltips, it is more of a styling question, but some important points have to be addressed. The
+            content wrapper must have <code class="css">position: relative</code> because every element will be placed
+            relative to it. Also, I like to have a small triangle, which makes the tooltip look like a speech bubble.
+            Therefore, two things are positioned absolutely: the triangle, and content. The content element can be both
+            a pseudo-element if it is just plain text or an HTML element. Note that even if you don't want to have
+            smooth animation, you need to set <code class="css">visibility: hidden</code> and make it <code class="css">visibility:
+        visible</code> on hover to prevent layer stacking.</p>
+        <pre><code class="scss">
+[data-tip],
+.tooltip-wrapper {
+  @include tooltipDirection("top");
+  display: inline-block;
+  position: relative;
+  cursor: help;
+  width: max-content;
+  &::before,
+  &:not(.tooltip-wrapper):after,
+  .tooltip {
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    z-index: -100;
+  }
+  &::before {
+    content: "";
+    border-style: solid;
+    transition: all var(--transition-duration) ease;
+  }
+  &:not(.tooltip-wrapper):after,
+  .tooltip {
+    width: max-content;
+    max-width: var(--max-width);
+    padding: 1em;
+    color: var(--color-text);
+    font-size: 0.8em;
+    background: var(--color-background);
+    border-radius: 0.25em;
+    transition: all var(--transition-duration) ease calc(var(--transition-duration) / 1.5);
+  }
+  &:not(.tooltip-wrapper):after {
+    content: attr(data-tip);
+  }
+  &:hover,
+  &:focus {
+    &::before,
+    &:not(.tooltip-wrapper):after,
+    .tooltip {
+      visibility: visible;
+      opacity: 1;
+      z-index: 100;
+    }
+    &::before {
+      transition-delay: calc(var(--transition-duration) / 1.5);
+    }
+    &:not(.tooltip-wrapper):after,
+    .tooltip {
+      transition-delay: 0s;
+    }
+  }
+}
+        </code></pre>
+        <p>As you have noticed, the code above does not have anything to do with tooltip positioning. Placing will
+            depend on where you want it: above, below, to the left or the right. To deal with it, I have created a Sass
+            mixin that can do it automatically. Here is how it looks:</p>
+        <pre><code class="scss">
+@mixin tooltipDirection($direction: "top") {
+  &::before {
+    @if $direction == "top" {
+      border-width: var(--triangle-size) var(--triangle-size) 0 var(--triangle-size);
+      border-color: var(--color-background) transparent transparent transparent;
+      inset: auto auto 100% 50%;
+      transform: translate(-50%, -50%);
+    } @else if $direction == "bottom" {
+      border-width: 0 var(--triangle-size) var(--triangle-size) var(--triangle-size);
+      border-color: transparent transparent var(--color-background) transparent;
+      inset: 100% auto auto 50%;
+      transform: translate(-50%, 50%);
+    } @else if $direction == "right" {
+      border-width: var(--triangle-size) var(--triangle-size) var(--triangle-size) 0;
+      border-color: transparent var(--color-background) transparent transparent;
+      inset: 50% auto auto 100%;
+      transform: translate(50%, -50%);
+    } @else if $direction == "left" {
+      border-width: var(--triangle-size) 0 var(--triangle-size) var(--triangle-size);
+      border-color: transparent transparent transparent var(--color-background);
+      inset: 50% 100% auto auto;
+      transform: translate(-50%, -50%);
+    }
+  }
+  &::after,
+  .tooltip {
+    @if $direction == "top" {
+      inset: auto auto calc(100% + var(--triangle-size)) 50%;
+      transform: translate(-50%, 50%);
+    } @else if $direction == "bottom" {
+      inset: calc(100% + var(--triangle-size)) auto auto 50%;
+      transform: translate(-50%, -50%);
+    } @else if $direction == "right" {
+      inset: 50% auto auto calc(100% + var(--triangle-size));
+      transform: translate(-50%, -50%);
+    } @else if $direction == "left" {
+      inset: 50% calc(100% + var(--triangle-size)) auto auto;
+      transform: translate(50%, -50%);
+    }
+  }
+  &:hover,
+  &:focus {
+    &::before,
+    &::after,
+    .tooltip {
+      @if $direction == "top" or $direction == "bottom" {
+        transform: translate(-50%, 0);
+      } @else if $direction == "right" or $direction == "left" {
+        transform: translate(0, -50%);
+      }
+    }
+  }
+}
+        </code></pre>
+        <p>And that's it! No JavaScript is required. For sure, there are simpler solutions, but I would still stick with
+            this one, because of the ability to be flexible and adaptable for everything. Don't forget to check out the
+            example, if you didn't get something.</p>
+        <div class="btn-wrapper">
+            <a href="/static/examples/tooltip/tooltip.html" class="btn-link">See example</a>
+        </div>
+    </article>
+</section>
+{% endblock %}

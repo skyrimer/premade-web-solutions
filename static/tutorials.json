@@ -54,5 +54,9 @@
         {
             "name": "Tilt effect",
             "url": "tilt-effect"
+        },
+        {
+            "name": "Tooltips",
+            "url": "tooltips"
         }
     ]

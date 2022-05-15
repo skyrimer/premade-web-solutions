@@ -28,13 +28,13 @@ class FeedbackModel(db.Model):
         return f"FeedbackModel(id={self.name}, name={self.name}, email={self.email})"
 
 
-def clearDatabase(app, db):
+def clearDatabase(app: Flask, db: SQLAlchemy):
     with app.app_context():
         db.drop_all()
         db.create_all()
 
 
-def get_views_table(db=db, view_counter=view_counter):
+def get_views_table(db: SQLAlchemy, view_counter: ViewCounter):
     return db.engine.execute(select([view_counter.requests]))
 
 
@@ -103,8 +103,9 @@ def static_from_root():
 
 @app.route('/admin')
 def admin():
-    total_views = len({view.ip for view in get_views_table()})
-    views_per_page = Counter(view.path for view in get_views_table())
+    total_views = len({view.ip for view in get_views_table(db, view_counter)})
+    views_per_page = Counter(
+        view.path for view in get_views_table(db, view_counter))
     feedback = FeedbackModel.query.all()
     return render_template("admin.html", total_views=total_views,
                            views_per_page=views_per_page, feedback=feedback, title="PreWeb - Admin Panel")
