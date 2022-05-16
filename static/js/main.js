@@ -41,7 +41,7 @@ window.onload = () => {
     if (textareas) textareaUpdate(textareas, scroll);
     let form = qs("[data-contact-form]");
     if (form) sendFeedback(form);
-    if (qs("[data-tilt]")) activateTilt();
+    if (qsa("[data-tilt], .tilt")) activateTilt();
   };
   const scroll = new LocomotiveScroll({
     el: qs("[data-scroll-container]"),

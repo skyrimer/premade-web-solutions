@@ -202,4 +202,10 @@ export const activateTilt = async () => {
   tiltJs.setAttribute("crossorigin", "anonymous");
   tiltJs.setAttribute("referrerpolicy", "no-referrer");
   document.body.appendChild(tiltJs);
+  // VanillaTilt.init(document.querySelectorAll(".card"), {
+  //   max: 15,
+  //   speed: 400,
+  //   glare: true,
+  //   "max-glare": 0.5,
+  // });
 };

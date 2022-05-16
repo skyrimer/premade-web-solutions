@@ -78,6 +78,7 @@ export const loadTutorialCards = async (tutorialList) => {
         tutorialList.appendChild(card);
         return { name: tutorial.name.toLowerCase(), element: card };
       });
+      cardTemplate.remove();
     });
   tutorialSearch.addEventListener("input", ({ target }) => {
     tutorials.forEach((tutorial) => {
