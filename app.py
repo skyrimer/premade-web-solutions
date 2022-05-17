@@ -28,10 +28,10 @@ class FeedbackModel(db.Model):
         return f"FeedbackModel(id={self.name}, name={self.name}, email={self.email})"
 
 
-def clearDatabase(app: Flask, db: SQLAlchemy):
-    with app.app_context():
-        db.drop_all()
-        db.create_all()
+# def clearDatabase(app: Flask, db: SQLAlchemy):
+#     with app.app_context():
+#         db.drop_all()
+#         db.create_all()
 
 
 def get_views_table(db: SQLAlchemy, view_counter: ViewCounter):
@@ -113,4 +113,4 @@ def admin():
 
 if __name__ == "__main__":
     # clearDatabase(app, db)
-    app.run(debug=True)
+    app.run(debug=False)
