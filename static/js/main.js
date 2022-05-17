@@ -29,7 +29,7 @@ window.onload = () => {
     labelCurrentPageLinks();
     highlightAllCode();
     const tutorialList = qs("[data-tutorial-list]");
-    if (tutorialList) await loadTutorialCards(tutorialList).then(scroll.update());
+    if (tutorialList) await loadTutorialCards(tutorialList, scroll).then(scroll.update());
     const customCursor = qs("#cursor");
     if (customCursor) activateCustomCursorExample(customCursor, qs("#aura"));
     const tabLinks = qsa(".tab-link");
@@ -59,15 +59,17 @@ window.onload = () => {
   pasteCurrentYear();
   initPage(scroll).then(scroll.update());
   // Swup
-  const swup = new Swup({
-    animateHistoryBrowsing: true,
-  });
-  swup.on("contentReplaced", () => {
-    initPage(scroll).then(scroll.update());
-  });
-  swup.on("animationOutDone", () => {
-    if (!window.location.hash) {
-      scroll.scrollTo("top", { duration: 0, disableLerp: true });
-    }
-  });
+  if (!prefersReducedMotion()) {
+    const swup = new Swup({
+      animateHistoryBrowsing: true,
+    });
+    swup.on("contentReplaced", () => {
+      initPage(scroll).then(scroll.update());
+    });
+    swup.on("animationOutDone", () => {
+      if (!window.location.hash) {
+        scroll.scrollTo("top", { duration: 0, disableLerp: true });
+      }
+    });
+  }
 };

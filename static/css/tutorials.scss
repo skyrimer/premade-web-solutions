@@ -58,7 +58,7 @@ code {
 .floating-label-wrapper {
   $paddingLeft: Min(2rem, 5vw);
   position: relative;
-  margin: Max(1.5em, 4vh) 0;
+  margin: 0 0 Max(1.5em, 4vh);
   width: Min(100%, 50rem);
   input,
   textarea {

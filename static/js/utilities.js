@@ -4,3 +4,6 @@ const qs = (selector, body = document) => {
 const qsa = (selector, body = document) => {
   return [...body.querySelectorAll(selector)];
 };
+const prefersReducedMotion = () => {
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+};

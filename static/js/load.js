@@ -30,7 +30,6 @@ const loadCards = (data) => {
       tabLink.textContent = website.name;
       tabLink.dataset.tabId = website.name;
       tabsLinksWrapper.appendChild(tabLink);
-
       const tabWebsite = copyElement(templateTabWebsite);
       tabWebsite.href = website.url;
       tabWebsite.id = website.name;
@@ -64,7 +63,7 @@ export const loadHelpfulWebsites = async (scroll) => {
     .then(loadCards);
   scroll.update();
 };
-export const loadTutorialCards = async (tutorialList) => {
+export const loadTutorialCards = async (tutorialList, scroll) => {
   const cardTemplate = qs("#tutorial-card-template");
   const tutorialSearch = qs("#cards-search");
   let tutorials = [];
@@ -82,8 +81,15 @@ export const loadTutorialCards = async (tutorialList) => {
     });
   tutorialSearch.addEventListener("input", ({ target }) => {
     tutorials.forEach((tutorial) => {
-      const isVisible = tutorial.name.includes(target.value.toLowerCase());
-      tutorial.element.classList.toggle("hide", !isVisible);
+      tutorial.element.classList.toggle(
+        "hide",
+        !tutorial.name.includes(target.value.toLowerCase())
+      );
     });
+    tutorialList.classList.toggle(
+      "empty",
+      qsa(".card:not(.hide)", tutorialList).length == 0
+    );
+    scroll.update();
   });
 };

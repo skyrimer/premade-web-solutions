@@ -3,9 +3,7 @@ export const activateNavbar = async (scroll) => {
   const activateMobile = (event) => {
     if (!event.matches) {
       const header = qs("#header");
-      let headerTogglerList = [qs("svg.ham"), ...qsa("li > a", header)];
-      console.log(headerTogglerList);
-      headerTogglerList.forEach((toggler) => {
+      [qs("svg.ham"), ...qsa("li > a", header)].forEach((toggler) => {
         toggler.addEventListener("click", () => {
           header.classList.toggle("active");
           header.classList.contains("active") ? scroll.stop() : scroll.start();
@@ -33,7 +31,7 @@ export const activateOnscrollAnimations = async () => {
     ...qsa("[data-scroll-section]  h2"),
     ...qsa("[data-scroll-section] .text > *"),
   ];
-  if (!("IntersectionObserver" in window)) {
+  if (!("IntersectionObserver" in window) || prefersReducedMotion()) {
     sections.forEach((section) => {
       section.toggle("show");
     });
