@@ -11,33 +11,39 @@
         </div>
         <article class="text">
             <h3>Table of contents</h3>
-            <ul class="contents-list" data-content-list>
-                <template id="template-link">
-                    <li><a class="inline-link"></a></li>
-                </template>
+            <ul class="contents-list">
+                {% for category in websiteList %}
+                <li><a class="inline-link" href="#{{ '-'.join(category.lower().split()) }}">{{ category }}</a></li>
+                {% endfor %}
             </ul>
         </article>
     </div>
 </section>
-<template id="template-section">
-    <section class="glassy-section" data-scroll-section>
-        <h2 data-header></h2>
-    </section>
-</template>
-<template id="template-tab">
+{% for category in websiteList %}
+<section class="glassy-section" data-scroll-section id="{{ '-'.join(category.lower().split()) }}">
+    <h2> {{ category }}</h2>
     <div class="center">
         <div class="tabs-wrapper full-width">
-            <div class="tab-links-wrapper" data-tab-content></div>
+            <div class="tab-links-wrapper">
+                <button class="tab-link active" data-tab-id="{{ websiteList[category][0]['name'] }}">{{ websiteList[category][0]['name'] }}</button>
+                {% for website in websiteList[category][1:] %}
+                <button class="tab-link" data-tab-id="{{ website['name'] }}">{{ website['name'] }}</button>
+                {% endfor %}
+            </div>
+            <a class="tab-content active" target="_blank" href="{{ websiteList[category][0]['url'] }}" id="{{ websiteList[category][0]['name'] }}">
+                <h3 class="effect-box">{{ websiteList[category][0]['name'] }}</h3>
+                <img data-src="/static/images/helpful_websites/{{ '-'.join(websiteList[category][0]['name'].lower().split()) }}.png"
+                    alt="{{ websiteList[category][0]['name'] }}">
+            </a>
+            {% for website in websiteList[category][1:] %}
+            <a class="tab-content" target="_blank" href="{{ website['url'] }}" id="{{ website['name'] }}">
+                <h3 class="effect-box">{{ website['name'] }}</h3>
+                <img data-src="/static/images/helpful_websites/{{ '-'.join(website['name'].lower().split()) }}.png"
+                    alt="{{ website['name'] }}">
+            </a>
+            {% endfor %}
         </div>
     </div>
-</template>
-<template data-button>
-    <button class="tab-link"></button>
-</template>
-<template data-tab>
-    <a class="tab-content" target="_blank">
-        <h3 class="effect-box"></h3>
-        <img>
-    </a>
-</template>
+</section>
+{% endfor %}
 {% endblock %}

@@ -1,5 +1,5 @@
 // Colors
-$color-background: #080c25;
+$color-background: #111928;
 $color-main: #f7f7f7;
 // $color-primary: #00FFFF;
 $color-primary: #00ffc2;
@@ -66,18 +66,15 @@ $header-size: 7rem;
   transition: $transition-main;
 }
 %glassy {
-  background-color: $color-background;
-  @supports (backdrop-filter: blur(50px) saturate(200%)) {
-    background-color: rgba($color: $color-background, $alpha: 0.5);
-    backdrop-filter: blur(30px) saturate(50%);
+  background-color: rgba($color: $color-background, $alpha: 1);
+  @supports (backdrop-filter: blur(30px) saturate(50%)) {
+    background-color: rgba($color: $color-background, $alpha: 0.75);
+    backdrop-filter: blur(16px) saturate(50%);
   }
 }
 %glassy-section {
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba($color: $color-tertiary, $alpha: 0.1);
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 1rem;
-  @supports (backdrop-filter: blur(2px)) {
-    backdrop-filter: blur(2px);
-    background-color: rgba($color: $color-tertiary, $alpha: 0.1);
-  }
+  backdrop-filter: blur(2px);
 }

@@ -579,7 +579,7 @@ ul.text {
   &:hover,
   &:focus {
     .card-inner {
-      background-color: rgba($color: $color-background, $alpha: 0.3);
+      background-color: rgba($color: $color-background, $alpha: 0.2);
       &::before {
         transform: scale(0.9);
       }

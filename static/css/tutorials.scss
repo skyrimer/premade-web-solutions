@@ -117,6 +117,8 @@ code {
   width: Min(1124px, 100%);
   margin-bottom: 0;
   img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
     transition: $transition-main;
   }
   .effect-box {

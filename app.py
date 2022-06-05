@@ -6,7 +6,7 @@ from os import getcwd, environ
 from os.path import isfile
 from os.path import join as join_path
 from typing import Counter
-
+from json import load as json_load
 app = Flask(__name__)
 app.config["SECRET_KEY"] = environ.get("SECRET_KEY")
 app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///database.sqlite3'
@@ -42,6 +42,19 @@ def get_tutorial_title(string: str) -> str:
     return " ".join(string.split("-")).capitalize()
 
 
+def getDataFromJson(path="static/tutorials.json"):
+    with open(path, "r") as tutorials:
+        return json_load(tutorials)
+
+
+def getTutorials(path="static/tutorials.json"):
+    return getDataFromJson(path)
+
+
+def getHelpfulWebsites(path="static/helpful-websites.json"):
+    return getDataFromJson(path)
+
+
 @app.errorhandler(404)
 def code_404(error):
     return render_template("404.html", title="PreWeb - Not Found"), 404
@@ -57,19 +70,22 @@ def home():
 @app.route('/about')
 @view_counter.count
 def about():
-    return render_template("about.html", title="PreWeb - About")
+    tutorials = getTutorials()
+    return render_template("about.html", tutorials=tutorials, title="PreWeb - About")
 
 
 @app.route("/tutorials")
 @view_counter.count
 def tutorials():
-    return render_template("tutorials.html", title="PreWeb - Tutorials")
+    tutorials = getTutorials()
+    return render_template("tutorials.html", tutorials=tutorials, title="PreWeb - Tutorials")
 
 
 @app.route("/helpful-websites")
 @view_counter.count
 def helpful_websites():
-    return render_template("helpful_websites.html", title="PreWeb - Helpful websites")
+    websiteList = getHelpfulWebsites()
+    return render_template("helpful_websites.html", websiteList=websiteList, title="PreWeb - Helpful websites")
 
 
 @app.route("/contact", methods=["GET", "POST"])
@@ -113,4 +129,4 @@ def admin():
 
 if __name__ == "__main__":
     # clearDatabase(app, db)
-    app.run(debug=False)
+    app.run(debug=True)

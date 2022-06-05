@@ -58,5 +58,13 @@
         {
             "name": "Tooltips",
             "url": "tooltips"
+        },
+        {
+            "name": "Snackbar or toasts",
+            "url": "snackbar-or-toasts"
+        },
+        {
+            "name": "Parallax effect",
+            "url": "parallax-effect"
         }
     ]

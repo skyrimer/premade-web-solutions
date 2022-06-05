@@ -17,19 +17,16 @@ import {
   sendFeedback,
   activateTilt,
 } from "./tutorials.js";
-import { loadHelpfulWebsites, loadTutorialCards } from "./load.js";
+import {loadTutorialCards } from "./load.js";
 window.onload = () => {
   const initPage = async (scroll) => {
-    if (window.location.pathname.includes("helpful-websites")) {
-      await loadHelpfulWebsites(scroll);
-    }
     activateOnscrollAnimations();
     activateLazyLoading(scroll);
     activateIdLinks(scroll);
     labelCurrentPageLinks();
     highlightAllCode();
-    const tutorialList = qs("[data-tutorial-list]");
-    if (tutorialList) await loadTutorialCards(tutorialList, scroll).then(scroll.update());
+    const tutorialList = qs("ol.cards-wrapper");
+    if (tutorialList) loadTutorialCards(tutorialList, scroll);
     const customCursor = qs("#cursor");
     if (customCursor) activateCustomCursorExample(customCursor, qs("#aura"));
     const tabLinks = qsa(".tab-link");

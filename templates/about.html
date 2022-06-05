@@ -93,14 +93,14 @@
             </label>
         </div>
     </div>
-    <ol class="cards-wrapper" data-tutorial-list>
-        <template id="tutorial-card-template">
-            <a class="card" href="" data-link>
-                <div class="card-inner" data-tilt data-tilt-reverse="true" data-tilt-scale="1.05">
-                    <h3 data-name></h3>
-                </div>
-            </a>
-        </template>
+    <ol class="cards-wrapper">
+        {% for tutorial in tutorials %}
+        <a class="card" href="/examples/{{ tutorial['url'] }}">
+            <div class="card-inner" data-tilt data-tilt-scale="1.05" data-tilt-max="15">
+                <h3>{{ tutorial["name"] }}</h3>
+            </div>
+        </a>
+        {% endfor %}
     </ol>
 </section>
 {% endblock %}

@@ -1,0 +1,228 @@
+{% extends "layout.html" %}
+{% block content %}
+<section class="glassy-section" data-scroll-section>
+    <h2>Parallax effect</h2>
+    <article class="text">
+        <p>Parallax is one of the most common features on modern websites. Despite not giving anything meaningful, it
+            makes the design stand out and feel somewhat more natural. It is happening because, in the real world, we
+            don't have everything on the same plane (in math terms, the z-component is commonly different). Making
+            different speeds for scrollable elements makes it a bit more visually appealing than usual. Anyway, let's
+            get started!</p>
+        <p>There are three main parallax effects: fixed background, the background is moving at a different speed on
+            scroll, and elements are moving relative to the mouse position. They all have multiple ways to do them, but
+            I will focus on the most straightforward and optimized solutions.</p>
+        <ul class="contents-list">
+            <li><a class="inline-link" href="#fixed-background">Fixed background using CSS only</a></li>
+            <li><a class="inline-link" href="#onscroll">Onscroll parallax using JavaScript</a></li>
+            <li><a class="inline-link" href="#onmousemove">On mousemove parallax using Vanilla JavaScript</a></li>
+        </ul>
+        <section id="fixed-background">
+            <h3>Fixed background using CSS only</h3>
+            <p>This one is the simplest and a single line of CSS. <code class="css">background-attachment</code>
+                property allows fixing the background relative to the screen, which creates the parallax effect. It
+                requires the background image to see the impact, and you will most likely have to darken the picture to
+                see the content, but it is still by far the best way to do it that can be used for any element. Here is
+                my example:</p>
+            <pre><code class="scss">
+.parallax-background {
+  background: url("nature.jpg") center / cover no-repeat fixed;
+  > * {
+    z-index: 1;
+  }
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(
+      ellipse at center,
+      rgba(0, 0, 0, 0.8),
+      rgba(0, 0, 0, 0.5),
+      transparent
+    );
+  }
+}
+            </code></pre>
+        </section>
+        <section id="onscroll">
+            <h3>Onscroll parallax using JavaScript</h3>
+            <p>There are ways to do it manually with Vanilla Javascript, but they often struggle with optimization, so
+                using a library is the best way to do it. I like <a href="https://dixonandmoe.com/rellax/"
+                    target="_blank" class="inline-link">Rellax.js</a> because it is light and easy to set up, but you
+                can try to find some others if you need something specific. So, in HTML, you need to mark the elements
+                with different scrolling speeds using some selector (class, data attribute, or whatever can be taken
+                using the <code class="js">querySelectorAll</code> method). Also, these elements must have a <code
+                    class="html">data-rellax-speed</code> attribute with the number as a value. This number defines the
+                extra speed per pixel the component has (if you set a negative value, it will scroll slower than usual).
+            </p>
+            <pre><code class="html">
+&lt;div class="fullscreen parallax-rellax"&gt;
+  &lt;div class="rellax" data-rellax-speed="3"&gt;
+    &lt;div class="square"&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="rellax" data-rellax-speed="4"&gt;
+    &lt;div class="square"&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="rellax" data-rellax-speed="3"&gt;
+    &lt;div class="square"&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="rellax" data-rellax-speed="4"&gt;
+    &lt;div class="square"&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="rellax" data-rellax-speed="5"&gt;
+    &lt;div class="square"&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;h2&gt;Onscroll Parallax effect with Rellax.js&lt;/h2&gt;
+  &lt;p&gt;Here comes the content of your webpage!&lt;/p&gt;
+&lt;/div&gt;
+            </code></pre>
+            <p>In CSS, you need to position the rellax elements absolutely and place them in different positions. Hint:
+                use percentages to make it adaptive and be generous with the values because the elements are scrolling
+                faster than you think.</p>
+            <pre><code class="scss">
+.parallax-rellax {
+  .rellax {
+    --size: 7vw;
+    position: absolute;
+    width: var(--size);
+    height: var(--size);
+    z-index: -1;
+    &:first-child {
+      top: 30%;
+      left: 10vw;
+      .square {
+        transform: rotate(45deg);
+      }
+    }
+    &:nth-child(2) {
+      top: 40%;
+      right: 20vw;
+      .square {
+        transform: rotate(75deg);
+      }
+    }
+    &:nth-child(3) {
+      top: 60%;
+      right: 10vw;
+      .square {
+        transform: rotate(-60deg);
+      }
+    }
+    &:nth-child(4) {
+      top: 80%;
+      left: 30vw;
+      .square {
+        transform: rotate(110deg);
+      }
+    }
+    &:nth-child(5) {
+      top: 100%;
+      left: 50vw;
+      .square {
+        transform: rotate(150deg);
+      }
+    }
+  }
+
+  .square {
+    width: 100%;
+    height: 100%;
+  }
+}
+            </code></pre>
+            <p>Finally, you need to either include a <a href="https://cdnjs.com/libraries/rellax" class="inline-link"
+                    target="_blank">CDN script</a> of this library into your documents or install it using
+                any packet manager you want. The following code will start the magic as soon as this is done.</p>
+            <pre><code class="js">
+let rellax = new Rellax(".rellax");
+            </code></pre>
+        </section>
+        <section id="onmousemove">
+            <h3>On mousemove parallax using Vanilla JavaScript</h3>
+            <p>For the mouse parallax, there are libraries, but it is relatively simple to do it on your own without
+                losing performance. The HTML structure is the same for scrolling, but now you don't need any data
+                attributes because everything will be declared in CSS and JavaScript.</p>
+            <pre><code class="html">
+&lt;div class="fullscreen parallax-mouse" id="scene"&gt;
+  &lt;div class="background"&gt;
+    &lt;div class="square"&gt;&lt;/div&gt;
+    &lt;div class="square"&gt;&lt;/div&gt;
+    &lt;div class="square"&gt;&lt;/div&gt;
+    &lt;div class="square"&gt;&lt;/div&gt;
+    &lt;div class="square"&gt;&lt;/div&gt;
+    &lt;div class="square"&gt;&lt;/div&gt;
+    &lt;div class="square"&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;h2&gt;Vanilla Javascript parallax on mousemove&lt;/h2&gt;
+&lt;/div&gt;
+            </code></pre>
+            <p>However, in CSS, the magic will happen. The elements have to be positioned absolutely as it was before,
+                but you need to set the <code class="css">transform</code> property to use custom CSS variables that
+                will be declared in JavaScript. This way, there will be no iterating on the <code
+                    class="js">mousemove</code> event, which will boost the performance. If you need to have different
+                speeds for the objects, you can set another custom property for the element and then modify the <code
+                    class="css">transform</code> property as follows.</p>
+            <pre><code class="scss">
+.parallax-mouse {
+  overflow: hidden;
+  background-color: #0f2027;
+  background-image: linear-gradient(to left, #2c5364, #203a43, #0f2027);
+  .background {
+    position: absolute;
+    inset: 0;
+    .square {
+      --size: 5vw;
+      position: absolute;
+      width: var(--size);
+      height: var(--size);
+      transform: translate(
+        calc(var(--x-displacement) * var(--speed)),
+        calc(var(--y-displacement) * var(--speed))
+      );
+      @for $ico from 0 to 8 {
+        &:nth-child(#{$ico}) {
+          --speed: #{$ico};
+          top: random($limit: 80) + 5%;
+          left: random($limit: 80) + 5%;
+        }
+      }
+    }
+  }
+  h2 {
+    z-index: 2;
+  }
+}
+
+            </code></pre>
+            <p>Finally, you need to declare the value for the variables in JavaScript when the mouse is hovering over
+                the parent element. You need to add the event listener to the section containing the absolutely
+                positioned blocks. Otherwise, the calculations might be a bit complicated. The formula for calculating
+                displacement is the following: <code
+                    class="js">(element.client{width-height} – event.cliet{x-y}) / 100 + “px”</code>, where <code
+                    class="js">element.client{width-height}</code> refers to the element dimension and <code
+                    class="js">event.cliet{x-y}</code> refers to the position of the mouse at that moment. By dividing
+                this by a hundred, you will get the ratio of how many pixels must be displaced relative to the current
+                mouse position.
+            </p>
+            <pre><code class="js">
+const activateMouseParallax = (scene) => {
+  scene.addEventListener("mousemove", (event) => {
+    scene.style.setProperty(
+      "--x-displacement",
+      (scene.clientWidth - event.clientX) / 100 + "px");
+    scene.style.setProperty(
+      "--y-displacement",
+      (scene.clientHeight - event.clientY) / 100 + "px");
+  });
+};
+const scene = document.querySelector("#scene");
+activateMouseParallax(scene);
+            </code></pre>
+        </section>
+        <p>That's it! Now you also know how to do the most common effect in the modern web. Check out my example if you
+            need it</p>
+        <div class="btn-wrapper">
+            <a href="/static/examples/parallax/parallax.html" class="btn-link">See example</a>
+        </div>
+    </article>
+</section>
+{% endblock %}
