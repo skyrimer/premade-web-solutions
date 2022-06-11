@@ -102,3 +102,21 @@ export const labelCurrentPageLinks = async () => {
       : link.removeAttribute("aria-current");
   });
 };
+export const trackOnlineStatus = async () => {
+  const toast = qs("#statusTracker");
+  window.addEventListener("online", (event) => {
+    toast.classList.remove("active");
+    setTimeout(() => {
+      toast.classList.add("active");
+      qs("p", toast).textContent = "🟢 You are back to online 🟢";
+      setTimeout(() => {
+        toast.classList.remove("active");
+      }, 3000);
+    }, 300);
+  });
+  window.addEventListener("offline", (event) => {
+    qs("p", toast).textContent =
+      "🔴 Connection is down. The website might not work properly 🔴";
+    toast.classList.add("active");
+  });
+};

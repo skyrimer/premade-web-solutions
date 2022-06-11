@@ -1,3 +1,14 @@
+.toast {
+  background-color: #111928;
+}
+@supports ((-webkit-backdrop-filter: blur(30px) saturate(50%)) or (backdrop-filter: blur(30px) saturate(50%))) {
+  .toast {
+    background-color: rgba(17, 25, 40, 0.75);
+    -webkit-backdrop-filter: blur(16px) saturate(50%);
+            backdrop-filter: blur(16px) saturate(50%);
+  }
+}
+
 .popup-body {
   background-color: rgba(166, 178, 236, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -546,4 +557,36 @@ code {
 }
 .tilt-cards-wrapper .tilt-card:last-child {
   background: url("/static/images/coffee.jpg");
+}
+
+.toast {
+  position: fixed;
+  left: 50%;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.3s ease;
+  transform: translateX(-50%) translateY(-2em);
+  top: 5vh;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  max-width: 92%;
+  padding: 2em;
+  border-radius: 0.5em;
+  z-index: 10;
+}
+@media screen and (min-width: 47rem) {
+  .toast {
+    bottom: 5vh;
+    top: unset;
+  }
+}
+.toast.active {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  visibility: visible;
+}
+.toast p {
+  margin: 0;
+  text-align: center;
 }/*# sourceMappingURL=tutorials.css.map */

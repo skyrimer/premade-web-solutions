@@ -480,3 +480,33 @@ code {
     }
   }
 }
+
+.toast {
+  $toast-y: 5vh;
+  @extend %glassy;
+  position: fixed;
+  left: 50%;
+  visibility: hidden;
+  opacity: 0;
+  transition: $transition-main;
+  transform: translateX(-50%) translateY(-2em);
+  top: $toast-y;
+  @media screen and (min-width: $breakpoint-burger) {
+    bottom: $toast-y;
+    top: unset;
+  }
+  &.active {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+    visibility: visible;
+  }
+  width: max-content;
+  max-width: 92%;
+  padding: 2em;
+  border-radius: 0.5em;
+  z-index: 10;
+  p {
+    margin: 0;
+    text-align: center;
+  }
+}

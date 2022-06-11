@@ -1,0 +1,211 @@
+{% extends "layout.html" %}
+{% block content %}
+<section class="glassy-section" data-scroll-section>
+    <h2>Custom context menu</h2>
+    <article class="text">
+        <p>A context menu is a small table shown when the user right-clicks. Browsers create it by default for every
+            website and change it depending on extensions or user selections. Unfortunately, there are no
+            straightforward ways to customize them, so the only way to change them is to override them entirely, which
+            adds a lot of complexity and logic to your website. Yet, it has become more common to have custom context
+            menus, so I will show you how to make a simple one in this tutorial.</p>
+        <p>In HTML, you must create a list with different buttons inside. It doesn't have to be a <code
+                class="html">button</code> element because
+            context menu elements do not look like regular buttons, and you will have to bind actions in JavaScript
+            anyway, so the structure is up to you. I recommend having a li containing a shortcut, icon, and text
+            associated with this action. Also, you might want to add data attributes to access them later in JavaScript.
+        </p>
+        <pre><code class="html">
+&lt;ul id="context-menu"&gt;
+  &lt;li data-context-menu-action="cut"&gt;
+    &lt;div class="action"&gt;
+      &lt;svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+        stroke-width="2"&gt;
+        &lt;path stroke-linecap="round" stroke-linejoin="round"
+            d="M14.121 14.121L19 19m-7-7l7-7m-7 7l-2.879 2.879M12 12L9.121 9.121m0 5.758a3 3 0 10-4.243 4.243 3 3 0 004.243-4.243zm0-5.758a3 3 0 10-4.243-4.243 3 3 0 004.243 4.243z" /&gt;
+      &lt;/svg&gt;
+      &lt;span&gt;Cut&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;span&gt;Ctrl + X&lt;/span&gt;
+  &lt;/li&gt;
+  &lt;li data-context-menu-action="copy"&gt;
+    &lt;div class="action"&gt;
+      &lt;svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+        stroke-width="2"&gt;
+        &lt;path stroke-linecap="round" stroke-linejoin="round"
+            d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /&gt;
+      &lt;/svg&gt;
+      &lt;span&gt;Copy&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;span&gt;Ctrl + C&lt;/span&gt;
+  &lt;/li&gt;
+  &lt;li data-context-menu-action="paste"&gt;
+    &lt;div class="action"&gt;
+      &lt;svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+        stroke-width="2"&gt;
+        &lt;path stroke-linecap="round" stroke-linejoin="round"
+            d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" /&gt;
+      &lt;/svg&gt;
+      &lt;span&gt;Paste&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;span&gt;Ctrl + V&lt;/span&gt;
+  &lt;/li&gt;
+  &lt;li data-context-menu-action="delete"&gt;
+    &lt;div class="action"&gt;
+      &lt;svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+        stroke-width="2"&gt;
+        &lt;path stroke-linecap="round" stroke-linejoin="round"
+            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /&gt;
+      &lt;/svg&gt;
+      &lt;span&gt;Delete&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;span&gt;Delete&lt;/span&gt;
+  &lt;/li&gt;
+  &lt;li data-context-menu-action="reload"&gt;
+    &lt;div class="action"&gt;
+      &lt;svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+        stroke-width="2"&gt;
+        &lt;path stroke-linecap="round" stroke-linejoin="round"
+          d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /&gt;
+      &lt;/svg&gt;
+      &lt;span&gt;Reload&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;span&gt;F5&lt;/span&gt;
+  &lt;/li&gt;
+  &lt;li data-context-menu-action="exit"&gt;
+    &lt;div class="action"&gt;
+      &lt;svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+        stroke-width="2"&gt;
+        &lt;path stroke-linecap="round" stroke-linejoin="round"
+            d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" /&gt;
+      &lt;/svg&gt;
+      &lt;span&gt;Exit&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;span&gt;Ctrl + W&lt;/span&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+        </code></pre>
+        <p>In CSS, there is nothing special. Design is up to you (friendly tip: play around with padding and width), but
+            you must remember to make two menu states: hidden and active. If you need to animate it, use <code
+                class="css">visibility: visible</code> or
+            <code class="css">transform: scale</code>. Everything else should not take any problems. Here you can see my
+            example:
+        </p>
+        <pre><code class="scss">
+#context-menu {
+  position: fixed;
+  min-width: 20rem;
+  padding: 1em 1.5em;
+  z-index: 10;
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background-color: rgba(17, 25, 40, 0.75);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.125);
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+
+  transform: scale(0);
+  transform-origin: top left;
+  opacity: 0;
+  &.active {
+    transform: scale(1);
+    opacity: 1;
+  }
+  li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.2rem;
+    color: rgb(202, 202, 202);
+    padding-block: 1em;
+    cursor: pointer;
+    &:hover {
+      color: rgb(255, 255, 255);
+    }
+    .action {
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+      span {
+        font-size: inherit;
+      }
+    }
+    svg {
+      display: inline-block;
+      color: inherit;
+      height: 1.5rem;
+      transition: var(--transition);
+    }
+    span {
+      font-size: 1rem;
+      color: inherit;
+      transition: var(--transition);
+    }
+  }
+}
+        </code></pre>
+        <p>As usual, the most complicated part comes in JavaScript. We need to declare two events that will take place:
+            a context menu that will raise the menu itself and the click event that will close the menu when it's not
+            the user's target. The second one is straightforward, but the first can cause some problems. Firstly, you
+            need to find the current mouse position using <code class="js">clientX</code> and <code
+                class="js">clientY</code>. Then these values are normalized (I will
+            explain this function later), assigned to <code class="css">top</code> and <code class="css">left</code>
+            styles, and the active class is added to the menu for it to appear.</p>
+        <pre><code class="js">
+const contextMenu = document.getElementById("context-menu");
+const contextMenuScope = document.querySelector("body");
+
+contextMenuScope.addEventListener("contextmenu", (event) => {
+  event.preventDefault();
+  const { clientX: mouseX, clientY: mouseY } = event;
+  const { normalizerX, normalizerY } = normalizeContextMenuPosition(mouseX, mouseY);
+  if (contextMenu.classList.contains("active")) {
+    contextMenu.classList.remove("active");
+    setTimeout(() => {
+      contextMenu.style.top = `${normalizerY}px`;
+      contextMenu.style.left = `${normalizerX}px`;
+      contextMenu.classList.add("active");
+    }, 200);
+  } else {
+    contextMenu.style.top = `${normalizerY}px`;
+    contextMenu.style.left = `${normalizerX}px`;
+    contextMenu.classList.add("active");
+  }
+});
+contextMenuScope.addEventListener("click", (event) => {
+  if (event.target.offsetParent != contextMenu) {
+    contextMenu.classList.remove("active");
+  }
+});
+        </code></pre>
+        <p>Now, about the normalization of coordinates. Not all the values for top and bottom will work. For instance,
+            if you set <code class="css">left: 99vw</code>, the menu will appear outside the screen. Therefore,
+            normalization will reverse the value if the client mouse position and the menu size exceed the screen size.
+        </p>
+        <pre><code class="js">
+const normalizeContextMenuPosition = (clientX, clientY) => {
+  const { left: scopeOffsetX, top: scopeOffsetY } =
+    contextMenuScope.getBoundingClientRect();
+  const scopeX = clientX - scopeOffsetX;
+  const scopeY = clientY - scopeOffsetY;
+  let normalizerX = clientX;
+  let normalizerY = clientY;
+  if (scopeX + contextMenu.clientWidth > contextMenuScope.clientWidth) {
+    normalizerX = scopeOffsetX + contextMenuScope.clientWidth - contextMenu.clientWidth;
+  }
+  if (scopeY + contextMenu.clientHeight > contextMenuScope.clientHeight) {
+    normalizerY = scopeOffsetY + contextMenuScope.clientHeight - contextMenu.clientHeight;
+  }
+  return { normalizerX, normalizerY };
+};
+        </code></pre>
+        <p>That's it. You have created a simple context menu that will work perfectly fine. As I said before, the
+            buttons inside don't do anything, but these buttons' functions might have complicated logic and vary
+            depending on the app. Hence, it is too much to cover in this tutorial.</p>
+        <div class="btn-wrapper">
+            <a href="/static/examples/custom contextmenu/main.html" class="btn-link">
+                See example
+            </a>
+        </div>
+    </article>
+</section>
+{% endblock %}

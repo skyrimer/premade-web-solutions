@@ -22,11 +22,11 @@
 }
 
 #header .wrapper {
-  background-color: #111928;
+  background-color: #1a1b26;
 }
 @supports ((-webkit-backdrop-filter: blur(30px) saturate(50%)) or (backdrop-filter: blur(30px) saturate(50%))) {
   #header .wrapper {
-    background-color: rgba(17, 25, 40, 0.75);
+    background-color: rgba(26, 27, 38, 0.75);
     -webkit-backdrop-filter: blur(16px) saturate(50%);
             backdrop-filter: blur(16px) saturate(50%);
   }
@@ -133,13 +133,13 @@ picture {
   border: 1px solid #00ffc2;
 }
 .btn-link:hover, .btn-link:focus {
-  color: #111928;
+  color: #1a1b26;
   background-color: #00ffc2;
   box-shadow: 0 0 2em rgba(0, 255, 194, 0.3), 0 0 4em rgba(0, 255, 194, 0.5);
 }
 .btn-link.filled {
   background-color: #00ffc2;
-  color: #111928;
+  color: #1a1b26;
 }
 .btn-link.secondary {
   color: #f9a826;
@@ -150,7 +150,7 @@ picture {
 }
 .btn-link.secondary.filled {
   background-color: #f9a826;
-  color: #111928;
+  color: #1a1b26;
 }
 
 .btn-toggler {
@@ -159,7 +159,7 @@ picture {
   border: 1px solid currentColor;
 }
 .btn-toggler:hover {
-  color: #111928;
+  color: #1a1b26;
   background: #00ffc2;
   box-shadow: 0 0 2em rgba(0, 255, 194, 0.3), 0 0 4em rgba(0, 255, 194, 0.5);
 }
@@ -378,6 +378,7 @@ svg.logo:hover, svg.logo:focus {
 }
 
 main#swup {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -675,7 +676,7 @@ html.is-animating .c-scrollbar {
   transform: translateZ(50px) scale(0.9);
 }
 .card:hover .card-inner, .card:focus .card-inner {
-  background-color: rgba(17, 25, 40, 0.2);
+  background-color: rgba(26, 27, 38, 0.2);
 }
 .card:hover .card-inner::before, .card:focus .card-inner::before {
   transform: scale(0.9);

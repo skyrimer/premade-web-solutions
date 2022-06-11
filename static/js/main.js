@@ -5,6 +5,7 @@ import {
   activateOnscrollAnimations,
   activateLazyLoading,
   labelCurrentPageLinks,
+  trackOnlineStatus,
 } from "./base.js";
 import {
   highlightAllCode,
@@ -39,6 +40,7 @@ window.onload = () => {
     let form = qs("[data-contact-form]");
     if (form) sendFeedback(form);
     if (qsa("[data-tilt], .tilt")) activateTilt();
+    trackOnlineStatus();
   };
   const scroll = new LocomotiveScroll({
     el: qs("[data-scroll-container]"),

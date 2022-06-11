@@ -66,5 +66,9 @@
         {
             "name": "Parallax effect",
             "url": "parallax-effect"
+        },
+        {
+            "name": "Custom context menu",
+            "url": "custom-context-menu"
         }
     ]
