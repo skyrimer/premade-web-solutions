@@ -1,74 +1,90 @@
 [
-        {
-            "name": "Custom cursor",
-            "url": "custom-cursor"
-        },
-        {
-            "name": "Locomotive scroll",
-            "url": "locomotive-scroll"
-        },
-        {
-            "name": "Scroll-revealing navbar",
-            "url": "scroll-revealing-navbar"
-        },
-        {
-            "name": "Floating label",
-            "url": "floating-label"
-        },
-        {
-            "name": "Page transition",
-            "url": "page-transition"
-        },
-        {
-            "name": "Fullpage scrolling",
-            "url": "fullpage-scrolling"
-        },
-        {
-            "name": "Ultimate Slider",
-            "url": "ultimate-slider"
-        },
-        {
-            "name": "Smart tabs",
-            "url": "smart-tabs"
-        },
-        {
-            "name": "Fancy Dropdowns",
-            "url": "dropdown"
-        },
-        {
-            "name": "Modal windows",
-            "url": "modal-window"
-        },
-        {
-            "name": "Spoilers and Accordions",
-            "url": "spoilers-and-accordions"
-        },
-        {
-            "name": "On scroll animations",
-            "url": "on-scroll-animations"
-        },
-        {
-            "name": "Adaptive navbar",
-            "url": "adaptive-navbar"
-        },
-        {
-            "name": "Tilt effect",
-            "url": "tilt-effect"
-        },
-        {
-            "name": "Tooltips",
-            "url": "tooltips"
-        },
-        {
-            "name": "Snackbar or toasts",
-            "url": "snackbar-or-toasts"
-        },
-        {
-            "name": "Parallax effect",
-            "url": "parallax-effect"
-        },
-        {
-            "name": "Custom context menu",
-            "url": "custom-context-menu"
-        }
-    ]
+  {
+    "name": "Custom cursor",
+    "url": "custom-cursor"
+  },
+  {
+    "name": "Locomotive scroll",
+    "url": "locomotive-scroll"
+  },
+  {
+    "name": "Scroll-revealing navbar",
+    "url": "scroll-revealing-navbar"
+  },
+  {
+    "name": "Floating label",
+    "url": "floating-label"
+  },
+  {
+    "name": "Page transition",
+    "url": "page-transition"
+  },
+  {
+    "name": "Fullpage scrolling",
+    "url": "fullpage-scrolling"
+  },
+  {
+    "name": "Ultimate Slider",
+    "url": "ultimate-slider"
+  },
+  {
+    "name": "Smart tabs",
+    "url": "smart-tabs"
+  },
+  {
+    "name": "Fancy Dropdowns",
+    "url": "dropdown"
+  },
+  {
+    "name": "Modal windows",
+    "url": "modal-window"
+  },
+  {
+    "name": "Spoilers and Accordions",
+    "url": "spoilers-and-accordions"
+  },
+  {
+    "name": "On scroll animations",
+    "url": "on-scroll-animations"
+  },
+  {
+    "name": "Adaptive navbar",
+    "url": "adaptive-navbar"
+  },
+  {
+    "name": "Tilt effect",
+    "url": "tilt-effect"
+  },
+  {
+    "name": "Tooltips",
+    "url": "tooltips"
+  },
+  {
+    "name": "Snackbar or toasts",
+    "url": "snackbar-or-toasts"
+  },
+  {
+    "name": "Parallax effect",
+    "url": "parallax-effect"
+  },
+  {
+    "name": "Custom context menu",
+    "url": "custom-context-menu"
+  },
+  {
+    "name": "Simple sidebar",
+    "url": "simple-sidebar"
+  },
+  {
+    "name": "Drag and drop upload field",
+    "url": "drag-and-drop-upload-field"
+  },
+  {
+    "name": "Custom date and time picker",
+    "url": "custom-date-and-time-picker"
+  },
+  {
+    "name": "Website preloader",
+    "url": "website-preloader"
+  }
+]

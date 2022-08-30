@@ -1,121 +1,121 @@
 {% extends "layout.html" %}
 {% block content %}
 <section class="glassy-section example" data-scroll-section>
-    <h2>Accordions and Spoilers</h2>
-    <article class="text">
-        <p>Spoiler is something between <a href="/examples/dropdown" class="inline-link">dropdowns</a> and <a
-                href="/examples/smart-tabs" class="inline-link">tabs.</a> They also collapse under certain content like
-            dropdowns, but in the opened state looks like tabs. Accordions are spoiler with only one element opened
-            inside. They usually look like in the example below, and I will explain how to make them.</p>
-        <div class="accordion-spoiler-wrapper">
-            <div class="spoiler-wrapper">
-                <h3>Spoiler</h3>
-                <div class="spoiler">
-                    <div class="spoiler-toggler">
-                        <h3>The first section</h3>
-                    </div>
-                    <div class="spoiler-content-wrapper">
-                        <div class="spoiler-content">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis accusantium maxime vel
-                                natus
-                                eos perferendis sequi distinctio nesciunt? Ipsam minima quo officiis officia ea nulla
-                                vero!
-                                Ullam eos quibusdam excepturi!</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="spoiler">
-                    <div class="spoiler-toggler">
-                        <h3>The second section</h3>
-                    </div>
-                    <div class="spoiler-content-wrapper">
-                        <div class="spoiler-content">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis accusantium maxime vel
-                                natus
-                                eos perferendis sequi distinctio nesciunt? Ipsam minima quo officiis officia ea nulla
-                                vero!
-                                Ullam eos quibusdam excepturi!</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="spoiler">
-                    <div class="spoiler-toggler">
-                        <h3>The third section</h3>
-                    </div>
-                    <div class="spoiler-content-wrapper">
-                        <div class="spoiler-content">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis accusantium maxime vel
-                                natus
-                                eos perferendis sequi distinctio nesciunt? Ipsam minima quo officiis officia ea nulla
-                                vero!
-                                Ullam eos quibusdam excepturi!</p>
-                        </div>
-                    </div>
-                </div>
+  <h2>Accordions and Spoilers</h2>
+  <article class="text">
+    <p>Spoiler is something between <a href="/examples/dropdown" class="inline-link">dropdowns</a> and <a
+        href="/examples/smart-tabs" class="inline-link">tabs.</a> They also collapse under certain content like
+      dropdowns, but in the opened state looks like tabs. Accordions are spoiler with only one element opened
+      inside. They usually look like in the example below, and I will explain how to make them.</p>
+    <div class="accordion-spoiler-wrapper">
+      <div class="spoiler-wrapper">
+        <h3>Spoiler</h3>
+        <div class="spoiler">
+          <div class="spoiler-toggler">
+            <h3>The first section</h3>
+          </div>
+          <div class="spoiler-content-wrapper">
+            <div class="spoiler-content">
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis accusantium maxime vel
+                natus
+                eos perferendis sequi distinctio nesciunt? Ipsam minima quo officiis officia ea nulla
+                vero!
+                Ullam eos quibusdam excepturi!</p>
             </div>
-            <div class="accordion-wrapper">
-                <h3>Accordions</h3>
-                <div class="accordion">
-                    <div class="accordion-toggler">
-                        <h3>The first section</h3>
-                    </div>
-                    <div class="accordion-content-wrapper">
-                        <div class="accordion-content">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis accusantium maxime vel
-                                natus
-                                eos perferendis sequi distinctio nesciunt? Ipsam minima quo officiis officia ea nulla
-                                vero!
-                                Ullam eos quibusdam excepturi!</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion">
-                    <div class="accordion-toggler">
-                        <h3>The second section</h3>
-                    </div>
-                    <div class="accordion-content-wrapper">
-                        <div class="accordion-content">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis accusantium maxime vel
-                                natus
-                                eos perferendis sequi distinctio nesciunt? Ipsam minima quo officiis officia ea nulla
-                                vero!
-                                Ullam eos quibusdam excepturi!</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion">
-                    <div class="accordion-toggler">
-                        <h3>The third section</h3>
-                    </div>
-                    <div class="accordion-content-wrapper">
-                        <div class="accordion-content">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis accusantium maxime vel
-                                natus
-                                eos perferendis sequi distinctio nesciunt? Ipsam minima quo officiis officia ea nulla
-                                vero!
-                                Ullam eos quibusdam excepturi!</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
-        <p>There are several ways to achieve similar results. I will show all the mojor onces explain their pros and
-            cons. Here is the table of contents:</p>
-        <ul class="contents-list">
-            <li><a href="#spoiler-details" class="inline-link">Spoiler using details tag</a></li>
-            <li><a href="#spoiler-css" class="inline-link">Spoiler using only CSS</a></li>
-            <li><a href="#spoiler-js" class="inline-link">Spoiler using JavaScript</a></li>
-            <li><a href="#accordion-css" class="inline-link">Accordion using CSS</a></li>
-            <li><a href="#accordion-js" class="inline-link">Accordion using JavaScript</a></li>
-        </ul>
-    </article>
-    <section id="spoiler-details" class="text">
-        <h3>Spoiler using details tag</h3>
-        <p>It is the simpliest way to make the spoiler, but it also the least customisable and the least accessable.</p>
-        <p>In Html, you need to have a <code class="html">details</code> tag wrapping <code class="html">summary</code>.
-            Clicking on <code class="html">summary</code> will cause all the content after it, but I would still
-            recomend to wrap the collapsing content for easier styling.</p>
-        <pre><code class="html">
+        <div class="spoiler">
+          <div class="spoiler-toggler">
+            <h3>The second section</h3>
+          </div>
+          <div class="spoiler-content-wrapper">
+            <div class="spoiler-content">
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis accusantium maxime vel
+                natus
+                eos perferendis sequi distinctio nesciunt? Ipsam minima quo officiis officia ea nulla
+                vero!
+                Ullam eos quibusdam excepturi!</p>
+            </div>
+          </div>
+        </div>
+        <div class="spoiler">
+          <div class="spoiler-toggler">
+            <h3>The third section</h3>
+          </div>
+          <div class="spoiler-content-wrapper">
+            <div class="spoiler-content">
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis accusantium maxime vel
+                natus
+                eos perferendis sequi distinctio nesciunt? Ipsam minima quo officiis officia ea nulla
+                vero!
+                Ullam eos quibusdam excepturi!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-wrapper">
+        <h3>Accordions</h3>
+        <div class="accordion">
+          <div class="accordion-toggler">
+            <h3>The first section</h3>
+          </div>
+          <div class="accordion-content-wrapper">
+            <div class="accordion-content">
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis accusantium maxime vel
+                natus
+                eos perferendis sequi distinctio nesciunt? Ipsam minima quo officiis officia ea nulla
+                vero!
+                Ullam eos quibusdam excepturi!</p>
+            </div>
+          </div>
+        </div>
+        <div class="accordion">
+          <div class="accordion-toggler">
+            <h3>The second section</h3>
+          </div>
+          <div class="accordion-content-wrapper">
+            <div class="accordion-content">
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis accusantium maxime vel
+                natus
+                eos perferendis sequi distinctio nesciunt? Ipsam minima quo officiis officia ea nulla
+                vero!
+                Ullam eos quibusdam excepturi!</p>
+            </div>
+          </div>
+        </div>
+        <div class="accordion">
+          <div class="accordion-toggler">
+            <h3>The third section</h3>
+          </div>
+          <div class="accordion-content-wrapper">
+            <div class="accordion-content">
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis accusantium maxime vel
+                natus
+                eos perferendis sequi distinctio nesciunt? Ipsam minima quo officiis officia ea nulla
+                vero!
+                Ullam eos quibusdam excepturi!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p>There are several ways to achieve similar results. I will show all the mojor onces explain their pros and
+      cons. Here is the table of contents:</p>
+    <ul class="contents-list">
+      <li><a href="#spoiler-details" class="inline-link">Spoiler using details tag</a></li>
+      <li><a href="#spoiler-css" class="inline-link">Spoiler using only CSS</a></li>
+      <li><a href="#spoiler-js" class="inline-link">Spoiler using JavaScript</a></li>
+      <li><a href="#accordion-css" class="inline-link">Accordion using CSS</a></li>
+      <li><a href="#accordion-js" class="inline-link">Accordion using JavaScript</a></li>
+    </ul>
+  </article>
+  <section id="spoiler-details" class="text">
+    <h3>Spoiler using details tag</h3>
+    <p>It is the simpliest way to make the spoiler, but it also the least customisable and the least accessable.</p>
+    <p>In Html, you need to have a <code class="html">details</code> tag wrapping <code class="html">summary</code>.
+      Clicking on <code class="html">summary</code> will cause all the content after it, but I would still
+      recomend to wrap the collapsing content for easier styling.</p>
+    <pre><code class="html">
 &lt;details&gt;
   &lt;summary&gt;Click on me to see more content&lt;/summary&gt;
   &lt;div class="spoiler-content"&gt;
@@ -125,11 +125,11 @@
   &lt;/div&gt;
 &lt;/details&gt;
         </code></pre>
-        <p>Then, you need to style it however you want. In order to add transition effect on the collapsing content,
-            there is <code class="css">details[open] summary ~ *</code> selector, however, you can not change the
-            properies directly. You have to add a css animation, and change the properies you want using animation. Here
-            is the example of SCSS code.</p>
-        <pre><code class="scss">
+    <p>Then, you need to style it however you want. In order to add transition effect on the collapsing content,
+      there is <code class="css">details[open] summary ~ *</code> selector, however, you can not change the
+      properies directly. You have to add a css animation, and change the properies you want using animation. Here
+      is the example of SCSS code.</p>
+    <pre><code class="scss">
 details {
   width: Min(60rem, 95%);
   margin: 0.5rem 0;
@@ -168,26 +168,25 @@ summary {
   }
 }
         </code></pre>
-        <p>This leads to several issues. Firstly, if user opens the same <code class="html">details</code> tag for more
-            than 1 time, the animation will not play. It can be fixed by setting <code
-                class="css">animation: none</code>,
-            when the content is not collapsed. The second issue, is that the animation will be played only when the user
-            opens, but not when the user closes sloiler. It might be quite desturbing, and it also makes the content
-            under the spoiler flick down each time the user opens or closes the spoiler.Unfortunately, there is not way
-            to fix it by <time datetime="2022-03-13">13.03.2022</time>. Moreover, if you need to support older browsers,
-            using this
-            method might be a bit problematic, because it supports 93.54% of all devices.</p>
-        </p>
-    </section>
-    <section id="spoiler-css" class="text">
-        <h3>Spoiler using only CSS</h3>
-        <p>This method does almost the same as the previous one, and it requires a bit more html, but also allows more
-            flexible transition customisation.</p>
-        <p>This method is based on <code class="html">input</code>. Instead of summary, you need to have an label that
-            refers to the input. This way, if you click on the <code class="html">label</code>, the checkbox will be
-            checked, and using css
-            selectors, you will be able to change the properties of the content.</p>
-        <pre><code class="html">
+    <p>This leads to several issues. Firstly, if user opens the same <code class="html">details</code> tag for more
+      than 1 time, the animation will not play. It can be fixed by setting <code class="css">animation: none</code>,
+      when the content is not collapsed. The second issue, is that the animation will be played only when the user
+      opens, but not when the user closes sloiler. It might be quite desturbing, and it also makes the content
+      under the spoiler flick down each time the user opens or closes the spoiler.Unfortunately, there is not way
+      to fix it by <time datetime="2022-03-13">13.03.2022</time>. Moreover, if you need to support older browsers,
+      using this
+      method might be a bit problematic, because it supports 93.54% of all devices.</p>
+    </p>
+  </section>
+  <section id="spoiler-css" class="text">
+    <h3>Spoiler using only CSS</h3>
+    <p>This method does almost the same as the previous one, and it requires a bit more html, but also allows more
+      flexible transition customisation.</p>
+    <p>This method is based on <code class="html">input</code>. Instead of summary, you need to have an label that
+      refers to the input. This way, if you click on the <code class="html">label</code>, the checkbox will be
+      checked, and using css
+      selectors, you will be able to change the properties of the content.</p>
+    <pre><code class="html">
 &lt;div class="spoiler-wrapper"&gt;
   &lt;div class="spoiler"&gt;
     &lt;input checked class="spoiler-checkbox" type="checkbox" name="spoiler-1" id="accordion-1"&gt;
@@ -224,17 +223,17 @@ summary {
   &lt;/div&gt;
 &lt;/div&gt;
         </code></pre>
-        <p>In css, it is important to make the checkbox invisible with <code class="css">visibility: 0</code>, and
-            stretch it on the entire dementions of the label using <code class="css">inset: 0</code>. Everything else is
-            just regular styling to make it a bit more visually appealing.</p>
-        <p>But the reason why you would want to use this method instead of <code class="html">details</code> is
-            animations. Using <code class="css">input:checked ~</code> allows to change any content and any of its
-            properties. The most interesting part is that you can animate the height of the content by setting <code
-                class="css">max-height: 0</code> in hidden state, and change the values when the checks input. However,
-            it might cause issues if the content is different in different tabs. Setting fixed value would hide some
-            content if the tab is too big and make the animation for small tabs too fast and disproportional. Only
-            JavaScript can help to fix it.</p>
-        <pre><code class="scss">
+    <p>In css, it is important to make the checkbox invisible with <code class="css">visibility: 0</code>, and
+      stretch it on the entire dementions of the label using <code class="css">inset: 0</code>. Everything else is
+      just regular styling to make it a bit more visually appealing.</p>
+    <p>But the reason why you would want to use this method instead of <code class="html">details</code> is
+      animations. Using <code class="css">input:checked ~</code> allows to change any content and any of its
+      properties. The most interesting part is that you can animate the height of the content by setting <code
+        class="css">max-height: 0</code> in hidden state, and change the values when the checks input. However,
+      it might cause issues if the content is different in different tabs. Setting fixed value would hide some
+      content if the tab is too big and make the animation for small tabs too fast and disproportional. Only
+      JavaScript can help to fix it.</p>
+    <pre><code class="scss">
 .spoiler {
   width: Min(95%, 60rem);
   position: relative;
@@ -304,14 +303,14 @@ label {
   }
 }
         </code></pre>
-    </section>
-    <section id="spoiler-js" class="text">
-        <h3>Spoiler using JavaScript</h3>
-        <p>As per usual, almost all JavaScript solution make you write more code, but it allows you the most
-            flexibility. Only JavaScript can fix the problem with different heights of content.</p>
-        <p>In html, you need to have structure similar to CSS only solution, but replace <code class="html">input</code>
-            and <code class="html">label</code> with the the toggler. Here is how it looks:</p>
-        <pre><code class="html">
+  </section>
+  <section id="spoiler-js" class="text">
+    <h3>Spoiler using JavaScript</h3>
+    <p>As per usual, almost all JavaScript solution make you write more code, but it allows you the most
+      flexibility. Only JavaScript can fix the problem with different heights of content.</p>
+    <p>In html, you need to have structure similar to CSS only solution, but replace <code class="html">input</code>
+      and <code class="html">label</code> with the the toggler. Here is how it looks:</p>
+    <pre><code class="html">
 &lt;div class="accordion-wrapper"&gt;
   &lt;div class="accordion"&gt;
     &lt;div class="accordion-toggler"&gt;
@@ -360,10 +359,10 @@ label {
     &lt;/div&gt;
 &lt;/div&gt;
         </code></pre>
-        <p>In CSS, you need to have similar to CSS solution styling, but changin <code class="css">input:checked</code>
-            to <code class="css">.spoiler.open</code>, and replace <code class="html">label</code> styling with styling
-            for your toggle.</p>
-        <pre><code class="scss">
+    <p>In CSS, you need to have similar to CSS solution styling, but changin <code class="css">input:checked</code>
+      to <code class="css">.spoiler.open</code>, and replace <code class="html">label</code> styling with styling
+      for your toggle.</p>
+    <pre><code class="scss">
 .spoiler {
   width: Min(95%, 60rem);
   position: relative;
@@ -424,12 +423,12 @@ h3 {
   }
 }
         </code></pre>
-        <p>Finally, you need to add JavaScript that will animate the spoiler. For each toggler, we add an event
-            listener, that will open its spoiler, or close it, if it is already opened. In order to do it, we find
-            height of the each spoiler's content and set it to the data attribute.</p>
-        <p>In open/close function, add/remove the animation class and change the <code class="css">max-height</code> for
-            the content to smoothly go in or go out. That's it!</p>
-        <pre><code class="js">
+    <p>Finally, you need to add JavaScript that will animate the spoiler. For each toggler, we add an event
+      listener, that will open its spoiler, or close it, if it is already opened. In order to do it, we find
+      height of the each spoiler's content and set it to the data attribute.</p>
+    <p>In open/close function, add/remove the animation class and change the <code class="css">max-height</code> for
+      the content to smoothly go in or go out. That's it!</p>
+    <pre><code class="js">
 const spoilersContent = document.querySelectorAll(".spoiler-content");
 const openedSpoiler = document.querySelector(".spoiler.open");
 const spoilerTogglers = document.querySelectorAll(".spoiler-toggler");
@@ -466,14 +465,13 @@ spoilerTogglers.forEach((toggler) => {
   });
 });
         </code></pre>
-    </section>
-    <section id="accordion-css" class="text">
-        <h3>Accordion using CSS</h3>
-        <p>The only difference between the spoiler is in the type of <code class="html">input</code>. Change <code
-                class="html">&lt;input type="checkbox"&gt;</code> to <code
-                class="html">&lt;input type="radio"&gt;</code></p>
+  </section>
+  <section id="accordion-css" class="text">
+    <h3>Accordion using CSS</h3>
+    <p>The only difference between the spoiler is in the type of <code class="html">input</code>. Change <code
+        class="html">&lt;input type="checkbox"&gt;</code> to <code class="html">&lt;input type="radio"&gt;</code></p>
 
-        <pre><code class="html">
+    <pre><code class="html">
 &lt;div class="accordion-wrapper"&gt;
   &lt;div class="accordion"&gt;
     &lt;input checked class="accordion-checkbox" type="radio" name="accordion-1" id="accordion-1"&gt;
@@ -510,13 +508,13 @@ spoilerTogglers.forEach((toggler) => {
   &lt;/div&gt;
 &lt;/div&gt;
         </code></pre>
-    </section>
-    <section id="accordion-js" class="text">
-        <h3>Accordion using JavaScript</h3>
-        <p>To make an accordion out of spoiler, you just need to change classes in html and css from <code
-                class="html">*spoiler*</code> to <code class="html">*accordion*</code>. Below you can see an example of
-            html.</p>
-        <pre><code class="html">
+  </section>
+  <section id="accordion-js" class="text">
+    <h3>Accordion using JavaScript</h3>
+    <p>To make an accordion out of spoiler, you just need to change classes in html and css from <code
+        class="html">*spoiler*</code> to <code class="html">*accordion*</code>. Below you can see an example of
+      html.</p>
+    <pre><code class="html">
 &lt;div class="accordion-wrapper"&gt;
   &lt;div class="accordion"&gt;
     &lt;div class="accordion-toggler"&gt;
@@ -565,11 +563,11 @@ spoilerTogglers.forEach((toggler) => {
     &lt;/div&gt;
 &lt;/div&gt;
         </code></pre>
-        <p>In JavaScript, the only thing you need to change is to close opened accordion, before opening the new one.
-            Note: choosing the active accordion by selecting the parent element of the toggler, not the <code
-                class="js">document</code>. If you will user <code class="js">document</code> it will always select the
-            first opened accordion in the document, which is not what you want.</p>
-        <pre><code class="js">
+    <p>In JavaScript, the only thing you need to change is to close opened accordion, before opening the new one.
+      Note: choosing the active accordion by selecting the parent element of the toggler, not the <code
+        class="js">document</code>. If you will user <code class="js">document</code> it will always select the
+      first opened accordion in the document, which is not what you want.</p>
+    <pre><code class="js">
 const spoilersContent = document.querySelectorAll(".accordion-content");
 const openedAccordion = document.querySelector(".accordion.open");
 const activeClass = "open";
@@ -607,11 +605,11 @@ const accordionTogglers = document.querySelectorAll(".accordion-toggler");
   });
 });
         </code></pre>
-    </section>
-    <p>This is everything you need to know about spoiler and accordions! Hopefully, you aren't overwellmed with all
-        different ways to do the same thing, because each way serves its own purpose.</p>
-    <div class="btn-wrapper">
-        <a href="/static/examples/spoiler/spoiler.html" class="btn-link">See example</a>
-    </div>
+  </section>
+  <p>This is everything you need to know about spoiler and accordions! Hopefully, you aren't overwellmed with all
+    different ways to do the same thing, because each way serves its own purpose.</p>
+  <div class="btn-wrapper">
+    <a href="https://codepen.io/skyrimer/pen/OJvZWWV" class="btn-link" target="_blank">See the CodePen</a>
+  </div>
 </section>
 {% endblock %}

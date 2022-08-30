@@ -1,21 +1,21 @@
 {% extends "layout.html" %}
 {% block content %}
 <section class="glassy-section example" data-scroll-section>
-    <h2>Fullpage scrolling with an amazing Javascript Library</h2>
-    <article class="text">
-        <p>I find fullpage scrolling absolutely amazing. It seems like the website is guiding you through all the
-            content, showing and telling you the story. Actually, it is quite easy and implement this feature into your
-            website.</p>
-        <p>For this tutorial, I am going to use library called <a href="https://alvarotrigo.com/fullPage/"
-                class="inline-link" target="_blank">Fullpage js</a>. There is only one limitation of this library: it is
-            allowed to use it for open source projects, however, to access all the extensions and templates, you will
-            have to pay. You can read about it in detail on their pricing page <a
-                href="https://alvarotrigo.com/fullPage/pricing/" class="inline-link">here</a>.</p>
-        <p>So, how to implement this feature? This will require specific HTML structure and a bit of Javascript.</p>
-        <p>In HTML, first need to connect the external css and js needed. You can either download it from their main
-            website, connect using cdn or get using npm.
-        </p>
-        <pre><code class="html">
+  <h2>Fullpage scrolling with an amazing Javascript Library</h2>
+  <article class="text">
+    <p>I find fullpage scrolling absolutely amazing. It seems like the website is guiding you through all the
+      content, showing and telling you the story. Actually, it is quite easy and implement this feature into your
+      website.</p>
+    <p>For this tutorial, I am going to use library called <a href="https://alvarotrigo.com/fullPage/"
+        class="inline-link" target="_blank">Fullpage js</a>. There is only one limitation of this library: it is
+      allowed to use it for open source projects, however, to access all the extensions and templates, you will
+      have to pay. You can read about it in detail on their pricing page <a
+        href="https://alvarotrigo.com/fullPage/pricing/" class="inline-link">here</a>.</p>
+    <p>So, how to implement this feature? This will require specific HTML structure and a bit of Javascript.</p>
+    <p>In HTML, first need to connect the external css and js needed. You can either download it from their main
+      website, connect using cdn or get using npm.
+    </p>
+    <pre><code class="html">
 &lt;!-- css --&gt;
 &lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.2/fullpage.min.css"
 integrity="sha512-4rPgyv5iG0PZw8E+oRdfN/Gq+yilzt9rQ8Yci2jJ15rAyBmF0HBE4wFjBkoB72cxBeg63uobaj1UcNt/scV93w=="
@@ -25,13 +25,13 @@ crossorigin="anonymous" referrerpolicy="no-referrer" /&gt;
 integrity="sha512-gSf3NCgs6wWEdztl1e6vUqtRP884ONnCNzCpomdoQ0xXsk06lrxJsR7jX5yM/qAGkPGsps+4bLV5IEjhOZX+gg=="
 crossorigin="anonymous" referrerpolicy="no-referrer"&gt;&lt;/script&gt;
         </code></pre>
-        <p>Then, you need to have a container with <code class="html">sections</code> inside (I refer <code
-                class="html">sections</code>
-            as classes, but semantically you will most likely use sections with class
-            of section). In the examples below, I have a main container with <code class="html">id="fullpage"</code>
-            with <code class="html">sections</code> inside. The library also supports vertical scrolling: you just need
-            to use <code class="html">slider</code> class inside the <code class="html">section</code>.</p>
-        <pre><code class="html">
+    <p>Then, you need to have a container with <code class="html">sections</code> inside (I refer <code
+        class="html">sections</code>
+      as classes, but semantically you will most likely use sections with class
+      of section). In the examples below, I have a main container with <code class="html">id="fullpage"</code>
+      with <code class="html">sections</code> inside. The library also supports vertical scrolling: you just need
+      to use <code class="html">slider</code> class inside the <code class="html">section</code>.</p>
+    <pre><code class="html">
 &lt;main id="fullpage"&gt;
   &lt;section class="section"&gt;
     &lt;div class="slide"&gt;
@@ -102,11 +102,11 @@ crossorigin="anonymous" referrerpolicy="no-referrer"&gt;&lt;/script&gt;
   &lt;/section&gt;
 &lt;/main&gt;
             </code></pre>
-        <p>Finally, we come to the Javascript part. On our side, it works like any other library. We need to specify new
-            object and as the first parameter we pass a selector that will get our main container (in the examples above
-            it is <code class="html">#fullpage</code>). As the second parameter we can pass the dictionary with all
-            wanted configurations. This is how Javascript looks in my example:</p>
-        <pre><code class="js">
+    <p>Finally, we come to the Javascript part. On our side, it works like any other library. We need to specify new
+      object and as the first parameter we pass a selector that will get our main container (in the examples above
+      it is <code class="html">#fullpage</code>). As the second parameter we can pass the dictionary with all
+      wanted configurations. This is how Javascript looks in my example:</p>
+    <pre><code class="js">
 const navigationSectionNames = ['Slide 1', 'Slide 2', 'Slide 3', 'Slide 4', 'Slide 5',
                                 'Slide 6', 'Slide 7', 'Slide 8', 'Slide 9', 'Slide 10']
 const scroller = new fullpage("#fullpage", {
@@ -134,62 +134,62 @@ const scroller = new fullpage("#fullpage", {
   },
 })
         </code></pre>
-        <p>In the majority of cases, this is all the configuration you will need. Here is the explanation for it:</p>
-        <ul class="text">
-            <li>
-                <p><code class="html">autoScrolling</code> is the property that activates fullpage scrolling.</p>
-            </li>
-            <li>
-                <p><code class="html">scrollingSpeed</code> is an integer that determines the time taken (in
-                    milliseconds) to go from one section or slide to another. The default is <code
-                        class="html">700</code>, and as for me, it is a bit too quick, so I like to slightly increase
-                    it.</p>
-            </li>
-            <li>
-                <p><code class="html">navigation</code> is a boolean that activates the small navigation menu. By
-                    default, it is just a
-                    circle set on the middle right of the browser window. By clicking on those, the user can skip
-                    thorough sections and go directly to the destination. However, without any additional set-up, this
-                    navigation is not extremely useful.</p>
-            </li>
-            <li>
-                <p><code class="html">navigationTooltips</code> is a list of strings for each section. Now, it will
-                    display the corresponding label for active slide or if the user hovers over the bullet point, it
-                    will also display the label. It makes the navigation, way more user-friendly and simple to navigate
-                    through.</p>
-            </li>
-            <li>
-                <p><code class="html">showActiveTooltip</code> is a boolean that will make the current tooltip stand out
-                    by applying
-                    special class (by default: it will display the label and make the bullet point bigger). Because it
-                    adds special class, it can be easily customisable using CSS.</p>
-            </li>
-            <li>
-                <p><code class="html">controlArrows</code> is a boolean that will either show (true) or hide (false)
-                    control arrows that helps the user to navigate through slides.</p>
-            </li>
-            <li>
-                <p><code class="html">slidesNavigation</code> is a boolean that will toggle the navigation menu, but for
-                    slides.</p>
-            </li>
-            <li>
-                <p><code class="html">anchors</code> is a list of strings that will add ids to every section, when the
-                    user goes to it. It might be usefull, if you have a lot of redirects to different sections, however,
-                    it makes "go back" and "go forward" keys go thought the slides, that you have visited, which might
-                    make it a bit annoying.</p>
-            </li>
-            <li>
-                <p><code class="html">onLeave</code> is a function that is going to be triggered as soon as the user
-                    goes to another section. This is the easiest way to have different onscroll animations, because the
-                    function must take 3 parameters: origin (section or slide which is leaving), destination (section or
-                    slide which is going to be shown) and direction (down or up)</p>
-            </li>
-        </ul>
-        <p>And voila! You have implemented another amazing feature on your website. Here is the demo code that you can
-            use to remind yourself of the tutorial.</p>
-        <div class="btn-wrapper">
-            <a href="/static/examples/fullpage scrolling/fullpage scrolling.html" class="btn-link">See example</a>
-        </div>
-    </article>
+    <p>In the majority of cases, this is all the configuration you will need. Here is the explanation for it:</p>
+    <ul class="text">
+      <li>
+        <p><code class="html">autoScrolling</code> is the property that activates fullpage scrolling.</p>
+      </li>
+      <li>
+        <p><code class="html">scrollingSpeed</code> is an integer that determines the time taken (in
+          milliseconds) to go from one section or slide to another. The default is <code class="html">700</code>, and as
+          for me, it is a bit too quick, so I like to slightly increase
+          it.</p>
+      </li>
+      <li>
+        <p><code class="html">navigation</code> is a boolean that activates the small navigation menu. By
+          default, it is just a
+          circle set on the middle right of the browser window. By clicking on those, the user can skip
+          thorough sections and go directly to the destination. However, without any additional set-up, this
+          navigation is not extremely useful.</p>
+      </li>
+      <li>
+        <p><code class="html">navigationTooltips</code> is a list of strings for each section. Now, it will
+          display the corresponding label for active slide or if the user hovers over the bullet point, it
+          will also display the label. It makes the navigation, way more user-friendly and simple to navigate
+          through.</p>
+      </li>
+      <li>
+        <p><code class="html">showActiveTooltip</code> is a boolean that will make the current tooltip stand out
+          by applying
+          special class (by default: it will display the label and make the bullet point bigger). Because it
+          adds special class, it can be easily customisable using CSS.</p>
+      </li>
+      <li>
+        <p><code class="html">controlArrows</code> is a boolean that will either show (true) or hide (false)
+          control arrows that helps the user to navigate through slides.</p>
+      </li>
+      <li>
+        <p><code class="html">slidesNavigation</code> is a boolean that will toggle the navigation menu, but for
+          slides.</p>
+      </li>
+      <li>
+        <p><code class="html">anchors</code> is a list of strings that will add ids to every section, when the
+          user goes to it. It might be usefull, if you have a lot of redirects to different sections, however,
+          it makes "go back" and "go forward" keys go thought the slides, that you have visited, which might
+          make it a bit annoying.</p>
+      </li>
+      <li>
+        <p><code class="html">onLeave</code> is a function that is going to be triggered as soon as the user
+          goes to another section. This is the easiest way to have different onscroll animations, because the
+          function must take 3 parameters: origin (section or slide which is leaving), destination (section or
+          slide which is going to be shown) and direction (down or up)</p>
+      </li>
+    </ul>
+    <p>And voila! You have implemented another amazing feature on your website. Here is the demo code that you can
+      use to remind yourself of the tutorial.</p>
+    <div class="btn-wrapper">
+      <a href="https://codepen.io/skyrimer/pen/zYWjojw" class="btn-link" target="_blank">See the CodePen</a>
+    </div>
+  </article>
 </section>
 {% endblock %}

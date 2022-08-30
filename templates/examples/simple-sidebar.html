@@ -1,0 +1,268 @@
+{% extends "layout.html" %}
+{% block content %}
+<section class="glassy-section example" data-scroll-section>
+  <h2>Simple Sidebar</h2>
+  <article class="text">
+    <p>Sidebars as a primary navigation source have become more and more common on the modern web. The sidebar looks
+      more
+      aesthetic on a widescreen. It can usually be transformed into a small navigation panel at the bottom of the screen
+      on
+      the mobile, improving user accessibility relative to the old-fashioned hamburger. Despite its visual simplicity,
+      some
+      minor details must be considered. In this tutorial, I will explain how to build a sidebar. As it doesn't require
+      any
+      JavaScript, I will focus on CSS only and explain everything in detail.</p>
+    <p>In the HTML, there is nothing special. There are 3 sections: logo or top part, main navigation and the footer (it
+      is
+      commonly account or feedback links). Main navigation consists of links with icons and labels for it. It is vital
+      to keep
+      labels short, as it will be hard to maintain all the links on a mobile screen if it is pretty lengthy. Here is an
+      example of how it might look:</p>
+    <pre><code class="html">
+&lt;aside&gt;
+  &lt;a class="sidebar-logo" href="#"&gt;
+    &lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"&gt;
+      &lt;path d="M11 17a1 1 0 001.447.894l4-2A1 1 0 0017 15V9.236a1 1 0 00-1.447-.894l-4 2a1 1 0 00-.553.894V17zM15.211 6.276a1 1 0 000-1.788l-4.764-2.382a1 1 0 00-.894 0L4.789 4.488a1 1 0 000 1.788l4.764 2.382a1 1 0 00.894 0l4.764-2.382zM4.447 8.342A1 1 0 003 9.236V15a1 1 0 00.553.894l4 2A1 1 0 009 17v-5.764a1 1 0 00-.553-.894l-4-2z" /&gt;
+    &lt;/svg&gt;
+    &lt;span&gt;The App&lt;/span&gt;
+  &lt;/a&gt;
+  &lt;div class="sidebar-navigation-wrapper"&gt;
+    &lt;div class="sidebar-section"&gt;
+      &lt;a href="#"&gt;
+        &lt;svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"&gt;
+          &lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /&gt;
+        &lt;/svg&gt;
+        &lt;span&gt;Dasboard&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a href="#" aria-current="page"&gt;
+        &lt;svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"&gt;
+          &lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /&gt;
+        &lt;/svg&gt;
+        &lt;span&gt;Search&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a href="#"&gt;
+        &lt;svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"&gt;
+          &lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /&gt;
+        &lt;/svg&gt;
+        &lt;span&gt;Insights&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a href="#"&gt;
+        &lt;svg c xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"&gt;
+          &lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2" /&gt;
+        &lt;/svg&gt;
+        &lt;span&gt;Docs&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;span class="sidebar-navigation-divider"&gt;&lt;/span&gt;
+      &lt;a href="#"&gt;
+        &lt;svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"&gt;
+          &lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /&gt;
+        &lt;/svg&gt;
+        &lt;span&gt;Products&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a href="#"&gt;
+        &lt;svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"&gt;
+          &lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" /&gt;
+        &lt;/svg&gt;
+        &lt;span&gt;Settings&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a href="#"&gt;
+        &lt;svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"&gt;
+          &lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" /&gt;
+        &lt;/svg&gt;
+        &lt;span&gt;Messages&lt;/span&gt;
+      &lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;a class="sidebar-footer" href="#"&gt;
+    &lt;svg class="" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"&gt;
+      &lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" /&gt;
+    &lt;/svg&gt;
+    &lt;span&gt;Account&lt;/span&gt;
+  &lt;/a&gt;
+&lt;/aside&gt;
+    </code></pre>
+    <p>In CSS, we have to declare 2 styles for the sidebar: desktop and mobile version. Let's start with the mobile
+      version
+      because it is more straightforward to explain. You just need to fix it to the bottom of the screen using <code
+        class="css">position: fixed</code>
+      and use <code class="css">inset</code> (shorthand from the <code class="css">top, right, bottom, left</code>).
+      Using an <code class="css">inset</code> has one benefit: as the sidebar is
+      positioned relative to the body, setting all zeros except on the side will ensure that all content won't go beyond
+      the
+      screen. Everything else is just simple CSS that is up to you. However, ensure that both aside and all the links
+      have a
+      <code class="css">display: flex</code>. This will allow us to easily rotate content for the desktop version. In
+      addition, there is no point in
+      setting a fixed height, as there is nothing bond to it.
+    </p>
+    <p>Switch to the desktop styling has to be done with the breakpoint. For the desktop, you have to change the inset
+      to fix
+      the sidebar on the left and rotate all the link content using <code class="css">flex-direction: row</code>.</p>
+    <p>It might seem that the sidebar is done, but there are minor adjustments that we need to make. On the desktop, you
+      need
+      to add <code class="css">overflow: auto</code> to make all the content accessible if the screen height is too
+      small to fit all the content. You
+      might also style the scrollbar to be smaller and transparent with the outline to fit the sidebar. In addition, you
+      need
+      to set the width to the desktop style. This is needed to add the same value to the <code
+        class="css">margin-left</code> of the page content
+      wrapper. It will push the content to the left, leaving a place for the sidebar.</p>
+    <pre><code class="scss">
+$sidebar-breakpoint: 45rem;
+:root {
+  --clr-accent: rgba(61, 245, 167, 1);
+  --clr-main: #111827;
+  --clr-secondary: #393e46;
+  --clr-sidebar-link-hover: #374151;
+  --clr-text: #ededed;
+  --sidebar-width: 13rem;
+  --container-width: 70rem;
+  font-family: "Merriweather", serif;
+}
+
+aside {
+  --padding-x: 0.5em;
+  --section-margin: 1em;
+  --link-gap: 0.75em;
+  --link-fz: 1em;
+  --link-fz-mobile: 2.2vw;
+  position: fixed;
+  inset: auto 0 0 0;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  overflow: auto;
+  background-color: var(--clr-main);
+  color: var(--clr-text);
+  @media screen and (min-width: $sidebar-breakpoint) {
+    inset: 0 auto 0 0;
+    width: var(--sidebar-width);
+  }
+  a {
+    display: flex;
+    gap: var(--link-gap);
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    color: var(--clr-text);
+    transition: all 0.1s ease-in-out;
+    @media screen and (min-width: $sidebar-breakpoint) {
+      flex-direction: row;
+    }
+    svg {
+      --size: 1.5em;
+      width: var(--size);
+      height: var(--size);
+    }
+    span {
+      font-size: var(--link-fz);
+      font-weight: 500;
+    }
+  }
+  .sidebar-logo {
+    display: none;
+    @media screen and (min-width: $sidebar-breakpoint) {
+      display: flex;
+      margin-top: 2em;
+      padding-inline: calc(var(--padding-x) * 2);
+      svg {
+        --size: 2em;
+      }
+      span {
+        font-weight: bold;
+      }
+    }
+  }
+  .sidebar-navigation-divider {
+    @media screen and (min-width: $sidebar-breakpoint) {
+      width: 100%;
+      border-top: 1px solid var(--clr-secondary);
+    }
+  }
+  .sidebar-navigation-wrapper {
+    width: 100%;
+    padding-inline: var(--padding-x);
+  }
+  .sidebar-section {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: var(--section-margin);
+    @media screen and (min-width: $sidebar-breakpoint) {
+      flex-direction: column;
+      margin-top: calc(var(--section-margin) * 2);
+    }
+    a {
+      color: hsla(0, 0%, 93%, 0.8);
+      padding: 1em var(--padding-x);
+      margin-block: calc(var(--section-margin) / 2);
+      border-radius: 0.25em;
+      svg {
+        stroke: currentColor;
+      }
+      span {
+        font-size: min(var(--link-fz), var(--link-fz-mobile));
+        @media screen and (min-width: $sidebar-breakpoint) {
+          font-size: var(--link-fz);
+        }
+      }
+      &[aria-current="page"],
+      &:hover,
+      &:focus-visible {
+        color: var(--clr-accent);
+      }
+      &:hover,
+      &:focus-visible {
+        background-color: var(--clr-sidebar-link-hover);
+      }
+    }
+  }
+
+  .sidebar-footer {
+    display: none;
+    @media screen and (min-width: $sidebar-breakpoint) {
+      display: flex;
+      margin-top: auto;
+      justify-content: center;
+      padding: 1.25em 0;
+      background-color: var(--clr-secondary);
+      &:hover {
+        background-color: var(--clr-sidebar-link-hover);
+      }
+    }
+  }
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: linear-gradient(left, #fff, #e4e4e4);
+    border: 1px solid #aaa;
+    &:hover {
+      background: #fff;
+    }
+    &:active {
+      background: linear-gradient(left, #22add4, #1e98ba);
+    }
+  }
+}
+.wrapper {
+  @media screen and (min-width: $sidebar-breakpoint) {
+    margin-left: var(--sidebar-width);
+  }
+}
+main {
+  width: Min(var(--container-width), 100%);
+  margin: 0 auto;
+}
+      </code></pre>
+    <p>And that's it! Now you have a simple sidebar done. It might lack some micro-interactions like hiding and reveal
+      on
+      hover, but I don't think this is crucial for this element. Anyway, you can find the complete code in the CodePen
+      below.</p>
+    <div class="btn-wrapper">
+      <a href="https://codepen.io/skyrimer/pen/YzaLqBJ" class="btn-link" target="_blank">See the CodePen</a>
+    </div>
+  </article>
+</section>
+{% endblock %}

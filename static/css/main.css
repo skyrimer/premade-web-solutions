@@ -566,12 +566,10 @@ ul.text li::marker {
     opacity: 1;
     transform: translateY(0);
   }
-
   .transition-fade {
     transition: 0.5s;
     opacity: 1;
   }
-
   html.is-animating .transition-fade,
 html.is-animating .c-scrollbar {
     opacity: 0;
@@ -581,7 +579,6 @@ html.is-animating .c-scrollbar {
   html.is-leaving .transition-fade {
     transform: translateX(-25vw);
   }
-
   html.is-rendering .transition-fade {
     -webkit-animation: fadeback 0.5s;
             animation: fadeback 0.5s;

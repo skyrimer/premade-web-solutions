@@ -1,0 +1,207 @@
+{% extends "layout.html" %}
+{% block content %}
+<section class="glassy-section" data-scroll-section>
+    <h2>Drag and drop upload field</h2>
+    <article class="text">
+        <p>The current web has significantly improved and improving day to day to make the developers' lives easier. Yet
+            there is a
+            strong tendency to forget about custom inputs. File upload is one of them. It is relatively hard to style
+            and requires a
+            lot of code to make it pretty and accessible. This tutorial will explain how to make a nice-looking and
+            accessible drop
+            area that will get all the files, put them in the input files, and display the uploaded files and their
+            sizes.</p>
+        <p>In Html, you need to have a wrapper with an inner that will display the instructions, <code
+                class="html">label</code> for the <code class="html">input</code> and the <code
+                class="html">input</code>
+            itself. In the inner, I like to put some decoration that will be replaced with file information when
+            files are uploaded. Here is the example:</p>
+        <pre><code class="html">
+&lt;form class="drop-container"&gt;
+  &lt;div class="drop"&gt;
+    &lt;div class="drop-inner"&gt;
+      &lt;i class="fa-solid fa-photo-film"&gt;&lt;/i&gt;
+      &lt;span class="text"&gt;
+        Drag and drop your documents, photos, and videos here
+      &lt;/span&gt;
+      &lt;div class="or-con"&gt;&lt;span class="or"&gt;OR&lt;/span&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;label for="file-upload"&gt;Browse Files&lt;/label&gt;
+    &lt;input type="file" name="file-upload" id="file-upload" class="file-input" multiple&gt;
+  &lt;/div&gt;
+&lt;/form&gt;
+        </code></pre>
+        <p>Inside CSS, all the styling is up to you. Ensure that the input is hidden (for this case, the input has to
+            take zero
+            space on the screen, so the easiest way to do it is to use <code class="css">display: none</code>), your
+            drop area is big enough, and the input
+            container has the active state to indicate that file drop is available. This is my code for the example (in
+            this case,
+            the area might look too big, but the bigger the area, the easier it is to display the file information when
+            multiple of
+            them are uploaded).</p>
+        <pre><code class="scss">
+.drop-container {
+  display: inline-block;
+  width: min(450px, 90%);
+  padding: 1.5rem;
+  background-color: var(--clr-main);
+  border-radius: 20px;
+  box-shadow: 0 40px 15px rgba(0, 0, 0, 0.2);
+}
+
+.drop {
+  width: 100%;
+  padding: 2em;
+  border: 3px dashed var(--clr-gray);
+  border-radius: 10px;
+  .drop-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  p {
+    word-break: break-all;
+    line-height: 1.5;
+  }
+  svg {
+    font-size: 80px;
+    color: var(--clr-accent);
+    margin-bottom: 1rem;
+  }
+  .text {
+    color: var(--clr-dark);
+    text-align: center;
+  }
+  label {
+    display: block;
+    margin: 0 auto;
+    width: max-content;
+    cursor: pointer;
+    padding: 0.7rem 1.8rem;
+    color: var(--clr-main);
+    background-color: var(--clr-accent);
+    border-radius: 5px;
+    &:hover {
+      background-color: var(--clr-accent-hover);
+    }
+  }
+}
+.active {
+  border-style: solid;
+  border-color: var(--clr-accent);
+}
+
+.file-input {
+  display: none;
+}
+.or-con {
+  display: flex;
+  align-items: center;
+  .or {
+    margin: 0 1.5rem;
+    color: var(--clr-dark);
+  }
+  &::before,
+  &::after {
+    content: "";
+    width: 80px;
+    height: 1px;
+    background-color: var(--clr-gray);
+  }
+}
+        </code></pre>
+        <p>The first thing in JavaScript is to make the drop section respond and be styled differently when the user
+            hovers over
+            it. Hopefully, there are <code class="js">dragover</code> and <code class="js">dragleave</code> event
+            listeners in JavaScript:</p>
+        <pre><code class="js">
+const drop = document.querySelector(".drop");
+const input = document.querySelector(".drop input");
+const fileContainer = document.querySelector(".drop-inner");
+
+drop.addEventListener("dragover", (event) => {
+  event.preventDefault();
+  drop.classList.add("active");
+});
+
+drop.addEventListener("dragleave", (event) => {
+  event.preventDefault();
+  drop.classList.remove("active");
+});
+        </code></pre>
+        <p>After that, we need to set another 2 event listeners: <code class="js">drop</code> for drop section and input
+            <code class="js">change</code> if the user uploads the
+            file manually. In the first case, dropping the file in the area does not modify the <code
+                class="js">input.files</code> list, we have to adjust
+            it manually. The easiest way to do it is by creating a new <code class="js">DataTransfer</code> object and
+            then adding all the files that the
+            input contains as well as newly dropped items. In the second case, the <code class="js">input.files</code>
+            is modified automatically. After all,
+            the files are passed to the upload function. In the code, it looks like this:</p>
+        <pre><code class="js">
+const uploadHandler = (event) => {
+  event.preventDefault();
+  let dataTransfer = new DataTransfer();
+  [...input.files, ...event.dataTransfer.files].forEach((file) => {
+    dataTransfer.items.add(file);
+  });
+  input.files = dataTransfer.files;
+  drop.classList.remove("active");
+  upload(input.files);
+};
+
+
+drop.addEventListener("dragleave", (event) => {
+  event.preventDefault();
+  drop.classList.remove("active");
+});
+
+drop.addEventListener("drop", uploadHandler);
+input.addEventListener("change", (event) => {
+  drop.classList.remove("active");
+  upload(input.files);
+});
+        </code></pre>
+        <p>Finally, the upload function can have different functionality. You can directly send the files to the server
+            via <a href="https://en.wikipedia.org/wiki/Ajax_(programming)" class="inline-link" target="_blank">Ajax</a>,
+            but for simplicity purposes, I will leave them in the <code class="html">form</code> element, which makes
+            the files accessible for the backend. Therefore,
+            everything upload does is clear the drop inner and insert the information about the files uploaded. These
+            files have
+            different parameters, but you will most likely use only two of them in your lifetime: <code
+                class="js">name</code> (file name) and <code class="js">size</code> (file
+            size in bytes). In addition, I have used (copied from <a
+                href="https://stackoverflow.com/questions/15900485/correct-way-to-convert-size-in-bytes-to-kb-mb-gb-in-javascript"
+                class="inline-link" target="_blank">StackOverflow</a> ) the byte formatter so that the data looks more
+            readable.</p>
+        <pre><code class="js">
+const formatBytes = (bytes, decimals = 2) => {
+  if (bytes === 0) return "0 Bytes";
+  const k = 1024;
+  const dm = decimals < 0 ? 0 : decimals;
+  const sizes = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
+  const i = Math.floor(Math.log(bytes) / Math.log(k));
+  return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + " " + sizes[i];
+};
+
+const upload = (fileList) => {
+  fileContainer.innerHTML = "";
+  [...fileList].forEach((file) => {
+    fileInfo = document.createElement("p");
+    fileInfo.textContent = `${file.name} (${formatBytes(file.size)})`;
+    fileContainer.append(fileInfo);
+  });
+};
+        </code></pre>
+        <p>And that's it! Now you have a template for making fancy file drag and drop uploads. You can get the full code
+            in the link below.</p>
+        <div class="btn-wrapper">
+            <a href="https://codepen.io/skyrimer/pen/oNqMgRj" class="btn-link" target="_blank">See the CodePen</a>
+        </div>
+    </article>
+</section>
+{% endblock %}

@@ -20,9 +20,11 @@
             simpler.
         </p>
         <pre><code class="html">
-&lt;div class="input-wrapper"&gt;
-  &lt;input type="text" id="input" placeholder="Put any text here"&gt;
-  &lt;label for="input"&gt;Click&lt;/label&gt;
+&lt;div class="floating-label-wrapper"&gt;
+  &lt;input type="text" class="floating-input" id="cards-search" placeholder="Enter your name"&gt;
+  &lt;label for="cards-search"&gt;
+    Enter your name
+  &lt;/label&gt;
 &lt;/div&gt;
                                                         </code></pre>
         </p>
@@ -33,7 +35,7 @@
             there is enough space both for the input text and for the label text. Here, we are lowering the
             input text by setting greater <code class="css">padding-top</code> than <code
                 class="css">padding-bottom</code> so there is enough space for label text.</p>
-        <p>Finally, we are using the magic selector <code class="css">input:placeholder-shown + label</code>
+        <p>Finally, we are using the magic selector <code class="css">input:placeholder-shown:not(:focus) + label</code>
             to change styling for the label. This selector will cover all the <code class="css">labels</code>
             after
             <code class="css">input</code> when the placeholder value is
@@ -42,42 +44,46 @@
             and <code class="css">left: </code>
         </p>
         <pre><code class="css">
-input {
-  font-size: 1.2rem;
-  width: min(100%, 50rem);
-  padding: 2em 2rem 0.5em;
-  color: var(--color-text);
-  background-color: var(--color-background);
-  border-bottom: 1px solid var(--color-background);
-  border-radius: 0.5em;
+.floating-label-wrapper {
+  $paddingLeft: Min(2rem, 5vw);
+  position: relative;
+  margin: 0 0 Max(1.5em, 4vh);
+  width: Min(100%, 50rem);
+  input {
+    width: 100%;
+    font-size: 1.2rem;
+    padding: 2em $paddingLeft 1em;
+    border: 1px solid var(--color-accent);
+    border-radius: 0.5em;
+    &::placeholder {
+      color: transparent;
+    }
+    &:placeholder-shown:not(:focus) + label {
+      transform: translateY(-50%);
+      font-size: 1rem;
+    }
+    &:focus {
+      outline-color: var(--color-background);
+    }
+  }
+  label {
+    font-size: 0.8rem;
+    transform: translateY(calc(-50% - 1.2em));
+    user-select: none;
+    position: absolute;
+    top: 50%;
+    left: $paddingLeft;
+    color: var(--color-background);
+    transition: all 0.3s ease-in-out;
+    cursor: text;
+  }
 }
-
-/* So the placeholder does not overlap with the label */
-input::placeholder {
-  color: transparent;
-}
-
-input:placeholder-shown+label {
-  transform: translateY(-50%);
-  font-size: 1rem;
-}
-
-label {
-  font-size: 0.9rem;
-  transform: translate(0, calc(-50% - 1em));
-  user-select: none;
-  position: absolute;
-  top: 50%;
-  left: 2rem;
-  color: var(--color-accent);
-  transition: all 0.3s ease-in-out;
-}
-                                                    </code></pre>
+</code></pre>
         <p>And that's it👍! You can use the same structure for any <code class="css">input</code>, <code
                 class="css">select</code> or <code class="css">textarea</code>. If you wish to have a look
             at it once again, here is a document for you.</p>
         <div class="btn-link-wrapper">
-            <a href="/static/examples/floating labels/floating label.html" class="btn-link">See example</a>
+            <a href="https://codepen.io/skyrimer/pen/ZExoOZj" class="btn-link" target="_blank">See the CodePen</a>
         </div>
     </article>
 </section>

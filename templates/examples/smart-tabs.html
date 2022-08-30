@@ -1,71 +1,70 @@
 {% extends "layout.html" %}
 {% block content %}
 <section class="glassy-section example" data-scroll-section>
-    <h2>Smart tabs</h2>
-    <article class="text">
-        <p>Tabs are commonly used to show some grouped secondary information (answers to common questions) or to
-            structure information (product's description - characteristics, photos, reviews...) Despite being relatively
-            simple from the user's perspective, it might cause a tone of problems. Therefore, it is important to realise
-            tabs properly.</p>
-        <p>There are several ways to do it, but I want to show you the most flexible in terms of animations, structure,
-            controlling and styling. Yet there is an issue with flickering subsequent content (content after the tabs).
-            There are solutions with <code class="css">position: absolute</code> and <code
-                class="css">margin-bottom</code>,
-            but it might be too complicated for beginner to understand the concept.</p>
-        <p>So, I am going to show you how to make similar tabs.</p>
-        <div class="center">
-            <div class="tabs-wrapper">
-                <!-- Tab links -->
-                <div class="tab-links-wrapper">
-                    <button class="tab-link active" data-tab-id="London">London</button>
-                    <button class="tab-link" data-tab-id="Paris">Paris</button>
-                    <button class="tab-link" data-tab-id="Tokyo">Tokyo</button>
-                </div>
-
-                <!-- Tab content -->
-                <div id="London" class="tab-content active">
-                    <h3>London</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi eligendi quidem rerum quaerat
-                        voluptates
-                        facilis asperiores quam, ut debitis sequi incidunt eius animi quo doloremque assumenda? Quis
-                        voluptatibus vitae officiis?</p>
-                </div>
-
-                <div id="Paris" class="tab-content">
-                    <h3>Paris</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi eligendi quidem rerum quaerat
-                        voluptates
-                        facilis asperiores quam, ut debitis sequi incidunt eius animi quo doloremque assumenda? Quis
-                        voluptatibus vitae officiis?</p>
-                </div>
-
-                <div id="Tokyo" class="tab-content">
-                    <h3>Tokyo</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi eligendi quidem rerum quaerat
-                        voluptates
-                        facilis asperiores quam, ut debitis sequi incidunt eius animi quo doloremque assumenda? Quis
-                        voluptatibus vitae officiis?</p>
-                </div>
-            </div>
+  <h2>Smart tabs</h2>
+  <article class="text">
+    <p>Tabs are commonly used to show some grouped secondary information (answers to common questions) or to
+      structure information (product's description - characteristics, photos, reviews...) Despite being relatively
+      simple from the user's perspective, it might cause a tone of problems. Therefore, it is important to realise
+      tabs properly.</p>
+    <p>There are several ways to do it, but I want to show you the most flexible in terms of animations, structure,
+      controlling and styling. Yet there is an issue with flickering subsequent content (content after the tabs).
+      There are solutions with <code class="css">position: absolute</code> and <code class="css">margin-bottom</code>,
+      but it might be too complicated for beginner to understand the concept.</p>
+    <p>So, I am going to show you how to make similar tabs.</p>
+    <div class="center">
+      <div class="tabs-wrapper">
+        <!-- Tab links -->
+        <div class="tab-links-wrapper">
+          <button class="tab-link active" data-tab-id="London">London</button>
+          <button class="tab-link" data-tab-id="Paris">Paris</button>
+          <button class="tab-link" data-tab-id="Tokyo">Tokyo</button>
         </div>
-        <p>In HTML, you have to prepare a structure that will satisfy the following rules:</p>
-        <ul class="text">
-            <li>
-                <p>All the buttons that are going to switch the tabs have to be in one container, and have a data
-                    attribute that with the id of the corresponding tab</p>
-            </li>
-            <li>
-                <p>All the tabs have to be in one container, and have have and <code class="html">id</code></p>
-            </li>
-            <li>
-                <p>If you want to have a tab opened before the interaction, you should specify the classes in HTML</p>
-            </li>
-            <li>
-                <p>Containers described above should be in one wrapper</p>
-            </li>
-        </ul>
-        <p>Here is the example of HTML structure:</p>
-        <pre><code class="html">
+
+        <!-- Tab content -->
+        <div id="London" class="tab-content active">
+          <h3>London</h3>
+          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi eligendi quidem rerum quaerat
+            voluptates
+            facilis asperiores quam, ut debitis sequi incidunt eius animi quo doloremque assumenda? Quis
+            voluptatibus vitae officiis?</p>
+        </div>
+
+        <div id="Paris" class="tab-content">
+          <h3>Paris</h3>
+          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi eligendi quidem rerum quaerat
+            voluptates
+            facilis asperiores quam, ut debitis sequi incidunt eius animi quo doloremque assumenda? Quis
+            voluptatibus vitae officiis?</p>
+        </div>
+
+        <div id="Tokyo" class="tab-content">
+          <h3>Tokyo</h3>
+          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi eligendi quidem rerum quaerat
+            voluptates
+            facilis asperiores quam, ut debitis sequi incidunt eius animi quo doloremque assumenda? Quis
+            voluptatibus vitae officiis?</p>
+        </div>
+      </div>
+    </div>
+    <p>In HTML, you have to prepare a structure that will satisfy the following rules:</p>
+    <ul class="text">
+      <li>
+        <p>All the buttons that are going to switch the tabs have to be in one container, and have a data
+          attribute that with the id of the corresponding tab</p>
+      </li>
+      <li>
+        <p>All the tabs have to be in one container, and have have and <code class="html">id</code></p>
+      </li>
+      <li>
+        <p>If you want to have a tab opened before the interaction, you should specify the classes in HTML</p>
+      </li>
+      <li>
+        <p>Containers described above should be in one wrapper</p>
+      </li>
+    </ul>
+    <p>Here is the example of HTML structure:</p>
+    <pre><code class="html">
 &lt;div class="tabs-wrapper"&gt;
   &lt;!-- Tab links --&gt;
   &lt;div class="tab-links-wrapper"&gt;
@@ -97,17 +96,17 @@
   &lt;/div&gt;
 &lt;/div&gt;
         </code></pre>
-        <p>Afterwards, you need to add some styling, where you have several important points. Firstly, you have <code
-                class="css">display: none</code> set to your tab, the <code class="css">animation: your-animation</code>
-            will not apply, so you have to change the display property. Moreover, it is important to repeat the default
-            properties of animating classes. Otherwise, there would be a small lap between the animations. Also, set the
-            timing of <code class="css">transition</code> on button and the duration of the animaiton to the same value
-            to have synchronos animation (you can do it with CSS variables).</p>
-        <p>If you think that you don't need animations, you are quite wrong. Because even without simple fade animation,
-            transition between tabs would be emmidiate and irritating. In my opinion, making smooth 0.3s fading makes it
-            visually appealing and nice.</p>
-        <p>Here is the example of CSS:</p>
-        <pre><code class="css">
+    <p>Afterwards, you need to add some styling, where you have several important points. Firstly, you have <code
+        class="css">display: none</code> set to your tab, the <code class="css">animation: your-animation</code>
+      will not apply, so you have to change the display property. Moreover, it is important to repeat the default
+      properties of animating classes. Otherwise, there would be a small lap between the animations. Also, set the
+      timing of <code class="css">transition</code> on button and the duration of the animaiton to the same value
+      to have synchronos animation (you can do it with CSS variables).</p>
+    <p>If you think that you don't need animations, you are quite wrong. Because even without simple fade animation,
+      transition between tabs would be emmidiate and irritating. In my opinion, making smooth 0.3s fading makes it
+      visually appealing and nice.</p>
+    <p>Here is the example of CSS:</p>
+    <pre><code class="css">
 /* Tab wrapper */
 .tabs-wrapper {
   width: Min(700px, 100%);
@@ -198,32 +197,32 @@
   }
 }
     </code></pre>
-        <p>Finally, we come to the JavaScript part. You just need to add the event listener on the button click that
-            will triger the animation. It is extremelly important to follow the order of actions, because
-            it might ruin the animations (create a lag or glitch). Here is the order:</p>
-        <ul class="text">
-            <li>
-                <p>The old tab starts to animate by class replacing active class</p>
-            </li>
-            <li>
-                <p>The old button starts to animate by toggling active class</p>
-            </li>
-            <li>
-                <p>The following actions are wrapped in <code class="js">setTimeout</code> to finish the animation</p>
-            </li>
-            <li>
-                <p>The animating class is removed from the old tab</p>
-            </li>
-            <li>
-                <p>The new tab appears by adding the active class</p>
-            </li>
-            <li>
-                <p>The new button is animated by adding the active class</p>
-            </li>
-        </ul>
-        <p>In addition, the timout should be the same as the amount of time it takes the content to disapear (300ms in
-            my case). Here is how I did it in the example:</p>
-        <pre><code class="js">
+    <p>Finally, we come to the JavaScript part. You just need to add the event listener on the button click that
+      will triger the animation. It is extremelly important to follow the order of actions, because
+      it might ruin the animations (create a lag or glitch). Here is the order:</p>
+    <ul class="text">
+      <li>
+        <p>The old tab starts to animate by class replacing active class</p>
+      </li>
+      <li>
+        <p>The old button starts to animate by toggling active class</p>
+      </li>
+      <li>
+        <p>The following actions are wrapped in <code class="js">setTimeout</code> to finish the animation</p>
+      </li>
+      <li>
+        <p>The animating class is removed from the old tab</p>
+      </li>
+      <li>
+        <p>The new tab appears by adding the active class</p>
+      </li>
+      <li>
+        <p>The new button is animated by adding the active class</p>
+      </li>
+    </ul>
+    <p>In addition, the timout should be the same as the amount of time it takes the content to disapear (300ms in
+      my case). Here is how I did it in the example:</p>
+    <pre><code class="js">
 const openTab = (event) => {
   // Button that is clicked
   const newButton = event.currentTarget
@@ -255,10 +254,11 @@ document.querySelectorAll(".tab-link").forEach((link) => {
   link.addEventListener('click', openTab)
 })
         </code></pre>
-        <p>And that's it! You might want to add some CSS to make the tabs more attractive or adaptive (one of the
-            simpliest ways to make buttons adaptive is to use <code class="css">flex-wrap: wrap;</code> on the
-            container), but your tabs are working perfectly fine!</p>
-        <div class="btn-wrapper"><a class="btn-link" href="/static/examples/smart tabs/tabs.html">See example</a></div>
-    </article>
+    <p>And that's it! You might want to add some CSS to make the tabs more attractive or adaptive (one of the
+      simpliest ways to make buttons adaptive is to use <code class="css">flex-wrap: wrap;</code> on the
+      container), but your tabs are working perfectly fine!</p>
+    <div class="btn-wrapper"><a class="btn-link" href="https://codepen.io/skyrimer/pen/Barxpjy" target="_blank">See the
+        CodePen</a></div>
+  </article>
 </section>
 {% endblock %}

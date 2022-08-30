@@ -1,9 +1,9 @@
 .toast {
-  background-color: #111928;
+  background-color: #1a1b26;
 }
 @supports ((-webkit-backdrop-filter: blur(30px) saturate(50%)) or (backdrop-filter: blur(30px) saturate(50%))) {
   .toast {
-    background-color: rgba(17, 25, 40, 0.75);
+    background-color: rgba(26, 27, 38, 0.75);
     -webkit-backdrop-filter: blur(16px) saturate(50%);
             backdrop-filter: blur(16px) saturate(50%);
   }

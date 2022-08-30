@@ -1,0 +1,109 @@
+{% extends "layout.html" %}
+{% block content %}
+<section class="glassy-section" data-scroll-section>
+    <h2>Website preloader</h2>
+    <p>Website preloader is generally a bad practice, so I would not recommend implementing it everywhere. However,
+        there are
+        cases where you have to load a lot of JavaScript, CSS, images or simply query data from the database before the
+        website
+        is interactive (web versions of PhotoShop or Figma are great examples). In this case, a preloader would partly
+        solve the
+        problem of long waiting time, as it guides the user and entertains him for a short period. Therefore, I will
+        show you
+        how to make a simple preloader.</p>
+    <p>In HTML, everything you have to do is place a loader wrapper with the loader inside. The wrapper will be our
+        curtains
+        that will cover not yet loaded content, while the loader will be the animated icon. In the loader, you can put
+        whatever
+        HTML you want. Still, I would recommend sticking to CSS-only animations because loading gifs or even videos also
+        affects
+        the performance and might be mis-displayed in case of a very slow internet connection. Here is my example of a
+        simple
+        spinner with the label:</p>
+    <pre><code class="html">
+&lt;div class="loader-wrapper"&gt;
+  &lt;div class="loader"&gt;&lt;/div&gt;
+  &lt;span&gt;Loading...&lt;/span&gt;
+&lt;/div&gt;
+    </code></pre>
+    <p>If you want to optimize it, you can split your styles into multiple files, where the styles for a preloader will
+        be
+        force loaded while other styles will be delayed.</p>
+    <pre><code class="html">
+    &lt;link rel="stylesheet" href="preloader.css"&gt;
+    &lt;link rel="stylesheet" href="main.css"&gt;
+    </code></pre>
+    <p>In CSS, you just need to style your preloader and the wrapper. The wrapper should be stretched on the full screen
+        and
+        have the background colour. The easiest way is to use <code class="css">position: fixed</code> with <code
+            class="css">inset: 0</code>.
+        There are many unique ways to do it for the preloader itself, but I recommend sticking to a straightforward
+        rule: unless
+        you sell your unique designs, stick to something widespread and common. You can copy the loader from this <a
+            href="https://loading.io/css/" target="_blank" rel="noopener noreferrer" class="inline-link">Loading.io</a>
+        or
+        find something else on the web. Here is the simplest example:</p>
+    <pre><code class="scss">
+.loader-wrapper {
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 1);
+  transition: all 0.3s ease-in-out;
+  span {
+    font-size: 2rem;
+    color: #fcf;
+  }
+  &.loaded {
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+  }
+  .loader {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+  }
+  .loader:after {
+    content: " ";
+    display: block;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border-radius: 50%;
+    border: 6px solid #fcf;
+    border-color: #fcf transparent #fcf transparent;
+    animation: loader 1.2s linear infinite;
+  }
+  @keyframes loader {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+    </code></pre>
+    <p>Finally, in JavaScript, you must add the event listener to the <code class="js">window.onload</code>. It takes
+        the function that will take our
+        preloader wrapper and remove it.</p>
+    <pre><code class="js">
+window.onload = () => {
+    document.querySelector(".loader-wrapper").classList.add("loaded");
+    document.body.classList.remove("lock")
+}
+    </code></pre>
+    <p>And that's it! You have successfully implemented a preloader, but remember that you should try to optimize the
+        loading time before thinking of using a preloader.</p>
+    <div class="btn-wrapper">
+        <a href="https://codepen.io/skyrimer/pen/eYMqROm" target="_blank" rel="noopener noreferrer" class="btn-link">See
+            the CodePen</a>
+    </div>
+</section>
+{% endblock %}

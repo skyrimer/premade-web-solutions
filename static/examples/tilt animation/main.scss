@@ -80,7 +80,7 @@ h1 {
   $content-class-name: "tilt-content"
 ) {
   $percentageOfHundred: calc(100% / $cells-number);
-  $rotation-gradient: (2 * $rotation-angle) / ($cells-number - 1);
+  $rotation-gradient: calc(2 * $rotation-angle) / ($cells-number - 1);
   $rotation-intersect: $rotation-angle + $rotation-gradient;
 
   .#{$cell-class-name} {
@@ -92,8 +92,8 @@ h1 {
   @for $row from 1 to $cells-number + 1 {
     @for $column from 1 to $cells-number + 1 {
       .#{$cell-class-name}:nth-child(#{( ($row * $cells-number) + $column - $cells-number)}) {
-        top: ($row * $percentageOfHundred) - $percentageOfHundred;
-        left: ($column * $percentageOfHundred) - $percentageOfHundred;
+        top: calc($row * $percentageOfHundred) - $percentageOfHundred;
+        left: calc($column * $percentageOfHundred) - $percentageOfHundred;
       }
       .#{$cell-class-name}:nth-child(#{(($row *$cells-number) + $column - $cells-number)}):hover
         ~ .#{$content-class-name} {

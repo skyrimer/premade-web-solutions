@@ -1,0 +1,237 @@
+{% extends "layout.html" %}
+{% block content %}
+<section class="glassy-section" data-scroll-section>
+  <h2>Custom date and time picker</h2>
+  <p>Another inputs that are almost impossible to customize are date and time pickers. Every browser provides a native
+    date
+    and time picker, but the window that appears on the screen is similar to the select field: it does not add any HTML,
+    so
+    there is no direct way to change it. Therefore, I will introduce you <a href="https://flatpickr.js.org"
+      target="_blank" class="inline-link">flatpickr</a> library in this tutorial. It is a
+    lightweight, has no dependencies, and can simplify your and your users' life.</p>
+  <p>To start with, you need to connect the library that consists of two parts: CSS and JavaScript. For different
+    purposes,
+    you have different variations: there are several pre-set themes and localizations. For simplicity purposes, I will
+    peak
+    dark theme to match my design (I will still show you how to add minor changes), and stick with English as the
+    language,
+    so that everyone can follow me through.</p>
+  <p>In HTML, you just need to have any input, that can be targeted through JavaScript later. However, I would recommend
+    wrapping your input and label because in some cases (when you need perfect SEO score and accessibility), it would be
+    better to have normal input that stores the value, and the inserted by the library input on top of it. This allows
+    you
+    to display one date format for the user, and another format is stored as actual value. Here is my example:</p>
+  <pre><code class="html">
+&lt;div class="input-wrapper"&gt;
+  &lt;label for="date"&gt;Normal datepicker:&lt;/label&gt;
+  &lt;input type="date" name="date" placeholder="Select the date" data-custom-datepicker&gt;
+&lt;/div&gt;
+    </code></pre>
+  <p>In CSS, there is nothing special to add. You need to have some basic styling for your input. If you have to make
+    some
+    minor tweaks for the popup calendar, you can inspect it in DevTools, and copy the selector in your CSS file. Note
+    that
+    it is better to copy full selector instead of using important because it would be easier for you to debug your CSS
+    later. Here is my styling for the tutorial:</p>
+  <pre><code class="scss">
+[data-custom-datepicker] ~ input {
+  display: block;
+  width: 100%;
+  padding: 1em 2em;
+  font-size: 1.1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #fff;
+  appearance: none;
+  border-radius: 0.5rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  &::placeholder {
+    color: rgb(255 255 255 / 0.6);
+  }
+}
+
+[data-custom-datepicker] ~ input,
+.flatpickr-calendar {
+  border: 1px solid rgba(255, 255, 255, 0.125);
+  backdrop-filter: blur(16px) saturate(180%);
+  background-color: rgba(17, 25, 40, 0.5);
+}
+span.flatpickr-weekday,
+.flatpickr-months .flatpickr-month {
+  background: transparent;
+}
+
+.flatpickr-months {
+  padding: 1em 0;
+  align-items: center;
+  justify-content: center;
+  > span.flatpickr-next-month,
+  > span.flatpickr-prev-month,
+  > div.flatpickr-month {
+    position: static;
+  }
+}
+
+.flatpickr-current-month .flatpickr-monthDropdown-months {
+  background: transparent;
+}
+
+.flatpickr-day.endRange,
+.flatpickr-day.endRange.inRange,
+.flatpickr-day.endRange.nextMonthDay,
+.flatpickr-day.endRange.prevMonthDay,
+.flatpickr-day.endRange:focus,
+.flatpickr-day.endRange:hover,
+.flatpickr-day.selected,
+.flatpickr-day.selected.inRange,
+.flatpickr-day.selected.nextMonthDay,
+.flatpickr-day.selected.prevMonthDay,
+.flatpickr-day.selected:focus,
+.flatpickr-day.selected:hover,
+.flatpickr-day.startRange,
+.flatpickr-day.startRange.inRange,
+.flatpickr-day.startRange.nextMonthDay,
+.flatpickr-day.startRange.prevMonthDay,
+.flatpickr-day.startRange:focus,
+.flatpickr-day.startRange:hover {
+  --clr: hsl(219, 40%, 50%);
+  background: var(--clr);
+  border-color: var(--clr);
+}
+
+.flatpickr-calendar.hasTime .flatpickr-time {
+  border-top-color: rgba(255, 255, 255, 0.125);
+}
+.flatpickr-calendar.inline {
+    margin-top: 1rem;
+}
+    </code></pre>
+  <p>In JavaScript, everything you need to initialize the library through eponymous to the library function. The first
+    parameter is the selector for all elements that will be used as date or time pickers.</p>
+  <pre><code class="js">
+flatpickr(yourSelector, {})
+    </code></pre>
+  <p>As usually, there are many parameters that can be passed, but before we look into them, it is important to
+    understand
+    how date formatting tokens work. If you are not familiar with it at all, date formatting tokes is a syntax
+    functionally
+    similar to regular expressions. It allows you to define the format of how data is represented. For instance, if a
+    person
+    wants to write down the second of January of the year two thousand twenty-two, he can do it in multiple ways: 2nd
+    January 2022, 03.01.2022, 2022-01-02 and so on. Date formatting tokens allow us to tell the computer, which format
+    to
+    use. Here is the table of all available tokens for this library:</p>
+  <ul class="text">
+    <li>
+      <p><code class="html">d</code> - day of the month, 2 digits with leading zeros (01 to 31)</p>
+    </li>
+    <li>
+      <p><code class="html">D</code> - a textual representation of a day (Mon through Sun)</p>
+    </li>
+    <li>
+      <p><code class="html">l</code> - a full textual representation of the day of the week (Sunday through Saturday)
+      </p>
+    </li>
+    <li>
+      <p><code class="html">j</code> - day of the month without leading zeros (1 to 31)</p>
+    </li>
+    <li>
+      <p><code class="html">J</code> - day of the month without leading zeros and ordinal suffix (1st, 2nd, to 31st)</p>
+    </li>
+    <li>
+      <p><code class="html">w</code> - numeric representation of the day of the week (0 for Sunday through 6 for
+        Saturday)</p>
+    </li>
+    <li>
+      <p><code class="html">W</code> - numeric representation of the week (0 (first week of the year) through 52 (last
+        week of the year))</p>
+    </li>
+    <li>
+      <p><code class="html">F</code> - a full textual representation of a month (January through December)</p>
+    </li>
+    <li>
+      <p><code class="html">m</code> - numeric representation of a month, with leading zero (01 through 12)</p>
+    </li>
+    <li>
+      <p><code class="html">n</code> - numeric representation of a month, without leading zeros (1 through 12)</p>
+    </li>
+    <li>
+      <p><code class="html">M</code> - a short textual representation of a month (Jan through Dec)</p>
+    </li>
+    <li>
+      <p><code class="html">y</code> - a two digit representation of a year (99 or 03)</p>
+    </li>
+    <li>
+      <p><code class="html">Y</code> - a full numeric representation of a year, 4 digits (1999 or 2003)</p>
+    </li>
+    <li>
+      <p><code class="html">Z</code> - ISO Date format (2017-03-04T01:23:43.000Z)</p>
+    </li>
+    <li>
+      <p><code class="html">H</code> - hours (24 hours) (00 to 23)</p>
+    </li>
+    <li>
+      <p><code class="html">h</code> - hours (1 to 12)</p>
+    </li>
+    <li>
+      <p><code class="html">G</code> - hours, 2 digits with leading zeros (01 to 12)</p>
+    </li>
+    <li>
+      <p><code class="html">i</code> - minutes (00 to 59)</p>
+    </li>
+    <li>
+      <p><code class="html">S</code> - Seconds, 2 digits (00 to 59)</p>
+    </li>
+    <li>
+      <p><code class="html">s</code> - seconds (0, 1 to 59)</p>
+    </li>
+    <li>
+      <p><code class="html">K</code> - AM/PM (AM or PM)</p>
+    </li>
+  </ul>
+  <p>At first glance, all of these might seem complicated, but, hopefully, there is no need to remember all of these.
+    You can
+    look the formats here or go directly to the documentation to see the changes. Finally, we can go through the main
+    configurations of the library:</p>
+  <ul class="text">
+    <li>
+      <p><code class="js">enableTime</code> enables time selection</p>
+    </li>
+    <li>
+      <p><code class="js">dateFormat</code> defines the date format that will be both displayed and passed as the input
+        value</p>
+    </li>
+    <li>
+      <p><code class="js">altInput</code> setting this to <code class="js">true</code> will make the library create a
+        new input. Using this, you can set <code class="js">altFormat</code> that will be displayed for the user while
+        the actual input can have another format. It makes the date picker usage more user friendly and easier to work
+        with dates, if you are using some other library.</p>
+    </li>
+    <li>
+      <p><code class="js">mode</code> can be set to <code class="js">"multiple"</code> or <code
+          class="js">"range"</code>. The first option allows to set multiple dates (by default, the dates are separated
+        by a coma but you can change this behaviour using <code class="js">conjunction</code></p>
+    </li>
+    <li>
+      <p><code class="js">defaultDate</code> sets the default date for the input</p>
+    </li>
+    <li>
+      <p><code class="js">inline</code> makes the datepicker to be shown and displayed directly after the input</p>
+    </li>
+    <li>
+      <p><code class="js">weekNumbers</code> allows to view the week numbers on the left side from the calendar</p>
+    </li>
+    <li>
+      <p><code class="js">parseDate</code> is a function that takes two arguments: <code class="js">dateStr</code> and
+        <code class="js">format</code> and it must return the date. It might be useful, if you are using some library to
+        handle dates like <a class="inline-link" href="https://momentjs.com" target="_blank"
+          rel="noopener noreferrer">moment js</a></p>
+    </li>
+
+    </li>
+  </ul>
+  <p>And that's it! If you need to see a visual example you can check out my Codepen.</p>
+  <div class="btn-wrapper"><a href="https://codepen.io/skyrimer/pen/XWEGbLE" target="_blank" rel="noopener noreferrer"
+      class="btn-link">See the CodePen</a></div>
+</section>
+{% endblock %}
