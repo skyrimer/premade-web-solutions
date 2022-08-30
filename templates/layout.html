@@ -12,7 +12,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/static/meta-icons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="192x192" href="/static/meta-icons/android-chrome-192x192.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/static/meta-icons/favicon-16x16.png">
-    <link rel="manifest" href="/static/meta-icons/site.webmanifest">
+    <link rel="manifest" href="/static/manifest.json">
     <link rel="mask-icon" href="/static/meta-icons/safari-pinned-tab.svg" color="#f9a826">
     <link rel="shortcut icon" href="/static/meta-icons/favicon.ico">
     <meta name="msapplication-TileColor" content="#000000">
@@ -135,9 +135,8 @@
     <script defer type="module" src="/static/js/main-min.js"></script>
     <script type="module">
         if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function () {
-                navigator.serviceWorker
-                    .register('/static/serviceworker.js')
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/serviceworker.js')
                     .then((registration) => {
                         console.log('ServiceWorker registration successful with scope: ', registration.scope);
                     }, (err) => {

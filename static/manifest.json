@@ -5,17 +5,20 @@
     {
       "src": "/static/meta-icons/android-chrome-36x36.png",
       "sizes": "36x36",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "maskable"
     },
     {
       "src": "/static/meta-icons/android-chrome-48x48.png",
       "sizes": "48x48",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "maskable"
     },
     {
       "src": "/static/meta-icons/android-chrome-72x72.png",
       "sizes": "72x72",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "maskable"
     },
     {
       "src": "/static/meta-icons/android-chrome-96x96.png",
@@ -40,17 +43,21 @@
     {
       "src": "/static/meta-icons/android-chrome-384x384.png",
       "sizes": "384x384",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "maskable"
     },
     {
       "src": "/static/meta-icons/android-chrome-512x512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ],
   "theme_color": "#1a1b26",
   "background_color": "#000",
   "display": "standalone",
+  "base_url": "https://pre-made-web-solutions.herokuapp.com",
+  "start_url": "/",
   "screenshots": [
     {
       "src": "/images/screenshot-1.png",
