@@ -86,5 +86,13 @@
   {
     "name": "Website preloader",
     "url": "website-preloader"
+  },
+  {
+    "name": "Scroll indicator",
+    "url": "scroll-indicator"
+  },
+  {
+    "name": "Modern tables",
+    "url": "modern-tables"
   }
 ]

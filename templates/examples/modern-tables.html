@@ -1,0 +1,331 @@
+{% extends "layout.html" %}
+{% block content %}
+<section class="glassy-section" data-scroll-section>
+    <h2>Modern tables</h2>
+    <article class="text">
+        <p>Tables have been vastly abused by web developers since they were introduced. They are straightforward in
+            purpose and use and can include almost any information. However, in 2022 default tables will have some user
+            accessibility and mobile adaptation problems. Mainly, almost all tables nowadays need filters and sorting.
+            It is also nice to have fixed headers, so the data will cover more than the screen height. In this tutorial,
+            I will show you how to do all of the above in the simplest way possible.</p>
+        <p>In HTML, you need to wrap your table inside the wrapper that also has the input. We will later use this input
+            to filter the data. Except it is the same markup, you would use for any other table. Here is my example:</p>
+        <pre><code class="html">
+&lt;main&gt;
+  &lt;div class="table-wrapper"&gt;
+    &lt;div class="input-wrapper"&gt;
+      &lt;label for="table-filter"&gt;Table search:&lt;/label&gt;
+      &lt;input data-table-filter type="text" name="table-filter" id="table-filter" placeholder="Enter your text"&gt;
+    &lt;/div&gt;
+    &lt;table data-table-sortable&gt;
+      &lt;thead&gt;
+        &lt;tr&gt;
+          &lt;th data-type="number"&gt;ID&lt;/th&gt;
+          &lt;th&gt;Status&lt;/th&gt;
+          &lt;th&gt;Student name&lt;/th&gt;
+          &lt;th&gt;Email&lt;/th&gt;
+          &lt;th&gt;Country&lt;/th&gt;
+          &lt;th data-type="date"&gt;Last edited&lt;/th&gt;
+        &lt;/tr&gt;
+      &lt;/thead&gt;
+      &lt;tbody&gt;&lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/div&gt;
+&lt;/main&gt;
+        </code></pre>
+        <p>Before I explain the CSS magic, remember to style the table as you wish: add some cell padding to have spaces
+            between the borders, make an excellent background and hover effects. This part is up to you, and it can be
+            done without any restrictions except one: to fix the headers without any JavaScript, no parent of <code
+                class="html">th</code> should
+            have an overflow. This is essential because to make the sticky headers, we will use <code
+                class="css">position: stickys</code> that
+            works only without overflow. Here is the code.</p>
+        <pre><code class="scss">
+.table-wrapper {
+  width: 100%;
+}
+table {
+  width: 100%;
+  background-color: rgba(17, 25, 40, 0.5);
+  position: relative;
+  backdrop-filter: blur(16px);
+  border-radius: 12px;
+  border: 1px solid var(--clr-table-hover);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  border-spacing: 1rem 4rem;
+  overflow-x: hidden;
+  th,
+  td {
+    padding: 1.5rem;
+    color: #fff;
+    text-align: left;
+    position: relative;
+  }
+  td {
+    line-height: 1.5;
+    outline: 1px solid var(--clr-table-hover);
+  }
+  thead {
+    display: none;
+    th {
+      --shift: 0.21em;
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      font-weight: bold;
+      cursor: pointer;
+      background-color: #20194a;
+      &.desc::after {
+        rotate: 135deg;
+      }
+      &::after {
+        --size: 0.7em;
+        content: "";
+        opacity: 0;
+        border-color: #fff;
+        display: inline-block;
+        position: absolute;
+        right: 0.5em;
+        top: 50%;
+        translate: 0 -50%;
+        rotate: -45deg;
+        width: var(--size);
+        height: var(--size);
+        border-style: solid;
+        border-width: 0.22em 0.22em 0 0;
+        transition: all 0.15s ease-in-out;
+      }
+      &:hover::after {
+        opacity: 0.5;
+      }
+      &.sorted::after {
+        opacity: 1;
+      }
+    }
+  }
+  td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    font-size: 1.1rem;
+    text-align: left;
+    padding-right: 0.5rem;
+  }
+  td:nth-child(2),
+  td:first-child {
+    text-align: center;
+  }
+  tr {
+    border-top: 3rem solid transparent;
+    border-bottom: 3rem solid transparent;
+    border-radius: 1rem;
+    background-color: var(--clr-table-hover);
+  }
+  tbody {
+    tr {
+      transition: background-color 0.15s ease-in-out;
+      &:hover {
+        background-color: var(--clr-table-hover);
+      }
+    }
+    td {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+  @media screen and (min-width: 1000px) {
+    border-collapse: collapse;
+    thead {
+      display: table-header-group;
+    }
+    tbody td {
+      display: table-cell;
+      &::before {
+        content: none;
+      }
+      &::after {
+        content: "";
+      }
+    }
+    tr {
+      background-color: transparent;
+      border: none;
+    }
+  }
+}
+        </code></pre>
+        <p>In addition, we will have the media query to make the tables mobile-friendly. Unfortunately, a media query is
+            the only way to adapt the table for mobile without overflowing and horizontal scroll. So, we will have 2
+            states: a mobile version where the headers are not displayed, and they are moved to each cell as a data
+            attribute, while the table content will be collapsed to a row using <code class="css">display: flex</code>.
+            In CSS, it looks like
+            this:</p>
+        <pre><code class="scss">
+td::before {
+  content: attr(data-label);
+  font-weight: bold;
+  font-size: 1.1rem;
+  text-align: left;
+  padding-right: 0.5rem;
+}
+@media screen and (min-width: 1000px) {
+  border-collapse: collapse;
+  thead {
+    display: table-header-group;
+  }
+  tbody td {
+    display: table-cell;
+    &::before {
+      content: none;
+    }
+    &::after {
+      content: "";
+    }
+  }
+  tr {
+    background-color: transparent;
+    border: none;
+  }
+}
+        </code></pre>
+        <p>As you can see, each cell should have its own data attribute with the header name. It can be done manually,
+            but it might be tedious and complicated to edit later. Hence, we will use JavaScript for this.</p>
+        <pre><code class="js">
+bodyRows.forEach((row) => {
+  const cells = row.querySelectorAll("td");
+  for (let index = 0; index < cells.length; index++) {
+    const cell = cells[index];
+    cell.setAttribute("data-label", headers[index].textContent + ":");
+        </code></pre>
+        <p>Sorting will be done through JavaScript, but there is a minor detail: the sorting icon. For user experience,
+            it is vital to add a hover effect so that the user knows that he can sort the table and how it is sorted.
+            You just need to add the pseudo-element that will slightly appear on hover. The icon will rotate if the
+            special class is added, showing the sorting direction (ascending or descending).</p>
+        <pre><code class="scss">
+th {
+  --shift: 0.21em;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: #20194a;
+  &.desc::after {
+    rotate: 135deg;
+  }
+  &::after {
+    --size: 0.7em;
+    content: "";
+    opacity: 0;
+    border-color: #fff;
+    display: inline-block;
+    position: absolute;
+    right: 0.5em;
+    top: 50%;
+    translate: 0 -50%;
+    rotate: -45deg;
+    width: var(--size);
+    height: var(--size);
+    border-style: solid;
+    border-width: 0.22em 0.22em 0 0;
+    transition: all 0.15s ease-in-out;
+  }
+  &:hover::after {
+    opacity: 0.5;
+  }
+  &.sorted::after {
+    opacity: 1;
+  }
+}
+        </code></pre>
+        <p>Then, we have the sorting algorithm. Firstly, we are getting the list of directions for each header. By
+            default, it is equal to an empty string. Then on header click, we remove the styling classes for the last
+            sorted element and add them to the new header, followed by the function that sorts the table. This is done
+            by removing all the rows from the table body and sorting them based on their type. By default, the sorting
+            is getting the inner HTML of the element, but the table might contain more complex data types like dates.
+            Therefore, the sorting function normalises data using the <code class="js">switch</code> statement that goes
+            over the <code class="html">data-type</code> attribute and returns the cell value. In the code, it looks
+            like this:</p>
+        <pre><code class="js">
+const transform = (index, content, headers) => {
+  const type = headers[index].getAttribute("data-type");
+  switch (type) {
+    case "date":
+      return new Date(content);
+    case "number":
+      return parseFloat(content);
+    case "string":
+    default:
+      return content;
+  }
+};
+const sortColumn = (rows, headers, tableBody, index, directions) => {
+  const direction = directions[index] || "asc";
+  const multiplier = direction === "asc" ? 1 : -1;
+  const newRows = [...rows];
+  newRows.sort((rowA, rowB) => {
+    const cellA = rowA.querySelectorAll("td")[index].innerHTML;
+    const cellB = rowB.querySelectorAll("td")[index].innerHTML;
+    const a = transform(index, cellA, headers);
+    const b = transform(index, cellB, headers);
+    switch (true) {
+      case a > b:
+        return 1 * multiplier;
+      case a < b:
+        return -1 * multiplier;
+      case a === b:
+        return 0;
+    }
+  });
+  [].forEach.call(rows, (row) => {
+    tableBody.removeChild(row);
+  });
+  directions[index] = direction === "asc" ? "desc" : "asc";
+  newRows.forEach((newRow) => {
+    tableBody.appendChild(newRow);
+  });
+};
+
+const directions = [...headers].map(() => {
+  return "";
+});
+[].forEach.call(headers, (header, index) => {
+  header.addEventListener("click", ({ target }) => {
+    headers.forEach((header) => {
+      header.classList.remove("sorted");
+    });
+    const direction = directions[index] != "" ? directions[index] : "asc";
+    target.classList.remove("asc", "desc");
+    target.classList.add("sorted", direction);
+    sortColumn(rows, headers, tableBody, index, directions);
+  });
+});
+        </code></pre>
+        <p>Finally, we need to make filtering. You just need to add the event listener on the filter input so that when
+            something is typed value changes, the script will go over the entire table to find matches. If matches are
+            found, then these rows will be set to <code class="css">display: table-row</code>, and hidden using <code
+                class="css">display: none</code>.</p>
+        <pre><code class="js">
+tableFilter.addEventListener("input", ({ target }) => {
+  const value = target.value.toLocaleLowerCase();
+  bodyRows.forEach((row) => {
+    const containsValue = [...row.querySelectorAll("td")].some(
+      (cell, index, array) => {
+        const textValue = cell.textContent || cell.innerText;
+        return textValue.toLocaleLowerCase().includes(value);
+      }
+    );
+    if (containsValue) {
+      row.style.display = "table-row";
+    } else {
+      row.style.display = "none";
+    }
+  });
+});
+        </code></pre>
+        <p>That's it! Now you know how to make a piece of cake from an old school HTML element. If you want to see the
+            full code, you can see the link below.</p>
+        <div class="btn-wrapper"><a href="https://codepen.io/skyrimer/pen/yLjvdEL" target="_blank"
+                rel="noopener noreferrer" class="btn-link">See the CodePen</a></div>
+    </article>
+</section>
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+{% block content %}
+<section class="glassy-section" data-scroll-section>
+    <h2>Scroll indicator</h2>
+    <article class="text">
+        <p>A scroll indicator is a progress bar that commonly indicates how much the user scrolled through the website
+            content.
+            Despite this element not being eye-catching, it is an excellent way to enhance your article page as it adds
+            a bit of
+            style and accessibility. There are not many ways to do it, and there is even another one upcoming as
+            browsers started
+            implementing <a
+                href="https://css-tricks.com/practical-use-cases-for-scroll-linked-animations-in-css-with-scroll-timelines/"
+                target="_blank" rel="noopener noreferrer" class="inline-link">scroll-timeline</a> support. This
+            fantastic feature
+            will be life-changing for many on-scroll animations, but as
+            it can not be used yet, I will show you the most straightforward solution with <code
+                class="html">progressbar</code> and JavaScript.</p>
+        <p>In Html, you only have to create a progressbar element and set an id for it with max and min values. If you
+            have a fixed
+            navbar, you can put it inside or wrap the scroll indicator and position the wrapper fixed on the screen.</p>
+        <pre><code class="html">
+&lt;div class="progress-container"&gt;
+  &lt;progress class="progress-bar" id="myBar" value="0" max="100"&gt;&lt;/progress&gt;
+&lt;/div&gt;
+        </code></pre>
+        <p>In CSS, you have to be aware of only two essential selectors. <code class="css">::-webkit-progress-bar</code>
+            selects the background of your
+            progressbar, while <code class="css">::-webkit-progress-value</code> represents the line that represents the
+            value of the progressbar. Therefore,
+            you can combine the selectors above to fit your styling purposes. Here is my simple example.</p>
+        <pre><code class="scss">
+.progress-container {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+}
+progress.progress-bar {
+  width: 100%;
+  height: 8px;
+  &::-webkit-progress-bar {
+    background-color: #041c32;
+  }
+  &::-webkit-progress-value {
+    background-color: #ecb365;
+  }
+}
+        </code></pre>
+        <p>Finally, in Javascript, we have to realise the logic to find the ratio of how much the page is scrolled. This
+            can be
+            done by finding the scrolled height using <code
+                class="js">document.body.scrollTop || document.documentElement.scrollTop</code> devided by
+            <code class="js">document.documentElement.scrollHeight - document.documentElement.clientHeight</code>.
+            Therefore, we can use this ratio as the
+            value for the <code class="html">progressbar</code> and update it each time the user scrolls.
+        </p>
+        <pre><code class="js">
+window.onscroll = () => {
+  var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  var height =
+    document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  document.getElementById("myBar").value = (winScroll / height) * 100;
+};
+        </code></pre>
+        <p>And you are done! There are no tricks or magic happening, which you can double check in the CodePen</p>
+        <div class="btn-wrapper"><a href="https://codepen.io/skyrimer/pen/QWrNxaP" target="_blank"
+                rel="noopener noreferrer" class="btn-link">See the CodePen</a></div>
+    </article>
+</section>
+{% endblock %}
