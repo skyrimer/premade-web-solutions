@@ -12,7 +12,8 @@ app.config["SECRET_KEY"] = environ.get("SECRET_KEY")
 app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///database.sqlite3'
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
-view_counter = ViewCounter(app, db)
+with app.app_context():
+    view_counter = ViewCounter(app, db)
 
 app.config["TEMPLATES_AUTO_RELOAD"] = True
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0

@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+{% block content %}
+<section class="glassy-section" data-scroll-section>
+  <h2>Interactive charts</h2>
+  <article class="text">
+    <p>Charts are primarily used in the admin panel of the website. Therefore, the utilities to construct these charts
+      will go with the site's system control management. However, it is also expected that some small charts appear now
+      and then to represent some information (user timeline or difference between using your product and other
+      software). So, how are we supposed to do it? Hopefully, <a href="https://www.chartjs.org/docs/latest/"
+        target="_blank" rel="noopener noreferrer" class="inline-link">Chart Js</a> managed to provide a library that can
+      solve all
+      our problems.</p>
+    <p>In Html, you need to create a <code class="html">canvas</code> element with some sort of identification that we
+      can access through JavaScript. If
+      you wish to have fixed values for height and width, you can declare them here. Like this:</p>
+    <pre><code class="html">
+  &lt;canvas class="chart"&gt;&lt;/canvas&gt;
+      </code></pre>
+    <p>In CSS, there is nothing particularly related to the tutorial. Just make sure that your chart has enough space.
+    </p>
+    <p>In JavaScript happens, all the magic. After connecting the library, you need to query for your element and access
+      its 2d context. Then pass it to the <code class="js">Chart</code> object as the first parameter, followed by the
+      chart config. That would
+      be it, if not a million available settings. Hopefully, I can summarise them here, and if you still need additional
+      functionality, you can access the <a href="https://www.chartjs.org/docs/latest/" target="_blank"
+        rel="noopener noreferrer" class="inline-link">official documentation</a>:</p>
+    <pre><code class="js">
+new Chart(canvas.getContext("2d"), chartConfig)
+        </code></pre>
+    <p>Config is a dictionary that consists of 3 parameters: <code class="js">type</code>, <code class="js">data</code>
+      and <code class="js">options</code>. <code class="js">type</code> refers to the graph's
+      representation (line, bar, bubble, scatter, pie, polar area or doughnut). <code class="js">data</code> is an
+      object that includes your data and its customisation. <code class="js">options</code> are other graph
+      customisation that does not directly refer to data.</p>
+    <p>Data must include one <code class="js">dataset</code>: your actual data. In the <code class="js">dataset</code>,
+      you can also have customisation: the label for
+      this data, background colour, border colour etc. The above data must be labelled with any string using the label
+      key.
+    </p>
+    <p>
+      <code class="js">Options</code> have layout control like padding or animation and additional information like the
+      legend, axis, title,
+      subtitle etc. There are a lot of settings you can add here, but the most important I have mentioned above.
+    </p>
+    <p>I think that this information is sufficient enough for you to get started with the library. I know that I didn't
+      cover everything you might need in your life as I did with <a href="/examples/ultimate-slider"
+        class="inline-link">sliders</a>, but assuming that the library is so extensive
+      and there are so many small settings that you will use once per project, I doubt that they have to be explained in
+      detail. In addition, the documentation and examples will be better and more up-to-date. If you want to see all
+      primary types of charts, you are welcome to check out the pen.</p>
+    <div class="btn-primary">
+      <a href="https://codepen.io/skyrimer/pen/eYrQoxQ" target="_blank" rel="noopener noreferrer" class="btn-link">See
+        the CodePen</a>
+    </div>
+  </article>
+</section>
+{% endblock %}
