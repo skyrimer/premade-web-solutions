@@ -98,5 +98,9 @@
   {
     "name": "Interactive charts",
     "url": "interactive-charts"
+  },
+  {
+    "name": "Fullscreen hero section",
+    "url": "fullscreen-hero-section"
   }
 ]
