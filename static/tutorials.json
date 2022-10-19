@@ -102,5 +102,9 @@
   {
     "name": "Fullscreen hero section",
     "url": "fullscreen-hero-section"
+  },
+  {
+    "name": "Responsive image grid",
+    "url": "responsive-image-grid"
   }
 ]

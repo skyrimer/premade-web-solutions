@@ -1,0 +1,103 @@
+{% extends "layout.html" %}
+{% block content %}
+<section class="glassy-section" data-scroll-section>
+    <h2>Responsive image grid</h2>
+    <article class="text">
+        <p>An image grid is one of the unique ways to present pictures. Instead of a carousel or a slider, it allows for
+            maintaining the vertical style and display of images without visually equally rows. This tutorial will show
+            you the easiest way to do so without JavaScript.</p>
+        <p>Despite no visual rows, all pictures are wrapped in a big row with multiple columns with independent
+            alignment inside. Therefore, you can put as many columns as you want. Yet make sure that the height of
+            images will be roughly the same because big gaps in one of the columns will look bad. Here is my code
+            example:</p>
+        <pre><code class="html">
+&lt;div class="image-gallery"&gt;
+  &lt;div class="gallery-column"&gt;
+    &lt;img src="https://images.unsplash.com/photo-1493243350443-9e3048ce7288?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1640&amp;q=80" alt=""&gt;
+    &lt;img src="https://images.unsplash.com/photo-1543076499-a6133cb932fd?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=687&amp;q=80" alt=""&gt;
+    &lt;img src="https://images.unsplash.com/photo-1477346611705-65d1883cee1e?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1470&amp;q=80" alt=""&gt;
+    &lt;img src="https://images.unsplash.com/photo-1503435824048-a799a3a84bf7?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=687&amp;q=80" alt=""&gt;
+    &lt;img src="https://images.unsplash.com/photo-1453955994444-36bcd2f979fb?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=2070&amp;q=80" alt=""&gt;
+    &lt;img src="https://images.unsplash.com/photo-1440964829947-ca3277bd37f8?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1470&amp;q=80" alt=""&gt;
+    &lt;img src="https://images.unsplash.com/photo-1536431311719-398b6704d4cc?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=687&amp;q=80" alt=""&gt;
+    &lt;img src="https://images.unsplash.com/photo-1497294815431-9365093b7331?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1470&amp;q=80" alt=""&gt;
+    &lt;img src="https://images.unsplash.com/photo-1496483353456-90997957cf99?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=685&amp;q=80" alt=""&gt;
+  &lt;/div&gt;
+  &lt;div class="gallery-column"&gt;
+    &lt;img src="https://images.unsplash.com/photo-1536431311719-398b6704d4cc?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=687&amp;q=80" alt=""&gt;
+    &lt;img src="https://images.unsplash.com/photo-1503435824048-a799a3a84bf7?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=687&amp;q=80" alt=""&gt;
+    &lt;img src="https://images.unsplash.com/photo-1477346611705-65d1883cee1e?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1470&amp;q=80" alt=""&gt;
+    &lt;img src="https://images.unsplash.com/photo-1493243350443-9e3048ce7288?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1640&amp;q=80" alt=""&gt;
+    &lt;img src="https://images.unsplash.com/photo-1440964829947-ca3277bd37f8?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1470&amp;q=80" alt=""&gt;
+    &lt;img src="https://images.unsplash.com/photo-1497294815431-9365093b7331?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1470&amp;q=80" alt=""&gt;
+    &lt;img src="https://images.unsplash.com/photo-1543076499-a6133cb932fd?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=687&amp;q=80" alt=""&gt;
+    &lt;img src="https://images.unsplash.com/photo-1496483353456-90997957cf99?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=685&amp;q=80" alt=""&gt;
+    &lt;img src="https://images.unsplash.com/photo-1453955994444-36bcd2f979fb?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=2070&amp;q=80" alt=""&gt;
+  &lt;/div&gt;
+  &lt;div class="gallery-column"&gt;
+    &lt;img src="https://images.unsplash.com/photo-1477346611705-65d1883cee1e?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1470&amp;q=80" alt=""&gt;
+    &lt;img src="https://images.unsplash.com/photo-1536431311719-398b6704d4cc?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=687&amp;q=80" alt=""&gt;
+    &lt;img src="https://images.unsplash.com/photo-1440964829947-ca3277bd37f8?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1470&amp;q=80" alt=""&gt;
+    &lt;img src="https://images.unsplash.com/photo-1503435824048-a799a3a84bf7?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=687&amp;q=80" alt=""&gt;
+    &lt;img src="https://images.unsplash.com/photo-1493243350443-9e3048ce7288?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1640&amp;q=80" alt=""&gt;
+    &lt;img src="https://images.unsplash.com/photo-1496483353456-90997957cf99?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=685&amp;q=80" alt=""&gt;
+    &lt;img src="https://images.unsplash.com/photo-1497294815431-9365093b7331?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1470&amp;q=80" alt=""&gt;
+    &lt;img src="https://images.unsplash.com/photo-1453955994444-36bcd2f979fb?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=2070&amp;q=80" alt=""&gt;
+    &lt;img src="https://images.unsplash.com/photo-1543076499-a6133cb932fd?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=687&amp;q=80" alt=""&gt;
+  &lt;/div&gt;
+  &lt;div class="gallery-column"&gt;
+    &lt;img src="https://images.unsplash.com/photo-1440964829947-ca3277bd37f8?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1470&amp;q=80" alt=""&gt;
+    &lt;img src="https://images.unsplash.com/photo-1477346611705-65d1883cee1e?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1470&amp;q=80" alt=""&gt;
+    &lt;img src="https://images.unsplash.com/photo-1503435824048-a799a3a84bf7?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=687&amp;q=80" alt=""&gt;
+    &lt;img src="https://images.unsplash.com/photo-1496483353456-90997957cf99?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=685&amp;q=80" alt=""&gt;
+    &lt;img src="https://images.unsplash.com/photo-1543076499-a6133cb932fd?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=687&amp;q=80" alt=""&gt;
+    &lt;img src="https://images.unsplash.com/photo-1453955994444-36bcd2f979fb?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=2070&amp;q=80" alt=""&gt;
+    &lt;img src="https://images.unsplash.com/photo-1497294815431-9365093b7331?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1470&amp;q=80" alt=""&gt;
+    &lt;img src="https://images.unsplash.com/photo-1536431311719-398b6704d4cc?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=687&amp;q=80" alt=""&gt;
+    &lt;img src="https://images.unsplash.com/photo-1493243350443-9e3048ce7288?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1640&amp;q=80" alt=""&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+        </code></pre>
+        <p>In CSS, you need to make the image grid a flex container. To make it adaptive, you must also throw <code
+                class="css">flex-wrap: wrap</code>. It allows defining the wrapping moment using the <code
+                class="css">flex-basis</code> property set to each column. Also, you need to set the <code
+                class="css">max-width</code> to the gallery column because the wrapped content will take the entire
+            width of the available resulting in stretched images. Finally, it is common that you would like to style
+            every image except the selected or hovered one. This can be done by applying a non-active style when the
+            entire row is selected and cancelling it when the user hovers over the image.
+        </p>
+        <pre><code class="scss">
+.image-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  .gallery-column {
+    flex: 1 1 400px;
+    max-width: 50%;
+    img {
+      width: 100%;
+      margin-top: 0.5rem;
+      object-fit: cover;
+      filter: none;
+      transition: all 200ms ease-in-out;
+    }
+  }
+  &:hover {
+    .gallery-column img {
+      filter: saturate(50%);
+      &:hover {
+        filter: saturate(140%);
+      }
+    }
+  }
+}
+        </code></pre>
+        <p>That's it. It is another short tutorial, yet helpful and quite powerful. If you want to visualise it, then
+            follow the CodePen.</p>
+        <div class="btn-wrapper"><a href="https://codepen.io/skyrimer/pen/mdLZdPe" target="_blank"
+                rel="noopener noreferrer" class="btn-link">See the CodePen</a></div>
+    </article>
+</section>
+{% endblock %}
